@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">segfault</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="tutte_le_strutture">tutte le strutture</string>
+    <string name="nome" />
+    <string name="informazioni_struttura">informazioni struttura</string>
+    <string name="indirizzo">indirizzo:</string>
+    <string name="nuova_prenotazione">nuova prenotazione</string>
+    <string name="annulla">Annulla</string>
+    <string name="numero_partecipanti">Numero partecipanti:</string>
+    <string name="conferma">conferma</string>
+    <string name="ora">Ora:</string>
+    <string name="data">Data:</string>
+    <string name="struttura">Struttura:</string>
+    <string name="inserimento_nuova_struttura">inserimento nuova struttura</string>
+    <string name="descrizione_opzionale">Descrizione (opzionale)</string>
+    <string name="nome_della_struttura">Nome della struttura</string>
+    <string name="orario_apertura">orario apertura</string>
+    <string name="orario_chiusura">orario chiusura</string>
+    <string name="inserisci_indirizzo_della_struttura">Inserisci indirizzo della struttura</string>
+    <string name="descrizione">descrizione</string>
+    <string name="giornate_apertura">Giornate apertura</string>
+    <string name="giorni_lavorativi">Giorni lavorativi:</string>
+    <string name="le_tue_sfide">le tue sfide</string>
+    <string name="mettiti_alla_prova">mettiti alla prova</string>
+    <string name="crea_una_nuva_sfida">crea una nuva sfida</string>
+    <string name="orario_inizio">orario inizio</string>
+    <string name="orario_fine">orario fine</string>
+</resources>

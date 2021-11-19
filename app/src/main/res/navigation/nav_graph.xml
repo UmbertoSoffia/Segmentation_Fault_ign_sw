@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/all_structure"
+        android:name="com.example.segfault.all_structure"
+        android:label="all_struture"
+        tools:layout="@layout/all_structure">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/info_utent_prom" />
+        <action
+            android:id="@+id/action_all_structure_to_info_structure"
+            app:destination="@id/info_structure" />
+    </fragment>
+    <fragment
+        android:id="@+id/info_utent_prom"
+        android:name="com.example.segfault.info_utent_prom"
+        android:label="info_utent_prom"
+        tools:layout="@layout/info_utent_prom">
+
+        <action
+            android:id="@+id/action_info_utent_prom_to_all_structure"
+            app:destination="@id/all_structure" />
+        <action
+            android:id="@+id/action_info_utent_prom_to_info_structure"
+            app:destination="@id/info_structure" />
+    </fragment>
+    <fragment
+        android:id="@+id/info_structure"
+        android:name="com.example.segfault.info_utent_prom"
+        android:label="info_utent_prom"
+        tools:layout="@layout/info_struct">
+
+
+    </fragment>
+</navigation>
