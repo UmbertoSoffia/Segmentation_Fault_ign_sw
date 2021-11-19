@@ -26,8 +26,8 @@ public class all_structure extends AppCompatActivity {
         backhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //qua bisogna mettere la home page
-                Intent i = new Intent(all_structure.this, homepage.class);
+                //qua bisogna mettere la pag precedente
+                Intent i = new Intent(all_structure.this, indietro.class);
                 startActivity(i);
             }
         });

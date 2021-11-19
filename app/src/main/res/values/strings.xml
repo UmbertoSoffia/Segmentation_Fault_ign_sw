@@ -34,4 +34,10 @@
     <string name="crea_una_nuva_sfida">crea una nuva sfida</string>
     <string name="orario_inizio">orario inizio</string>
     <string name="orario_fine">orario fine</string>
+    <string name="username">username</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="anulla">Anulla</string>
+    <string name="vuoi_diventare_un_utente_promtore">vuoi diventare un utente promtore?</string>
+    <string name="registrati">Registrati</string>
 </resources>
