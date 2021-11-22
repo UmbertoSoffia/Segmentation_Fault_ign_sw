@@ -12,16 +12,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 public class homepage extends Activity {
-    private Button confirm;
-    private Button register;
-    private Button cancel;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
-        confirm=findViewById(R.id.confirm);
-        register=findViewById(R.id.register);
-        cancel=findViewById(R.id.cancel);
+        Button confirm = findViewById(R.id.confirm);
+        Button register = findViewById(R.id.register);
+        Button cancel = findViewById(R.id.cancel);
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +30,7 @@ public class homepage extends Activity {
                     //se utente è promotore
                 if(true){
                     Intent i = new Intent(homepage.this, home_promot.class);
+                    finish();
                     startActivity(i);
                 }
                 else{
@@ -50,6 +49,15 @@ public class homepage extends Activity {
 
                     }
                 }
+
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(homepage.this, homepage.class);
+                finish();
+                startActivity(i);
 
             }
         });

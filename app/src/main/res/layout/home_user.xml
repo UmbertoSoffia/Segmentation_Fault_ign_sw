@@ -23,7 +23,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/back"
+        android:id="@+id/back_home_user"
         android:layout_width="56dp"
         android:layout_height="32dp"
         android:layout_weight="1"
