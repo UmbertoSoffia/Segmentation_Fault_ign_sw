@@ -40,4 +40,6 @@
     <string name="anulla">Anulla</string>
     <string name="vuoi_diventare_un_utente_promtore">vuoi diventare un utente promtore?</string>
     <string name="registrati">Registrati</string>
+    <string name="descrizione_promotore">descrizione promotore</string>
+    <string name="utente_promotore">Utente promotore</string>
 </resources>

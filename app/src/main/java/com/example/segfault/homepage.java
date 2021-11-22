@@ -45,7 +45,7 @@ public class homepage extends Activity {
                         builder.setMessage("utente inesistente").setPositiveButton("ok", null);
                         AlertDialog alert=builder.create();
                         alert.show();
-                        //ricarica la pagina
+
 
                     }
                 }
