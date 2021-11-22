@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:layout_editor_absoluteX="-4dp"
-    tools:layout_editor_absoluteY="511dp">
+    tools:layout_editor_absoluteY="511dp"
+    tools:ignore="MissingDefaultResource">
 
 
     <LinearLayout
@@ -62,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.001" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/mail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/name_struct"
         app:layout_constraintVertical_bias="0.192" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/street_addr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.89" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/editTextPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,7 +107,7 @@
         android:layout_width="91dp"
         android:layout_height="31dp"
         android:shadowColor="@color/black"
-        android:text="Mail:"
+        android:text="@string/mail"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
@@ -136,7 +137,7 @@
         android:layout_height="31dp"
         android:layout_marginTop="32dp"
         android:shadowColor="@color/black"
-        android:text="Descrizione:"
+        android:text="@string/descrizione"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/street_addr"
@@ -150,7 +151,7 @@
         android:layout_width="91dp"
         android:layout_height="31dp"
         android:shadowColor="@color/black"
-        android:text="Tel:"
+        android:text="@string/tel"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
@@ -187,7 +188,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:layout_constraintVertical_bias="0.094" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/opening_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -200,7 +201,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
         app:layout_constraintVertical_bias="0.107" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/closing_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -213,7 +214,7 @@
         app:layout_constraintTop_toBottomOf="@+id/opening_time"
         app:layout_constraintVertical_bias="0.084" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/Description"
         android:layout_width="409dp"
         android:layout_height="114dp"
@@ -225,6 +226,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.998"
-         />
+        android:autofillHints="" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

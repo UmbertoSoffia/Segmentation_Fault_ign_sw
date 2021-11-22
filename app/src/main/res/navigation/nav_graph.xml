@@ -12,11 +12,11 @@
         tools:layout="@layout/all_structure">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/info_utent_prom" />
-        <action
             android:id="@+id/action_all_structure_to_info_structure"
-            app:destination="@id/info_structure" />
+            app:destination="@id/info_struct" />
+        <action
+            android:id="@+id/action_all_structure_to_home_user"
+            app:destination="@id/home_user" />
     </fragment>
     <fragment
         android:id="@+id/info_utent_prom"
@@ -29,12 +29,41 @@
             app:destination="@id/all_structure" />
         <action
             android:id="@+id/action_info_utent_prom_to_info_structure"
-            app:destination="@id/info_structure" />
+            app:destination="@id/info_struct" />
+        <action
+            android:id="@+id/action_info_utent_prom_to_home_user"
+            app:destination="@id/home_user" />
     </fragment>
     <fragment
-        android:id="@+id/info_structure"
+        android:id="@+id/homepage"
+        android:name="com.example.segfault.MainActivity"
+        android:label="homepage"
+        tools:layout="@layout/homepage">
+        <action
+            android:id="@+id/homepage"
+            app:destination="@id/home_user" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/home_user"
+        android:name="com.example.segfault.home_user"
+        android:label="home_user"
+        tools:layout="@layout/home_user">
+
+
+        <action
+            android:id="@+id/action_home_user_to_info_utent_prom"
+            app:destination="@id/info_utent_prom" />
+        <action
+            android:id="@+id/action_home_user_to_all_structure"
+            app:destination="@id/all_structure" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/info_struct"
         android:name="com.example.segfault.info_utent_prom"
-        android:label="info_utent_prom"
+        android:label="info_struct"
         tools:layout="@layout/info_struct">
 
 

@@ -34,7 +34,7 @@ public class home_user extends Activity {
         backhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(home_user.this, homepage.class);
+                Intent i = new Intent(home_user.this, MainActivity.class);
                 startActivity(i);
             }
         });
