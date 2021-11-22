@@ -44,4 +44,6 @@
     <string name="utente_promotore" translatable="false">Utente promotore</string>
     <string name="mail">Mail:</string>
     <string name="tel">Tel:</string>
+    <string name="name">Name</string>
+    <string name="sport">Sport</string>
 </resources>

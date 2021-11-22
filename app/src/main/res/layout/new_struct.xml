@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView15"
         app:layout_constraintVertical_bias="0.666" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/name_struct2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

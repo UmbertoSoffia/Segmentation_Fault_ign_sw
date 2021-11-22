@@ -93,7 +93,7 @@
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="154dp"
         android:layout_height="23dp"
@@ -105,7 +105,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/editTextNumber"
         android:layout_width="154dp"
         android:layout_height="23dp"
