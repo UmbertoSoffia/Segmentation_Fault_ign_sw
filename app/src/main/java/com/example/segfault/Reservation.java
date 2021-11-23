@@ -13,18 +13,48 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class Reservation extends AppCompatActivity {
-    Button confirm;
+    Button confirm = (Button)findViewById(R.id.confirm);
     Button reject;
     Spinner n_people,sport,start,stop;
-    Spinner ora;
     Spinner date;
     Spinner structure;
+
+    private void nestedSpinner(ArrayList<Spinner> lst,ArrayList<String>query,int step,String value){
+        if (step==6) return;
+        ArrayList<String>element=new ArrayList<>();
+        //aggiungi a elementmtutti i campi utilizzando la query[step]
+        if (step==0){
+            //prendi elem da query[0] e buttali in element
+            
+        }else{
+            //altimenti utilizza campo selezionato dallo spinner precedente
+            //sto campo viene passato in value e butta tutto in element
+        }
+        //https://www.youtube.com/watch?v=svCVKC7ByOE&t=385s x tutoril spinner innestati forse manca pezzo ma non penso
+        ArrayAdapter<String> adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,element);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        lst.get(step).setAdapter(adapter);
+        //spinner in posizione step
+        lst.get(step).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selected=parent.getSelectedItem().toString();
+                nestedSpinner(lst,query,step+1,selected);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
 
     private void saveInCAlendar(){
         Intent intent= new Intent(Intent.ACTION_INSERT);
@@ -49,38 +79,42 @@ public class Reservation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //stampa il layout x prenotora
         setContentView(R.layout.reservation);
-        n_people=(Spinner)findViewById(R.id.spinner_players);
+        n_people=findViewById(R.id.spinner_players);
+        date=findViewById(R.id.spinner_date);
+        structure=findViewById(R.id.spinner_struct);
+        sport= findViewById(R.id.sport);
+        start= findViewById(R.id.start);
+        stop= findViewById(R.id.stop);
+        reject= findViewById(R.id.cancel);
+        confirm=findViewById(R.id.confirm);
+        ArrayList<Spinner> list_spin = new ArrayList<>();
+        list_spin.add(0,sport);
+        list_spin.add(1,structure);
+        list_spin.add(2,n_people);
+        list_spin.add(3,date);
+        list_spin.add(4,start);
+        list_spin.add(5,stop);
+        
+        /*
+            ordine spinner
+            1-sport
+            2-struttura
+            3-npersone
+            4-data
+            5-orastart
+            6-orastop
 
-        date=(Spinner)findViewById(R.id.spinner_date);
-        structure=(Spinner)findViewById(R.id.spinner_struct);
-        sport=(Spinner)findViewById(R.id.sport);
-        start=(Spinner)findViewById(R.id.start);
-        stop=(Spinner)findViewById(R.id.stop);
-        confirm=(Button)findViewById(R.id.confirm);
-        reject=(Button)findViewById(R.id.cancel);
-
-        //butta tutti gli sport in sta lista
-        ArrayList<String> List_sport=new ArrayList<>();
-        ArrayList<String>List_hours=new ArrayList<>();
-
-        // tutorial per fare spinner innestati
-        ArrayAdapter adapter_sport=new ArrayAdapter(this, android.R.layout.simple_spinner_item, (List) sport);
-        adapter_sport.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sport.setAdapter(adapter_sport);
-        sport.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selected=parent.getSelectedItem().toString();
-                //qua fai la query per aggiungere
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
+         */
+     
+        final ArrayList<String> query=new ArrayList<>();
+        query.add(0," query sport");
+        query.add(1,"structure");
+        query.add(2,"n_people");
+        query.add(3,"date");
+        query.add(4,"start");
+        query.add(5,"stop");
+        //nested spinner
+        nestedSpinner(list_spin,query,0,null);
 
 
 
