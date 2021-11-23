@@ -2,12 +2,10 @@ package com.example.segfault;
 
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
-
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -52,7 +50,7 @@ public class Reservation extends AppCompatActivity {
         //stampa il layout x prenotora
         setContentView(R.layout.reservation);
         n_people=(Spinner)findViewById(R.id.spinner_players);
-        ora=(Spinner)findViewById(R.id.spinner_time);
+
         date=(Spinner)findViewById(R.id.spinner_date);
         structure=(Spinner)findViewById(R.id.spinner_struct);
         sport=(Spinner)findViewById(R.id.sport);

@@ -13,8 +13,7 @@
     <string name="nome" translatable="false" />
     <string name="informazioni_struttura" translatable="false">informazioni struttura</string>
     <string name="indirizzo" translatable="false">indirizzo:</string>
-    <string name="nuova_prenotazione" translatable="false">nuova prenotazione</string>
-    <string name="annulla" translatable="false">Annulla</string>
+       <string name="annulla" translatable="false">Annulla</string>
     <string name="numero_partecipanti" translatable="false">Numero partecipanti:</string>
     <string name="conferma" translatable="false">conferma</string>
     <string name="ora" translatable="false">Ora:</string>
@@ -40,8 +39,7 @@
     <string name="anulla" translatable="false">Anulla</string>
     <string name="vuoi_diventare_un_utente_promtore" translatable="false">vuoi diventare un utente promtore?</string>
     <string name="registrati" translatable="false">Registrati</string>
-    <string name="descrizione_promotore" translatable="false">descrizione promotore</string>
-    <string name="utente_promotore" translatable="false">Utente promotore</string>
+
     <string name="mail">Mail:</string>
     <string name="tel">Tel:</string>
     <string name="name">Name</string>

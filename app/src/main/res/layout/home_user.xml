@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:foreground="@color/cardview_shadow_start_color"
-    tools:context=".home_user"
-    >
+    tools:context=".home_user">
+
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="419dp"
+        android:layout_width="match_parent"
         android:layout_height="91dp"
         android:background="@color/teal_700"
         android:orientation="horizontal"
@@ -77,16 +77,6 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.423" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="257dp"
-        android:layout_height="216dp"
-        android:src="@android:drawable/alert_dark_frame"
-        app:layout_constraintBottom_toTopOf="@+id/new_match"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:srcCompat="@drawable/schermata_2021_11_22_alle_16_48_08" />
 
     <Button
         android:id="@+id/button5"
@@ -101,5 +91,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.125" />
+
+    <org.naishadhparmar.zcustomcalendar.CustomCalendar
+        android:id="@+id/calendar"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.273" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
