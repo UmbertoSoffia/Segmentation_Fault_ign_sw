@@ -122,16 +122,22 @@
         app:layout_constraintStart_toEndOf="@+id/back"
         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
-    <androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/textInputLayout"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/textView13">
 
-        android:hint="@string/descrizione_opzionale" />
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/Desc"
+            android:layout_width="match_parent"
+            android:layout_height="254dp"
+            android:hint="@string/descrizione_opzionale" />
+
+    </androidx.appcompat.widget.AppCompatEditText>
 
     <androidx.appcompat.widget.AppCompatEditText
         android:layout_width="167dp"
@@ -154,6 +160,10 @@
             android:layout_width="160dp"
             android:layout_height="29dp"
             android:layout_marginTop="100dp" />
+
     </androidx.appcompat.widget.AppCompatEditText>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

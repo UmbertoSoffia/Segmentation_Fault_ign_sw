@@ -46,4 +46,14 @@
     <string name="tel">Tel:</string>
     <string name="name">Name</string>
     <string name="sport">Sport</string>
+    <string name="nuova_attivit">nuova attività</string>
+    <string name="range_di_et">Range di età</string>
+    <string name="definisci_i_tuoi_passi">definisci i tuoi passi</string>
+    <string name="crea_un_nuovo_spazio">Crea un nuovo spazio</string>
+    <string name="crea_una_nuova_partita">crea una nuova partita</string>
+    <string name="communicazione_positivit">communicazione positività</string>
+    <string name="prenotazione_attivit">prenotazione attività</string>
+    <string name="descrizione_promotore">descrizione promotore</string>
+    <string name="utente_promotore">Utente promotore</string>
+    <string name="nuova_prenotazione">nuova prenotazione</string>
 </resources>
