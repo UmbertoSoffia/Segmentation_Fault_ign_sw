@@ -46,20 +46,20 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3"
-        app:layout_constraintVertical_bias="0.184" />
+        app:layout_constraintVertical_bias="0.177" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="380dp"
+        android:layout_marginBottom="324dp"
         android:backgroundTint="@color/teal_700"
-        android:text="@string/crea_una_nuova_partita"
+        android:text="crea una nuova attività"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.341"
+        app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintVertical_bias="0.209" />
 
     <Button
@@ -74,6 +74,15 @@
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="@+id/linearLayout"
             app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="326dp"
+        android:layout_height="199dp"
+        android:src="@drawable/schermata_2021_11_22_alle_16_48_08"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="134dp"
+        tools:ignore="MissingConstraints" />
 
 
 

@@ -113,13 +113,12 @@
         app:layout_constraintVertical_bias="0.176" />
 
 
-
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
-        android:text="@string/sport"
+        android:text="attività"
         android:textColor="#424242"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/attività"
