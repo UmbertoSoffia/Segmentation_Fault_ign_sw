@@ -57,38 +57,38 @@
         android:text="@string/crea_una_nuva_sfida"
         android:textColor="#E0E0E0"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/button5"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/button5"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.501" />
 
+
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/com_positivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
         android:layout_marginTop="344dp"
         android:backgroundTint="@color/teal_700"
         android:text="@string/communicazione_positivit"
         android:textColor="#E0E0E0"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.423" />
-
+        app:layout_constraintVertical_bias="0.439" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
         android:layout_marginTop="344dp"
         android:backgroundTint="@color/teal_700"
         android:text="@string/prenotazione_attivit"
         android:textColor="#E0E0E0"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/com_positivity"
+        app:layout_constraintStart_toStartOf="@+id/com_positivity"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.125" />
 

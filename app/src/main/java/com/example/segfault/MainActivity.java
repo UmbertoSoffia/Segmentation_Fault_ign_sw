@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
                 //controlla dati
                 //se utente è promotore
                 if (false) {
-                    //Intent i = new Intent(MainActivity.this, home_promot.class);
+                    Intent i = new Intent(MainActivity.this, home_promo.class);
                     finish();
-                    //startActivity(i);
+                    startActivity(i);
                 } else {
                     //controlla se è utente normale
                     if (true) {

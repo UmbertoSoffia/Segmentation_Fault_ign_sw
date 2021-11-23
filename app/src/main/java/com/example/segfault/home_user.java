@@ -1,8 +1,12 @@
 package com.example.segfault;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -11,17 +15,42 @@ import org.naishadhparmar.zcustomcalendar.CustomCalendar;
 import org.naishadhparmar.zcustomcalendar.OnDateSelectedListener;
 import org.naishadhparmar.zcustomcalendar.Property;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
 public class home_user extends Activity {
     CustomCalendar customCalendar;
+    //https://www.tutorialspoint.com/android/android_sending_email.htm
+
+    protected void sendEmail(String email, String msg) {
+        Log.i("Send email", "");
+        String[] TO = {email};
+        String[] CC = {""};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Possibile positività Covid19");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, msg);
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send notification..."));
+            finish();
+            Log.i("Finished sending notification...", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(home_user.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //stampa il layout all_struct
         setContentView(R.layout.home_user);
         Button new_chall=findViewById(R.id.new_match);
+
         new_chall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,6 +67,20 @@ public class home_user extends Activity {
                 startActivity(i);
             }
         });
+        Button n_positivity=findViewById(R.id.com_positivity);
+        backhome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ArrayList<Pair<User,Integer>> infected=new ArrayList<Pair<User,Integer>>();
+                //buttare dentro infected quelli possibili integer serve per i toto giorni di distanza
+
+                for (Pair<User,Integer> i:infected) {
+                    sendEmail(i.first.getMail(),"hai avuto un contatto con una persona positiva al COVID19 esattamente "+i.second+" giorni");
+                }
+            }
+        });
+
 
 
         //queste robe qua sotto sono per i layout in base alla scritta lui colora calendario(current, present ecc)
