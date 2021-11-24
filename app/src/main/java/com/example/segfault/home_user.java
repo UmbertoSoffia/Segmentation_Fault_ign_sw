@@ -68,7 +68,7 @@ public class home_user extends Activity {
             }
         });
         Button n_positivity=findViewById(R.id.com_positivity);
-        backhome.setOnClickListener(new View.OnClickListener() {
+        n_positivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

@@ -108,7 +108,7 @@ public class Reservation extends AppCompatActivity {
      
         final ArrayList<String> query=new ArrayList<>();
         query.add(0," query sport");
-        query.add(1,"structure");
+        query.add(1,"Structure");
         query.add(2,"n_people");
         query.add(3,"date");
         query.add(4,"start");
