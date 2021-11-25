@@ -54,7 +54,7 @@
         tools:ignore="HardcodedText" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/info_utent_prom_back"
         android:layout_width="56dp"
         android:layout_height="32dp"
         android:layout_weight="1"

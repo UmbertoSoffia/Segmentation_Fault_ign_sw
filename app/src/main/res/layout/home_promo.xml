@@ -46,7 +46,8 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3"
-        app:layout_constraintVertical_bias="0.177" />
+        app:layout_constraintVertical_bias="0.177"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/button3"
@@ -54,13 +55,14 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="324dp"
         android:backgroundTint="@color/teal_700"
-        android:text="crea una nuova attività"
+        android:text="@string/crea_una_nuova_attivit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.209" />
+        app:layout_constraintVertical_bias="0.209"
+        tools:ignore="TextContrastCheck" />
 
     <Button
             android:id="@+id/back_home_user"
@@ -79,12 +81,16 @@
         android:id="@+id/imageView2"
         android:layout_width="326dp"
         android:layout_height="199dp"
+        android:layout_marginTop="40dp"
+
         android:src="@drawable/schermata_2021_11_22_alle_16_48_08"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="134dp"
-        tools:ignore="MissingConstraints" />
-
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.01"
+        tools:ignore="MissingConstraints,ImageContrastCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
     <TextView
-        android:id="@+id/nome_utent"
+        android:id="@+id/nome_utent2"
         android:layout_width="154dp"
         android:layout_height="23dp"
         android:text="nome"
