@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText user = findViewById(R.id.username);
+                EditText user = findViewById(R.id.username_login);
                 EditText pwd = findViewById(R.id.pwd);
                 //controlla dati
                 //se utente è promotore

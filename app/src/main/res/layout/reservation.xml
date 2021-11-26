@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:foreground="@color/cardview_shadow_start_color"
     tools:context=".Reservation">
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="409dp"
@@ -45,18 +46,18 @@
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
+
     <Spinner
         android:id="@+id/spinner_struct"
         android:layout_width="198dp"
         android:layout_height="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintHorizontal_bias="0.882"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.042"
+        app:layout_constraintVertical_bias="0.181"
         tools:ignore="SpeakableTextPresentCheck" />
-
 
     <Spinner
         android:id="@+id/spinner_date"
@@ -67,20 +68,18 @@
         app:layout_constraintHorizontal_bias="0.826"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_struct"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintVertical_bias="0.253" />
 
     <Spinner
         android:id="@+id/attività"
         android:layout_width="215dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="404dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.874"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-
+        app:layout_constraintHorizontal_bias="0.918"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.076" />
 
     <TextView
         android:id="@+id/textView8"
@@ -94,38 +93,35 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.069" />
-
-
+        app:layout_constraintVertical_bias="0.19" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
-        android:text="@string/data"
+        android:text="@string/data_ora"
         android:textColor="#424242"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/spinner_date"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.342"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.176" />
-
+        app:layout_constraintVertical_bias="0.329" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
-        android:text="attività"
+        android:text="@string/attivit"
         android:textColor="#424242"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/attività"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.326" />
+        app:layout_constraintVertical_bias="0.087" />
 
     <Button
         android:id="@+id/confirm"
