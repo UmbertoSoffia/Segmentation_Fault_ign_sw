@@ -7,6 +7,34 @@
     android:foreground="@color/cardview_shadow_start_color"
     tools:context=".new_structure">
 
+    <Button
+        android:id="@+id/cancel_new_struct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/teal_700"
+        android:text="@string/annulla"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.216"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/desc_new_struct"
+        app:layout_constraintVertical_bias="0.542" />
+
+    <Button
+        android:id="@+id/confirm_new_struct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/teal_700"
+        android:text="@string/conferma"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toEndOf="@+id/cancel_new_struct"
+        app:layout_constraintTop_toBottomOf="@+id/desc_new_struct"
+        app:layout_constraintVertical_bias="0.542" />
+
     <TextView
         android:id="@+id/textView12"
         android:layout_width="94dp"
@@ -25,8 +53,8 @@
 
     <TextView
         android:id="@+id/textView13"
-        android:layout_width="114dp"
-        android:layout_height="44dp"
+        android:layout_width="109dp"
+        android:layout_height="22dp"
         android:layout_marginBottom="276dp"
         android:shadowColor="@color/black"
         android:text="@string/descrizione"
@@ -54,7 +82,7 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/name_struct2"
         android:layout_width="179dp"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -73,14 +101,14 @@
         android:layout_height="31dp"
         android:layout_marginBottom="440dp"
         android:shadowColor="@color/black"
-        android:text="@string/orario_apertura"
+        android:text="orario lavorativo:"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.117"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView17"
@@ -94,7 +122,7 @@
         app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.064" />
+        app:layout_constraintVertical_bias="0.131" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -110,9 +138,9 @@
 
 
     <Button
-        android:id="@+id/back"
+        android:id="@+id/back_new_struct"
         android:layout_width="56dp"
-        android:layout_height="32dp"
+        android:layout_height="48dp"
         android:layout_weight="1"
         android:background="@color/teal_700"
         android:backgroundTint="@color/teal_700"
@@ -120,7 +148,8 @@
         android:foregroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView"
@@ -132,12 +161,45 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintStart_toEndOf="@+id/back"
+        app:layout_constraintStart_toEndOf="@+id/back_new_struct"
         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/start_time_new_struct"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:inputType="time"
+        android:minHeight="48dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.224"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/nsme_new_struct"
+        android:id="@+id/stop_time_new_struct"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:inputType="time"
+        android:minHeight="48dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.224"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/name_new_struct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -150,7 +212,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/Addre_new_struct"
@@ -166,10 +229,11 @@
         app:layout_constraintHorizontal_bias="0.995"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintVertical_bias="0.108"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/opening_new_struct_time"
+        android:id="@+id/work_days_new_struct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -182,23 +246,21 @@
         app:layout_constraintHorizontal_bias="0.995"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.229" />
+        app:layout_constraintVertical_bias="0.364"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/closing_time_new_struct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:inputType="textPostalAddress"
-        android:minHeight="48dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.316" />
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="32dp"
+        android:layout_height="20dp"
+        android:text="@string/space"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/work_days_new_struct"
+        app:layout_constraintEnd_toEndOf="@+id/stop_time_new_struct"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/start_time_new_struct"
+        app:layout_constraintTop_toBottomOf="@+id/Addre_new_struct"
+        app:layout_constraintVertical_bias="0.449" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

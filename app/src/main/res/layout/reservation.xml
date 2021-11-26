@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
     <Button
-        android:id="@+id/back"
+        android:id="@+id/back_new_struct"
         android:layout_width="56dp"
         android:layout_height="48dp"
         android:layout_weight="1"

@@ -127,11 +127,16 @@ public class Reservation extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                             saveInCAlendar();
+                        //salvare roba nel db
                     }
                 }).setNegativeButton("Salva senza inserire nel calendario", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //salvare roba nel db
+                        //verificare se la pagina si refresha
+                        Intent i = new Intent(Reservation.this, Reservation.class);
+                        startActivity(i);
+                        finish();
                     }});
                 AlertDialog alert=builder.create();
                 alert.show();
@@ -145,7 +150,10 @@ public class Reservation extends AppCompatActivity {
                 builder.setMessage("Annullare l'inserimento?").setPositiveButton("Sì", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //qua va refreshata la pagina
+                        //verificare se la pagina si refresha
+                        Intent i = new Intent(Reservation.this, Reservation.class);
+                        startActivity(i);
+                        finish();
                     }
                 }).setNegativeButton("Continua l'inserimento", null);
                 AlertDialog alert=builder.create();

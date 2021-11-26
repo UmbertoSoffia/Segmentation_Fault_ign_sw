@@ -22,8 +22,18 @@ public class info_structure extends Activity {
                 startActivity(i);
             }
         });
-        //bidogna capire come passare info del selezionato dalla pag precedente
+        //passare info tra le ganine ->https://www.youtube.com/watch?v=eL69kj-_Wvs
+
         //passa info queri a sta struttura
-        Structure structure=new Structure();
+        String name="";
+        Integer id=0;
+        String desc="";
+        String mail="";
+        String number="";
+        String address="";
+        String phone="";
+        Structure structure=new Structure(name,id,desc,mail,number,address,phone);
+
+        //come fare x fare elenco dinamico di tutte le strutture->https://www.youtube.com/watch?v=RHqGiWluAzU
     }
 }

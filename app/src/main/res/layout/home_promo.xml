@@ -36,7 +36,7 @@
             app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/new_space"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#378484"
@@ -45,12 +45,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/new_match_prom"
         app:layout_constraintVertical_bias="0.177"
         tools:ignore="TextContrastCheck" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/new_match_prom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="324dp"

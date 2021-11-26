@@ -21,7 +21,7 @@ public class all_structure extends AppCompatActivity {
         setContentView(R.layout.all_structure);
         //https://www.youtube.com/watch?v=EJrmgJT2NnI  tutorial su come fare a mettere tutti i n fila in all_structure (in row c'è la riga ma non è giusta in teoria)
         //layoutlist=findViewById();
-        Button backhome = findViewById(R.id.back);
+        Button backhome = findViewById(R.id.back_new_struct);
         backhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

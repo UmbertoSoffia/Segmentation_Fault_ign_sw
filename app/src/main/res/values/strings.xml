@@ -65,4 +65,5 @@
     <string name="attivit">attività</string>
     <string name="data_ora">data/ora:</string>
     <string name="fascia_oraria">fascia oraria</string>
+    <string name="space">-</string>
 </resources>

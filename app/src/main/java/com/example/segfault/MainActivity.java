@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // in toria fa refresh va testato
                 Intent i = new Intent(MainActivity.this, MainActivity.class);
-                finish();
                 startActivity(i);
+                finish();
 
             }
         });
@@ -66,8 +66,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // inserire pagina registrazione
                 /*Intent i = new Intent(MainActivity.this, registration.class);
-                finish();
-                startActivity(i);*/
+
+                startActivity(i);
+                finish();*/
             }
         });
         

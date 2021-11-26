@@ -32,6 +32,7 @@ public class create_activities extends Activity {
         }else{
             //altimenti utilizza campo selezionato dallo spinner precedente
             //sto campo viene passato in value e butta tutto in element
+            //prendi elem da query[step]
         }
         //https://www.youtube.com/watch?v=svCVKC7ByOE&t=385s x tutoril spinner innestati forse manca pezzo ma non penso
         ArrayAdapter<String> adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,element);
@@ -121,6 +122,7 @@ public class create_activities extends Activity {
             public void onClick(View v) {
                 // bisogna controllare che ci sia disponibilità in quel giorno/ ora in quella struttura
                 //salcvare prenotazione nel db
+                //salvare nuovo incontro nel db
 
 
 
