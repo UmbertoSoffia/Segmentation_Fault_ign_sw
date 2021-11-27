@@ -123,6 +123,7 @@ public class create_activities extends Activity {
                 // bisogna controllare che ci sia disponibilità in quel giorno/ ora in quella struttura
                 //salcvare prenotazione nel db
                 //salvare nuovo incontro nel db
+                String id_user=getIntent().getExtras().get("id_user").toString();
 
 
 
@@ -139,6 +140,10 @@ public class create_activities extends Activity {
                     }});
                 AlertDialog alert=builder.create();
                 alert.show();
+                Intent i = new Intent(create_activities.this, create_activities.class);
+                i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
+                startActivity(i);
+                finish();
             }
         });
         reject.setOnClickListener(new View.OnClickListener() {
@@ -149,8 +154,10 @@ public class create_activities extends Activity {
                 builder.setMessage("Annullare l'inserimento?").setPositiveButton("Sì", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //qua va refreshata la pagina
-
+                        Intent i = new Intent(create_activities.this, create_activities.class);
+                        i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
+                        startActivity(i);
+                        finish();
                     }
                 }).setNegativeButton("Continua l'inserimento", null);
                 AlertDialog alert=builder.create();

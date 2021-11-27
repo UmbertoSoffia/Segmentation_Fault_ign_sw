@@ -19,12 +19,14 @@ public class home_promo extends Activity {
         new_struct.setOnClickListener(v -> {
 
             Intent i = new Intent(home_promo.this, new_structure.class);
+            i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
             startActivity(i);
             finish();
         });
         new_game.setOnClickListener(v -> {
             //qua bisogna capire come passare roba oppure fare claase parallela per creazione attività
             Intent i = new Intent(home_promo.this, create_activities.class);
+            i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
             startActivity(i);
             finish();
         });

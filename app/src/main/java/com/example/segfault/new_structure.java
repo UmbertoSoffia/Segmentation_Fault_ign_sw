@@ -49,6 +49,7 @@ public class new_structure extends Activity {
                     alert.show();
                     //verificare se la pagina si refresha
                     Intent i = new Intent(new_structure.this, new_structure.class);
+                    i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
                     startActivity(i);
                     finish();
                  }
@@ -61,12 +62,14 @@ public class new_structure extends Activity {
         cancel.setOnClickListener(v -> {
             //verificare se la pagina si refresha
             Intent i = new Intent(new_structure.this, new_structure.class);
+            i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
             startActivity(i);
             finish();
         });
         back.setOnClickListener(v->{
 
             Intent i = new Intent(new_structure.this, home_promo.class);
+            i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
             startActivity(i);
             finish();
         });

@@ -9,6 +9,9 @@ import android.widget.EditText;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.Serializable;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     Button confirm = findViewById(R.id.confirm_home);
@@ -30,15 +33,19 @@ public class MainActivity extends AppCompatActivity {
                 //se utente è promotore
                 if (false) {
                     Intent i = new Intent(MainActivity.this, home_promo.class);
-                    finish();
+                    i.putExtra("id_user", user.toString());
                     startActivity(i);
+                    finish();
                 } else {
                     //controlla se è utente normale
                     if (true) {
 
 
                         Intent i = new Intent(MainActivity.this, home_user.class);
+                        i.putExtra("id_user", user.toString());
                         startActivity(i);
+                        finish();
+
                     } else {
                         //allert inisistente utente
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);

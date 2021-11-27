@@ -47,7 +47,6 @@ public class home_user extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //stampa il layout all_struct
         setContentView(R.layout.home_user);
         Button new_chall=findViewById(R.id.new_match);
 
@@ -55,8 +54,10 @@ public class home_user extends Activity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(home_user.this, Reservation.class);
-                finish();
+                i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
                 startActivity(i);
+                finish();
+
             }
         });
         Button backhome = findViewById(R.id.back_home_user);
@@ -64,7 +65,9 @@ public class home_user extends Activity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(home_user.this, MainActivity.class);
+                i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
                 startActivity(i);
+                finish();
             }
         });
         Button n_positivity=findViewById(R.id.com_positivity);

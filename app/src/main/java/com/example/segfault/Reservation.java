@@ -135,6 +135,7 @@ public class Reservation extends AppCompatActivity {
                         //salvare roba nel db
                         //verificare se la pagina si refresha
                         Intent i = new Intent(Reservation.this, Reservation.class);
+                        i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
                         startActivity(i);
                         finish();
                     }});
@@ -152,6 +153,7 @@ public class Reservation extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         //verificare se la pagina si refresha
                         Intent i = new Intent(Reservation.this, Reservation.class);
+                        i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
                         startActivity(i);
                         finish();
                     }

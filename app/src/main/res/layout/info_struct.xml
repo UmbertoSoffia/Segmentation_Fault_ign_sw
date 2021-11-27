@@ -19,18 +19,18 @@
 
 </LinearLayout>
 
-<Button
-    android:id="@+id/back_info_struct"
-    android:layout_width="56dp"
-    android:layout_height="32dp"
-    android:layout_weight="1"
-    android:background="@color/teal_700"
-    android:backgroundTint="@color/teal_700"
-    android:foreground="?attr/homeAsUpIndicator"
-    android:foregroundTint="@color/white"
-    app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-    app:layout_constraintStart_toStartOf="@+id/linearLayout"
-    app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+    <Button
+        android:id="@+id/back_info_struct"
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        android:background="@color/teal_700"
+        android:backgroundTint="@color/teal_700"
+        android:foreground="?attr/homeAsUpIndicator"
+        android:foregroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
 <TextView
     android:id="@+id/textView"
@@ -45,13 +45,12 @@
     app:layout_constraintStart_toStartOf="@+id/linearLayout"
     app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/name_struct"
+    <TextView
+        android:id="@+id/name_info_struct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="@string/name"
         android:textColor="@color/black"
@@ -62,47 +61,44 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.001" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/mail"
+    <TextView
+        android:id="@+id/mail__info_struct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/street_addr"
+        app:layout_constraintEnd_toEndOf="@+id/street_addr_info_struct"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/street_addr"
-        app:layout_constraintTop_toBottomOf="@+id/name_struct"
+        app:layout_constraintStart_toStartOf="@+id/street_addr_info_struct"
+        app:layout_constraintTop_toBottomOf="@+id/name_info_struct"
         app:layout_constraintVertical_bias="0.192"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/street_addr"
+    <TextView
+        android:id="@+id/street_addr_info_struct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPostalAddress"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/mail"
+        app:layout_constraintBottom_toTopOf="@+id/mail__info_struct"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.83"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.89" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editTextPhone"
+    <TextView
+        android:id="@+id/phone_info_struct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="phone"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/mail"
+        app:layout_constraintEnd_toEndOf="@+id/mail__info_struct"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/mail"
-        app:layout_constraintTop_toBottomOf="@+id/mail"
+        app:layout_constraintStart_toStartOf="@+id/mail__info_struct"
+        app:layout_constraintTop_toBottomOf="@+id/mail__info_struct"
         app:layout_constraintVertical_bias="0.041" />
 
 <TextView
@@ -128,10 +124,10 @@
     android:text="@string/indirizzo"
     android:textColor="@color/black"
     app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toStartOf="@+id/street_addr"
+    app:layout_constraintEnd_toStartOf="@+id/street_addr_info_struct"
     app:layout_constraintHorizontal_bias="0.407"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/name_struct"
+    app:layout_constraintTop_toBottomOf="@+id/name_info_struct"
     app:layout_constraintVertical_bias="0.045" />
 
 <TextView
@@ -143,10 +139,10 @@
     android:text="@string/descrizione"
     android:textColor="@color/black"
     app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toStartOf="@+id/street_addr"
+    app:layout_constraintEnd_toStartOf="@+id/street_addr_info_struct"
     app:layout_constraintHorizontal_bias="0.197"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/name_struct"
+    app:layout_constraintTop_toBottomOf="@+id/name_info_struct"
     app:layout_constraintVertical_bias="0.748" />
 
 <TextView
@@ -191,41 +187,41 @@
     app:layout_constraintTop_toBottomOf="@+id/textView5"
     app:layout_constraintVertical_bias="0.094" />
 
-    <com.google.android.material.textfield.TextInputEditText
-    android:id="@+id/opening_time"
+    <TextView
+    android:id="@+id/opening_time__info_struct"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:ems="10"
-    android:inputType="time"
+
     app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="@+id/closing_time"
+    app:layout_constraintEnd_toEndOf="@+id/closing_time_info_struct"
     app:layout_constraintHorizontal_bias="0.0"
-    app:layout_constraintStart_toStartOf="@+id/closing_time"
-    app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
+    app:layout_constraintStart_toStartOf="@+id/closing_time_info_struct"
+    app:layout_constraintTop_toBottomOf="@+id/phone_info_struct"
     app:layout_constraintVertical_bias="0.107" />
 
-    <com.google.android.material.textfield.TextInputEditText
-    android:id="@+id/closing_time"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:inputType="time"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.86"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/opening_time"
-    app:layout_constraintVertical_bias="0.084" />
+    <TextView
+        android:id="@+id/closing_time_info_struct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.862"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/opening_time__info_struct"
+        app:layout_constraintVertical_bias="0.205" />
+
 
     <MultiAutoCompleteTextView
-        android:id="@+id/multiAutoCompleteTextView"
+        android:id="@+id/desc_info_struct"
         android:layout_width="347dp"
         android:layout_height="78dp"
-        android:text="@string/scrivi_una_descrizione_accattivante"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
