@@ -17,8 +17,8 @@ public class new_structure extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_promo);
         Button back=findViewById(R.id.back_new_struct);
-        Button confirm = findViewById(R.id.confirm_new_struct);
-        Button cancel = findViewById(R.id.cancel_new_struct);
+        Button confirm = findViewById(R.id.confirm_new_prom);
+        Button cancel = findViewById(R.id.cancel_new_prom);
         TextView name_struct=findViewById(R.id.name_new_struct);
         TextView addre_struct=findViewById(R.id.Addre_new_struct);
         TextView opening=findViewById(R.id.start_time_new_struct);

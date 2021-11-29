@@ -67,4 +67,8 @@
     <string name="data_ora">data/ora:</string>
     <string name="fascia_oraria">fascia oraria</string>
     <string name="space">-</string>
+    <string name="Nome">Nome</string>
+    <string name="cognome">Cognome</string>
+    <string name="cod_fisc">Cod. fisc</string>
+    <string name="data_di_nascita">Data di nascita:</string>
 </resources>

@@ -8,7 +8,7 @@
     tools:context=".new_structure">
 
     <Button
-        android:id="@+id/cancel_new_struct"
+        android:id="@+id/cancel_new_prom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/teal_700"
@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.542" />
 
     <Button
-        android:id="@+id/confirm_new_struct"
+        android:id="@+id/confirm_new_prom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/teal_700"
@@ -31,7 +31,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toEndOf="@+id/cancel_new_struct"
+        app:layout_constraintStart_toEndOf="@+id/cancel_new_prom"
         app:layout_constraintTop_toBottomOf="@+id/desc_new_struct"
         app:layout_constraintVertical_bias="0.542" />
 
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_struct2"
+        app:layout_constraintTop_toBottomOf="@+id/name"
         app:layout_constraintVertical_bias="0.056" />
 
     <TextView
@@ -79,13 +79,13 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.8" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/name_struct2"
+    <TextView
+        android:id="@+id/name"
         android:layout_width="179dp"
         android:layout_height="48dp"
         android:layout_marginTop="28dp"
         android:ems="10"
-        android:inputType="textPersonName"
+
         android:text="@string/nome_della_struttura"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -126,7 +126,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="93dp"
         android:background="@color/teal_700"
         android:orientation="horizontal"

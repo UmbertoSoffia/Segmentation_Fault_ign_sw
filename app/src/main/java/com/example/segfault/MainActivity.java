@@ -66,10 +66,10 @@ public class MainActivity extends Activity {
         });
         register.setOnClickListener(v -> {
             // inserire pagina registrazione
-            /*Intent i = new Intent(MainActivity.this, registration.class);
+            Intent i = new Intent(MainActivity.this, Register.class);
 
             startActivity(i);
-            finish();*/
+            finish();
         });
         
     }

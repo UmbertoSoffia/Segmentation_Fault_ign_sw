@@ -34,6 +34,7 @@
         <activity android:name=".info_utent_prom" />
         <activity android:name=".new_structure" />
         <activity android:name=".Reservation" />
+        <activity android:name=".Register" />
 
 
     </application>
