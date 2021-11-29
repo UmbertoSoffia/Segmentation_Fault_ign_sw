@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
                 if (true) {
 
 
-                    Intent i = new Intent(MainActivity.this, home_user.class);
+                    Intent i = new Intent(MainActivity.this, home_promo.class);
                     i.putExtra("id_user", user.toString());
                     startActivity(i);
                     //finish();

@@ -1,14 +1,21 @@
 package com.example.segfault;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import org.naishadhparmar.zcustomcalendar.CustomCalendar;
+import org.naishadhparmar.zcustomcalendar.OnDateSelectedListener;
 import org.naishadhparmar.zcustomcalendar.Property;
 
 import java.util.ArrayList;
@@ -43,31 +50,38 @@ public class home_user extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_user);
+        setContentView(R.layout.drawer_layout_user);
         Button new_chall=findViewById(R.id.new_match);
 
-        new_chall.setOnClickListener(v -> {
-            Intent i = new Intent(home_user.this, Reservation.class);
-            i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
-            startActivity(i);
-            finish();
+        new_chall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(home_user.this, Reservation.class);
+                i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
+                startActivity(i);
+                finish();
 
+            }
         });
         Button backhome = findViewById(R.id.back_home_user);
-        backhome.setOnClickListener(v -> {
-            Intent i = new Intent(home_user.this, MainActivity.class);
-            i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
-            startActivity(i);
-            finish();
+        backhome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               DrawerLayout menu_laterale = (DrawerLayout)findViewById(R.id.drawer_layout_user);
+               menu_laterale.openDrawer(Gravity.LEFT);
+            }
         });
         Button n_positivity=findViewById(R.id.com_positivity);
-        n_positivity.setOnClickListener(v -> {
+        n_positivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-            ArrayList<Pair<User,Integer>> infected=new ArrayList<Pair<User,Integer>>();
-            //buttare dentro infected quelli possibili integer serve per i toto giorni di distanza
+                ArrayList<Pair<User,Integer>> infected=new ArrayList<Pair<User,Integer>>();
+                //buttare dentro infected quelli possibili integer serve per i toto giorni di distanza
 
-            for (Pair<User,Integer> i:infected) {
-                sendEmail(i.first.getMail(),"hai avuto un contatto con una persona positiva al COVID19 esattamente "+i.second+" giorni");
+                for (Pair<User,Integer> i:infected) {
+                    sendEmail(i.first.getMail(),"hai avuto un contatto con una persona positiva al COVID19 esattamente "+i.second+" giorni");
+                }
             }
         });
 
@@ -75,7 +89,7 @@ public class home_user extends Activity {
 
         //queste robe qua sotto sono per i layout in base alla scritta lui colora calendario(current, present ecc)
         //bisogna mostrare il calendario
-        customCalendar =findViewById(R.id.calendar);
+        /*customCalendar =findViewById(R.id.calendar);
         HashMap<Object, Property> descHashMap=new HashMap<>();
         Property defaultPropriety=new Property();
         defaultPropriety.layoutResource=R.layout.default_view_calendar;
@@ -128,13 +142,16 @@ public class home_user extends Activity {
         customCalendar.setDate(calendar,dateHashMap);
 
 
-        customCalendar.setOnDateSelectedListener((view, selectedDate, desc) -> {
-            //qua ti da la data
-            String sdate=selectedDate.get(Calendar.DAY_OF_MONTH)+"/"+selectedDate.get(Calendar.MONTH)+1+"/"+selectedDate.get(Calendar.YEAR);
+        customCalendar.setOnDateSelectedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(View view, Calendar selectedDate, Object desc) {
+                //qua ti da la data
+                String sdate=selectedDate.get(Calendar.DAY_OF_MONTH)+"/"+selectedDate.get(Calendar.MONTH)+1+"/"+selectedDate.get(Calendar.YEAR);
 
-            //qua quando seleziona devi farevedere la descrizione evento
-            Toast.makeText(getApplicationContext(),sdate,Toast.LENGTH_SHORT).show();
-        });
+                //qua quando seleziona devi farevedere la descrizione evento
+                Toast.makeText(getApplicationContext(),sdate,Toast.LENGTH_SHORT).show();
+            }
+        });*/
 
 
 
