@@ -50,6 +50,12 @@
         <entry key="..\:/Users/umber/Desktop/UNI/ing_sw/app/src/main/res/layout/row_structure.xml" value="0.264" />
         <entry key="..\:/Users/umber/Desktop/UNI/ing_sw/app/src/main/res/menu/menu_main.xml" value="0.264" />
         <entry key="..\:/Users/umber/Desktop/UNI/ing_sw/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3828125" />
+        <entry key="app/src/main/res/drawable/ic_home_page.xml" value="0.16770833333333332" />
+        <entry key="app/src/main/res/layout/all_structure.xml" value="0.1515625" />
+        <entry key="app/src/main/res/layout/home_promo.xml" value="0.1515625" />
+        <entry key="app/src/main/res/layout/home_user.xml" value="0.1515625" />
+        <entry key="app/src/main/res/layout/info_utent_prom.xml" value="0.1515625" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.1515625" />
       </map>
     </option>
   </component>
