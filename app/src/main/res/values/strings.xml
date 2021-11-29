@@ -58,4 +58,17 @@
     <string name="prenotazioni">prenotazioni</string>
     <string name="strutture">strutture</string>
     <string name="utente">utente</string>
+    <string name="login">login</string>
+    <string name="logout">logout</string>
+
+    <string name="crea_una_nuova_attivit">crea una nuova attività</string>
+    <string name="scrivi_una_descrizione_accattivante">scrivi una descrizione accattivante</string>
+    <string name="attivit">attività</string>
+    <string name="data_ora">data/ora:</string>
+    <string name="fascia_oraria">fascia oraria</string>
+    <string name="space">-</string>
+    <string name="Nome">Nome</string>
+    <string name="cognome">Cognome</string>
+    <string name="cod_fisc">Cod. fisc</string>
+    <string name="data_di_nascita">Data di nascita:</string>
 </resources>

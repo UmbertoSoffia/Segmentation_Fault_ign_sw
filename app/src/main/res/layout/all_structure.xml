@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
     <Button
-        android:id="@+id/back"
+        android:id="@+id/back_new_struct"
         android:layout_width="56dp"
         android:layout_height="32dp"
         android:layout_weight="1"
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
     <TextView
-        android:id="@+id/nome_utent"
+        android:id="@+id/nome_utent2"
         android:layout_width="154dp"
         android:layout_height="23dp"
         android:text="nome"

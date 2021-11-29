@@ -26,6 +26,17 @@
             </intent-filter>
 
         </activity>
+        <activity android:name=".home_user" />
+        <activity android:name=".create_activities" />
+        <activity android:name=".all_structure" />
+        <activity android:name=".home_promo" />
+        <activity android:name=".info_struct" />
+        <activity android:name=".info_utent_prom" />
+        <activity android:name=".new_structure" />
+        <activity android:name=".Reservation" />
+        <activity android:name=".Register" />
+
+
     </application>
 
 </manifest>

@@ -22,12 +22,12 @@ import java.util.ArrayList;
 public class Reservation extends AppCompatActivity {
     Button confirm = (Button)findViewById(R.id.confirm);
     Button reject;
-    Spinner n_people,sport,start,stop;
+    Spinner n_people,sport;
     Spinner date;
     Spinner structure;
 
     private void nestedSpinner(ArrayList<Spinner> lst,ArrayList<String>query,int step,String value){
-        if (step==6) return;
+        if (step==3) return;
         ArrayList<String>element=new ArrayList<>();
         //aggiungi a elementmtutti i campi utilizzando la query[step]
         if (step==0){
@@ -57,14 +57,13 @@ public class Reservation extends AppCompatActivity {
     }
 
     private void saveInCAlendar(){
+        //bisogna capire come passsargli la data
         Intent intent= new Intent(Intent.ACTION_INSERT);
         intent.setData(CalendarContract.Events.CONTENT_URI);
         intent.putExtra(CalendarContract.Events.TITLE, sport.getSelectedItem().toString()+"match");
         //qua bisognerebbe mettere indirizzo struttura
         intent.putExtra(CalendarContract.Events.EVENT_LOCATION,structure.getSelectedItem().toString());
         intent.putExtra(CalendarContract.Events.DESCRIPTION, "partita amatoriale di"+sport.getSelectedItem().toString());
-        intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,stop.getSelectedItem().toString());
-        intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,start.getSelectedItem().toString());
         intent.putExtra(CalendarContract.Events.EVENT_LOCATION,structure.getSelectedItem().toString());
         intent.putExtra(CalendarContract.Events.ALL_DAY,false);
 
@@ -79,40 +78,34 @@ public class Reservation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //stampa il layout x prenotora
         setContentView(R.layout.reservation);
-        n_people=findViewById(R.id.spinner_players);
+
         date=findViewById(R.id.spinner_date);
         structure=findViewById(R.id.spinner_struct);
-        sport= findViewById(R.id.sport);
-        start= findViewById(R.id.start);
-        stop= findViewById(R.id.stop);
+        sport= findViewById(R.id.attività);
+
+
         reject= findViewById(R.id.cancel);
         confirm=findViewById(R.id.confirm);
         ArrayList<Spinner> list_spin = new ArrayList<>();
         list_spin.add(0,sport);
         list_spin.add(1,structure);
-        list_spin.add(2,n_people);
-        list_spin.add(3,date);
-        list_spin.add(4,start);
-        list_spin.add(5,stop);
+        list_spin.add(2,date);
+
         
         /*
             ordine spinner
             1-sport
             2-struttura
             3-npersone
-            4-data
-            5-orastart
-            6-orastop
+            4-data/ora concatenate in sta maniera in sql c'è modo per concatenarle abbiamo visto in sicurezza mi pare
 
          */
      
         final ArrayList<String> query=new ArrayList<>();
         query.add(0," query sport");
         query.add(1,"Structure");
-        query.add(2,"n_people");
-        query.add(3,"date");
-        query.add(4,"start");
-        query.add(5,"stop");
+        query.add(2,"date");
+
         //nested spinner
         nestedSpinner(list_spin,query,0,null);
 
@@ -134,11 +127,17 @@ public class Reservation extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                             saveInCAlendar();
+                        //salvare roba nel db
                     }
                 }).setNegativeButton("Salva senza inserire nel calendario", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //salvare roba nel db
+                        //verificare se la pagina si refresha
+                        Intent i = new Intent(Reservation.this, Reservation.class);
+                        i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
+                        startActivity(i);
+                        finish();
                     }});
                 AlertDialog alert=builder.create();
                 alert.show();
@@ -152,7 +151,11 @@ public class Reservation extends AppCompatActivity {
                 builder.setMessage("Annullare l'inserimento?").setPositiveButton("Sì", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        //verificare se la pagina si refresha
+                        Intent i = new Intent(Reservation.this, Reservation.class);
+                        i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
+                        startActivity(i);
+                        finish();
                     }
                 }).setNegativeButton("Continua l'inserimento", null);
                 AlertDialog alert=builder.create();
