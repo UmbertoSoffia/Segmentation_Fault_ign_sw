@@ -47,7 +47,7 @@ public class home_user extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_user);
+        setContentView(R.layout.drawer_layout_user);
         Button new_chall=findViewById(R.id.new_match);
 
         new_chall.setOnClickListener(new View.OnClickListener() {

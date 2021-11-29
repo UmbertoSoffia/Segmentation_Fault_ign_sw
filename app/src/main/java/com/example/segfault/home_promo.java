@@ -12,7 +12,7 @@ public class home_promo extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_promo);
+        setContentView(R.layout.drawer_layout_promo);
 
         Button new_game = findViewById(R.id.new_match_prom);
         Button new_struct = findViewById(R.id.new_space);
