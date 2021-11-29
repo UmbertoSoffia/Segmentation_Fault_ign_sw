@@ -39,27 +39,30 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="364dp"
         android:text="@string/anulla"
+        android:textColor="@color/white"
+        android:background="@color/teal_700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.294"
+        app:layout_constraintHorizontal_bias="0.241"
         app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toBottomOf="@+id/username_login"
-        app:layout_constraintVertical_bias="0.778" />
+        app:layout_constraintVertical_bias="0.731" />
 
     <Button
         android:id="@+id/confirm_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="364dp"
+        android:background="@color/teal_700"
+        android:textColor="@color/white"
         android:text="@string/conferma"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.721"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toBottomOf="@+id/username_login"
-        app:layout_constraintVertical_bias="0.778" />
+        app:layout_constraintVertical_bias="0.731" />
 
     <TextView
         android:id="@+id/textView19"
@@ -77,9 +80,11 @@
 
     <Button
         android:id="@+id/register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="158dp"
+        android:layout_height="41dp"
+        android:background="@color/teal_700"
         android:text="@string/registrati"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

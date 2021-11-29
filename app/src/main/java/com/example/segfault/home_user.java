@@ -1,6 +1,5 @@
 package com.example.segfault;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,12 +14,8 @@ import android.widget.Toast;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import org.naishadhparmar.zcustomcalendar.CustomCalendar;
-import org.naishadhparmar.zcustomcalendar.OnDateSelectedListener;
-import org.naishadhparmar.zcustomcalendar.Property;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
 
 public class home_user extends Activity {
     CustomCalendar customCalendar;
@@ -53,17 +48,14 @@ public class home_user extends Activity {
         setContentView(R.layout.drawer_layout_user);
         Button new_chall=findViewById(R.id.new_match);
 
-        new_chall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(home_user.this, Reservation.class);
-                i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
-                startActivity(i);
-                finish();
+        new_chall.setOnClickListener(v -> {
+            Intent i = new Intent(home_user.this, Reservation.class);
+            i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
+            startActivity(i);
+            finish();
 
-            }
         });
-        Button backhome = findViewById(R.id.back_home_user);
+        Button backhome = findViewById(R.id.menu_promo);
         backhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

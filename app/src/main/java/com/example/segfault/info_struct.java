@@ -12,17 +12,6 @@ public class info_struct extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Button back=findViewById(R.id.back_info_struct);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //qua non sono sicuro perchè dipende da dove si arriva
-                Intent i = new Intent(info_struct.this, all_structure.class);
-                i.putExtra("id_user",getIntent().getExtras().get("id_user").toString());
-                startActivity(i);
-                finish();
-            }
-        });
         String id_struct=getIntent().getExtras().get("id_struct").toString();
         String Nome_user= getIntent().getExtras().get("id_user").toString();
 

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/teal_700"
         android:text="@string/annulla"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.216"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/teal_700"
         android:text="@string/conferma"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -57,7 +57,7 @@
         android:layout_height="22dp"
         android:layout_marginBottom="276dp"
         android:shadowColor="@color/black"
-        android:text="@string/descrizione"
+        android:text="@string/Descrizione"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -137,20 +137,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
 
-    <Button
-        android:id="@+id/back_new_struct"
-        android:layout_width="56dp"
-        android:layout_height="48dp"
-        android:layout_weight="1"
-        android:background="@color/teal_700"
-        android:backgroundTint="@color/teal_700"
-        android:foreground="?attr/homeAsUpIndicator"
-        android:foregroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout"
-        tools:ignore="SpeakableTextPresentCheck" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -161,7 +147,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintStart_toEndOf="@+id/back_new_struct"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
     <com.google.android.material.textfield.TextInputEditText

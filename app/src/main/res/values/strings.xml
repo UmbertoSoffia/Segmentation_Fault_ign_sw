@@ -71,4 +71,12 @@
     <string name="cognome">Cognome</string>
     <string name="cod_fisc">Cod. fisc</string>
     <string name="data_di_nascita">Data di nascita:</string>
+    <string name="attivi">Attività:</string>
+    <string name="fascia">Fascia oraria:</string>
+    <string name="range_e">Range età:</string>
+    <string name="Descrizione">Descrizione:</string>
+    <string name="Mail">Mail</string>
+    <string name="Indirizzo">Indirizzo</string>
+    <string name="Data_di_nascita">Data di nascita</string>
+    <string name="Password">Password</string>
 </resources>

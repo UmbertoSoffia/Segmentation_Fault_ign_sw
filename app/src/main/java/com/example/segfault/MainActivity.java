@@ -35,24 +35,23 @@ public class MainActivity extends Activity {
                 Intent i = new Intent(MainActivity.this, home_promo.class);
                 i.putExtra("id_user", user.toString());
                 startActivity(i);
-                finish();
+                 
             } else {
                 //controlla se è utente normale
                 if (true) {
-
-
                     Intent i = new Intent(MainActivity.this, home_promo.class);
                     i.putExtra("id_user", user.toString());
                     startActivity(i);
-                    //finish();
 
                 } else {
-                    //allert inisistente utente
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setMessage("utente inesistente").setPositiveButton("ok", null);
+                    builder.setMessage("utente inesistente").setPositiveButton("ok",(dialog, which) -> {
+                        Intent i = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(i);
+                    } );
                     AlertDialog alert = builder.create();
                     alert.show();
-                    //ricarica la pagina
+
 
                 }
             }
@@ -61,15 +60,13 @@ public class MainActivity extends Activity {
             // in toria fa refresh va testato
             Intent i = new Intent(MainActivity.this, MainActivity.class);
             startActivity(i);
-            finish();
+            
 
         });
         register.setOnClickListener(v -> {
-            // inserire pagina registrazione
             Intent i = new Intent(MainActivity.this, Register.class);
-
             startActivity(i);
-            finish();
+             
         });
         
     }

@@ -45,13 +45,13 @@ public class Register extends AppCompatActivity {
                 //inserisci id seriale
                 i.putExtra("id_user", "");
                 startActivity(i);
-                finish();
+                 
             }
         });
         cancel.setOnClickListener(v->{
             Intent i = new Intent(Register.this, MainActivity.class);
             startActivity(i);
-            finish();
+             
         });
 
     }

@@ -109,7 +109,7 @@ public class create_activities extends Activity {
         query.add(3,"date");
         query.add(4,"fascia_oraria");
         //nested spinner
-        nestedSpinner(list_spin,query,0,null);
+        //nestedSpinner(list_spin,query,0,null);
 
 
 
@@ -128,16 +128,10 @@ public class create_activities extends Activity {
 
 
                 AlertDialog.Builder builder=new AlertDialog.Builder(create_activities.this);
-                builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        saveInCAlendar();
-                    }
-                }).setNegativeButton("Salva senza inserire nel calendario", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //salvare roba nel db
-                    }});
+                builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", (dialog, which) -> saveInCAlendar()).
+                        setNegativeButton("Salva senza inserire nel calendario", (dialog, which) -> {
+                    //salvare roba nel db
+                });
                 AlertDialog alert=builder.create();
                 alert.show();
                 Intent i = new Intent(create_activities.this, create_activities.class);

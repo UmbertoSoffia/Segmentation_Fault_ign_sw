@@ -115,52 +115,41 @@ public class Reservation extends AppCompatActivity {
 
 
 
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // bisogna controllare che ci sia disponibilità in quel giorno/ ora in quella struttura
+        confirm.setOnClickListener(v -> {
+            // bisogna controllare che ci sia disponibilità in quel giorno/ ora in quella struttura
 
 
 
-                AlertDialog.Builder builder=new AlertDialog.Builder(Reservation.this);
-                builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                            saveInCAlendar();
-                        //salvare roba nel db
-                    }
-                }).setNegativeButton("Salva senza inserire nel calendario", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //salvare roba nel db
-                        //verificare se la pagina si refresha
-                        Intent i = new Intent(Reservation.this, Reservation.class);
-                        i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
-                        startActivity(i);
-                        finish();
-                    }});
-                AlertDialog alert=builder.create();
-                alert.show();
-            }
+            AlertDialog.Builder builder=new AlertDialog.Builder(Reservation.this);
+            builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", (dialog, which) -> {
+                    saveInCAlendar();
+                //salvare roba nel db
+            }).setNegativeButton("Salva senza inserire nel calendario", (dialog, which) -> {
+                //salvare roba nel db
+                //verificare se la pagina si refresha
+                Intent i = new Intent(Reservation.this, Reservation.class);
+                i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
+                startActivity(i);
+
+            });
+            AlertDialog alert=builder.create();
+            alert.show();
         });
-        reject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        reject.setOnClickListener(v -> {
 
-                AlertDialog.Builder builder=new AlertDialog.Builder(Reservation.this);
-                builder.setMessage("Annullare l'inserimento?").setPositiveButton("Sì", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //verificare se la pagina si refresha
-                        Intent i = new Intent(Reservation.this, Reservation.class);
-                        i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
-                        startActivity(i);
-                        finish();
-                    }
-                }).setNegativeButton("Continua l'inserimento", null);
-                AlertDialog alert=builder.create();
-                alert.show();
-            }
+            AlertDialog.Builder builder=new AlertDialog.Builder(Reservation.this);
+            builder.setMessage("Annullare l'inserimento?").setPositiveButton("Sì", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //verificare se la pagina si refresha
+                    Intent i = new Intent(Reservation.this, Reservation.class);
+                    i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
+                    startActivity(i);
+
+                }
+            }).setNegativeButton("Continua l'inserimento", null);
+            AlertDialog alert=builder.create();
+            alert.show();
         });
 
 
