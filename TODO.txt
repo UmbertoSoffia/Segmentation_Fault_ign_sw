@@ -1,5 +1,0 @@
-robe da fare:
-
-->lo scoll delle pagine con aggiunta struttura
-->far andare il calendario
-->acttaccare mongo
