@@ -67,11 +67,11 @@
     <Button
             android:id="@+id/back_home_user"
             android:layout_width="56dp"
-            android:layout_height="32dp"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:background="@color/teal_700"
             android:backgroundTint="@color/teal_700"
-            android:foreground="?attr/homeAsUpIndicator"
+            android:foreground="@drawable/ic_home_page"
             android:foregroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="@+id/linearLayout"

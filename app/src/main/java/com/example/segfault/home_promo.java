@@ -3,10 +3,12 @@ package com.example.segfault;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 public class home_promo extends Activity {
     @Override
@@ -29,6 +31,15 @@ public class home_promo extends Activity {
             i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
             startActivity(i);
             finish();
+        });
+
+        Button backhome = findViewById(R.id.back_home_user);
+        backhome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DrawerLayout menu_laterale = (DrawerLayout)findViewById(R.id.drawer_layout_promo);
+                menu_laterale.openDrawer(Gravity.LEFT);
+            }
         });
     }
 }

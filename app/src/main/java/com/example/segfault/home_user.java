@@ -7,9 +7,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import org.naishadhparmar.zcustomcalendar.CustomCalendar;
 import org.naishadhparmar.zcustomcalendar.OnDateSelectedListener;
@@ -64,10 +67,8 @@ public class home_user extends Activity {
         backhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(home_user.this, MainActivity.class);
-                i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
-                startActivity(i);
-                finish();
+               DrawerLayout menu_laterale = (DrawerLayout)findViewById(R.id.drawer_layout_user);
+               menu_laterale.openDrawer(Gravity.LEFT);
             }
         });
         Button n_positivity=findViewById(R.id.com_positivity);
@@ -88,7 +89,7 @@ public class home_user extends Activity {
 
         //queste robe qua sotto sono per i layout in base alla scritta lui colora calendario(current, present ecc)
         //bisogna mostrare il calendario
-        customCalendar =findViewById(R.id.calendar);
+        /*customCalendar =findViewById(R.id.calendar);
         HashMap<Object, Property> descHashMap=new HashMap<>();
         Property defaultPropriety=new Property();
         defaultPropriety.layoutResource=R.layout.default_view_calendar;
@@ -150,7 +151,7 @@ public class home_user extends Activity {
                 //qua quando seleziona devi farevedere la descrizione evento
                 Toast.makeText(getApplicationContext(),sdate,Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
 
 
