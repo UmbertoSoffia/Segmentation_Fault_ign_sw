@@ -11,6 +11,8 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
+
 public class home_promo extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
@@ -18,7 +20,7 @@ public class home_promo extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_promo);
-        getSupportActionBar().setTitle("non mi ricordo ");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("non mi ricordo ");
 
 
 
