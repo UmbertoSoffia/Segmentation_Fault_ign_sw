@@ -44,13 +44,13 @@
         android:id="@+id/name_surname"
         android:layout_width="164dp"
         android:layout_height="35dp"
-        android:layout_marginEnd="156dp"
+        android:layout_marginEnd="108dp"
         android:text="nome cognome"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.084"
+        app:layout_constraintVertical_bias="0.081"
         tools:ignore="HardcodedText" />
 
     <androidx.appcompat.widget.AppCompatEditText
@@ -84,19 +84,19 @@
         android:id="@+id/checkedTextView"
         android:layout_width="match_parent"
         android:layout_height="174dp"
-        android:text="@string/descrizione_promotore"
+        android:text="descrizione_promotore"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
-        app:layout_constraintVertical_bias="0.184" />
+        app:layout_constraintVertical_bias="0.181" />
 
     <TextView
         android:id="@+id/nome_utent"
         android:layout_width="154dp"
         android:layout_height="23dp"
-        android:text="nome"
+        android:text="strutture"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.392"
