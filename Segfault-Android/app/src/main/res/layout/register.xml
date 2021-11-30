@@ -31,12 +31,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/cognome2"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.022" />
 
     <TextView
         android:id="@+id/addr"
         android:layout_width="70dp"
         android:layout_height="25dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:text="@string/Indirizzo"
@@ -50,6 +51,7 @@
         android:id="@+id/dn"
         android:layout_width="96dp"
         android:layout_height="33dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:text="@string/Data_di_nascita"
@@ -177,6 +179,7 @@
         android:id="@+id/cognome"
         android:layout_width="70dp"
         android:layout_height="25dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:text="@string/cognome"
@@ -184,7 +187,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/codfisc"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.208" />
+        app:layout_constraintVertical_bias="0.111" />
 
     <TextView
         android:id="@+id/cognome2"
@@ -197,12 +200,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/cognome"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.116" />
+        app:layout_constraintVertical_bias="0.206" />
 
     <TextView
         android:id="@+id/codfisc"
         android:layout_width="70dp"
         android:layout_height="25dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:text="@string/cod_fisc"
@@ -210,7 +214,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/addr"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.309" />
+        app:layout_constraintVertical_bias="0.305" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/cf_new_promo"

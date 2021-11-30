@@ -7,6 +7,23 @@
     android:foreground="@color/cardview_shadow_start_color"
     tools:context=".new_structure">
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/work_days_new_struct2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:minHeight="48dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.995"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.364"
+        tools:ignore="SpeakableTextPresentCheck" />
+
     <Button
         android:id="@+id/cancel_new_prom"
         android:layout_width="wrap_content"
@@ -57,14 +74,14 @@
         android:layout_height="22dp"
         android:layout_marginBottom="276dp"
         android:shadowColor="@color/black"
-        android:text="@string/Descrizione"
+        android:text="Numero di posti"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintVertical_bias="0.765" />
 
     <MultiAutoCompleteTextView
         android:id="@+id/desc_new_struct"
@@ -93,7 +110,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.001" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView15"
@@ -229,10 +246,10 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.995"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.364"
+        app:layout_constraintVertical_bias="0.45"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
