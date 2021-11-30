@@ -1,5 +1,6 @@
 package com.example.segfault;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -7,6 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -151,5 +155,30 @@ public class home_user extends Activity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater= getMenuInflater();
+        inflater.inflate(R.menu.menu_user,menu);
+        return true;
+    }
 
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.nav_logout:
+                Intent i = new Intent(home_user.this, MainActivity.class);
+                startActivity(i);
+                return true;
+
+            case R.id.nav_structure:
+                Intent k = new Intent(home_user.this, All_structure_prom.class);
+                k.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
+                startActivity(k);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

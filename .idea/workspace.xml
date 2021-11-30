@@ -12,15 +12,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="340b6ee7-77c5-41d1-915d-40f9c56e2069" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Segfault-Android/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Segfault-Android/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Segfault-Android/app/src/main/java/com/example/segfault/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Segfault-Android/app/src/main/java/com/example/segfault/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Segfault-Android/app/src/main/java/com/example/segfault/home_promo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Segfault-Android/app/src/main/java/com/example/segfault/home_promo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Segfault-Android/app/src/main/res/layout/all_structure.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Segfault-Android/app/src/main/res/layout/all_structure.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Segfault-Android/app/src/main/res/layout/info_struct.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Segfault-Android/app/src/main/res/layout/info_struct.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Segfault-Android/app/src/main/res/menu/menu_laterale_promo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Segfault-Android/app/src/main/res/menu/menu_laterale_promo.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\umber\.android\avd\Pixel_4_API_24.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -60,6 +64,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Segfault-Android" />
   </component>
   <component name="RunManager">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">

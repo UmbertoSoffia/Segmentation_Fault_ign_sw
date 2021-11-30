@@ -15,7 +15,7 @@ public class new_structure extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_promo);
+        setContentView(R.layout.new_struct);
         Button back=findViewById(R.id.back_new_struct);
         Button confirm = findViewById(R.id.confirm_new_prom);
         Button cancel = findViewById(R.id.cancel_new_prom);

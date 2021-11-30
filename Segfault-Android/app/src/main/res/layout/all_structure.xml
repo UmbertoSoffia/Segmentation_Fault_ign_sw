@@ -32,19 +32,6 @@
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
-    <Button
-        android:id="@+id/back_new_struct"
-        android:layout_width="56dp"
-        android:layout_height="32dp"
-        android:layout_weight="1"
-        android:background="@color/teal_700"
-        android:backgroundTint="@color/teal_700"
-        android:foreground="?attr/homeAsUpIndicator"
-        android:foregroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
-
     <TextView
         android:id="@+id/nome_utent2"
         android:layout_width="154dp"
@@ -52,18 +39,18 @@
         android:text="nome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.252"
+        app:layout_constraintHorizontal_bias="0.303"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.227"
+        app:layout_constraintVertical_bias="0.223"
         tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/info_structure"
-        android:layout_width="32dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="112dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="104dp"
         android:backgroundTint="@color/white"
         android:foreground="@android:drawable/ic_dialog_info"
         android:foregroundTint="@color/teal_700"

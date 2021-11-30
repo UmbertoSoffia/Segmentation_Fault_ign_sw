@@ -13,8 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends AppCompatActivity {
 
 
 
@@ -22,9 +23,9 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initAddlayout(R.layout.home_promo);
-        TextView title = (TextView) findViewById(R.id.title_top);
-        title.setText("Definisci i tuoi passi");
+
+        setContentView(R.layout.homepage);
+        getSupportActionBar().setTitle("loign");
         Button confirm = findViewById(R.id.confirm_home);
         Button register = findViewById(R.id.register);
         Button cancel = findViewById(R.id.cancel);
