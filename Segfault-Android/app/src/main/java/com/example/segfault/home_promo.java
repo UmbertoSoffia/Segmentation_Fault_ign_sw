@@ -12,18 +12,34 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
-public class home_promo extends AppCompatActivity {
+public class home_promo extends BaseActivity {
+    boolean isFragmentLoaded;
+    Fragment menuFragment;
+    TextView title;
+    ImageView menuButton;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer_layout_promo);
+        initAddlayout(R.layout.home_promo);
+        title = (TextView) findViewById(R.id.title_top);
+        title.setText("Definisci i tuoi passi");
+        menuButton = (ImageView) findViewById(R.id.menu_icon);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
         Button new_game = findViewById(R.id.new_match_prom);
         Button new_struct = findViewById(R.id.new_space);
         new_struct.setOnClickListener(v -> {
