@@ -5,49 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:foreground="@color/cardview_shadow_start_color"
-    tools:context=".MainActivity">
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:background="@color/teal_700"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-    </LinearLayout>
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="@string/login"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="-55dp">
 
     <Button
         android:id="@+id/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="364dp"
+        android:background="@color/teal_700"
         android:text="@string/anulla"
         android:textColor="@color/white"
-        android:background="@color/teal_700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.241"
         app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toBottomOf="@+id/username_login"
-        app:layout_constraintVertical_bias="0.731" />
+        app:layout_constraintVertical_bias="0.536" />
 
     <Button
         android:id="@+id/confirm_home"
@@ -55,28 +31,28 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="364dp"
         android:background="@color/teal_700"
-        android:textColor="@color/white"
         android:text="@string/conferma"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.721"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_login"
-        app:layout_constraintVertical_bias="0.731" />
+        app:layout_constraintVertical_bias="0.536" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="226dp"
         android:layout_height="37dp"
         android:layout_marginTop="76dp"
-        android:textColor="@color/black"
         android:text="@string/vuoi_diventare_un_utente_promtore"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.546" />
+        app:layout_constraintVertical_bias="0.457" />
 
     <Button
         android:id="@+id/register"
@@ -90,7 +66,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintVertical_bias="0.108" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/username_login"
@@ -102,7 +78,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.178" />
+        app:layout_constraintVertical_bias="0.098" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/pwd"
@@ -114,5 +90,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.267" />
+        app:layout_constraintVertical_bias="0.185" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,7 +49,7 @@ public class home_user extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer_layout_user);
+        setContentView(R.layout.home_user);
         Button new_chall=findViewById(R.id.new_match);
 
         new_chall.setOnClickListener(v -> {
@@ -63,7 +63,7 @@ public class home_user extends Activity {
         backhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               DrawerLayout menu_laterale = (DrawerLayout)findViewById(R.id.drawer_layout_user);
+               DrawerLayout menu_laterale = (DrawerLayout)findViewById(R.id.home_user);
                menu_laterale.openDrawer(Gravity.LEFT);
             }
         });

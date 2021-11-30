@@ -77,7 +77,7 @@ public class create_activities extends Activity {
         n_people=findViewById(R.id.spinner_players_create);
         date=findViewById(R.id.spinner_date_create);
         structure=findViewById(R.id.spinner_struct_create);
-        sport= findViewById(R.id.sport_create);
+        //sport= findViewById(R.id.sport_create);
         fascia=findViewById(R.id.fascia_ora_create);
 
 

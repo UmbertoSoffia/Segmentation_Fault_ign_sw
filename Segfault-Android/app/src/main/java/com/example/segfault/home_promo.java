@@ -17,7 +17,8 @@ public class home_promo extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer_layout_promo);
+        setContentView(R.layout.home_promo);
+        getSupportActionBar().setTitle("non mi ricordo ");
 
 
 
