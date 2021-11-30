@@ -35,6 +35,7 @@
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
+
     <Button
         android:id="@+id/new_match_prom"
         android:layout_width="wrap_content"
@@ -65,20 +66,6 @@
         app:layout_constraintVertical_bias="0.224"
         tools:ignore="TextContrastCheck"
         android:textColor="@color/white"/>
-
-    <Button
-        android:id="@+id/menu_promo"
-        android:layout_width="56dp"
-        android:layout_height="48dp"
-        android:layout_weight="1"
-        android:background="@color/teal_700"
-        android:backgroundTint="@color/teal_700"
-        android:foreground="@drawable/ic_home_page"
-        android:foregroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
     <ImageView
         android:id="@+id/imageView2"

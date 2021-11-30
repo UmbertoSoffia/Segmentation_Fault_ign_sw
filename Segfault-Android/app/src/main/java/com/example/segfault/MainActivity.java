@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
 
 
@@ -21,7 +22,9 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.homepage);
+        initAddlayout(R.layout.home_promo);
+        TextView title = (TextView) findViewById(R.id.title_top);
+        title.setText("Definisci i tuoi passi");
         Button confirm = findViewById(R.id.confirm_home);
         Button register = findViewById(R.id.register);
         Button cancel = findViewById(R.id.cancel);
