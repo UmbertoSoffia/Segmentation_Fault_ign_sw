@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.segfault">
+
+    <application
+
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Segfault"
+        android:allowBackup="true"
+        tools:ignore="ExtraText">
+        https://developer.android.com/guide/components/activities/intro-activities
+        <activity
+            android:label="@string/app_name"
+            android:exported="true"
+            android:name="com.example.segfault.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.RUN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".home_user" />
+        <activity android:name=".create_activities" />
+        <activity android:name=".all_structure" />
+        <activity android:name=".home_promo" />
+        <activity android:name=".info_struct" />
+        <activity android:name=".info_utent_prom" />
+        <activity android:name=".new_structure" />
+        <activity android:name=".Reservation" />
+        <activity android:name=".Register" />
+
+
+    </application>
+
+</manifest>
