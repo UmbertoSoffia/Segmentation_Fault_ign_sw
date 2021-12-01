@@ -18,13 +18,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.applandeo.materialcalendarview.CalendarView;
+/*import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 
 import org.naishadhparmar.zcustomcalendar.CustomCalendar;
 import org.naishadhparmar.zcustomcalendar.OnDateSelectedListener;
-import org.naishadhparmar.zcustomcalendar.Property;
+import org.naishadhparmar.zcustomcalendar.Property;*/
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -64,6 +64,7 @@ public class home_user extends AppCompatActivity {
         setContentView(R.layout.home_user);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Mettiti alla prova");
         Button new_chall=findViewById(R.id.new_match);
+
 
         new_chall.setOnClickListener(v -> {
             Intent i = new Intent(home_user.this, Reservation.class);
