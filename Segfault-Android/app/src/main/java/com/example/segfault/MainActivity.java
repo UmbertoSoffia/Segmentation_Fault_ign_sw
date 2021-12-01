@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.homepage);
-        getSupportActionBar().setTitle("loign");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("loign");
         Button confirm = findViewById(R.id.confirm_home);
         Button register = findViewById(R.id.register);
         Button cancel = findViewById(R.id.cancel);
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 //controlla se è utente normale
                 if (true) {
-                    Intent i = new Intent(MainActivity.this, home_promo.class);
+                    Intent i = new Intent(MainActivity.this, home_user.class);
                     i.putExtra("id_user", user.toString());
                     startActivity(i);
 

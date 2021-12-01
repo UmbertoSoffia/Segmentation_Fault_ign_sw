@@ -20,7 +20,7 @@ public class home_promo extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_promo);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("non mi ricordo ");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Definisci i tuoi passi ");
 
 
 

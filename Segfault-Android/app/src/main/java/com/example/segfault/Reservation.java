@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class Reservation extends AppCompatActivity {
@@ -76,8 +77,8 @@ public class Reservation extends AppCompatActivity {
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //stampa il layout x prenotora
         setContentView(R.layout.reservation);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Nuova prenotazione");
 
         date=findViewById(R.id.spinner_date);
         structure=findViewById(R.id.spinner_struct);

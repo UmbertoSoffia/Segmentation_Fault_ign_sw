@@ -8,12 +8,12 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="93dp"
-        android:background="@color/teal_700"
+        android:layout_height="1dp"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
@@ -24,42 +24,45 @@
         android:id="@+id/name"
         android:layout_width="52dp"
         android:layout_height="25dp"
-        android:layout_marginTop="28dp"
         android:ems="10"
         android:text="@string/Nome"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/cognome2"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintEnd_toStartOf="@+id/name_new_promo"
+        app:layout_constraintHorizontal_bias="0.385"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.058" />
 
     <TextView
         android:id="@+id/addr"
         android:layout_width="70dp"
         android:layout_height="25dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="120dp"
         android:ems="10"
         android:text="@string/Indirizzo"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/dn"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.396" />
+        app:layout_constraintBottom_toTopOf="@+id/dn"
+        app:layout_constraintEnd_toStartOf="@+id/address_new_promo"
+        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cognome2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/dn"
         android:layout_width="96dp"
         android:layout_height="33dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="372dp"
         android:ems="10"
         android:text="@string/Data_di_nascita"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/pwd1"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.511" />
+        app:layout_constraintBottom_toTopOf="@+id/pwd1"
+        app:layout_constraintEnd_toStartOf="@+id/birthday_new_promo"
+        app:layout_constraintHorizontal_bias="0.602"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.14" />
 
     <TextView
         android:id="@+id/pwd1"
@@ -72,7 +75,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/pwd2"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.648" />
+        app:layout_constraintVertical_bias="0.647" />
 
     <TextView
         android:id="@+id/pwd2"
@@ -84,10 +87,10 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.762" />
+        app:layout_constraintVertical_bias="0.777" />
 
     <Button
         android:id="@+id/confirm_new_prom"
@@ -179,15 +182,16 @@
         android:id="@+id/cognome"
         android:layout_width="70dp"
         android:layout_height="25dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="104dp"
         android:ems="10"
         android:text="@string/cognome"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/codfisc"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintBottom_toTopOf="@+id/cognome2"
+        app:layout_constraintEnd_toStartOf="@+id/mail_new_promo"
+        app:layout_constraintHorizontal_bias="0.456"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.035" />
 
     <TextView
         android:id="@+id/cognome2"
@@ -198,23 +202,25 @@
         android:text="@string/Mail"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/surname_new_promo"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/cognome"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.206" />
+        app:layout_constraintVertical_bias="0.203" />
 
     <TextView
         android:id="@+id/codfisc"
         android:layout_width="70dp"
         android:layout_height="25dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
         android:ems="10"
         android:text="@string/cod_fisc"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/addr"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.305" />
+        app:layout_constraintBottom_toTopOf="@+id/addr"
+        app:layout_constraintEnd_toStartOf="@+id/cf_new_promo"
+        app:layout_constraintHorizontal_bias="0.456"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cognome2"
+        app:layout_constraintVertical_bias="0.55" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/cf_new_promo"
@@ -227,10 +233,10 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintHorizontal_bias="0.855"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.297"
+        app:layout_constraintVertical_bias="0.302"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -244,10 +250,10 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintHorizontal_bias="0.865"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.391"
+        app:layout_constraintVertical_bias="0.409"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -300,19 +306,6 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.782"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="@string/registrati"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

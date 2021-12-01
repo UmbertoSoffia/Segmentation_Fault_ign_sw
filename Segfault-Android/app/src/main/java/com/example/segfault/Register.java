@@ -12,12 +12,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Register extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Registrati");
         Button confirm = findViewById(R.id.confirm_new_prom);
         Button cancel = findViewById(R.id.cancel_new_prom);
         confirm.setOnClickListener(v -> {
