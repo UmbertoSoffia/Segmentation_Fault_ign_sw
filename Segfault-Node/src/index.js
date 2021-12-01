@@ -110,20 +110,21 @@ if (process.env.CITYLAB === 'ALL') {
   })
 }
 
-module.exports = server
+//module.exports = server
 
 wsServer = new SocketServer({httpServer:server})
 
-const connections = []
-
-wsServer.on('request', (req) => { //callback
-    const connection = req.accept()
-    console.log('new connection')
-    connections.push(connection)
-
-    connection.on('close', (resCode, des) => {
-        console.log('connection closed')
-        connections.splice(connections.indexOf(connection), 1)
-    })
-
-})
+// Gestione degli eventi
+wsServer.on('request', function(request) {
+    var connection = request.accept(null, request.origin);
+    connection.on('message', function(message) {
+        // Metodo eseguito alla ricezione di un messaggio
+        if (message.type === 'utf8') {
+            // Se il messaggio è una stringa, possiamo leggerlo come segue:
+            console.log('Il messaggio ricevuto è: ' + message.utf8Data);
+        }
+    });
+    connection.on('close', function(connection) {
+        // Metodo eseguito alla chiusura della connessione
+    });
+});

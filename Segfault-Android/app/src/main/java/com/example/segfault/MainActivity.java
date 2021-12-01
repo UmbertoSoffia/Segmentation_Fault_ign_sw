@@ -8,10 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import io.socket.client.IO;
+import io.socket.client.Socket;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.Serializable;
+import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.Objects;
 
@@ -19,13 +23,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
         setContentView(R.layout.homepage);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("loign");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("login");
         Button confirm = findViewById(R.id.confirm_home);
         Button register = findViewById(R.id.register);
         Button cancel = findViewById(R.id.cancel);
