@@ -1,42 +1,27 @@
 package com.example.segfault;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import com.applandeo.materialcalendarview.CalendarView;
-import com.applandeo.materialcalendarview.EventDay;
-import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
-
-import org.naishadhparmar.zcustomcalendar.CustomCalendar;
-import org.naishadhparmar.zcustomcalendar.OnDateSelectedListener;
-import org.naishadhparmar.zcustomcalendar.Property;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
 public class home_user extends AppCompatActivity {
-    
+
     //https://www.tutorialspoint.com/android/android_sending_email.htm
 
-    @SuppressLint("IntentReset")
+
     protected void sendEmail(String email, String msg) {
         //da provare non sono sicuro al 100% msg vada qui
         Log.i("Send email", msg);
