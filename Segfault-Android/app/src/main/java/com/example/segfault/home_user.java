@@ -2,16 +2,22 @@ package com.example.segfault;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.icu.util.Calendar;
+import android.media.metrics.Event;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.EventLog;
 import android.util.Log;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -68,8 +74,8 @@ public class home_user extends AppCompatActivity {
                 sendEmail(i.first.getMail(),"hai avuto un contatto con una persona positiva al COVID19 esattamente "+i.second+" giorni");
             }
         });
-///        https://developer.android.com/reference/java/util/Calendar
-
+        //il calendario non va bene quello bisogna crearlo custom da tutorial
+        //sto tutorial in ita va benisimo https://www.youtube.com/watch?v=hHjFIG0TtA0 (forse)
 
 
     }
