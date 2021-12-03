@@ -1,37 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:foreground="@color/cardview_shadow_start_color"
-    tools:context=".all_structure">
+    android:layout_height="wrap_content"
+
+    tools:context=".all_structure_user">
 
     <TextView
-        android:id="@+id/nome_utent"
-        android:layout_width="154dp"
-        android:layout_height="23dp"
-        android:text="nome"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.063"
-        tools:ignore="HardcodedText" />
+        android:id="@+id/nome_struct"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="5dp"
 
-    <Button
-        android:id="@+id/info_structure"
-        android:layout_width="32dp"
-        android:layout_height="23dp"
+        android:layout_weight="1"
+        android:hint="@string/name"
+        android:textSize="14sp"
+        android:paddingStart="10dp"
+
+        android:textColor="@color/black"
+        android:layout_width="0dp"
+        android:layout_height="40dp" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/info_structure_user"
+        android:layout_width="28dp"
+        android:layout_height="21dp"
+        android:layout_gravity="center"
         android:layout_marginEnd="68dp"
         android:backgroundTint="@color/white"
         android:foreground="@android:drawable/ic_dialog_info"
         android:foregroundTint="@color/teal_700"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/nome_utent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.063" />
+        tools:ignore="TouchTargetSizeCheck" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

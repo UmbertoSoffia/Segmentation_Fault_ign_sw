@@ -1,7 +1,7 @@
 robe da fare:
 
-->lo scoll delle pagine con aggiunta struttura
-->far andare il calendario
+->mettere azione a pulsanti delle all_struct
+->lista eventi dopo click calendario
 ->acttaccare mongo
 ->problema con pagina creazione nuova activity 
 

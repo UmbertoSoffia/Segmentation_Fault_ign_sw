@@ -7,15 +7,15 @@
         android:title="@string/prenotazioni"
         app:showAsAction="collapseActionView"/>
 
-    <item android:id="@+id/nav_structure"
+    <item android:id="@+id/nav_structure_promo"
         android:icon="@drawable/ic_struttura"
         android:title="@string/strutture" />
 
-    <item android:id="@+id/nav_user"
+    <item android:id="@+id/nav_user_promo"
         android:icon="@drawable/ic_user"
         android:title="@string/utente" />
 
-    <item android:id="@+id/nav_logout"
+    <item android:id="@+id/nav_logout_promo"
         android:icon="@drawable/ic_logout"
         android:title="@string/logout" />
 

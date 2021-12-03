@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             EditText pwd = findViewById(R.id.pwd);
             //controlla dati
             //se utente è promotore
-            if (false) {
+            if (true) {
                 Intent i = new Intent(MainActivity.this, home_promo.class);
                 i.putExtra("id_user", user.toString());
                 startActivity(i);

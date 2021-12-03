@@ -1,46 +1,33 @@
 package com.example.segfault;
 
-import static android.content.ContentValues.TAG;
-
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-
-
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-
-
 import android.util.Log;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
-
-
+import android.widget.LinearLayout;
 import android.widget.Toast;
-import androidx.appcompat.app.ActionBar;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 public class home_user extends AppCompatActivity {
 
-    //https://www.tutorialspoint.com/android/android_sending_email.htm
 
     private EventDay getEventDay(int day,int month,int year){
         Calendar calendar = Calendar.getInstance();
@@ -49,6 +36,7 @@ public class home_user extends AppCompatActivity {
         calendar.set(Calendar.DAY_OF_MONTH, day);
         return new EventDay(calendar, R.drawable.sample_icon);
     }
+    //https://www.tutorialspoint.com/android/android_sending_email.htm
     protected void sendEmail(String email, String msg) {
         //da provare non sono sicuro al 100% msg vada qui
         Log.i("Send email", msg);
@@ -114,8 +102,10 @@ public class home_user extends AppCompatActivity {
             public void onDayClick(EventDay eventDay) {
                 Calendar clickedDayCalendar = eventDay.getCalendar();
                 if(events.contains(eventDay)){
-                    Toast toast = Toast.makeText(getApplicationContext(), "devi mostrre evento", Toast.LENGTH_SHORT);
-                    toast.show();
+
+                    Attach();
+                    //Toast toast = Toast.makeText(getApplicationContext(), "devi mostrre evento", Toast.LENGTH_SHORT);
+                   // toast.show();
                 }
                 else{
                     Toast toast = Toast.makeText(getApplicationContext(), "Nessun evento per questa gionata", Toast.LENGTH_SHORT);
@@ -150,12 +140,31 @@ public class home_user extends AppCompatActivity {
                 return true;
 
             case R.id.nav_structure:
-                Intent k = new Intent(home_user.this, All_structure_prom.class);
+                Intent k = new Intent(home_user.this, all_structure_user.class);
                 k.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
                 startActivity(k);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void Attach() {
+            AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(this);
+            final View contractPopupwiew=getLayoutInflater().inflate(R.layout.base_of_paste,null);
+//da qua in poi
+         View cricketerView = getLayoutInflater().inflate(R.layout.popup_activity,null,false);
+         LinearLayout layoutList=findViewById(R.id.layout_list);
+
+
+
+
+        layoutList.addView(cricketerView);
+
+//sopra di questo
+        dialogbuilder.setView(contractPopupwiew);
+        AlertDialog dialog = dialogbuilder.create();
+        dialog.show();
+
     }
 }

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/all_structure"
-        android:name="com.example.segfault.all_structure"
+        android:name="com.example.segfault.all_structure_user"
         android:label="all_struture"
         tools:layout="@layout/all_structure">
 

@@ -16,7 +16,7 @@ public class info_struct extends AppCompatActivity {
         String Nome_user= getIntent().getExtras().get("id_user").toString();
 
         //passa info queri a sta struttura utilizzando id_struttura
-        String name="";
+        String name=id_struct;
         String desc="";
         String mail="";
         String address="";

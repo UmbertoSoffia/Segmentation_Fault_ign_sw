@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Objects;
 
-public class All_structure_prom extends AppCompatActivity {
-    private LinearLayout layoutList;
+public class all_structure_user extends AppCompatActivity {
+     private LinearLayout layoutList;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
