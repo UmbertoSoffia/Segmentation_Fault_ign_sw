@@ -4,28 +4,31 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Objects;
 
 public class info_utent_prom extends AppCompatActivity {
     private LinearLayout layoutList;
 
-    //non capisco xk non va anche manifest ok e il resto del codice e uguale a dove va
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+       super.onCreate(savedInstanceState);
         setContentView(R.layout.info_utent_prom);
+
+
         Objects.requireNonNull(getSupportActionBar()).setTitle("Utente promotore ");
+
+        //fallisce in sto punto non riesce a beccare il layout di la per me ma bob
         layoutList = findViewById(R.id.layout_list_info_utentp);
         String id_utent_prom=getIntent().getExtras().get("id_user").toString();
         //come aggiungere riga alla pagina con la stringa come testo della casella
         //il numero serve come id della struttura per poi dare valore al pulsante
-        addView("top",1);
+      /*  addView("top",1);
        addView("es",2);
-
-
-
+*/
 
 
 

@@ -51,7 +51,6 @@
     <string name="crea_una_nuova_partita">crea una nuova partita</string>
     <string name="communicazione_positivit">communicazione positività</string>
     <string name="prenotazione_attivit">prenotazione attività</string>
-    <string name="descrizione_promotore">descrizione promotore</string>
     <string name="utente_promotore">Utente promotore</string>
     <string name="nuova_prenotazione">nuova prenotazione</string>
     <string name="home">Home</string>
@@ -80,4 +79,5 @@
     <string name="Data_di_nascita">Data di nascita</string>
     <string name="Password">Password</string>
     <string name="attività">Attività</string>
+    <string name="descrizione_promotore">descrizione promotore</string>
 </resources>

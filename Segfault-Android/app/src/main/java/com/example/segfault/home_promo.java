@@ -1,5 +1,7 @@
 package com.example.segfault;
 
+import static com.example.segfault.R.id.nav_user_promo;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,9 +64,11 @@ public class home_promo extends AppCompatActivity {
                 startActivity(i);
                 return true;
 
-            case R.id.nav_user_promo:
+            case nav_user_promo:
+
                 Intent j = new Intent(home_promo.this, info_utent_prom.class);
-                j.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
+
+                //j.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
                 startActivity(j);
 
                 return true;

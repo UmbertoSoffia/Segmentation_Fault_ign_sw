@@ -39,8 +39,11 @@ public class all_structure_user extends AppCompatActivity {
 
         TextView editText = (TextView)cricketerView.findViewById(R.id.nome_struct);
         editText.setText(s);
-/*sto bottone fa fallire non so xk
-       Button goInfo = findViewById(R.id.info_structure_user);
+ //sto bottone fa fallire non so xk
+        // perche dice che e nullo  invoke virtual method setOnClickListener on a null object reference
+        //puo essere che sia xk non stessa pag che metto come set content
+
+      /*Button goInfo=(Button) findViewById(R.id.row_structure_button);
        goInfo.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -53,8 +56,8 @@ public class all_structure_user extends AppCompatActivity {
                Toast toast = Toast.makeText(getApplicationContext(), "Nessun evento per questa gionata", Toast.LENGTH_SHORT);
                toast.show();
            }
-       });
-*/
+       });*/
+
 
         layoutList.addView(cricketerView);
 

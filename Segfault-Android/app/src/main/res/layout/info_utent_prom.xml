@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:layout_editor_absoluteX="-4dp"
     tools:layout_editor_absoluteY="511dp">
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:background="@color/white"
-        android:orientation="horizontal"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout_list_info_utentp"
+        android:layout_width="match_parent"
+        android:layout_height="269dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"/>
 
-    </LinearLayout>
 
     <TextView
         android:id="@+id/textview_second"
@@ -31,35 +32,32 @@
         android:id="@+id/name_surname"
         android:layout_width="164dp"
         android:layout_height="35dp"
-        android:layout_marginEnd="108dp"
         android:text="nome cognome"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/mail_info_utente_prom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.081"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_second"
         tools:ignore="HardcodedText" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editTextNumber"
+    <TextView
+        android:id="@+id/phone_info_utente_prom"
         android:layout_width="154dp"
         android:layout_height="23dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/mail_info_utente_prom"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintStart_toStartOf="@+id/mail_info_utente_prom"
+        app:layout_constraintTop_toBottomOf="@+id/mail_info_utente_prom"
         app:layout_constraintVertical_bias="0.032" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editTextTextEmailAddress"
+    <TextView
+        android:id="@+id/mail_info_utente_prom"
         android:layout_width="154dp"
         android:layout_height="23dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/name_surname"
         app:layout_constraintHorizontal_bias="0.4"
@@ -71,25 +69,13 @@
         android:id="@+id/checkedTextView"
         android:layout_width="match_parent"
         android:layout_height="174dp"
-        android:text="descrizione_promotore"
+        android:text="@string/descrizione_promotore"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
+        app:layout_constraintTop_toBottomOf="@+id/phone_info_utente_prom"
         app:layout_constraintVertical_bias="0.181" />
 
-    <LinearLayout
-        android:id="@+id/layout_list_info_utentp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.733" />
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
