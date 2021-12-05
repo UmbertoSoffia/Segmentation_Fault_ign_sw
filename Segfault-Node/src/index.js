@@ -68,6 +68,9 @@ app.use('/api/profiles', require('./routes/profile-routes'))
 app.use('/api/children', require('./routes/child-routes'))
 app.use('/api/github', require('./routes/github-routes'))
 app.use('/api/community', require('./routes/community-routes'))
+/*app.use('/api/reservation', require('./routes/reservation-routes'))
+app.use('/api/promoter', require('./routes/promoter-routes'))
+app.use('/api/structure', require('./routes/structure-routes'))*/
 
 if (config.util.getEnv('NODE_ENV') === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')))
@@ -110,21 +113,12 @@ if (process.env.CITYLAB === 'ALL') {
   })
 }
 
-//module.exports = server
-
-wsServer = new SocketServer({httpServer:server})
-
 // Gestione degli eventi
-wsServer.on('request', function(request) {
-    var connection = request.accept(null, request.origin);
-    connection.on('message', function(message) {
-        // Metodo eseguito alla ricezione di un messaggio
-        if (message.type === 'utf8') {
-            // Se il messaggio è una stringa, possiamo leggerlo come segue:
-            console.log('Il messaggio ricevuto è: ' + message.utf8Data);
-        }
-    });
-    connection.on('close', function(connection) {
-        // Metodo eseguito alla chiusura della connessione
-    });
+server.on('request', function(req, res) {
+      req.on('data', chunk => {
+		console.log(`Data chunk available: ${chunk}`)
+	  })
+	  req.on('end', () => {
+		//end of data
+	  })
 });
