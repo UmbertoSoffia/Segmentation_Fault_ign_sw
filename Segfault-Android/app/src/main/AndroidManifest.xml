@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.segfault">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
@@ -37,6 +39,7 @@
         <activity android:name=".new_structure" />
         <activity android:name=".Reservation" />
         <activity android:name=".Register" />
+        <activity android:name=".info_utent_user" />
 
     </application>
 

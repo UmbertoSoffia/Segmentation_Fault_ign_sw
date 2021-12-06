@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.util.Pair;
 import android.view.Menu;
@@ -26,6 +27,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.mail.Authenticator;
+import  javax.mail.Message;
+import  javax.mail.MessagingException;
+import  javax.mail.PasswordAuthentication;
+import  javax.mail.Session;
+import  javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import  javax.mail.internet.InternetAddress;
+import  javax.mail.internet.MimeMessage;
+import java.util.Properties;
+
+
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -33,6 +46,8 @@ import java.util.Locale;
 
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
+
+import io.reactivex.annotations.NonNull;
 
 public class home_user extends AppCompatActivity {
 
@@ -44,10 +59,48 @@ public class home_user extends AppCompatActivity {
         calendar.set(Calendar.DAY_OF_MONTH, day);
         return new EventDay(calendar, R.drawable.sample_icon);
     }
+    private void mail(String email, String msg){
+        final String Username="segfaultunive@gmail.com";
+        final String pwd="segfaultunive2021";
+        Properties props=new Properties();
+        props.put("mail.smtp.auth","true");
+        props.put("mail.smtp.starttls.enable","true");
+        props.put("mail.smtp.host","smtp.gmail.com");
+        props.put("mail.smtp.port","587");
+        Toast.makeText(getApplicationContext(),"bona",Toast.LENGTH_LONG).show();
+        Session session= Session.getInstance(props, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return  new PasswordAuthentication(Username,pwd);
+            }
+        });
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom( new InternetAddress(Username));
+
+            //message.setRecipient(Message.RecipientType.TO,InternetAddress.parse(email) );
+            message.setRecipient(Message.RecipientType.TO,new InternetAddress(email));
+            message.setSubject(" Possibile positivita covid19");
+            //message.setText(msg);
+            Transport.send(message);
+            Toast.makeText(getApplicationContext(),"mail inviata",Toast.LENGTH_LONG).show();
+
+        } catch (MessagingException e) {
+            throw new RuntimeException();
+        }
+
+
+
+    }
+
+
+
+
+
+
     //https://www.tutorialspoint.com/android/android_sending_email.htm
     protected void sendEmail(String email, String msg) {
-        //da provare non sono sicuro al 100% msg vada qui
-        Log.i("Send email", msg);
+        Log.i("Send email", "");
         String[] TO = {email};
         String[] CC = {""};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
@@ -56,7 +109,7 @@ public class home_user extends AppCompatActivity {
         emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
         emailIntent.putExtra(Intent.EXTRA_CC, CC);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Possibile positività Covid19");
-        //emailIntent.putExtra(Intent.EXTRA_TEXT, msg);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, msg);
 
         try {
             startActivity(Intent.createChooser(emailIntent, "Send notification..."));
@@ -131,13 +184,16 @@ public class home_user extends AppCompatActivity {
 
         Button n_positivity=findViewById(R.id.com_positivity);
         n_positivity.setOnClickListener(v -> {
-
+                //user= utennte, integer=gioni di differenza
             ArrayList<Pair<User,Integer>> infected=new ArrayList<Pair<User,Integer>>();
             //buttare dentro infected quelli possibili integer serve per i toto giorni di distanza
+            infected.add(new Pair<User, Integer>(new User("umberto","cf",null, "umbertosoffia00@gmail.com",null),5));
 
             for (Pair<User,Integer> i:infected) {
-                sendEmail(i.first.getMail(),"hai avuto un contatto con una persona positiva al COVID19 esattamente "+i.second+" giorni");
+                mail(i.first.getMail(),"hai avuto un contatto con una persona positiva al COVID19 esattamente "+i.second+" giorni");
             }
+            StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
         });
         //questa e la libreria https://github.com/Applandeo/Material-Calendar-View
         //insieme di eventi
@@ -189,12 +245,10 @@ public class home_user extends AppCompatActivity {
                 Intent i = new Intent(home_user.this, MainActivity.class);
                 startActivity(i);
                 return true;
-            case R.id.nav_book:
-                //manca la pagina per tuttte le prenotazioni
-               // Intent i = new Intent(home_user.this, MainActivity.class);
-               // startActivity(i);
+            case R.id.info_utent_user:
+                Intent j = new Intent(home_user.this, info_utent_user.class);
+                startActivity(j);
                 return true;
-
             case R.id.nav_structure:
                 Intent k = new Intent(home_user.this, all_structure_user.class);
                 k.putExtra("id_user", getIntent().getExtras().get("id_user").toString());

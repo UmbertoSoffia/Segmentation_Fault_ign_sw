@@ -1,11 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.segfault.MainActivity">
-    <item android:id="@+id/nav_book"
-        android:icon="@drawable/ic_prenotazioni"
-        android:title="@string/prenotazioni"
-        app:showAsAction="collapseActionView"/>
 
     <item android:id="@+id/nav_structure"
         android:icon="@drawable/ic_struttura"
@@ -14,6 +9,9 @@
 
 
     <item android:id="@+id/nav_logout"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/logout" />
+    <item android:id="@+id/info_utent_user"
         android:icon="@drawable/ic_logout"
         android:title="@string/logout" />
 </menu>
