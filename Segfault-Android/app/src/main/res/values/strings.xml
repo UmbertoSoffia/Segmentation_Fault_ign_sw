@@ -80,4 +80,6 @@
     <string name="Password">Password</string>
     <string name="attività">Attività</string>
     <string name="descrizione_promotore">descrizione promotore</string>
+    <string name="elimina">elimina</string>
+    <string name="testo_evento">testo evento</string>
 </resources>

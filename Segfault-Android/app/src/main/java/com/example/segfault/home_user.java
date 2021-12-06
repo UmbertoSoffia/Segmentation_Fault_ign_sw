@@ -1,5 +1,7 @@
 package com.example.segfault;
 
+import static javax.mail.Transport.send;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
@@ -25,6 +27,7 @@ import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.mail.Authenticator;
@@ -39,6 +42,7 @@ import  javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -59,6 +63,7 @@ public class home_user extends AppCompatActivity {
         calendar.set(Calendar.DAY_OF_MONTH, day);
         return new EventDay(calendar, R.drawable.sample_icon);
     }
+    //https://www.youtube.com/watch?v=roruU4hVwXA
     private void mail(String email, String msg){
         final String Username="segfaultunive@gmail.com";
         final String pwd="segfaultunive2021";
@@ -82,7 +87,7 @@ public class home_user extends AppCompatActivity {
             message.setRecipient(Message.RecipientType.TO,new InternetAddress(email));
             message.setSubject(" Possibile positivita covid19");
             //message.setText(msg);
-            Transport.send(message);
+            send(message);
             Toast.makeText(getApplicationContext(),"mail inviata",Toast.LENGTH_LONG).show();
 
         } catch (MessagingException e) {
@@ -125,6 +130,14 @@ public class home_user extends AppCompatActivity {
         setContentView(R.layout.home_user);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Mettiti alla prova");
 
+        JSONObject jsonObject= new JSONObject();
+        try {
+            String cf=(String)jsonObject.get("cf");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
         // esempio di richiesta al server (route families share)
         /*try {
             FSRequest req = new FSRequest("GET","FS", "api/users/id:1", "","");
@@ -160,7 +173,7 @@ public class home_user extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }*/
-
+/*
         // esempio di richiesta al server (GET TEXT)
         try {
             FSRequest req = new FSRequest("GET","TEXT", "", "","user=1&pwd=abc");
@@ -170,7 +183,7 @@ public class home_user extends AppCompatActivity {
                 Log.d("json", req.result.toString());
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
 
         Button new_chall=findViewById(R.id.new_match);
 
@@ -199,6 +212,8 @@ public class home_user extends AppCompatActivity {
         //insieme di eventi
         List<EventDay> events = new ArrayList<>();
 
+
+
         //aggiungere eventi al calendario
         events.add(getEventDay(15,12,2021));
         events.add(getEventDay(12,1,2022));
@@ -215,9 +230,8 @@ public class home_user extends AppCompatActivity {
                 Calendar clickedDayCalendar = eventDay.getCalendar();
                 if(events.contains(eventDay)){
 
-                    Attach();
-                    //Toast toast = Toast.makeText(getApplicationContext(), "devi mostrre evento", Toast.LENGTH_SHORT);
-                   // toast.show();
+                    Attach(clickedDayCalendar.getTime());
+
                 }
                 else{
                     Toast toast = Toast.makeText(getApplicationContext(), "Nessun evento per questa gionata", Toast.LENGTH_SHORT);
@@ -259,22 +273,17 @@ public class home_user extends AppCompatActivity {
         }
     }
 
-    private void Attach() {
-            AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(this);
-            final View contractPopupwiew=getLayoutInflater().inflate(R.layout.base_of_paste,null);
+    private void Attach(Date data) {
+            //AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(this);
+            //final View contractPopupwiew=getLayoutInflater().inflate(R.layout.base_of_paste,null);
 //da qua in poi
-         View cricketerView = getLayoutInflater().inflate(R.layout.popup_activity,null,false);
-         LinearLayout layoutList=findViewById(R.id.layout_list);
-
-
-
-
-        layoutList.addView(cricketerView);
-
+        Intent i = new Intent(home_user.this, list_act_user.class);
+        i.putExtra("data",data.getTime());
+        startActivity(i);
 //sopra di questo
-        dialogbuilder.setView(contractPopupwiew);
-        AlertDialog dialog = dialogbuilder.create();
-        dialog.show();
+        //dialogbuilder.setView(contractPopupwiew);
+        //AlertDialog dialog = dialogbuilder.create();
+        //dialog.show();
 
     }
 }

@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         cancel.setOnClickListener(v -> {
-            // in toria fa refresh va testato
             Intent i = new Intent(MainActivity.this, MainActivity.class);
             startActivity(i);
             
