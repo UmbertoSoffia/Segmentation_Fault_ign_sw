@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -42,20 +43,7 @@ public class list_act_user extends AppCompatActivity {
 
 
 
-       Button myButton1 = (Button) findViewById(R.id.pop_actyvity_button);
-        myButton1.setText("elimina");
 
-        final TextView prenotazione=(TextView) findViewById(R.id.pop_actyvity);
-        myButton1.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-
-                // azione da fare per eliminare la prenotazione
-                prenotazione.clearComposingText();
-
-            }
-        });
 
 
 
@@ -67,35 +55,24 @@ public class list_act_user extends AppCompatActivity {
 
         TextView editText = (TextView)cricketerView.findViewById(R.id.pop_actyvity);
         editText.setText(s);
-/*sto bottone fa fallire non so xk
-       Button goInfo = findViewById(R.id.info_structure_user);
-       goInfo.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-              /* //invio alla pagina delle info della struttura
-               Intent i = new Intent(all_structure_user.this, info_struct.class);
-               ///qua bisogna capire come trovare id della struttura per passarlo in input di la
-               i.putExtra("id_struct", id_struct.toString());
-               i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
-               startActivity(i);
-               Toast toast = Toast.makeText(getApplicationContext(), "Nessun evento per questa gionata", Toast.LENGTH_SHORT);
-               toast.show();
-           }
-       });
-*/
-    /*
-        Button myButton = new Button(this);
-        myButton.setText("Push Me");
+        /*Button myButton1 = (Button) findViewById(R.id.pop_actyvity_button);
+        myButton1.setText("test");
 
-        LinearLayout ll = (LinearLayout)findViewById(R.id.test);
+        final TextView prenotazione=(TextView) findViewById(R.id.pop_actyvity);
+        myButton1.setOnClickListener(new View.OnClickListener(){
 
-        LinearLayout.LayoutParams lp;
-        lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        Log.d("", lp.toString());
-        Log.d("", myButton.toString());
-        Log.d("", ll.toString());
-        ll.addView(myButton, lp);
-*/
+            @Override
+            public void onClick(View view) {
+
+                Toast toast = Toast.makeText(getApplicationContext(), "Nessun evento per questa gionata", Toast.LENGTH_SHORT);
+                toast.show();
+                // azione da fare per eliminare la prenotazione
+                prenotazione.clearComposingText();
+
+            }
+        });
+         */
+
         layoutList.addView(cricketerView);
 
     }
