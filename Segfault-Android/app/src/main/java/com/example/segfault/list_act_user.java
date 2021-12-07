@@ -32,9 +32,33 @@ public class list_act_user extends AppCompatActivity {
         //String date = dateFormat.format(timestamp);
         Objects.requireNonNull(getSupportActionBar()).setTitle("06/12/21");
         layoutList = findViewById(R.id.list_act_user_scroll);
+
         for (int i = 0; i < 50; i++) {
             addView("pren"+i,1);
         }
+
+
+        // capire come prendere l'id di una prenotazione per poi eliminarla quando viene schiacciato il bottone elimina
+
+
+
+       Button myButton1 = (Button) findViewById(R.id.pop_actyvity_button);
+        myButton1.setText("elimina");
+
+        final TextView prenotazione=(TextView) findViewById(R.id.pop_actyvity);
+        myButton1.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+
+                // azione da fare per eliminare la prenotazione
+                prenotazione.clearComposingText();
+
+            }
+        });
+
+
+
 
     }
     private void addView( String s,Integer id_pren) {
@@ -59,7 +83,7 @@ public class list_act_user extends AppCompatActivity {
            }
        });
 */
-
+    /*
         Button myButton = new Button(this);
         myButton.setText("Push Me");
 
@@ -71,7 +95,7 @@ public class list_act_user extends AppCompatActivity {
         Log.d("", myButton.toString());
         Log.d("", ll.toString());
         ll.addView(myButton, lp);
-
+*/
         layoutList.addView(cricketerView);
 
     }

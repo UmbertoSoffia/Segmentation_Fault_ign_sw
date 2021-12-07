@@ -94,6 +94,9 @@
         <entry key="app/src/main/res/layout/home_promo.xml" value="0.1515625" />
         <entry key="app/src/main/res/layout/home_user.xml" value="0.1515625" />
         <entry key="app/src/main/res/layout/info_utent_prom.xml" value="0.1515625" />
+        <entry key="app/src/main/res/layout/list_act_user.xml" value="0.25407608695652173" />
+        <entry key="app/src/main/res/layout/new_struct.xml" value="0.25407608695652173" />
+        <entry key="app/src/main/res/layout/row_popup.xml" value="0.25407608695652173" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.1515625" />
       </map>
     </option>
