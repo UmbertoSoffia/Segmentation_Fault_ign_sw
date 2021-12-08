@@ -15,22 +15,16 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:cardCornerRadius="10dp"
+            android:layout_margin="9dp"
+            app:cardCornerRadius="9dp"
             app:cardElevation="10dp">
 
-            <LinearLayout
-                android:id="@+id/test"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal" />
-
-            <TextView
-                android:id="@+id/pop_actyvity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/testo_evento"
-                android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/pop_actyvity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/testo_evento"
+                    android:textColor="@color/black" />
 
 
             <Button

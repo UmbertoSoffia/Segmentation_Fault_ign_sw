@@ -40,6 +40,7 @@
         <activity android:name=".Reservation" />
         <activity android:name=".Register" />
         <activity android:name=".info_utent_user" />
+        <activity android:name=".choice_of_events" />
 
     </application>
 
