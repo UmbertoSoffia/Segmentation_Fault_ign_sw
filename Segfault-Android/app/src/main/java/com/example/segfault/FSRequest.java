@@ -1,6 +1,7 @@
 package com.example.segfault;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,18 +22,18 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
     final int READ_TIMEOUT = 15000;
 
     String request_method; // metodo HTTP da utilizzare
-    String type; //tipo richiesta: JSON oppure TEXT oppure FS
     String route = ""; // route Node da chiamare
     String json; // eventuale json da mandare con la richiesta
     String urlParameters; // eventuali parametri per richieste di tipo text
+    String token = "";
     JSONObject result; // json di risposta
 
 
     FSRequest(String m, String t, String r, String j, String p){
         request_method = m;
-        type = t;
         route = r;
         json = j;
+        token = t;
         urlParameters = p;
         result = null;
     }
@@ -46,7 +47,7 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
         try{
 
             // connect to the server
-            URL myUrl = new URL(SERVER + this.route);
+            URL myUrl = new URL(SERVER + this.route + "?" + this.urlParameters);
             HttpURLConnection connection =(HttpURLConnection) myUrl.openConnection();
             connection.setReadTimeout(READ_TIMEOUT);
             connection.setConnectTimeout(CONNECTION_TIMEOUT);
@@ -61,34 +62,7 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
             if(this.request_method == "GET"){
 
                 connection.setDoInput(true);
-
-
-                //ammesse solo richieste di tipo TEXT o FS
-                if(this.type == "TEXT"){
-
-                    connection.setDoOutput(true);
-
-                    //metto il metodo comunque a POST perchè mando i parametri come stringa url-encoded
-                    connection.setRequestMethod("POST");
-
-                    connection.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
-                    connection.setRequestProperty("Content-Length", Integer.toString(urlParameters.getBytes().length));
-                    connection.setUseCaches(false);
-
-                    // output stream
-                    OutputStream os = connection.getOutputStream();
-
-                    byte[] input = this.urlParameters.getBytes();
-                    os.write(input);
-                }
-                else if(this.type == "FS"){
-                    connection.setRequestMethod("GET");
-                }
-                else{
-                    if (connection != null)
-                        connection.disconnect();
-                    throw new IOException("Richiesta GET con tipo diverso da TEXT");
-                }
+                connection.setRequestMethod("GET");
 
             }
             else if(this.request_method == "POST"){
@@ -97,30 +71,19 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
                 connection.setDoOutput(true);
                 connection.setRequestMethod("POST");
 
-                // JSON request
-                if(this.type == "JSON"){
-                    connection.setRequestProperty("Content-type", "application/json; utf-8");
-
-                    //output stream
-                    OutputStream os = connection.getOutputStream();
+                connection.setRequestProperty("Content-type", "application/json; charset=utf-8");
+                //output stream
+                OutputStream os = connection.getOutputStream();
 
                     byte[] input = this.json.getBytes("utf-8");
                     os.write(input);
+                    os.flush();
                 }
 
-                // TEXT request
-                if(this.type == "TEXT"){
-                    connection.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
-                    connection.setRequestProperty("Content-Length", Integer.toString(urlParameters.getBytes().length));
-                    connection.setUseCaches(false);
+            // autenticazione
 
-                    //output stream
-                    OutputStream os = connection.getOutputStream();
-
-                    byte[] input = this.urlParameters.getBytes();
-                    os.write(input);
-                }
-            }
+            if (this.token != "")
+                connection.setRequestProperty("Authentication", "Bearer " + this.token);
 
             //esegui la richiesta
             connection.connect();
@@ -154,16 +117,17 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
             else{
                 if (connection != null)
                     connection.disconnect();
-                throw new IOException("Richiesta fallita! Errore: " + status);
+                throw new Exception("Richiesta fallita! Errore: " + status);
             }
 
 
         }
         catch(Exception e) {
             e.printStackTrace();
+            Log.println(Log.ERROR, "Errore", e.getMessage());
 
             // richiesta fallita
-            answer = "KO " + e.getMessage();
+            answer = "KO";
         }
 
 

@@ -115,61 +115,8 @@ public class home_user extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_user);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Mettiti alla prova");
-/*
-        JSONObject jsonObject= new JSONObject();
-        try {
-            String cf=(String)jsonObject.get("cf");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
 
 
-        // esempio di richiesta al server (route families share)
-        /*try {
-            FSRequest req = new FSRequest("GET","FS", "api/users/id:1", "","");
-            String res = req.execute().get();
-            Log.d("res", res);
-            if (req.result != null)
-                Log.d("json", req.result.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-
-        // esempio di richiesta al server (POST TEXT)
-        /*try {
-            FSRequest req = new FSRequest("POST","TEXT", "", "","user=1&pwd=abc");
-            String res = req.execute().get();
-            Log.d("res", res);
-            if (req.result != null)
-                Log.d("json", req.result.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-
-        // esempio di richiesta al server (POST JSON)
-        /*try {
-            JSONObject j = new JSONObject();
-            j.put("user", 1);
-            j.put("pwd", "abc");
-            FSRequest req = new FSRequest("POST","JSON", "", j.toString(),"");
-            String res = req.execute().get();
-            Log.d("res", res);
-            if (req.result != null)
-                Log.d("json", req.result.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-/*
-        // esempio di richiesta al server (GET TEXT)
-        try {
-            FSRequest req = new FSRequest("GET","TEXT", "", "","user=1&pwd=abc");
-            String res = req.execute().get();
-            Log.d("res", res);
-            if (req.result != null)
-                Log.d("json", req.result.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
 
         Button new_chall=findViewById(R.id.new_match);
 
