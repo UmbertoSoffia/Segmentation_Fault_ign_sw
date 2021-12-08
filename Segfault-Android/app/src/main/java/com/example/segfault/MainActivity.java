@@ -65,14 +65,24 @@ public class MainActivity extends AppCompatActivity {
                     String res1 = req1.execute().get();
 
                     // richiesta andata a buon fine: si logga
-                    // login fallito: utente inesistente
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setMessage("Utente inesistente").setPositiveButton("ok", (dialog, which) -> {
-                        Intent i = new Intent(MainActivity.this, MainActivity.class);
+                    if(res1.equals("OK")) {
+                        JSONObject response1 = req1.result;
+                        Intent i = new Intent(MainActivity.this, home_promo.class);
+                        i.putExtra("id_prom", response1.getString("id"));
+                        i.putExtra("token", response1.getString("token"));
+                        i.putExtra("name",response1.getString("name"));
+                        i.putExtra("email",response1.getString("email"));
                         startActivity(i);
-                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();
+                    }
+                    else {// login fallito: utente inesistente
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setMessage("Utente inesistente").setPositiveButton("ok", (dialog, which) -> {
+                            Intent i = new Intent(MainActivity.this, MainActivity.class);
+                            startActivity(i);
+                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
                 }
 
             } catch (Exception e) {
