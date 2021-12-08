@@ -63,6 +63,10 @@ public class home_user extends AppCompatActivity {
         calendar.set(Calendar.DAY_OF_MONTH, day);
         return new EventDay(calendar, R.drawable.sample_icon);
     }
+
+
+    //tutorial su come mandare mail senza aprire l'app mail
+    //!! non va
     //https://www.youtube.com/watch?v=roruU4hVwXA
     private void mail(String email, String msg){
         final String Username="segfaultunive@gmail.com";
@@ -103,39 +107,21 @@ public class home_user extends AppCompatActivity {
 
 
 
-    //https://www.tutorialspoint.com/android/android_sending_email.htm
-    protected void sendEmail(String email, String msg) {
-        Log.i("Send email", "");
-        String[] TO = {email};
-        String[] CC = {""};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-        emailIntent.putExtra(Intent.EXTRA_CC, CC);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Possibile positività Covid19");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, msg);
 
-        try {
-            startActivity(Intent.createChooser(emailIntent, "Send notification..."));
-            finish();
-            Log.i("Finished sending notification...", "");
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(home_user.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }
-    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_user);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Mettiti alla prova");
-
+/*
         JSONObject jsonObject= new JSONObject();
         try {
             String cf=(String)jsonObject.get("cf");
         } catch (JSONException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
         // esempio di richiesta al server (route families share)
@@ -210,11 +196,20 @@ public class home_user extends AppCompatActivity {
         });
         //questa e la libreria https://github.com/Applandeo/Material-Calendar-View
         //insieme di eventi
+
+        Button partecipa=findViewById(R.id.home_user_prenota_attività);
+        partecipa.setOnClickListener(v->{
+            //manda alla pagina di tutte le prenotazioni del giorno selezionato
+            Intent i = new Intent(home_user.this, choice_of_events.class);
+            i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
+            startActivity(i);
+
+        });
         List<EventDay> events = new ArrayList<>();
 
 
 
-        //aggiungere eventi al calendario
+        //come aggiungere eventi al calendario
         events.add(getEventDay(15,12,2021));
         events.add(getEventDay(12,1,2022));
 
@@ -230,7 +225,11 @@ public class home_user extends AppCompatActivity {
                 Calendar clickedDayCalendar = eventDay.getCalendar();
                 if(events.contains(eventDay)){
 
-                    Attach(clickedDayCalendar.getTime());
+                    //manda alla pagina di tutte le prenotazioni del giorno selezionato
+                    Intent i = new Intent(home_user.this, list_act_user.class);
+                    i.putExtra("data",clickedDayCalendar.toString());
+                    i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
+                    startActivity(i);
 
                 }
                 else{
@@ -272,14 +271,6 @@ public class home_user extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-//manda alla pagina di tutte le prenotazioni
-    private void Attach(Date data) {
-
-        Intent i = new Intent(home_user.this, list_act_user.class);
-        i.putExtra("data",data.getTime());
-        i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
-        startActivity(i);
 
 
-    }
 }
