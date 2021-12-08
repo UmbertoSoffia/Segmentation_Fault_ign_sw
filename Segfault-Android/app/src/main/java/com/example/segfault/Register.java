@@ -5,11 +5,15 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.json.JSONObject;
 
 import java.util.Date;
 import java.util.Objects;
@@ -23,33 +27,63 @@ public class Register extends AppCompatActivity {
         Button confirm = findViewById(R.id.confirm_new_prom);
         Button cancel = findViewById(R.id.cancel_new_prom);
         confirm.setOnClickListener(v -> {
-            String name=String.valueOf(findViewById(R.id.name_new_promo));
-            String surname=String.valueOf(findViewById(R.id.surname_new_promo));
-            String date=String.valueOf(findViewById(R.id.birthday_new_promo));
-            String cf=String.valueOf(findViewById(R.id.cf_new_promo));
-            String address=String.valueOf(findViewById(R.id.address_new_promo));
-            String mail=String.valueOf(findViewById(R.id.mail_new_promo));
-            String pwd1=String.valueOf(findViewById(R.id.pwd1_new_promo));
-            String pwd2=String.valueOf(findViewById(R.id.pwd2_new_promo));
-            if (!pwd1.equals(pwd2)){
+            EditText name=findViewById(R.id.name_new_promo);
+            String surname=String.valueOf(findViewById(R.id.surname_new_promo));  //non serve
+            String date=String.valueOf(findViewById(R.id.birthday_new_promo));  // non serve
+            String cf=String.valueOf(findViewById(R.id.cf_new_promo));  //non serve
+            EditText address=findViewById(R.id.address_new_promo);
+            EditText mail=findViewById(R.id.mail_new_promo);
+            EditText pwd1=findViewById(R.id.pwd1_new_promo);
+            EditText pwd2=findViewById(R.id.pwd2_new_promo);
+            String p1 = pwd1.getText().toString();
+            String p2 = pwd2.getText().toString();
+
+            if (!(p1.equals(p2))){
                 AlertDialog.Builder builder=new AlertDialog.Builder(Register.this);
                 builder.setMessage("Password differenti!");
                 AlertDialog alert=builder.create();
                 alert.show();
             }else{
-                //inserisci roba nel db
-                AlertDialog.Builder builder=new AlertDialog.Builder(Register.this);
-                builder.setMessage("Registrazione avvenuta con successo");
-                AlertDialog alert=builder.create();
-                alert.show();
-                //direttamente va nell'home del promotore
-                Intent i = new Intent(Register.this, home_promo.class);
-                //inserisci id seriale
-                i.putExtra("id_user", "");
-                startActivity(i);
-                 
+                //registrazione nuovo promotore
+                try{
+
+                    JSONObject prom = new JSONObject();
+                    prom.put("name", name.getText().toString());
+                    prom.put("addr", address.getText().toString());
+                    prom.put("email", mail.getText().toString());
+                    prom.put("password", pwd1.getText().toString());
+                    prom.put("language", "it");
+
+                    FSRequest req = new FSRequest("POST", "", "api/promoters", prom.toString(), "");
+                    String res = req.execute().get();
+
+                    if(res.equals("OK")){
+                        //torna alla pagina di login
+                        AlertDialog.Builder builder=new AlertDialog.Builder(Register.this);
+                        builder.setMessage("Registrazione avvenuta con successo").setPositiveButton("Ok", (dialog, which) -> {
+                            Intent i = new Intent(Register.this, MainActivity.class);
+                            startActivity(i);
+                        });
+                        AlertDialog alert=builder.create();
+                        alert.show();
+                    } else{
+                        AlertDialog.Builder builder=new AlertDialog.Builder(Register.this);
+                        builder.setMessage("Errore durante la registrazione").setPositiveButton("Ok", (dialog,which) -> {});
+                        AlertDialog alert=builder.create();
+                        alert.show();
+                    }
+
+                }catch(Exception e){
+                    Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+                    AlertDialog.Builder builder=new AlertDialog.Builder(Register.this);
+                    builder.setMessage("Errore di connessione").setPositiveButton("Ok", (dialog,which) -> {});
+                    AlertDialog alert=builder.create();
+                    alert.show();
+                }
             }
         });
+
         cancel.setOnClickListener(v->{
             Intent i = new Intent(Register.this, MainActivity.class);
             startActivity(i);

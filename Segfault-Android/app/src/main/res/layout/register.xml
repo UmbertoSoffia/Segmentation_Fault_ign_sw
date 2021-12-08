@@ -145,7 +145,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/mail_new_promo"
+        android:id="@+id/surname_new_promo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -162,7 +162,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/surname_new_promo"
+        android:id="@+id/mail_new_promo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -279,7 +279,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
-        android:inputType="date"
+        android:inputType="text"
         android:minHeight="48dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -287,7 +287,7 @@
         app:layout_constraintHorizontal_bias="0.865"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.651"
+        app:layout_constraintVertical_bias="0.662"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -296,7 +296,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:ems="10"
-        android:inputType="date"
+        android:inputType="text"
         android:minHeight="48dp"
 
         app:layout_constraintBottom_toBottomOf="parent"

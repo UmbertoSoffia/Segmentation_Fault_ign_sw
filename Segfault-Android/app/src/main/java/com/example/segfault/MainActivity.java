@@ -15,6 +15,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
+
     // le richieste sono tutte GET oppure POST, le GET richiedono di compilare il campo "URLparameteres"
     // dell'oggetto FSRequest, mentre le POST richiedono di creare un oggetto JSON e metterlo nel campo
     // "json" dell'oggetto FSRequest. Entrambi i tipi di richieste restituiscono un oggetto JSON che sta

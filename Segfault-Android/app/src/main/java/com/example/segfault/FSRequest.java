@@ -29,12 +29,12 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
     JSONObject result; // json di risposta
 
 
-    FSRequest(String m, String t, String r, String j, String p){
-        request_method = m;
+    FSRequest(String method, String t, String r, String j, String param){
+        request_method = method;
         route = r;
         json = j;
         token = t;
-        urlParameters = p;
+        urlParameters = param;
         result = null;
     }
 
