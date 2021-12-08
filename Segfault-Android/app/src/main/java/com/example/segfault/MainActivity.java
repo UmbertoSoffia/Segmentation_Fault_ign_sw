@@ -1,25 +1,16 @@
 package com.example.segfault;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import io.socket.client.IO;
-import io.socket.client.Socket;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONObject;
 
-import java.io.Serializable;
-import java.net.URISyntaxException;
-import java.util.Date;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
 
         setContentView(R.layout.homepage);
@@ -53,56 +43,45 @@ public class MainActivity extends AppCompatActivity {
                 ute.put("email", user.getText().toString());
                 ute.put("password", pwd.getText().toString());
                 ute.put("language", "it");
-                FSRequest req = new FSRequest("POST", "","api/users/authenticate/email", ute.toString(), "");
+                FSRequest req = new FSRequest("POST", "", "api/users/authenticate/email", ute.toString(), "");
                 String res = req.execute().get();
 
                 //richiesta andata a buon fine: si logga
-                if(res == "OK"){
+                if (res.equals("OK")) {
                     JSONObject response = req.result;
                     Log.println(Log.INFO, "Response", response.toString());
                     Intent i = new Intent(MainActivity.this, home_user.class);
-                    i.putExtra("id_user", response.getString("id"));
+                    i.putExtra("id", response.getString("id"));
                     i.putExtra("token", response.getString("token"));
-                    i.putExtra("name",response.getString("name"));
-                    i.putExtra("email",response.getString("email"));
+                    i.putExtra("name", response.getString("name"));
+                    i.putExtra("email", response.getString("email"));
                     startActivity(i);
-                }
-                else{ //richiesta fallita: controllo i promotori
+                } else { //richiesta fallita: controllo i promotori
                     JSONObject prom = new JSONObject();
                     prom.put("email", user.getText().toString());
                     prom.put("password", pwd.getText().toString());
                     prom.put("language", "it");
-                    FSRequest req1 = new FSRequest("POST", "","api/promoters/authenticate/email", prom.toString(), "");
+                    FSRequest req1 = new FSRequest("POST", "", "api/promoters/authenticate/email", prom.toString(), "");
                     String res1 = req1.execute().get();
 
                     // richiesta andata a buon fine: si logga
-                    if(res == "OK"){
-                        JSONObject response = req.result;
-                        Intent i = new Intent(MainActivity.this, home_promo.class);
-                        i.putExtra("id_prom", response.getString("id"));
-                        i.putExtra("token", response.getString("token"));
-                        i.putExtra("name",response.getString("name"));
-                        i.putExtra("email",response.getString("email"));
+                    // login fallito: utente inesistente
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setMessage("Utente inesistente").setPositiveButton("ok", (dialog, which) -> {
+                        Intent i = new Intent(MainActivity.this, MainActivity.class);
                         startActivity(i);
-                    }
-                    else{ // login fallito: utente inesistente
-                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                        builder.setMessage("Utente inesistente").setPositiveButton("ok",(dialog, which) -> {
-                            Intent i = new Intent(MainActivity.this, MainActivity.class);
-                            startActivity(i);
-                        } );
-                        AlertDialog alert = builder.create();
-                        alert.show();
-                    }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 }
 
-            }catch(Exception e){
+            } catch (Exception e) {
                 Log.println(Log.ERROR, "Errore connessione", e.getMessage());
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setMessage("Errore di connessione").setPositiveButton("ok",(dialog, which) -> {
+                builder.setMessage("Errore di connessione").setPositiveButton("ok", (dialog, which) -> {
                     Intent i = new Intent(MainActivity.this, MainActivity.class);
                     startActivity(i);
-                } );
+                });
                 AlertDialog alert = builder.create();
                 alert.show();
             }
@@ -110,18 +89,16 @@ public class MainActivity extends AppCompatActivity {
         cancel.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, MainActivity.class);
             startActivity(i);
-            
+
 
         });
         register.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, Register.class);
             startActivity(i);
-             
+
         });
-        
+
     }
-
-
 
 
 }

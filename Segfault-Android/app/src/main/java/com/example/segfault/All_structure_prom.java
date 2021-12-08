@@ -1,11 +1,11 @@
 package com.example.segfault;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,22 +39,17 @@ public class All_structure_prom extends AppCompatActivity {
 
         TextView editText = (TextView)cricketerView.findViewById(R.id.nome_struct);
         editText.setText(s);
-/*sto bottone fa fallire non so xk
-       Button goInfo = findViewById(R.id.info_structure_user);
-       goInfo.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-              /* //invio alla pagina delle info della struttura
-               Intent i = new Intent(all_structure_user.this, info_struct.class);
-               ///qua bisogna capire come trovare id della struttura per passarlo in input di la
-               i.putExtra("id_struct", id_struct.toString());
-               i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
-               startActivity(i);
-               Toast toast = Toast.makeText(getApplicationContext(), "Nessun evento per questa gionata", Toast.LENGTH_SHORT);
-               toast.show();
-           }
-       });
-*/
+        Button myButton1 = cricketerView.findViewById(R.id.row_structure_button);
+        myButton1.setOnClickListener(view -> {
+            Intent i = new Intent(All_structure_prom.this, info_struct.class);
+            i.putExtra("id", getIntent().getExtras().getString("id"));
+            i.putExtra("token", getIntent().getExtras().getString("token"));
+            i.putExtra("name", getIntent().getExtras().getString("name"));
+            i.putExtra("email", getIntent().getExtras().getString("email"));
+            i.putExtra("id_struct",id_struct);
+            startActivity(i);
+        });
+
 
         layoutList.addView(cricketerView);
 

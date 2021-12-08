@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,26 +38,17 @@ public class all_structure_user extends AppCompatActivity {
 
         TextView editText = (TextView)cricketerView.findViewById(R.id.nome_struct);
         editText.setText(s);
- //sto bottone fa fallire non so xk
-        // perche dice che e nullo  invoke virtual method setOnClickListener on a null object reference
-        //puo essere che sia xk non stessa pag che metto come set content
+        Button myButton1 = cricketerView.findViewById(R.id.row_structure_button);
+        myButton1.setOnClickListener(view -> {
+            Intent i = new Intent(all_structure_user.this, info_struct.class);
+            i.putExtra("id_user", getIntent().getExtras().getString("id"));
+            i.putExtra("token", getIntent().getExtras().getString("token"));
+            i.putExtra("name", getIntent().getExtras().getString("name"));
+            i.putExtra("email", getIntent().getExtras().getString("email"));
+            i.putExtra("id_struct",id_struct);
 
-      /*Button goInfo=(Button) findViewById(R.id.row_structure_button);
-       goInfo.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-              /* //invio alla pagina delle info della struttura
-               Intent i = new Intent(all_structure_user.this, info_struct.class);
-               ///qua bisogna capire come trovare id della struttura per passarlo in input di la
-               i.putExtra("id_struct", id_struct.toString());
-               i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
-               startActivity(i);
-               Toast toast = Toast.makeText(getApplicationContext(), "Nessun evento per questa gionata", Toast.LENGTH_SHORT);
-               toast.show();
-           }
-       });*/
-
-
+            startActivity(i);
+        });
         layoutList.addView(cricketerView);
 
     }

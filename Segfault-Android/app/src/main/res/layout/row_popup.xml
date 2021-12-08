@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -14,18 +14,18 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_margin="9dp"
             app:cardCornerRadius="9dp"
             app:cardElevation="10dp">
 
-                <TextView
-                    android:id="@+id/pop_actyvity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/testo_evento"
-                    android:textColor="@color/black" />
 
+            <TextView
+                android:id="@+id/pop_actyvity"
+                android:layout_width="234dp"
+                android:layout_height="match_parent"
+                android:text="@string/testo_evento"
+                android:textColor="@color/black" />
 
             <Button
                 android:id="@+id/pop_actyvity_button"
