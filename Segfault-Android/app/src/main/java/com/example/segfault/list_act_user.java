@@ -3,6 +3,7 @@ package com.example.segfault;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,23 +24,24 @@ import java.util.Objects;
 
 public class list_act_user extends AppCompatActivity {
     private LinearLayout layoutList;
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    // capire come passare valori io credevo si passassero come qui sotto
+   // private String date =  getIntent().getExtras().get("data").toString();
+   // private String id_User=  getIntent().getExtras().get("id_user").toString();
+    private String date="inserici data";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_act_user);
-       // Timestamp timestamp= (Timestamp) getIntent().getExtras().get("data");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        //String date = dateFormat.format(timestamp);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("06/12/21");
+
+        Objects.requireNonNull(getSupportActionBar()).setTitle(date);
         layoutList = findViewById(R.id.list_act_user_scroll);
 
         for (int i = 0; i < 50; i++) {
+            //id user lo hai come campo sopra
             addView("pren"+i,1);
         }
 
-
-        // capire come prendere l'id di una prenotazione per poi eliminarla quando viene schiacciato il bottone elimina
 
 
 
@@ -53,25 +55,21 @@ public class list_act_user extends AppCompatActivity {
 
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_popup,null,false);
 
-        TextView editText = (TextView)cricketerView.findViewById(R.id.pop_actyvity);
+        TextView editText = cricketerView.findViewById(R.id.pop_actyvity);
         editText.setText(s);
-        /*Button myButton1 = (Button) findViewById(R.id.pop_actyvity_button);
-        myButton1.setText("test");
+        Button myButton1 = cricketerView.findViewById(R.id.pop_actyvity_button);
+        myButton1.setOnClickListener(view -> {
 
-        final TextView prenotazione=(TextView) findViewById(R.id.pop_actyvity);
-        myButton1.setOnClickListener(new View.OnClickListener(){
 
-            @Override
-            public void onClick(View view) {
-
-                Toast toast = Toast.makeText(getApplicationContext(), "Nessun evento per questa gionata", Toast.LENGTH_SHORT);
-                toast.show();
-                // azione da fare per eliminare la prenotazione
-                prenotazione.clearComposingText();
-
-            }
+            // azione da fare per eliminare la prenotazione
+            Toast toast = Toast.makeText(getApplicationContext(), "evento eliminato", Toast.LENGTH_SHORT);
+            toast.show();
+            //refresh qua (sottoa fatto già) per eliminare quello appena cancellato
+            Intent i = new Intent(list_act_user.this, list_act_user.class);
+            i.putExtra("data",getIntent().getExtras().get("data").toString());
+            startActivity(i);
         });
-         */
+
 
         layoutList.addView(cricketerView);
 

@@ -272,18 +272,14 @@ public class home_user extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
+//manda alla pagina di tutte le prenotazioni
     private void Attach(Date data) {
-            //AlertDialog.Builder dialogbuilder = new AlertDialog.Builder(this);
-            //final View contractPopupwiew=getLayoutInflater().inflate(R.layout.base_of_paste,null);
-//da qua in poi
+
         Intent i = new Intent(home_user.this, list_act_user.class);
         i.putExtra("data",data.getTime());
+        i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
         startActivity(i);
-//sopra di questo
-        //dialogbuilder.setView(contractPopupwiew);
-        //AlertDialog dialog = dialogbuilder.create();
-        //dialog.show();
+
 
     }
 }
