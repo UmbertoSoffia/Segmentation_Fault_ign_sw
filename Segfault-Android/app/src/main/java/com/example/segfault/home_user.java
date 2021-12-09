@@ -21,6 +21,7 @@ import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
@@ -34,7 +35,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class home_user extends AppCompatActivity {
-
+static Date selecteddate;
 
     private EventDay getEventDay(int day,int month,int year){
         Calendar calendar = Calendar.getInstance();
@@ -89,7 +90,6 @@ public class home_user extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,11 +102,6 @@ public class home_user extends AppCompatActivity {
 
         new_chall.setOnClickListener(v -> {
             Intent i = new Intent(home_user.this, Reservation.class);
-            i.putExtra("id", getIntent().getExtras().getString("id"));
-            i.putExtra("token", getIntent().getExtras().getString("token"));
-            i.putExtra("name", getIntent().getExtras().getString("name"));
-            i.putExtra("email", getIntent().getExtras().getString("email"));
-
             startActivity(i);
             finish();
 
@@ -117,7 +112,7 @@ public class home_user extends AppCompatActivity {
                 //user= utennte, integer=gioni di differenza
             ArrayList<Pair<User,Integer>> infected=new ArrayList<Pair<User,Integer>>();
             //buttare dentro infected quelli possibili integer serve per i toto giorni di distanza
-            infected.add(new Pair<User, Integer>(new User("umberto","cf",null, "umbertosoffia00@gmail.com",null),5));
+            infected.add(new Pair<User, Integer>(new User("id","nome","umbertosoffia00@gmail.com", null),5));
 
             for (Pair<User,Integer> i:infected) {
                 mail(i.first.getMail(),"hai avuto un contatto con una persona positiva al COVID19 esattamente "+i.second+" giorni");
@@ -132,10 +127,6 @@ public class home_user extends AppCompatActivity {
         partecipa.setOnClickListener(v->{
             //manda alla pagina di tutte le prenotazioni del giorno selezionato
             Intent i = new Intent(home_user.this, choice_of_events.class);
-            i.putExtra("id", getIntent().getExtras().getString("id"));
-            i.putExtra("token", getIntent().getExtras().getString("token"));
-            i.putExtra("name", getIntent().getExtras().getString("name"));
-            i.putExtra("email", getIntent().getExtras().getString("email"));
             startActivity(i);
 
         });
@@ -156,16 +147,11 @@ public class home_user extends AppCompatActivity {
         calendarView.setOnDayClickListener(new OnDayClickListener() {
             @Override
             public void onDayClick(EventDay eventDay) {
-                Calendar clickedDayCalendar = eventDay.getCalendar();
+               selecteddate= eventDay.getCalendar().getTime();
                 if(events.contains(eventDay)){
 
                     //manda alla pagina di tutte le prenotazioni del giorno selezionato
                     Intent i = new Intent(home_user.this, list_act_user.class);
-                    i.putExtra("data",clickedDayCalendar.toString());
-                    i.putExtra("id", getIntent().getExtras().getString("id"));
-                    i.putExtra("token", getIntent().getExtras().getString("token"));
-                    i.putExtra("name", getIntent().getExtras().getString("name"));
-                    i.putExtra("email", getIntent().getExtras().getString("email"));
                     startActivity(i);
 
                 }
@@ -193,26 +179,15 @@ public class home_user extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.nav_logout:
                 Intent i = new Intent(home_user.this, MainActivity.class);
-                i.putExtra("id", getIntent().getExtras().getString("id"));
-                i.putExtra("token", getIntent().getExtras().getString("token"));
-                i.putExtra("name", getIntent().getExtras().getString("name"));
-                i.putExtra("email", getIntent().getExtras().getString("email"));
                 startActivity(i);
                 return true;
             case R.id.info_utent_user:
                 Intent j = new Intent(home_user.this, info_utent_user.class);
-                j.putExtra("id", getIntent().getExtras().getString("id"));
-                j.putExtra("token", getIntent().getExtras().getString("token"));
-                j.putExtra("name", getIntent().getExtras().getString("name"));
-                j.putExtra("email", getIntent().getExtras().getString("email"));
+
                 startActivity(j);
                 return true;
             case R.id.nav_structure:
                 Intent k = new Intent(home_user.this, all_structure_user.class);
-                k.putExtra("id", getIntent().getExtras().getString("id"));
-                k.putExtra("token", getIntent().getExtras().getString("token"));
-                k.putExtra("name", getIntent().getExtras().getString("name"));
-                k.putExtra("email", getIntent().getExtras().getString("email"));
                 startActivity(k);
                 return true;
             default:

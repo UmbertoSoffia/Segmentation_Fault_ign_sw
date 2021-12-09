@@ -1,44 +1,35 @@
 package com.example.segfault;
 
-import android.provider.ContactsContract;
-
 import androidx.annotation.NonNull;
-
-import java.util.Date;
 
 public class User {
     private final String name;
-    private final String cod_fisc;
-    private final String Surname;
+    private final String id;
+    private final String token;
     private final String mail;
-    private final Date datexof_bird;
 
 
-    public User(String name, @NonNull String cod_fisc, String surname,@NonNull String mail, Date date_of_bird) {
+    public User( @NonNull String id, String name, @NonNull String mail,String token ) {
         this.name = name;
-        Surname = surname;
+        this.token=token;
         this.mail = mail;
-        this.datexof_bird = date_of_bird;
-        this.cod_fisc=cod_fisc;
+        this.id=id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getCod_fisc() {
-        return cod_fisc;
+    public String getCod_id() {
+        return id;
     }
 
-    public String getSurname() {
-        return Surname;
+    public String getToken() {
+        return token;
     }
 
     public String getMail() {
         return mail;
     }
 
-    public Date getDate_of_bird() {
-        return datexof_bird;
-    }
 }

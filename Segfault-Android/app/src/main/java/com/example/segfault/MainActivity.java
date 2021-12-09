@@ -23,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
     // ogni richiesta restituisce la string "OK" se va a buon fine, "KO" se fallisce
     // qui trovate l'esempio del login
 
+     static public  User utente;
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +56,9 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject response = req.result;
                     Log.println(Log.INFO, "Response", response.toString());
                     Intent i = new Intent(MainActivity.this, home_user.class);
-                    i.putExtra("id", response.getString("id"));
-                    i.putExtra("token", response.getString("token"));
-                    i.putExtra("name", response.getString("name"));
-                    i.putExtra("email", response.getString("email"));
+                    utente=new User(response.getString("id"),response.getString("name"),response.getString("email"),response.getString("token"));
+
+
                     startActivity(i);
                 } else { //richiesta fallita: controllo i promotori
                     JSONObject prom = new JSONObject();
@@ -69,10 +72,7 @@ public class MainActivity extends AppCompatActivity {
                     if(res1.equals("OK")) {
                         JSONObject response1 = req1.result;
                         Intent i = new Intent(MainActivity.this, home_promo.class);
-                        i.putExtra("id_prom", response1.getString("id"));
-                        i.putExtra("token", response1.getString("token"));
-                        i.putExtra("name",response1.getString("name"));
-                        i.putExtra("email",response1.getString("email"));
+                        utente=new User(response1.getString("id"),response1.getString("name"),response1.getString("email"),response1.getString("token"));
                         startActivity(i);
                     }
                     else {// login fallito: utente inesistente

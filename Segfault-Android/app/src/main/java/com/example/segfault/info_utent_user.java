@@ -13,8 +13,7 @@ public class info_utent_user extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_utent_user);
         Objects.requireNonNull(getSupportActionBar()).setTitle("informazioni utente");
-
-
+        String id=MainActivity.utente.getCod_id();
 
     }
 }
