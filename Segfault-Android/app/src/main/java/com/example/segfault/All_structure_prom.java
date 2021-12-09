@@ -29,7 +29,7 @@ public class All_structure_prom extends AppCompatActivity {
 
         try{
 
-            FSRequest req = new FSRequest("GET", MainActivity.utente.getToken(), "api/structure", "", "promoter=" + MainActivity.utente.getCod_id());
+            FSRequest req = new FSRequest("GET", MainActivity.utente.getToken(), "api/structure", "", "promoter=" + MainActivity.utente.getCod_id() + "&token=" + MainActivity.utente.getToken());
             String res = req.execute().get();
 
             //richiesta andata a buon fine: disegno la lista delle strutture
@@ -88,8 +88,8 @@ public class All_structure_prom extends AppCompatActivity {
 
         //come aggiungere riga alla pagina con la stringa come testo della casella
         //il numero serve come id della struttura per poi dare valore al pulsante
-        addView("top",1);
-        addView("es",2);
+        //addView("top",1);
+        //addView("es",2);
 
 
 
