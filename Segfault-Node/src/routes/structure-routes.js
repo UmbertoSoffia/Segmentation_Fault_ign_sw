@@ -24,8 +24,6 @@ router.post('/', async (req, res, next) => {
 	const { user_id, email } = await jwt.verify(token, process.env.SERVER_SECRET)
 	const promoter_id = user_id
 	
-	console.log(`Promoter id: ${promoter_id}`)
-	
     const newStructure = {
       structure_id,
 	  name,
@@ -51,6 +49,20 @@ router.post('/', async (req, res, next) => {
   } catch (err) {
     next(err)
   }
+})
+
+router.get('/', (req, res, next) => {
+  if (!req.user_id) { return res.status(401).send('Not authenticated') }
+  const promoter_id = req.query.promoter
+  if(!promoter_id){ return res.status(400).send('Bad request')}
+  Structure.find({ promoter_id })
+  .populate('address')
+  .lean()
+  .exec()
+  .then(structures => {
+	  if(structures.length === 0){return res.status(404).send('Structures not found')}
+      res.json(structures)
+    }).catch(next)
 })
 
 module.exports = router

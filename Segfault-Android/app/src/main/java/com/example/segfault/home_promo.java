@@ -73,7 +73,6 @@ public class home_promo extends AppCompatActivity {
                 return true;
             case R.id.nav_structure_promo:
                 Intent k = new Intent(home_promo.this, All_structure_prom.class);
-                k.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
                 startActivity(k);
                 return true;
             default:

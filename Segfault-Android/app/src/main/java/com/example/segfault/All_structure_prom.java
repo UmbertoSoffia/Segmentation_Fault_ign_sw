@@ -1,13 +1,17 @@
 package com.example.segfault;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.json.JSONObject;
 
 import java.util.Objects;
 
@@ -19,6 +23,68 @@ public class All_structure_prom extends AppCompatActivity {
         setContentView(R.layout.all_structure);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Tutte le strutture ");
         layoutList = findViewById(R.id.layout_list_allstruct);
+
+
+        //richiesta lista di strutture
+
+        try{
+
+            FSRequest req = new FSRequest("GET", MainActivity.utente.getToken(), "api/structure", "", "promoter=" + MainActivity.utente.getCod_id());
+            String res = req.execute().get();
+
+            //richiesta andata a buon fine: disegno la lista delle strutture
+            if(res.equals("OK")){
+                JSONObject response = req.result;
+
+                //qui disegni i bottoni dinamicamente
+
+                /*
+                struttura del json di risposta: array di oggetti JSON: da studiare la classe JSONObject
+                per capire come utilizzare questa risposta
+
+                [
+                    {
+                        "_id": "61b210cfc76ba462d85e5674",
+                        "structure_id": "61b210cfbf43d9d862000001",
+                        "name": "Struttura 1",
+                        "description": "descrizione 1",
+                        "start_time": "08:30",
+                        "stop_time": "19:30",
+                        "address_id": "61b210cfbf43d9d862000002",
+                        "number": 40,
+                        "promoter_id": "1",
+                        "createdAt": "2021-12-09T14:21:03.705Z",
+                        "updatedAt": "2021-12-09T14:21:03.705Z",
+                        "__v": 0,
+                        "address": {
+                            "_id": "61b210cfc76ba462d85e5675",
+                            "address_id": "61b210cfbf43d9d862000002",
+                            "street": "via 1",
+                            "number": "",
+                            "city": "",
+                            "createdAt": "2021-12-09T14:21:03.774Z",
+                            "updatedAt": "2021-12-09T14:21:03.774Z",
+                            "__v": 0
+                        }
+                    },   //prima struttura
+                    {},  //seconda struttura
+                    {}   //terza struttura
+                ]
+                per avere l'indirizzo devi fare struttura_corrente.address.street
+                */
+            }else{
+                // richiesta fallita se req.response.getInt("error_code") == 404 vuol dire che non ha trovato strutture e fai un alert
+                //se invece è 400 vuol dire che c'è un errore nella richiesta e fai un alert
+            }
+
+        } catch(Exception e){
+            Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+            AlertDialog.Builder builder=new AlertDialog.Builder(All_structure_prom.this);
+            builder.setMessage("Errore di connessione").setPositiveButton("Ok", (dialog,which) -> {});
+            AlertDialog alert=builder.create();
+            alert.show();
+        }
 
         //come aggiungere riga alla pagina con la stringa come testo della casella
         //il numero serve come id della struttura per poi dare valore al pulsante
