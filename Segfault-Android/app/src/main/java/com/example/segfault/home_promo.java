@@ -32,7 +32,6 @@ public class home_promo extends AppCompatActivity {
         new_struct.setOnClickListener(v -> {
 
             Intent i = new Intent(home_promo.this, new_structure.class);
-            i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
             startActivity(i);
 
         });

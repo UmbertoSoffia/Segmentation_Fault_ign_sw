@@ -8,7 +8,7 @@
     tools:context=".new_structure">
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/work_days_new_struct2"
+        android:id="@+id/work_days_new_struct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -215,7 +215,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/work_days_new_struct"
+        android:id="@+id/number_struct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"

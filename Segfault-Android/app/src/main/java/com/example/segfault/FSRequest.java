@@ -58,6 +58,11 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
             // risposta sempre in json
             connection.setRequestProperty("Accept", "application/json");
 
+            // autenticazione
+
+            if (this.token != "")
+                connection.setRequestProperty("Authentication", "Bearer " + this.token);
+
             // set request method
             if(this.request_method == "GET"){
 
@@ -80,10 +85,7 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
                     os.flush();
                 }
 
-            // autenticazione
 
-            if (this.token != "")
-                connection.setRequestProperty("Authentication", "Bearer " + this.token);
 
             //esegui la richiesta
             connection.connect();
@@ -117,6 +119,8 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
             else{
                 if (connection != null)
                     connection.disconnect();
+                result = new JSONObject();
+                result.put("error_code", status);
                 throw new Exception("Richiesta fallita! Errore: " + status);
             }
 
