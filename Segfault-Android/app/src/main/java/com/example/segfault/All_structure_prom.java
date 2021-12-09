@@ -75,7 +75,7 @@ public class All_structure_prom extends AppCompatActivity {
                 per avere l'indirizzo devi fare struttura_corrente.address.street
                 */
             }else{
-                // richiesta fallita se req.response.getInt("error_code") == 404 vuol dire che non ha trovato strutture e fai un alert
+                // richiesta fallita se req.result.getInt("error_code") == 404 vuol dire che non ha trovato strutture e fai un alert
                 //se invece è 400 vuol dire che c'è un errore nella richiesta e fai un alert
             }
 
