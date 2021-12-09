@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Objects;
@@ -34,12 +35,13 @@ public class All_structure_prom extends AppCompatActivity {
 
             //richiesta andata a buon fine: disegno la lista delle strutture
             if(res.equals("OK")){
-                JSONObject response = req.result;
+                JSONArray response = req.array;
+
 
                 //qui disegni i bottoni dinamicamente
 
                 /*
-                struttura del json di risposta: array di oggetti JSON: da studiare la classe JSONObject
+                struttura del json di risposta: array di oggetti JSON: da studiare la classe JSONArray
                 per capire come utilizzare questa risposta
 
                 [

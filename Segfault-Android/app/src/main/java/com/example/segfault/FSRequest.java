@@ -3,6 +3,7 @@ package com.example.segfault;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,6 +28,7 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
     String urlParameters; // eventuali parametri per richieste di tipo text
     String token = "";
     JSONObject result; // json di risposta
+    JSONArray array = null;
 
 
     FSRequest(String method, String t, String r, String j, String param){
@@ -108,7 +110,11 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
                 }
 
                 // imposta il risultato
-                result = new JSONObject(response.toString()) ;
+                try {
+                    result = new JSONObject(response.toString());
+                }catch(JSONException je){
+                    array = new JSONArray(response.toString());
+                }
 
                 // richiesta andata a buon fine
                 answer = "OK";
