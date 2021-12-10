@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -152,22 +153,33 @@ public class Reservation extends AppCompatActivity {
 
 
         confirm.setOnClickListener(v -> {
-            // bisogna controllare che ci sia disponibilità in quel giorno/ ora in quella struttura
+            // bisogna controllare che ci sia disponibilità in quel giorno/ ora in quella struttura:
+            // faccio una GET in cui ti passo tutte le prenotazioni per quel giorno in quella struttura, poi controlli
+            // qui su android
+
+            try {
 
 
-
-            AlertDialog.Builder builder=new AlertDialog.Builder(Reservation.this);
-            builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", (dialog, which) -> {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Reservation.this);
+                builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", (dialog, which) -> {
                     saveInCAlendar();
-                //salvare roba nel db
-            }).setNegativeButton("Salva senza inserire nel calendario", (dialog, which) -> {
-                //salvare roba nel db
-                Intent i = new Intent(Reservation.this, Reservation.class);
-                startActivity(i);
+                    //salvare roba nel db
+                }).setNegativeButton("Salva senza inserire nel calendario", (dialog, which) -> {
+                    //salvare roba nel db
+                    Intent i = new Intent(Reservation.this, Reservation.class);
+                    startActivity(i);
 
-            });
-            AlertDialog alert=builder.create();
-            alert.show();
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }catch(Exception e){
+                Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+                AlertDialog.Builder builder=new AlertDialog.Builder(Reservation.this);
+                builder.setMessage("Errore di connessione").setPositiveButton("Ok", (dialog,which) -> {});
+                AlertDialog alert=builder.create();
+                alert.show();
+            }
         });
         reject.setOnClickListener(v -> {
             AlertDialog.Builder builder=new AlertDialog.Builder(Reservation.this);
