@@ -18,10 +18,10 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.995"
+        app:layout_constraintHorizontal_bias="0.895"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.364"
+        app:layout_constraintVertical_bias="0.359"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
@@ -54,17 +54,18 @@
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="94dp"
-        android:layout_height="52dp"
+        android:layout_width="155dp"
+        android:layout_height="42dp"
         android:layout_marginBottom="264dp"
         android:shadowColor="@color/black"
         android:text="@string/inserisci_indirizzo_della_struttura"
-        android:textColor="@color/black"
+        android:textAlignment="center"
 
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/name"
         app:layout_constraintTop_toBottomOf="@+id/name"
-        app:layout_constraintVertical_bias="0.068" />
+        app:layout_constraintVertical_bias="0.069" />
 
     <TextView
         android:id="@+id/textView13"
@@ -73,6 +74,7 @@
         android:layout_marginBottom="276dp"
         android:shadowColor="@color/black"
         android:text="Numero di posti"
+        android:textAlignment="center"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView17"
@@ -81,25 +83,27 @@
 
     <MultiAutoCompleteTextView
         android:id="@+id/desc_new_struct"
-        android:layout_width="357dp"
-        android:layout_height="221dp"
+        android:layout_width="363dp"
+        android:layout_height="174dp"
 
-        android:text="@string/scrivi_una_descrizione_accattivante"
+        android:text="Scrivi una descrizione accattivante"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.296"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintVertical_bias="0.728" />
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="179dp"
-        android:layout_height="48dp"
+        android:layout_width="158dp"
+        android:layout_height="52dp"
         android:layout_marginTop="28dp"
         android:ems="10"
 
         android:text="@string/nome_della_struttura"
+        android:textAlignment="center"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,11 +114,12 @@
 
     <TextView
         android:id="@+id/textView15"
-        android:layout_width="113dp"
-        android:layout_height="31dp"
+        android:layout_width="148dp"
+        android:layout_height="35dp"
         android:layout_marginBottom="440dp"
         android:shadowColor="@color/black"
-        android:text="orario lavorativo:"
+        android:text="Orario lavorativo:"
+        android:textAlignment="center"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView12"
@@ -127,6 +132,7 @@
         android:layout_height="29dp"
         android:shadowColor="@color/black"
         android:text="@string/giorni_lavorativi"
+        android:textAlignment="center"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView15"
@@ -191,7 +197,7 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.0"
@@ -208,10 +214,10 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.995"
+        app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.108"
+        app:layout_constraintVertical_bias="0.11"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -225,10 +231,10 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.45"
+        app:layout_constraintVertical_bias="0.441"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView

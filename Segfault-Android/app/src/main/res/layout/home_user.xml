@@ -49,10 +49,10 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.403"
+        app:layout_constraintHorizontal_bias="0.575"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.86" />
+        app:layout_constraintVertical_bias="0.757" />
 
     <Button
         android:id="@+id/home_user_prenota_attività"
@@ -64,10 +64,10 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/com_positivity"
-        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="@+id/com_positivity"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.538" />
+        app:layout_constraintVertical_bias="0.541" />
 
     <com.applandeo.materialcalendarview.CalendarView
         android:id="@+id/calendarView"

@@ -24,45 +24,49 @@
         android:id="@+id/spinner_struct_create"
         android:layout_width="198dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintHorizontal_bias="0.97"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.196"
+        app:layout_constraintVertical_bias="0.251"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Spinner
         android:id="@+id/spinner_date_create"
         android:layout_width="198dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintHorizontal_bias="0.97"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_struct_create"
-        app:layout_constraintVertical_bias="0.068" />
+        app:layout_constraintVertical_bias="0.079" />
 
     <Spinner
         android:id="@+id/spinner_players_create"
         android:layout_width="116dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="328dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintHorizontal_bias="0.978"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_date_create"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintVertical_bias="0.777" />
 
     <Spinner
         android:id="@+id/spinner_age_create"
         android:layout_width="116dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="260dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintHorizontal_bias="0.978"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_players_create"
         app:layout_constraintVertical_bias="0.735" />
@@ -71,13 +75,14 @@
         android:id="@+id/fascia_ora_create"
         android:layout_width="116dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="196dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintHorizontal_bias="0.978"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_age_create"
-        app:layout_constraintVertical_bias="0.96" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView8"
@@ -85,13 +90,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
         android:text="@string/struttura"
+        android:textAlignment="center"
         android:textColor="#424242"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/spinner_struct_create"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.203" />
+        app:layout_constraintVertical_bias="0.242" />
 
     <TextView
         android:id="@+id/textView9"
@@ -105,7 +111,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.337" />
+        app:layout_constraintVertical_bias="0.379" />
 
     <TextView
         android:id="@+id/textView11"
@@ -113,13 +119,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
         android:text="@string/attività"
+        android:textAlignment="center"
         android:textColor="#424242"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/spinner_players_create"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.106" />
+        app:layout_constraintVertical_bias="0.133" />
 
     <TextView
         android:id="@+id/textView14"
@@ -133,7 +140,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.424" />
+        app:layout_constraintVertical_bias="0.481" />
 
     <TextView
         android:id="@+id/textView15"
@@ -147,7 +154,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.542" />
+        app:layout_constraintVertical_bias="0.592" />
 
     <TextView
         android:id="@+id/textView16"
@@ -161,7 +168,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.662" />
+        app:layout_constraintVertical_bias="0.705" />
 
     <Button
         android:id="@+id/cancel_create"
@@ -195,13 +202,12 @@
         android:layout_width="195dp"
         android:layout_height="32dp"
         android:layout_marginTop="64dp"
-        android:layout_marginEnd="72dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toTopOf="@+id/spinner_struct_create"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.936"
         app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
     </com.google.android.material.textfield.TextInputLayout>
 

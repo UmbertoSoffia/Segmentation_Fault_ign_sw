@@ -28,9 +28,9 @@ public class Register extends AppCompatActivity {
         Button cancel = findViewById(R.id.cancel_new_prom);
         confirm.setOnClickListener(v -> {
             EditText name=findViewById(R.id.name_new_promo);
-            String surname=String.valueOf(findViewById(R.id.surname_new_promo));  //non serve
-            String date=String.valueOf(findViewById(R.id.birthday_new_promo));  // non serve
-            String cf=String.valueOf(findViewById(R.id.cf_new_promo));  //non serve
+           // String surname=String.valueOf(findViewById(R.id.surname_new_promo));  //non serve
+            // String date=String.valueOf(findViewById(R.id.birthday_new_promo));  // non serve
+           // String cf=String.valueOf(findViewById(R.id.cf_new_promo));  //non serve
             EditText address=findViewById(R.id.address_new_promo);
             EditText mail=findViewById(R.id.mail_new_promo);
             EditText pwd1=findViewById(R.id.pwd1_new_promo);
