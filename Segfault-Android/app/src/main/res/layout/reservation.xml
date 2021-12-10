@@ -17,7 +17,7 @@
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="@+id/spinner_struct"
       app:layout_constraintTop_toBottomOf="@+id/spinner_struct"
-      app:layout_constraintVertical_bias="0.343" />
+      app:layout_constraintVertical_bias="0.191" />
 
   <TextView
       android:id="@+id/textView20"
@@ -28,10 +28,10 @@
       android:textColor="#424242"
       app:layout_constraintBottom_toTopOf="@+id/cancel_button_reservation"
       app:layout_constraintEnd_toStartOf="@+id/spinner_date"
-      app:layout_constraintHorizontal_bias="0.561"
+      app:layout_constraintHorizontal_bias="0.642"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textView11"
-      app:layout_constraintVertical_bias="0.432" />
+      app:layout_constraintVertical_bias="0.207" />
 
   <Spinner
       android:id="@+id/spinner_struct"
@@ -45,6 +45,7 @@
       app:layout_constraintVertical_bias="0.209"
       tools:ignore="SpeakableTextPresentCheck" />
 
+
   <Spinner
       android:id="@+id/spinner_date"
       android:layout_width="198dp"
@@ -54,9 +55,7 @@
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="@+id/spinner_struct"
       app:layout_constraintTop_toBottomOf="@+id/spinner_struct"
-      app:layout_constraintVertical_bias="0.17" />
-
-
+      app:layout_constraintVertical_bias="0.357" />
 
   <Spinner
       android:id="@+id/attività"
@@ -107,10 +106,10 @@
       android:textColor="#424242"
       app:layout_constraintBottom_toTopOf="@+id/cancel_button_reservation"
       app:layout_constraintEnd_toStartOf="@+id/spinner_date"
-      app:layout_constraintHorizontal_bias="0.492"
+      app:layout_constraintHorizontal_bias="0.4"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textView11"
-      app:layout_constraintVertical_bias="0.177" />
+      app:layout_constraintVertical_bias="0.477" />
 
   <Button
       android:id="@+id/confirm_reservation"

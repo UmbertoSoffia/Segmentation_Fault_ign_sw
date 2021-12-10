@@ -3,6 +3,7 @@ package com.example.segfault;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
@@ -74,27 +75,64 @@ public class Reservation extends AppCompatActivity {
             4-data/ora concatenate in sta maniera in sql c'è modo per concatenarle abbiamo visto in sicurezza mi pare
 
          */
-
-        spin_sport.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,sport));
-
-
-       
-
         //qua butta tutti tipi di sport nell' arraylist sport
+
         sport.add("calcio");sport.add("nuoto");
-
-
+        Context c=this;
+        spin_sport.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,sport));
         spin_sport.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 date.clear();
                 n_pers.clear();
                 struct.clear();
                 //butta elem in Array strutturain base a quello selezionato
-                // in teoria cosi non testato
+                //parte da 0
                 String Selected=sport.get(position);
-                struct.add("campetto");
-                struct.add("barchessa");
+                if (position==0)
+                    struct.add("campetto");
+                else
+                    struct.add("piscina");
+
+                spin_struct.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item,struct));
+                spin_struct.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        n_pers.clear();
+                        date.clear();
+                        //butta elem in Array n_pers in base a quello selezionato
+                        //parte da 0
+                        String Selected=struct.get(position);
+                        n_pers.add("10");
+                        n_pers.add("11");
+                        spin_n_people.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item,n_pers));
+                        spin_n_people.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                date.clear();
+                                //butta elem in Array n_pers in base a quello selezionato
+                                //parte da 0
+                                String Selected=n_pers.get(position);
+                                if(position==0){
+                                date.add("15/10");
+                                date.add("18/10");
+                                }
+                                spin_date.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item,date));
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
             }
 
             @Override
@@ -102,58 +140,7 @@ public class Reservation extends AppCompatActivity {
 
             }
         });
-        spin_struct.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,struct));
-        spin_struct.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                n_pers.clear();
-                date.clear();
-                //butta elem in Array n_pers in base a quello selezionato
-                //in teoria cosi non testato
-                String Selected=struct.get(position);
-                struct.add("10");
-                struct.add("11");
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        spin_n_people.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,n_pers));
-        spin_n_people.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                date.clear();
-                //butta elem in Array n_pers in base a quello selezionato
-                //in teoria cosi non testato
-                String Selected=n_pers.get(position);
-                n_pers.add("10");
-                n_pers.add("11");
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        spin_date.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,date));
-        spin_date.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                //butta elem in Array n_pers in base a quello selezionato
-                //in teoria cosi non testato
-                String Selected=date.get(position);
-                date.add("oggi");
-                date.add("15?10?21");
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
 
 

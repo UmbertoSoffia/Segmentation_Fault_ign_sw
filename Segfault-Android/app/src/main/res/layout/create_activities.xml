@@ -7,43 +7,17 @@
     android:foreground="@color/cardview_shadow_start_color"
     tools:context=".create_activities">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayout"
-        android:layout_width="409dp"
-        android:layout_height="93dp"
-        android:background="@color/teal_700"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="@string/nuova_attivit"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
-
-    <Button
-        android:id="@+id/back_new_struct"
-        android:layout_width="56dp"
-        android:layout_height="48dp"
-        android:layout_weight="1"
-        android:background="@color/teal_700"
-        android:backgroundTint="@color/teal_700"
-        android:foreground="?attr/homeAsUpIndicator"
-        android:foregroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     <Spinner
@@ -195,11 +169,11 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#D30B0B"
         android:text="@string/annulla"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/confirm_create"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/confirm_create"
         app:layout_constraintVertical_bias="0.915" />
 
     <Button
@@ -217,15 +191,19 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.838" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:ems="10"
-        android:inputType="textPersonName"
-        tools:ignore="MissingConstraints,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck"
-        tools:layout_editor_absoluteX="200dp"
-        tools:layout_editor_absoluteY="142dp" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="195dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="72dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner_struct_create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0">
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
