@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class create_activities extends Activity {
-    Button confirm = (Button)findViewById(R.id.confirm);
+    Button confirm ;
     Button reject;
     Spinner n_people,sport;
     Spinner date;

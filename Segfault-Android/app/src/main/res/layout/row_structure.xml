@@ -15,7 +15,8 @@
         android:layout_weight="1"
         android:hint="@string/name"
         android:textSize="14sp"
-        android:paddingStart="10dp"
+        android:textAlignment="center"
+        android:paddingTop="10dp"
 
         android:textColor="@color/black"
         android:layout_width="0dp"

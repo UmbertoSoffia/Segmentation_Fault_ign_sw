@@ -22,9 +22,11 @@
 
             <TextView
                 android:id="@+id/pop_actyvity"
-                android:layout_width="234dp"
+                android:layout_width="206dp"
                 android:layout_height="match_parent"
+                android:paddingTop="10dp"
                 android:text="@string/testo_evento"
+                android:textAlignment="center"
                 android:textColor="@color/black" />
 
             <Button

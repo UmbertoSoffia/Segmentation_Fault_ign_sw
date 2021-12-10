@@ -1,8 +1,8 @@
 package com.example.segfault;
 
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -21,51 +20,22 @@ import java.util.Objects;
 
 
 public class Reservation extends AppCompatActivity {
-    Button confirm = (Button)findViewById(R.id.confirm);
+    Button confirm;
     Button reject;
-    Spinner n_people,sport;
-    Spinner date;
-    Spinner structure;
+    Spinner spin_n_people, spin_sport;
+    Spinner spin_date;
+    Spinner spin_struct;
 
-    private void nestedSpinner(ArrayList<Spinner> lst,ArrayList<String>query,int step,String value){
-        if (step==3) return;
-        ArrayList<String>element=new ArrayList<>();
-        //aggiungi a elementmtutti i campi utilizzando la query[step]
-        if (step==0){
-            //prendi elem da query[0] e buttali in element
-            
-        }else{
-            //altimenti utilizza campo selezionato dallo spinner precedente
-            //sto campo viene passato in value e butta tutto in element
-        }
-        //https://www.youtube.com/watch?v=svCVKC7ByOE&t=385s x tutoril spinner innestati forse manca pezzo ma non penso
-        ArrayAdapter<String> adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,element);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        lst.get(step).setAdapter(adapter);
-        //spinner in posizione step
-        lst.get(step).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selected=parent.getSelectedItem().toString();
-                nestedSpinner(lst,query,step+1,selected);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
 
     private void saveInCAlendar(){
         //bisogna capire come passsargli la data
         Intent intent= new Intent(Intent.ACTION_INSERT);
         intent.setData(CalendarContract.Events.CONTENT_URI);
-        intent.putExtra(CalendarContract.Events.TITLE, sport.getSelectedItem().toString()+"match");
+        intent.putExtra(CalendarContract.Events.TITLE, spin_sport.getSelectedItem().toString()+"match");
         //qua bisognerebbe mettere indirizzo struttura
-        intent.putExtra(CalendarContract.Events.EVENT_LOCATION,structure.getSelectedItem().toString());
-        intent.putExtra(CalendarContract.Events.DESCRIPTION, "partita amatoriale di"+sport.getSelectedItem().toString());
-        intent.putExtra(CalendarContract.Events.EVENT_LOCATION,structure.getSelectedItem().toString());
+        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, spin_struct.getSelectedItem().toString());
+        intent.putExtra(CalendarContract.Events.DESCRIPTION, "partita amatoriale di"+ spin_sport.getSelectedItem().toString());
+        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, spin_struct.getSelectedItem().toString());
         intent.putExtra(CalendarContract.Events.ALL_DAY,false);
 
         //sta parte è se non ha app calendario
@@ -75,22 +45,25 @@ public class Reservation extends AppCompatActivity {
             Toast.makeText(Reservation.this, "There is no app that support this action", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+    @SuppressLint("SetTextI18n")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reservation);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Nuova prenotazione");
 
-        date=findViewById(R.id.spinner_date);
-        structure=findViewById(R.id.spinner_struct);
-        sport= findViewById(R.id.attività);
-
-
-        reject= findViewById(R.id.cancel);
-        confirm=findViewById(R.id.confirm);
-        ArrayList<Spinner> list_spin = new ArrayList<>();
-        list_spin.add(0,sport);
-        list_spin.add(1,structure);
-        list_spin.add(2,date);
+        spin_date =findViewById(R.id.spinner_date);
+        spin_struct =findViewById(R.id.spinner_struct);
+        spin_sport = findViewById(R.id.attività);
+        spin_n_people = findViewById(R.id.spinner_num_people);
+        ArrayList<String> date,n_pers,sport,struct;
+        date=new ArrayList<>();
+        n_pers=new ArrayList<>();
+        sport=new ArrayList<>();
+        struct=new ArrayList<>();
+        reject= findViewById(R.id.cancel_button_reservation);
+        confirm=findViewById(R.id.confirm_reservation);
 
         
         /*
@@ -101,14 +74,89 @@ public class Reservation extends AppCompatActivity {
             4-data/ora concatenate in sta maniera in sql c'è modo per concatenarle abbiamo visto in sicurezza mi pare
 
          */
-     
-        final ArrayList<String> query=new ArrayList<>();
-        query.add(0," query sport");
-        query.add(1,"Structure");
-        query.add(2,"date");
 
-        //nested spinner
-        nestedSpinner(list_spin,query,0,null);
+        spin_sport.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,sport));
+
+
+       
+
+        //qua butta tutti tipi di sport nell' arraylist sport
+        sport.add("calcio");sport.add("nuoto");
+
+
+        spin_sport.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                date.clear();
+                n_pers.clear();
+                struct.clear();
+                //butta elem in Array strutturain base a quello selezionato
+                // in teoria cosi non testato
+                String Selected=sport.get(position);
+                struct.add("campetto");
+                struct.add("barchessa");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spin_struct.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,struct));
+        spin_struct.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                n_pers.clear();
+                date.clear();
+                //butta elem in Array n_pers in base a quello selezionato
+                //in teoria cosi non testato
+                String Selected=struct.get(position);
+                struct.add("10");
+                struct.add("11");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spin_n_people.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,n_pers));
+        spin_n_people.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                date.clear();
+                //butta elem in Array n_pers in base a quello selezionato
+                //in teoria cosi non testato
+                String Selected=n_pers.get(position);
+                n_pers.add("10");
+                n_pers.add("11");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spin_date.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,date));
+        spin_date.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                //butta elem in Array n_pers in base a quello selezionato
+                //in teoria cosi non testato
+                String Selected=date.get(position);
+                date.add("oggi");
+                date.add("15?10?21");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
 
 
 
@@ -127,9 +175,7 @@ public class Reservation extends AppCompatActivity {
                 //salvare roba nel db
             }).setNegativeButton("Salva senza inserire nel calendario", (dialog, which) -> {
                 //salvare roba nel db
-                //verificare se la pagina si refresha
                 Intent i = new Intent(Reservation.this, Reservation.class);
-                i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
                 startActivity(i);
 
             });
@@ -137,17 +183,11 @@ public class Reservation extends AppCompatActivity {
             alert.show();
         });
         reject.setOnClickListener(v -> {
-
             AlertDialog.Builder builder=new AlertDialog.Builder(Reservation.this);
-            builder.setMessage("Annullare l'inserimento?").setPositiveButton("Sì", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    //verificare se la pagina si refresha
-                    Intent i = new Intent(Reservation.this, Reservation.class);
-                    i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
-                    startActivity(i);
+            builder.setMessage("Annullare l'inserimento?").setPositiveButton("Sì", (dialog, which) -> {
+                Intent i = new Intent(Reservation.this, Reservation.class);
+                startActivity(i);
 
-                }
             }).setNegativeButton("Continua l'inserimento", null);
             AlertDialog alert=builder.create();
             alert.show();
