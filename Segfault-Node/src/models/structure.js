@@ -3,12 +3,11 @@ const mongoose = require('mongoose')
 const structureSchema = new mongoose.Schema({
   structure_id: {
     type: String,
-    unique: true,
-    required: true
+    required: true,
+	unique: true
   },
   name: {
 	type: String,
-	unique: true,
 	required: true
   },
   address_id: {
@@ -25,7 +24,6 @@ const structureSchema = new mongoose.Schema({
   working_days: String,
   promoter_id: {
     type: String,
-    unique: true,
     required: true
   }
 }, { timestamps: true })
@@ -40,11 +38,10 @@ structureSchema.virtual('address', {
 structureSchema.virtual('promoter', {
   ref: 'Promoter',
   localField: 'promoter_id',
-  foreignField: 'promoter_id',
-  justOne: true
+  foreignField: 'promoter_id'
 })
 
-structureSchema.index({ structure_id: 1, promoter_id: 1 })
+structureSchema.index({name: 1, promoter_id: 1 }, {unique: true})
 
 mongoose.pluralize(null)
 const model = mongoose.model('Structure', structureSchema)

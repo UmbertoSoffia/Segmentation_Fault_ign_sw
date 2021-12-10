@@ -66,17 +66,17 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
                 connection.setRequestProperty("Authentication", "Bearer " + this.token);
 
             // set request method
-            if(this.request_method == "GET"){
+            if(this.request_method == "GET" || this.request_method == "DELETE" ){
 
                 connection.setDoInput(true);
-                connection.setRequestMethod("GET");
+                connection.setRequestMethod(this.request_method);
 
             }
             else if(this.request_method == "POST"){
 
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
-                connection.setRequestMethod("POST");
+                connection.setRequestMethod(this.request_method);
 
                 connection.setRequestProperty("Content-type", "application/json; charset=utf-8");
                 //output stream
