@@ -86,4 +86,11 @@
     <string name="cerca">cerca</string>
     <string name="cerca_uno_sport">cerca uno sport</string>
     <string name="cerca_senza_vincoli">cerca senza vincoli</string>
+    <string name="tel">Tel:</string>
+    <string name="Orario_apertura">Orario apertura:</string>
+    <string name="Orario_chiusura">Orario chiusura:</string>
+    <string name="Numero_partecipanti">Numero Partecipanti:</string>
+    <string name="attivita">Attività:</string>
+    <string name="Struttura">Struttura</string>
+    <string name="Data_ora">Data ora:</string>
 </resources>
