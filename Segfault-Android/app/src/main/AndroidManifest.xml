@@ -38,7 +38,7 @@
         <activity android:name=".info_utent_prom" />
         <activity android:name=".new_structure" />
         <activity android:name=".Register" />
-        <activity android:name=".info_utent_user" />
+        <activity android:name=".all_match_prom" />
         <activity android:name=".choice_of_events" />
 
     </application>

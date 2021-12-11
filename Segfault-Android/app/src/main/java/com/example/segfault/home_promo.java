@@ -56,9 +56,17 @@ public class home_promo extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
+            case R.id.nav_book:
+                Intent l = new Intent(home_promo.this, all_match_prom.class);
+                startActivity(l);
+                finish();
+
+                return true;
+
             case R.id.nav_logout_promo:
                 Intent i = new Intent(home_promo.this, MainActivity.class);
                 startActivity(i);
+
                 return true;
 
             case nav_user_promo:
@@ -71,6 +79,7 @@ public class home_promo extends AppCompatActivity {
             case R.id.nav_structure_promo:
                 Intent k = new Intent(home_promo.this, All_structure_prom.class);
                 startActivity(k);
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

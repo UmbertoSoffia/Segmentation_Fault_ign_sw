@@ -31,7 +31,7 @@ public class User {
     /**
      * @return true if the user is promotor
      */
-    public boolean isPromotor(){return type.equals("promotor");}
+    public boolean isPromoter(){return type.equals("promotor");}
 
     public String getCod_id() {
         return id;

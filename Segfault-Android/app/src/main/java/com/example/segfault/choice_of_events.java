@@ -19,6 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 
 public class choice_of_events extends AppCompatActivity {
@@ -43,7 +44,7 @@ public class choice_of_events extends AppCompatActivity {
                             ((JSONObject) response.get(i)).get("name").toString(),
                             ((JSONObject) response.get(i)).get("structure_id").toString(),
                             ((JSONObject) response.get(i)).get("sport").toString(),
-                            ((JSONObject) response.get(i)).get("date").toString(),
+                            (Date) ((JSONObject) response.get(i)).get("date"),
                             ((JSONObject) response.get(i)).get("start_time").toString(),
                             ((JSONObject) response.get(i)).get("stop_time").toString(),
                             ((JSONObject) response.get(i)).get("creator_id").toString(),

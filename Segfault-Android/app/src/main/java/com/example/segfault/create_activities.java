@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,9 +14,16 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 
 public class create_activities extends AppCompatActivity {
@@ -61,13 +70,15 @@ public class create_activities extends AppCompatActivity {
 
         reject = findViewById(R.id.cancel_create);
         confirm = findViewById(R.id.confirm_create);
-        ArrayList<String> date, n_pers, age_min, age_max, struct, hour;
+        ArrayList<String> date, n_pers, age_min, age_max,  hour;
         date = new ArrayList<>();
         n_pers = new ArrayList<>();
-        struct = new ArrayList<>();
+        ArrayList<Structure>struct = new ArrayList<>();
         hour = new ArrayList<>();
         age_max = new ArrayList<>();
         age_min = new ArrayList<>();
+        ArrayList<Match> incontri= new ArrayList<>();
+        ArrayList<Match> incontri_supp= new ArrayList<>();
 
 
 
@@ -87,29 +98,170 @@ public class create_activities extends AppCompatActivity {
 
         Context c = this;
 
-        if(MainActivity.utente.isPromotor()){
-            // inserisci tutte le strutture dell'promotore in sto arraylist
-            struct.add("st1 promotor");
-            struct.add("st2 promotor");
-            struct.add("st3 promotor");
+        try {
+            FSRequest req = new FSRequest("GET", MainActivity.utente.getToken(), "api/match", "", "token=" + MainActivity.utente.getToken());
+            String res = req.execute().get();
+
+            //richiesta andata a buon fine: disegno la lista delle strutture
+            if (res.equals("OK")) {
+                JSONArray response = req.array;
+
+                for (int i = 0; i < response.length(); i++) {
+                    incontri.add(new Match(((JSONObject) response.get(i)).get("match_id").toString(),
+                            ((JSONObject) response.get(i)).get("name").toString(),
+                            ((JSONObject) response.get(i)).get("structure_id").toString(),
+                            ((JSONObject) response.get(i)).get("sport").toString(),
+                            (Date) ((JSONObject) response.get(i)).get("date"),
+                            ((JSONObject) response.get(i)).get("start_time").toString(),
+                            ((JSONObject) response.get(i)).get("stop_time").toString(),
+                            ((JSONObject) response.get(i)).get("creator_id").toString(),
+                            ((JSONObject) response.get(i)).get("age_range").toString()));
+
+                }
+            }
+                else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(create_activities.this);
+                    builder.setMessage("Errore richiesta ").setPositiveButton("Ok", (dialog, which) -> {
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+
+        } catch (Exception e) {
+            Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(create_activities.this);
+            builder.setMessage("Errore di connessione").setPositiveButton("Ok", (dialog, which) -> {
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+
+        if (MainActivity.utente.isPromoter()) {
+
+            try {
+
+                FSRequest req = new FSRequest("GET", MainActivity.utente.getToken(), "api/structure", "", "promoter=" + MainActivity.utente.getCod_id() + "&token=" + MainActivity.utente.getToken());
+                String res = req.execute().get();
+
+                //richiesta andata a buon fine: disegno la lista delle strutture
+                if (res.equals("OK")) {
+                    JSONArray response = req.array;
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject obj = (JSONObject) response.get(i);
+                        struct.add(new Structure(((JSONObject) response.get(i)).get("name").toString(),
+                                ((JSONObject) response.get(i)).get("structure_id").toString(),
+                                ((JSONObject) response.get(i)).get("description").toString(),
+                                ((JSONObject) response.get(i)).getInt("number"),
+                                ((JSONObject)(obj.get("address"))).get("street").toString(),
+                                ((JSONObject) response.get(i)).get("start_time").toString(),
+                                ((JSONObject) response.get(i)).get("stop_time").toString(),
+                                ((JSONObject) response.get(i)).get("working_days").toString()
+
+                                ));
+
+
+                    }
+
+
+                } else {
+                    if (req.result.getInt("error_code") == 404) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(create_activities.this);
+                        builder.setMessage("Nessuna struttura presente").setPositiveButton("Ok", (dialog, which) -> {
+                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(create_activities.this);
+                        builder.setMessage("Errore richiesta 4000").setPositiveButton("Ok", (dialog, which) -> {
+                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
+                }
+
+            } catch (Exception e) {
+                Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(create_activities.this);
+                builder.setMessage("Errore di connessione").setPositiveButton("Ok", (dialog, which) -> {
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
 
 
         }
         else {
 
-            // inserisci tutte le strutture  in sto arraylist
-            struct.add("st1");
-            struct.add("st2");
-            struct.add("st3");
+            try {
+
+                FSRequest req = new FSRequest("GET", MainActivity.utente.getToken(), "api/structure", "", "token=" + MainActivity.utente.getToken());
+                String res = req.execute().get();
+
+                //richiesta andata a buon fine: disegno la lista delle strutture
+                if (res.equals("OK")) {
+                    JSONArray response = req.array;
+                    for (int i = 0; i < response.length(); i++) {
+                        JSONObject obj = (JSONObject) response.get(i);
+                        struct.add(new Structure(((JSONObject) response.get(i)).get("name").toString(),
+                                ((JSONObject) response.get(i)).get("structure_id").toString(),
+                                ((JSONObject) response.get(i)).get("description").toString(),
+                                ((JSONObject) response.get(i)).getInt("number"),
+                                ((JSONObject)(obj.get("address"))).get("street").toString(),
+                                ((JSONObject) response.get(i)).get("start_time").toString(),
+                                ((JSONObject) response.get(i)).get("stop_time").toString(),
+                                ((JSONObject) response.get(i)).get("working_days").toString()
+
+                        ));
+
+
+                    }
+
+
+                } else {
+                    if (req.result.getInt("error_code") == 404) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(create_activities.this);
+                        builder.setMessage("Nessuna struttura presente").setPositiveButton("Ok", (dialog, which) -> {
+                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(create_activities.this);
+                        builder.setMessage("Errore richiesta 4000").setPositiveButton("Ok", (dialog, which) -> {
+                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
+                }
+
+            } catch (Exception e) {
+                Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(create_activities.this);
+                builder.setMessage("Errore di connessione").setPositiveButton("Ok", (dialog, which) -> {
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+
+
 
         }
 
 
-        spin_struct.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, struct));
+        ArrayList<String> sstruct=new ArrayList<>();
+        for (Structure s:struct ) {
+            sstruct.add(s.getName());
+        }
+
+        spin_struct.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, sstruct));
         spin_struct.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                incontri_supp.clear();
+                incontri_supp.addAll(incontri);
                 date.clear();
                 n_pers.clear();
                 hour.clear();
@@ -117,10 +269,23 @@ public class create_activities extends AppCompatActivity {
                 age_min.clear();
 
                 //selected è il valore selezionato
-                final String Selected_struct = struct.get(position);
-                // in base a selected aggiungi elem a arr_list date con quelle disponibili
-                date.add("15/10");
-                date.add("21/12");
+                final Structure Selected_struct = struct.get(position);
+                LocalDate now = LocalDate.now();
+                LocalDate localDateA=LocalDate.of(now.getYear(), now.getMonthValue()+2,now.getDayOfMonth());
+
+                for (Match m:incontri_supp) {
+                    LocalDate ld=m.date.toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDate();
+                    if(ld.isAfter(now) && ld.isBefore(localDateA)){
+                        date.add(ld.toString());
+                    }
+                    else {
+                        incontri_supp.remove(m);
+                    }
+
+
+                }
 
                 spin_date.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, date));
                 spin_date.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -133,8 +298,9 @@ public class create_activities extends AppCompatActivity {
                         //selected è il valore selezionato
                         String Selected = date.get(position);
                         // in base a selected aggiungi elem a arr_list date con quelle disponibili in quella data
-                        hour.add("10:00-11:00");
-                        hour.add("14:00-15:00");
+                        for (Match m:incontri_supp) {
+                            //aggiungere le ore
+                        }
 
 
                         spin_hour.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, hour));

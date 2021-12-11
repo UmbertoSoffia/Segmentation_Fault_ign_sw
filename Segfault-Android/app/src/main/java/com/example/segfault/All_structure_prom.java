@@ -38,7 +38,7 @@ public class All_structure_prom extends AppCompatActivity {
                 JSONArray response = req.array;
                 for (int i = 0; i < response.length() ; i++) {
                     JSONObject obj=(JSONObject)response.get(i);
-                    addView(obj.getString("name"),obj.getString("id"));
+                    addView(obj.getString("name"),obj.getString("structure_id"));
 
                 }
 

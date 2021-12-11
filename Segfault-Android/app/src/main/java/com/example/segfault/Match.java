@@ -1,18 +1,20 @@
 package com.example.segfault;
 
+import java.util.Date;
+
 public class Match {
     String id;
     String nome;
     String struttura;
     String sport;
-    String date;
+    Date date;
     String start_time;
     String stop_time;
     String creatoreid;
     String age_range;
 
 
-    public Match(String id, String nome, String struttura, String sport, String date, String start_time, String stop_time, String creatoreid, String age_range) {
+    public Match(String id, String nome, String struttura, String sport, Date date, String start_time, String stop_time, String creatoreid, String age_range) {
         this.id = id;
         this.nome = nome;
         this.struttura = struttura;
@@ -29,7 +31,7 @@ public class Match {
         return  "nome= " + nome + "\n" +
                 //"struttura= " + struttura +"\n"  + // ci vorrebbe nome ma questo è id
                 "sport= " + sport + "\n" +
-                "date= " + date.substring(0,10) + "\n" +
+                "date= " + date.toString() + "\n" +
                 "orario= " + start_time + "-" + stop_time +"\n" +
                 "età= " + age_range + "\n" ;
     }

@@ -4,7 +4,7 @@
     tools:context="com.example.segfault.MainActivity">
     <item android:id="@+id/nav_book"
         android:icon="@drawable/ic_prenotazioni"
-        android:title="@string/prenotazioni"
+        android:title="@string/incontri_in_programma"
         app:showAsAction="collapseActionView"/>
 
     <item android:id="@+id/nav_structure_promo"

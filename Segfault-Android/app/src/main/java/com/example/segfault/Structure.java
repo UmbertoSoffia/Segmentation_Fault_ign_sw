@@ -1,28 +1,27 @@
 package com.example.segfault;
 
-import android.media.Image;
-
-import java.util.ArrayList;
-
 public class Structure {
     //questo rapprestenta un insieme di immagini
 
     private   String name;
-    private   Integer id;
+    private   String id;
     private  String desc;
-    private String mail;
-    private  String number;
+    private  int number;
     private String Address;
-    private String  phone;
+    private  String start_time;
+    private  String stop_time;
+    private String working_days;
 
-    public Structure(String name, Integer id, String desc, String mail, String number, String address, String phone) {
+
+    public Structure(String name, String id, String desc, int number, String address, String start_time, String stop_time, String working_days) {
         this.name = name;
         this.id = id;
         this.desc = desc;
-        this.mail = mail;
         this.number = number;
-        Address = address;
-        this.phone = phone;
+        this.Address = address;
+        this.start_time = start_time;
+        this.stop_time = stop_time;
+        this.working_days = working_days;
     }
 
     public void setDesc(String desc) {
@@ -37,25 +36,13 @@ public class Structure {
         return desc;
     }
 
-    public String getMail() {
-        return mail;
-    }
 
-    public String getNumber() {
-        return number;
-    }
 
     public String getAddress() {
         return Address;
     }
 
-    public String getPhone() {
-        return phone;
-    }
 
-    public Integer getId() {
-        return id;
-    }
 
 
 }
