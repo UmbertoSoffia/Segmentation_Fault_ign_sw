@@ -21,13 +21,15 @@ reservationSchema.index({match_id: 1, user_id: 1 }, {unique: true})
 reservationSchema.virtual('match', {
   ref: 'Match',
   localField: 'match_id',
-  foreignField: 'match_id'
+  foreignField: 'match_id',
+  justOne: true
 })
 
 reservationSchema.virtual('user', {
   ref: 'User',
   localField: 'user_id',
-  foreignField: 'user_id'
+  foreignField: 'user_id',
+  justOne: true
 })
 
 mongoose.pluralize(null)
