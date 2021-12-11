@@ -87,11 +87,23 @@ public class create_activities extends AppCompatActivity {
 
         Context c = this;
 
+        if(MainActivity.utente.isPromotor()){
+            // inserisci tutte le strutture dell'promotore in sto arraylist
+            struct.add("st1 promotor");
+            struct.add("st2 promotor");
+            struct.add("st3 promotor");
 
-        // inserisci tutte le strutture dell'utente in sto arraylist
-        struct.add("st1");
-        struct.add("st2");
-        struct.add("st3");
+
+        }
+        else {
+
+            // inserisci tutte le strutture  in sto arraylist
+            struct.add("st1");
+            struct.add("st2");
+            struct.add("st3");
+
+        }
+
 
         spin_struct.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, struct));
         spin_struct.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
