@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class Reservation extends AppCompatActivity {
+public class create_activities_user extends AppCompatActivity {
     Button confirm;
     Button reject;
     Spinner spin_n_people, spin_sport;
@@ -44,7 +44,7 @@ public class Reservation extends AppCompatActivity {
         if(intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);
         }else{
-            Toast.makeText(Reservation.this, "There is no app that support this action", Toast.LENGTH_SHORT).show();
+            Toast.makeText(create_activities_user.this, "There is no app that support this action", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -53,7 +53,7 @@ public class Reservation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reservation);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Nuova prenotazione");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Nuovo evento");
 
         spin_date =findViewById(R.id.spinner_date);
         spin_struct =findViewById(R.id.spinner_struct);
@@ -160,13 +160,13 @@ public class Reservation extends AppCompatActivity {
             try {
 
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(Reservation.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(create_activities_user.this);
                 builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", (dialog, which) -> {
                     saveInCAlendar();
                     //salvare roba nel db
                 }).setNegativeButton("Salva senza inserire nel calendario", (dialog, which) -> {
                     //salvare roba nel db
-                    Intent i = new Intent(Reservation.this, Reservation.class);
+                    Intent i = new Intent(create_activities_user.this, create_activities_user.class);
                     startActivity(i);
 
                 });
@@ -175,16 +175,16 @@ public class Reservation extends AppCompatActivity {
             }catch(Exception e){
                 Log.println(Log.ERROR, "Errore connessione", e.getMessage());
 
-                AlertDialog.Builder builder=new AlertDialog.Builder(Reservation.this);
+                AlertDialog.Builder builder=new AlertDialog.Builder(create_activities_user.this);
                 builder.setMessage("Errore di connessione").setPositiveButton("Ok", (dialog,which) -> {});
                 AlertDialog alert=builder.create();
                 alert.show();
             }
         });
         reject.setOnClickListener(v -> {
-            AlertDialog.Builder builder=new AlertDialog.Builder(Reservation.this);
+            AlertDialog.Builder builder=new AlertDialog.Builder(create_activities_user.this);
             builder.setMessage("Annullare l'inserimento?").setPositiveButton("Sì", (dialog, which) -> {
-                Intent i = new Intent(Reservation.this, Reservation.class);
+                Intent i = new Intent(create_activities_user.this, create_activities_user.class);
                 startActivity(i);
 
             }).setNegativeButton("Continua l'inserimento", null);

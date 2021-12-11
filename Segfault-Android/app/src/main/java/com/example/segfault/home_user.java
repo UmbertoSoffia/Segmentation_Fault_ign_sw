@@ -101,7 +101,7 @@ static Date selecteddate;
         Button new_chall=findViewById(R.id.new_match);
 
         new_chall.setOnClickListener(v -> {
-            Intent i = new Intent(home_user.this, Reservation.class);
+            Intent i = new Intent(home_user.this, create_activities_user.class);
             startActivity(i);
             finish();
 
@@ -180,11 +180,6 @@ static Date selecteddate;
             case R.id.nav_logout:
                 Intent i = new Intent(home_user.this, MainActivity.class);
                 startActivity(i);
-                return true;
-            case R.id.info_utent_user:
-                Intent j = new Intent(home_user.this, info_utent_user.class);
-
-                startActivity(j);
                 return true;
             case R.id.nav_structure:
                 Intent k = new Intent(home_user.this, all_structure_user.class);

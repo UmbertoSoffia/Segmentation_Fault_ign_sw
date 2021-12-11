@@ -41,7 +41,6 @@
     <string name="registrati" translatable="false">Registrati</string>
 
     <string name="mail">Mail:</string>
-    <string name="tel">Tel:</string>
     <string name="name">Name</string>
     <string name="sport">Sport</string>
     <string name="nuova_attivit">nuova attività</string>
@@ -93,4 +92,6 @@
     <string name="attivita">Attività:</string>
     <string name="Struttura">Struttura</string>
     <string name="Data_ora">Data ora:</string>
+    <string name="le_tue_strutture">Le tue strutture:</string>
+    <string name="nome_attivita">Nome attivita</string>
 </resources>

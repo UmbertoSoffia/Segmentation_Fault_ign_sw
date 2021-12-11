@@ -3,80 +3,111 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:layout_editor_absoluteX="-4dp"
-    tools:layout_editor_absoluteY="511dp">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/layout_list_info_utentp"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="269dp"
-        android:orientation="vertical"
+        android:layout_height="304dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"/>
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="SpeakableTextPresentCheck">
 
+        <LinearLayout
+            android:id="@+id/layout_list_info_utentprom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </ScrollView>
 
     <TextView
-        android:id="@+id/textview_second"
+        android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="@string/le_tue_strutture"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="70dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="72dp"
+        android:text="@string/Nome"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.158"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/name_surname"
-        android:layout_width="164dp"
-        android:layout_height="35dp"
-        android:text="nome cognome"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/mail_info_utente_prom"
+        android:id="@+id/name_info_utent_prom"
+        android:layout_width="158dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="76dp"
+        android:text="@string/Nome"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.724"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_second"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/phone_info_utente_prom"
-        android:layout_width="154dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/mail_info_utente_prom"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/mail_info_utente_prom"
-        app:layout_constraintTop_toBottomOf="@+id/mail_info_utente_prom"
-        app:layout_constraintVertical_bias="0.032" />
+        android:id="@+id/textView24"
+        android:layout_width="70dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="144dp"
+        android:text="@string/Indirizzo"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.158"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/mail_info_utente_prom"
-        android:layout_width="154dp"
-        android:layout_height="23dp"
-        android:ems="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/name_surname"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="@+id/name_surname"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.221" />
-
-    <CheckedTextView
-        android:id="@+id/checkedTextView"
-        android:layout_width="match_parent"
-        android:layout_height="174dp"
-        android:text="@string/descrizione_promotore"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/ind_info_utent_prom"
+        android:layout_width="213dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="144dp"
+        android:text="@string/Indirizzo"
+        android:textSize="18sp"
+        android:lines="3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_info_utente_prom"
-        app:layout_constraintVertical_bias="0.181" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="70dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/Mail"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.158"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mail_info_utent_prom" />
+
+    <TextView
+        android:id="@+id/mail_info_utent_prom"
+        android:layout_width="187dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="244dp"
+        android:text="@string/Mail"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.785"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

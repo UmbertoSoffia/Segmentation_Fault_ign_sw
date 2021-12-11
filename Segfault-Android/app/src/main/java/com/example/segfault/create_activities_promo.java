@@ -1,58 +1,28 @@
 package com.example.segfault;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class create_activities extends Activity {
+public class create_activities_promo extends AppCompatActivity {
     Button confirm ;
     Button reject;
-    Spinner n_people,sport;
-    Spinner date;
-    Spinner fascia;
-    Spinner structure;
-    private void nestedSpinner(ArrayList<Spinner> lst, ArrayList<String>query, int step, String value){
-        if (step==5) return;
-        ArrayList<String>element=new ArrayList<>();
-        //aggiungi a elementmtutti i campi utilizzando la query[step]
-        if (step==0){
-            //prendi elem da query[0] e buttali in elemen (xk spinner partenza)
+    Spinner spin_n_people, spin_sport;
+    Spinner spin_date;
+    Spinner spin_ora;
+    Spinner spin_struct;
+    Spinner spin_min_age, spin_max_age;
 
-        }else{
-            //altimenti utilizza campo selezionato dallo spinner precedente
-            //sto campo viene passato in value e butta tutto in element
-            //prendi elem da query[step]
-        }
-        //https://www.youtube.com/watch?v=svCVKC7ByOE&t=385s x tutoril spinner innestati forse manca pezzo ma non penso
-        ArrayAdapter<String> adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,element);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        lst.get(step).setAdapter(adapter);
-        //spinner in posizione step
-        lst.get(step).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selected=parent.getSelectedItem().toString();
-                nestedSpinner(lst,query,step+1,selected);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
-    private void saveInCAlendar(){
+    /*private void saveInCAlendar(){
         //bisogna capire come passsargli la data
         Intent intent= new Intent(Intent.ACTION_INSERT);
         intent.setData(CalendarContract.Events.CONTENT_URI);
@@ -67,28 +37,31 @@ public class create_activities extends Activity {
         if(intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);
         }else{
-            Toast.makeText(create_activities.this, "There is no app that support this action", Toast.LENGTH_SHORT).show();
+            Toast.makeText(create_activities_promo.this, "There is no app that support this action", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //stampa il layout x prenotora
         setContentView(R.layout.create_activities);
-        n_people=findViewById(R.id.spinner_players_create);
-        date=findViewById(R.id.spinner_date_create);
-        structure=findViewById(R.id.spinner_struct_create);
-        //sport= findViewById(R.id.sport_create);
-        fascia=findViewById(R.id.fascia_ora_create);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Nuovo evento");
+
+
+        spin_n_people=findViewById(R.id.spinner_players_create);
+        spin_date=findViewById(R.id.spinner_date_create);
+        spin_struct=findViewById(R.id.spinner_struct_create);
+        spin_ora=findViewById(R.id.fascia_ora_create);
+        spin_min_age=findViewById(R.id.spinner_min_age_create);
+        spin_max_age=findViewById(R.id.spinner_max_age_create);
 
 
         reject= findViewById(R.id.cancel_create);
         confirm=findViewById(R.id.confirm_create);
-        ArrayList<Spinner> list_spin = new ArrayList<>();
-        list_spin.add(0,sport);
-        list_spin.add(1,structure);
-        list_spin.add(2,n_people);
-        list_spin.add(3,date);
-        list_spin.add(4,fascia);
+        ArrayList<String> date,n_pers,sport,struct;
+        date=new ArrayList<>();
+        n_pers=new ArrayList<>();
+        struct=new ArrayList<>();
+
 
 
 
@@ -117,25 +90,46 @@ public class create_activities extends Activity {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // bisogna controllare che ci sia disponibilità in quel giorno/ ora in quella struttura
                 //salcvare prenotazione nel db
                 //salvare nuovo incontro nel db
-                String id_user=getIntent().getExtras().get("id_user").toString();
+                String id_user;
 
 
 
-                AlertDialog.Builder builder=new AlertDialog.Builder(create_activities.this);
-                builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", (dialog, which) -> saveInCAlendar()).
+                AlertDialog.Builder builder=new AlertDialog.Builder(create_activities_promo.this);
+                builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", (dialog, which) ->{}). //saveInCAlendar()).
                         setNegativeButton("Salva senza inserire nel calendario", (dialog, which) -> {
                     //salvare roba nel db
                 });
                 AlertDialog alert=builder.create();
                 alert.show();
-                Intent i = new Intent(create_activities.this, create_activities.class);
-                i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
+                Intent i = new Intent(create_activities_promo.this, create_activities_promo.class);
+
                 startActivity(i);
                 finish();
             }
@@ -144,12 +138,11 @@ public class create_activities extends Activity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder=new AlertDialog.Builder(create_activities.this);
+                AlertDialog.Builder builder=new AlertDialog.Builder(create_activities_promo.this);
                 builder.setMessage("Annullare l'inserimento?").setPositiveButton("Sì", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent i = new Intent(create_activities.this, create_activities.class);
-                        i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
+                        Intent i = new Intent(create_activities_promo.this, create_activities_promo.class);
                         startActivity(i);
                         finish();
                     }

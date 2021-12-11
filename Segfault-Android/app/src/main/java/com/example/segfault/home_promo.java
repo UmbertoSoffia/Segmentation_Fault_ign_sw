@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,8 +36,7 @@ public class home_promo extends AppCompatActivity {
         });
         new_game.setOnClickListener(v -> {
             //qua bisogna capire come passare roba oppure fare claase parallela per creazione attività
-            Intent i = new Intent(home_promo.this, create_activities.class);
-            i.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
+            Intent i = new Intent(home_promo.this, create_activities_promo.class);
             startActivity(i);
 
         });
@@ -67,7 +65,6 @@ public class home_promo extends AppCompatActivity {
 
                 Intent j = new Intent(home_promo.this, info_utent_prom.class);
 
-                //j.putExtra("id_user", getIntent().getExtras().get("id_user").toString());
                 startActivity(j);
 
                 return true;

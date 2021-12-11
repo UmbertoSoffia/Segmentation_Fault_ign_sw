@@ -36,9 +36,11 @@ public class All_structure_prom extends AppCompatActivity {
             //richiesta andata a buon fine: disegno la lista delle strutture
             if(res.equals("OK")){
                 JSONArray response = req.array;
+                for (int i = 0; i < response.length() ; i++) {
+                    JSONObject obj=(JSONObject)response.get(i);
+                    addView(obj.getString("name"),obj.getString("id"));
 
-
-                //qui disegni i bottoni dinamicamente
+                }
 
                 /*
                 struttura del json di risposta: array di oggetti JSON: da studiare la classe JSONArray
@@ -75,8 +77,18 @@ public class All_structure_prom extends AppCompatActivity {
                 per avere l'indirizzo devi fare struttura_corrente.address.street
                 */
             }else{
-                // richiesta fallita se req.result.getInt("error_code") == 404 vuol dire che non ha trovato strutture e fai un alert
-                //se invece è 400 vuol dire che c'è un errore nella richiesta e fai un alert
+                if( req.result.getInt("error_code") == 404){
+                    AlertDialog.Builder builder=new AlertDialog.Builder(All_structure_prom.this);
+                    builder.setMessage("Nessuna struttura presente").setPositiveButton("Ok", (dialog,which) -> {});
+                    AlertDialog alert=builder.create();
+                    alert.show();
+                }
+                else{
+                    AlertDialog.Builder builder=new AlertDialog.Builder(All_structure_prom.this);
+                    builder.setMessage("Errore richiesta 4000").setPositiveButton("Ok", (dialog,which) -> {});
+                    AlertDialog alert=builder.create();
+                    alert.show();
+                }
             }
 
         } catch(Exception e){
@@ -87,21 +99,8 @@ public class All_structure_prom extends AppCompatActivity {
             AlertDialog alert=builder.create();
             alert.show();
         }
-
-        //come aggiungere riga alla pagina con la stringa come testo della casella
-        //il numero serve come id della struttura per poi dare valore al pulsante
-        //addView("top",1);
-        //addView("es",2);
-
-
-
-
-
-
-
-
     }
-    private void addView( String s,Integer id_struct) {
+    private void addView( String s,String id_struct) {
 
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_structure,null,false);
 
