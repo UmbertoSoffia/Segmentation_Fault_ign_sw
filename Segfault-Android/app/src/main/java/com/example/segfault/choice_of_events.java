@@ -132,7 +132,7 @@ public class choice_of_events extends AppCompatActivity {
 
 
         } );
-    
+
         Button find_without_constraint=findViewById(R.id.all_serch_activity);
         find_without_constraint.setOnClickListener(v ->{
             layoutList.removeAllViews();
