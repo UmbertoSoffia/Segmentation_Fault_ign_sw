@@ -26,16 +26,11 @@ public class Match {
 
     @Override
     public String toString() {
-        return "Match{" +
-                "id='" + id + '\'' +
-                ", nome='" + nome + '\'' +
-                ", struttura='" + struttura + '\'' +
-                ", sport='" + sport + '\'' +
-                ", date='" + date + '\'' +
-                ", start_time='" + start_time + '\'' +
-                ", stop_time='" + stop_time + '\'' +
-                ", creatoreid='" + creatoreid + '\'' +
-                ", age_range='" + age_range + '\'' +
-                '}';
+        return  "nome= " + nome + "\n" +
+                //"struttura= " + struttura +"\n"  + // ci vorrebbe nome ma questo è id
+                "sport= " + sport + "\n" +
+                "date= " + date.substring(0,10) + "\n" +
+                "orario= " + start_time + "-" + stop_time +"\n" +
+                "età= " + age_range + "\n" ;
     }
 }
