@@ -109,11 +109,6 @@ public class All_structure_prom extends AppCompatActivity {
         Button myButton1 = cricketerView.findViewById(R.id.row_structure_button);
         myButton1.setOnClickListener(view -> {
             Intent i = new Intent(All_structure_prom.this, info_struct.class);
-            i.putExtra("id", getIntent().getExtras().getString("id"));
-            i.putExtra("token", getIntent().getExtras().getString("token"));
-            i.putExtra("name", getIntent().getExtras().getString("name"));
-            i.putExtra("email", getIntent().getExtras().getString("email"));
-            i.putExtra("id_struct",id_struct);
             startActivity(i);
         });
 

@@ -5,8 +5,30 @@ const reservationSchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true
+  },
+  match_id: {
+    type: String,
+    required: true
+  },
+  user_id: {
+    type: String,
+    required: true
   }
 }, { timestamps: true })
+
+reservationSchema.index({match_id: 1, user_id: 1 }, {unique: true})
+
+reservationSchema.virtual('match', {
+  ref: 'Match',
+  localField: 'match_id',
+  foreignField: 'match_id'
+})
+
+reservationSchema.virtual('user', {
+  ref: 'User',
+  localField: 'user_id',
+  foreignField: 'user_id'
+})
 
 mongoose.pluralize(null)
 const model = mongoose.model('Reservation', reservationSchema)

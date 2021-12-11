@@ -71,6 +71,7 @@ app.use('/api/community', require('./routes/community-routes'))
 app.use('/api/reservation', require('./routes/reservation-routes'))
 app.use('/api/promoters', require('./routes/promoter-routes'))
 app.use('/api/structure', require('./routes/structure-routes'))
+app.use('/api/match', require('./routes/match-routes'))
 
 if (config.util.getEnv('NODE_ENV') === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')))

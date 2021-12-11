@@ -55,15 +55,26 @@ router.get('/', (req, res, next) => {
 	const { user_id, email } = jwt.verify(req.query.token, process.env.SERVER_SECRET)
   if (!user_id) { return res.status(401).send('Not authenticated') }
   const promoter_id = req.query.promoter
-  if(!promoter_id){ return res.status(400).send('Bad request')}
+  if(!promoter_id){ 
+	Structure.find({})
+    .populate('address')
+    .lean()
+    .exec()
+    .then(structures => {
+	    if(structures.length === 0){return res.status(404).send('Structures not found')}
+	    res.json(structures)
+	}).catch(next)
+  }
+  else{
   Structure.find({ promoter_id })
   .populate('address')
   .lean()
   .exec()
   .then(structures => {
 	  if(structures.length === 0){return res.status(404).send('Structures not found')}
-      res.json(structures)
-    }).catch(next)
+	  res.json(structures)
+	}).catch(next)
+  }
 })
 
 router.get('/:id', (req, res, next) => {
