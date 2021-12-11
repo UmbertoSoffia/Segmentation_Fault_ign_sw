@@ -23,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
     // ogni richiesta restituisce la string "OK" se va a buon fine, "KO" se fallisce
     // qui trovate l'esempio del login
 
-     static public  User utente;
+     static  public  User utente;
+     static  public Structure struct;
+     static public  Match match;
 
 
 
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject response = req.result;
                     Log.println(Log.INFO, "Response", response.toString());
                     Intent i = new Intent(MainActivity.this, home_user.class);
-                    utente=new User(response.getString("id"),response.getString("name"),response.getString("email"),response.getString("token"),"normal");
+                    utente=new User(response.getString("name"),response.getString("id"),response.getString("token"),response.getString("email"),"normal");
 
 
                     startActivity(i);
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     if(res1.equals("OK")) {
                         JSONObject response1 = req1.result;
                         Intent i = new Intent(MainActivity.this, home_promo.class);
-                        utente=new User(response1.getString("id"),response1.getString("name"),response1.getString("email"),response1.getString("token"),"promotor");
+                        utente=new User(response1.getString("name"),response1.getString("id"),response1.getString("token"),response1.getString("email"),"promotor");
                         startActivity(i);
                     }
                     else {// login fallito: utente inesistente
