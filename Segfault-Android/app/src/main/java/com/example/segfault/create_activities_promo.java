@@ -82,7 +82,7 @@ public class create_activities_promo extends AppCompatActivity {
             6-fascia oraria
          */
 
-        TextView textView = findViewById(R.id.sport_create_act_promo);
+        TextView textView = findViewById(R.id.sport_create_act_promo_value);
         //nome attiviita
         String Activity = textView.getText().toString();
 
@@ -160,10 +160,10 @@ public class create_activities_promo extends AppCompatActivity {
                                                 //utilizza sta variabile per prendere tot
                                                 //Selected_struct;
                                                 for (int i = 0; i < 100; i++) {
-                                                    age_max.add(((Integer) i).toString());
+                                                    n_pers.add(((Integer) i).toString());
                                                 }
 
-                                                spin_date.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, date));
+                                                spin_n_people.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, n_pers));
                                             }
 
                                             @Override
@@ -238,7 +238,6 @@ public class create_activities_promo extends AppCompatActivity {
                 AlertDialog alert=builder.create();
                 alert.show();
                 Intent i = new Intent(create_activities_promo.this, create_activities_promo.class);
-
                 startActivity(i);
                 finish();
             }
