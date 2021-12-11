@@ -101,7 +101,7 @@ static Date selecteddate;
         Button new_chall=findViewById(R.id.new_match);
 
         new_chall.setOnClickListener(v -> {
-            Intent i = new Intent(home_user.this, create_activities_user.class);
+            Intent i = new Intent(home_user.this, create_activities.class);
             startActivity(i);
             finish();
 
@@ -112,7 +112,7 @@ static Date selecteddate;
                 //user= utennte, integer=gioni di differenza
             ArrayList<Pair<User,Integer>> infected=new ArrayList<Pair<User,Integer>>();
             //buttare dentro infected quelli possibili integer serve per i toto giorni di distanza
-            infected.add(new Pair<User, Integer>(new User("id","nome","umbertosoffia00@gmail.com", null),5));
+            infected.add(new Pair<User, Integer>(new User("id","nome","umbertosoffia00@gmail.com", null,"normal"),5));
 
             for (Pair<User,Integer> i:infected) {
                 mail(i.first.getMail(),"hai avuto un contatto con una persona positiva al COVID19 esattamente "+i.second+" giorni");

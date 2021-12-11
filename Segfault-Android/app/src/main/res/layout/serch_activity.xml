@@ -15,7 +15,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="SpeakableTextPresentCheck">
 
         <LinearLayout
             android:id="@+id/list_elem_serch"
@@ -37,44 +38,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/serch_activity"
-        android:layout_width="190dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.615"
-        app:layout_constraintStart_toEndOf="@+id/textView21"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
-        app:layout_constraintVertical_bias="0.131" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/cerca_uno_sport"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
-        app:layout_constraintVertical_bias="0.136" />
-
     <Button
         android:id="@+id/all_serch_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="@string/cerca_senza_vincoli"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintHorizontal_bias="0.176"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serch_activity"
-        app:layout_constraintVertical_bias="0.785" />
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:layout_constraintVertical_bias="0.835" />
+
 
     <Button
         android:id="@+id/start_serch_activity2"
@@ -83,10 +59,22 @@
         android:text="@string/cerca"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.866"
+        app:layout_constraintHorizontal_bias="0.851"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/serch_activity"
-        app:layout_constraintVertical_bias="0.785" />
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:layout_constraintVertical_bias="0.781" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchViewsport"
+        android:layout_width="365dp"
+        android:layout_height="36dp"
+        app:defaultQueryHint="Tipologia attività"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="@+id/searchView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/searchView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.513" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

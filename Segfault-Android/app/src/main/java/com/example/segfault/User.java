@@ -1,24 +1,37 @@
 package com.example.segfault;
 
-import androidx.annotation.NonNull;
-
 public class User {
     private final String name;
     private final String id;
     private final String token;
     private final String mail;
+    private final String type;
 
 
-    public User( @NonNull String id, String name, @NonNull String mail,String token ) {
+    public String getId() {
+        return id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public User(String name, String id, String token, String mail, String type) {
         this.name = name;
-        this.token=token;
+        this.id = id;
+        this.token = token;
         this.mail = mail;
-        this.id=id;
+        this.type = type;
     }
 
     public String getName() {
         return name;
     }
+
+    /**
+     * @return true if the user is promotor
+     */
+    public boolean isPromotor(){return type.equals("promotor");}
 
     public String getCod_id() {
         return id;

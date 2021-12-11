@@ -29,7 +29,7 @@
 
         </activity>
         <activity android:name=".home_user" />
-        <activity android:name=".create_activities_promo" />
+        <activity android:name=".create_activities" />
         <activity android:name=".all_structure_user" />
         <activity android:name=".All_structure_prom" />
         <activity android:name=".home_promo" />
@@ -37,7 +37,6 @@
         <activity android:name=".list_act_user" />
         <activity android:name=".info_utent_prom" />
         <activity android:name=".new_structure" />
-        <activity android:name=".create_activities_user" />
         <activity android:name=".Register" />
         <activity android:name=".info_utent_user" />
         <activity android:name=".choice_of_events" />

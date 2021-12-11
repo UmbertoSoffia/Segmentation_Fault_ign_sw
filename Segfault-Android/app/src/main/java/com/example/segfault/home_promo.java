@@ -36,7 +36,7 @@ public class home_promo extends AppCompatActivity {
         });
         new_game.setOnClickListener(v -> {
             //qua bisogna capire come passare roba oppure fare claase parallela per creazione attività
-            Intent i = new Intent(home_promo.this, create_activities_promo.class);
+            Intent i = new Intent(home_promo.this, create_activities.class);
             startActivity(i);
 
         });

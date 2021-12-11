@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:foreground="@color/cardview_shadow_start_color"
-    tools:context=".create_activities_promo">
+    tools:context=".create_activities">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayout"

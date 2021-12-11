@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class create_activities_promo extends AppCompatActivity {
+public class create_activities extends AppCompatActivity {
     Button confirm ;
     Button reject;
     Spinner spin_n_people;
@@ -41,7 +41,7 @@ public class create_activities_promo extends AppCompatActivity {
         if(intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);
         }else{
-            Toast.makeText(create_activities_promo.this, "There is no app that support this action", Toast.LENGTH_SHORT).show();
+            Toast.makeText(create_activities.this, "There is no app that support this action", Toast.LENGTH_SHORT).show();
         }
     }*/
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,27 +198,6 @@ public class create_activities_promo extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -229,14 +208,14 @@ public class create_activities_promo extends AppCompatActivity {
 
 
 
-                AlertDialog.Builder builder=new AlertDialog.Builder(create_activities_promo.this);
+                AlertDialog.Builder builder=new AlertDialog.Builder(create_activities.this);
                 builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", (dialog, which) ->{}). //saveInCAlendar()).
                         setNegativeButton("Salva senza inserire nel calendario", (dialog, which) -> {
                     //salvare roba nel db
                 });
                 AlertDialog alert=builder.create();
                 alert.show();
-                Intent i = new Intent(create_activities_promo.this, create_activities_promo.class);
+                Intent i = new Intent(create_activities.this, create_activities.class);
                 startActivity(i);
                 finish();
             }
@@ -245,11 +224,11 @@ public class create_activities_promo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder=new AlertDialog.Builder(create_activities_promo.this);
+                AlertDialog.Builder builder=new AlertDialog.Builder(create_activities.this);
                 builder.setMessage("Annullare l'inserimento?").setPositiveButton("Sì", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent i = new Intent(create_activities_promo.this, create_activities_promo.class);
+                        Intent i = new Intent(create_activities.this, create_activities.class);
                         startActivity(i);
                         finish();
                     }
