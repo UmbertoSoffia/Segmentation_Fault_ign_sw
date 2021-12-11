@@ -43,16 +43,32 @@ router.post('/', async (req, res, next) => {
 
 router.get('/', (req, res, next) => {
 	const { user_id, email } = jwt.verify(req.query.token, process.env.SERVER_SECRET)
-  if (!user_id) { return res.status(401).send('Not authenticated') }
-	Match.find({})
-    .populate('structure')
-    .lean()
-    .exec()
-    .then(matches => {
-	    if(matches.length === 0){return res.status(404).send('Matches not found')}
-	    res.json(matches)
-	}).catch(next)
-  
+	const id = req.query.id
+	const type = req.query.type
+    if (!user_id) { return res.status(401).send('Not authenticated') }
+	if(!id){
+		Match.find({})
+		.populate('structure')
+		.lean()
+		.exec()
+		.then(matches => {
+			if(matches.length === 0){return res.status(404).send('Matches not found')}
+			res.json(matches)
+		}).catch(next)
+    }
+	else{
+		if(!type) {return res.status(400).send('Bad request')}
+		const creator_id = id
+		const creator_type = type
+		Match.find({creator_id, creator_type})
+		.populate('structure')
+		.lean()
+		.exec()
+		.then(matches => {
+			if(matches.length === 0){return res.status(404).send('Matches not found')}
+			res.json(matches)
+		}).catch(next)
+	}
 })
 
 router.get('/:id', (req, res, next) => {
