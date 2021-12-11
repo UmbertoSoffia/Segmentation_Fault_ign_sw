@@ -114,12 +114,3 @@ if (process.env.CITYLAB === 'ALL') {
   })
 }
 
-// Gestione degli eventi
-server.on('request', function(req, res) {
-      req.on('data', chunk => {
-		console.log(`Data chunk available: ${chunk}`)
-	  })
-	  req.on('end', () => {
-		//end of data
-	  })
-});

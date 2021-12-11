@@ -23,6 +23,14 @@ const matchSchema = new mongoose.Schema({
 	type: String,
 	required: true
   },
+  creator_id: {
+	type: String,
+	required: true
+  },
+  creator_type: {
+	type: String,
+	required: true
+  },
   date: {
 	type: Date,
 	required: true
@@ -34,8 +42,19 @@ const matchSchema = new mongoose.Schema({
   number: {
 	type: Number,
 	required: true
+  },
+  sport: {
+	type: String,
+	required: true
   }
 }, { timestamps: true })
+
+matchSchema.virtual('structure', {
+  ref: 'Structure',
+  localField: 'structure_id',
+  foreignField: 'structure_id',
+  justOne: true
+})
 
 mongoose.pluralize(null)
 const model = mongoose.model('Match', matchSchema)

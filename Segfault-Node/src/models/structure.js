@@ -38,7 +38,8 @@ structureSchema.virtual('address', {
 structureSchema.virtual('promoter', {
   ref: 'Promoter',
   localField: 'promoter_id',
-  foreignField: 'promoter_id'
+  foreignField: 'promoter_id',
+  justOne: true
 })
 
 structureSchema.index({name: 1, promoter_id: 1 }, {unique: true})
