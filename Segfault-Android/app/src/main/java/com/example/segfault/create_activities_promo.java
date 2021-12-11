@@ -74,7 +74,6 @@ public class create_activities_promo extends AppCompatActivity {
 
         /*
             ordine spinner
-            1-sport
             2-struttura
             3-data
             4-npersone
