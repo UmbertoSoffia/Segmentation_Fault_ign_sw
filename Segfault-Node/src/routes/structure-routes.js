@@ -32,7 +32,8 @@ router.post('/', async (req, res, next) => {
       stop_time,
 	  address_id,
 	  number,
-      promoter_id
+      promoter_id,
+	  working_days
     }
     const address = {
       address_id,
