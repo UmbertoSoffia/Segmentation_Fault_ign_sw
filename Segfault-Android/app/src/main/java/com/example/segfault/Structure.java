@@ -24,6 +24,19 @@ public class Structure {
         this.working_days = working_days;
     }
 
+    /**
+     * @return number of pieple
+     */
+    public int getNumber() {
+        return number;
+    }
+    /**
+     * set number of pieple
+     */
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
     public void setDesc(String desc) {
         this.desc = desc;
     }

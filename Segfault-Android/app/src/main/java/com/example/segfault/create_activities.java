@@ -20,9 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
@@ -97,7 +96,7 @@ public class create_activities extends AppCompatActivity {
         String Activity = textView.getText().toString();
 
         Context c = this;
-
+        //becca tutti i match
         try {
             FSRequest req = new FSRequest("GET", MainActivity.utente.getToken(), "api/match", "", "token=" + MainActivity.utente.getToken());
             String res = req.execute().get();
@@ -127,7 +126,8 @@ public class create_activities extends AppCompatActivity {
                     alert.show();
                 }
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             Log.println(Log.ERROR, "Errore connessione", e.getMessage());
 
             AlertDialog.Builder builder = new AlertDialog.Builder(create_activities.this);
@@ -138,7 +138,7 @@ public class create_activities extends AppCompatActivity {
         }
 
         if (MainActivity.utente.isPromoter()) {
-
+            //beccatrutture promotore
             try {
 
                 FSRequest req = new FSRequest("GET", MainActivity.utente.getToken(), "api/structure", "", "promoter=" + MainActivity.utente.getCod_id() + "&token=" + MainActivity.utente.getToken());
@@ -157,7 +157,6 @@ public class create_activities extends AppCompatActivity {
                                 ((JSONObject) response.get(i)).get("start_time").toString(),
                                 ((JSONObject) response.get(i)).get("stop_time").toString(),
                                 ((JSONObject) response.get(i)).get("working_days").toString()
-
                                 ));
 
 
@@ -180,7 +179,8 @@ public class create_activities extends AppCompatActivity {
                     }
                 }
 
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 Log.println(Log.ERROR, "Errore connessione", e.getMessage());
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(create_activities.this);
@@ -189,11 +189,9 @@ public class create_activities extends AppCompatActivity {
                 AlertDialog alert = builder.create();
                 alert.show();
             }
-
-
         }
         else {
-
+            //becca tutte le strutture
             try {
 
                 FSRequest req = new FSRequest("GET", MainActivity.utente.getToken(), "api/structure", "", "token=" + MainActivity.utente.getToken());
@@ -235,7 +233,8 @@ public class create_activities extends AppCompatActivity {
                     }
                 }
 
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 Log.println(Log.ERROR, "Errore connessione", e.getMessage());
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(create_activities.this);
@@ -244,9 +243,6 @@ public class create_activities extends AppCompatActivity {
                 AlertDialog alert = builder.create();
                 alert.show();
             }
-
-
-
         }
 
 
@@ -270,17 +266,26 @@ public class create_activities extends AppCompatActivity {
 
                 //selected è il valore selezionato
                 final Structure Selected_struct = struct.get(position);
-                LocalDate now = LocalDate.now();
-                LocalDate localDateA=LocalDate.of(now.getYear(), now.getMonthValue()+2,now.getDayOfMonth());
+               // LocalDate now = LocalDate.now();
+              //  LocalDate localDateA=LocalDate.of(now.getYear(), now.getMonthValue()+2,now.getDayOfMonth());
+                String dateStr = "04/05/2010";
 
+                Calendar cal=Calendar.getInstance();
+                cal.set(Calendar.YEAR, Calendar.MONTH , Calendar.DAY_OF_MONTH);
+                Date start=cal.getTime();
+                cal.set(Calendar.YEAR, Calendar.MONTH +2, Calendar.DAY_OF_MONTH);
+                Date stop=cal.getTime();
+
+                ArrayList<Date>Sdate = new ArrayList<>();
                 for (Match m:incontri_supp) {
-                    LocalDate ld=m.date.toInstant()
-                            .atZone(ZoneId.systemDefault())
-                            .toLocalDate();
-                    if(ld.isAfter(now) && ld.isBefore(localDateA)){
-                        date.add(ld.toString());
+                    if(m.date.after(stop) && m.date.before(start)){
+                        date.add(m.date.toString());
+
+                        // array di supporto per beccare la data giusta
+                        Sdate.add(m.date);
                     }
                     else {
+                        //elimina incontri che potrebbereo ostacolare scelta x velocizzare ricerca
                         incontri_supp.remove(m);
                     }
 
@@ -295,11 +300,22 @@ public class create_activities extends AppCompatActivity {
                         hour.clear();
                         age_max.clear();
                         age_min.clear();
-                        //selected è il valore selezionato
-                        String Selected = date.get(position);
+                        //valore che serve poi per inserire in db
+                        Date select_date=Sdate.get(position);
                         // in base a selected aggiungi elem a arr_list date con quelle disponibili in quella data
                         for (Match m:incontri_supp) {
-                            //aggiungere le ore
+                             for(int i =0;i<24;i++){
+                                 //inserisce fasce orarereie libere
+                                 if(m.date.equals(select_date) && !m.start_time.equals(i + ":00") &&!m.start_time.equals((i+1) + ":00") ){
+                                     hour.add(i+":00 -"+(i+1)+":00");
+
+                                 }
+                                 else {
+                                     //elimina incontri che potrebbereo ostacolare scelta x velocizzare ricerca
+                                     incontri_supp.remove(m);
+                                 }
+                            }
+
                         }
 
 
@@ -310,10 +326,10 @@ public class create_activities extends AppCompatActivity {
                                 n_pers.clear();
                                 age_max.clear();
                                 age_min.clear();
-                                //selected è il valore selezionato
                                 String Selected = hour.get(position);
-                                // in base a selected aggiungi elem a arr_list date con quelle disponibili
+                                //aggiunge tutte le eta
                                 for (int i = 0; i < 100; i++) {
+
                                     age_min.add(((Integer) i).toString());
                                 }
 
@@ -332,11 +348,8 @@ public class create_activities extends AppCompatActivity {
                                             @Override
                                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                                 n_pers.clear();
-                                                //serve capire la capienza della stanza selezionata in base a
-                                                int tot=10;
-                                                //utilizza sta variabile per prendere tot
-                                                //Selected_struct;
-                                                for (int i = 0; i < 100; i++) {
+                                               //aggiunge num possiblie persone  entro i limiti struttura
+                                                for (int i = 0; i < Selected_struct.getNumber()+1; i++) {
                                                     n_pers.add(((Integer) i).toString());
                                                 }
 
@@ -390,6 +403,8 @@ public class create_activities extends AppCompatActivity {
                 builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", (dialog, which) ->{}). //saveInCAlendar()).
                         setNegativeButton("Salva senza inserire nel calendario", (dialog, which) -> {
                     //salvare roba nel db
+
+                    //capire come prendere variabili
                 });
                 AlertDialog alert=builder.create();
                 alert.show();
