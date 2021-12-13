@@ -13,7 +13,7 @@ public class Structure {
     private String working_days;
 
 
-    public Structure(String name, String id, String desc, int number, String address, String start_time, String stop_time, String working_days) {
+    public Structure(String name, String id, String desc, int number, String address, String start_time, String stop_time, String wd) {
         this.name = name;
         this.id = id;
         this.desc = desc;
@@ -21,7 +21,19 @@ public class Structure {
         this.Address = address;
         this.start_time = start_time;
         this.stop_time = stop_time;
-        this.working_days = working_days;
+        this.working_days = wd;
+    }
+
+    public String getStart_time() {
+        return start_time;
+    }
+
+    public String getStop_time() {
+        return stop_time;
+    }
+
+    public String getWorking_days() {
+        return working_days;
     }
 
     /**
@@ -44,7 +56,9 @@ public class Structure {
     public String getName() {
         return name;
     }
-
+    public String getId(){
+        return this.id;
+    }
     public String getDesc() {
         return desc;
     }

@@ -35,44 +35,19 @@ public class all_structure_user extends AppCompatActivity {
                 JSONArray response = req.array;
                 for (int i = 0; i < response.length() ; i++) {
                     JSONObject obj=(JSONObject)response.get(i);
-                    addView(obj.getString("name"),obj.getString("structure_id"));
+                    Structure s=new Structure(obj.getString("name"),
+                            obj.getString("structure_id"),
+                            obj.getString("description"),
+                            obj.getInt("number"),
+                            ((JSONObject)(obj.get("address"))).get("street").toString(),
+                            obj.getString("start_time"),
+                            obj.getString("stop_time"),
+                            obj.getString("working_days")
+                    );
+                    addView(s);
 
                 }
 
-                /*
-                struttura del json di risposta: array di oggetti JSON: da studiare la classe JSONArray
-                per capire come utilizzare questa risposta
-
-                [
-                    {
-                        "_id": "61b210cfc76ba462d85e5674",
-                        "structure_id": "61b210cfbf43d9d862000001",
-                        "name": "Struttura 1",
-                        "description": "descrizione 1",
-                        "start_time": "08:30",
-                        "stop_time": "19:30",
-                        "address_id": "61b210cfbf43d9d862000002",
-                        "number": 40,
-                        "promoter_id": "1",
-                        "createdAt": "2021-12-09T14:21:03.705Z",
-                        "updatedAt": "2021-12-09T14:21:03.705Z",
-                        "__v": 0,
-                        "address": {
-                            "_id": "61b210cfc76ba462d85e5675",
-                            "address_id": "61b210cfbf43d9d862000002",
-                            "street": "via 1",
-                            "number": "",
-                            "city": "",
-                            "createdAt": "2021-12-09T14:21:03.774Z",
-                            "updatedAt": "2021-12-09T14:21:03.774Z",
-                            "__v": 0
-                        }
-                    },   //prima struttura
-                    {},  //seconda struttura
-                    {}   //terza struttura
-                ]
-                per avere l'indirizzo devi fare struttura_corrente.address.street
-                */
             }else{
                 if( req.result.getInt("error_code") == 404){
                     AlertDialog.Builder builder=new AlertDialog.Builder(all_structure_user.this);
@@ -104,21 +79,16 @@ public class all_structure_user extends AppCompatActivity {
 
 
 
-    private void addView( String s,String id_struct) {
+    private void addView( Structure s) {
 
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_structure,null,false);
 
         TextView editText = (TextView)cricketerView.findViewById(R.id.nome_struct);
-        editText.setText(s);
+        editText.setText(s.getName());
         Button myButton1 = cricketerView.findViewById(R.id.row_structure_button);
         myButton1.setOnClickListener(view -> {
+            MainActivity.struct=s;
             Intent i = new Intent(all_structure_user.this, info_struct.class);
-            i.putExtra("id_user", getIntent().getExtras().getString("id"));
-            i.putExtra("token", getIntent().getExtras().getString("token"));
-            i.putExtra("name", getIntent().getExtras().getString("name"));
-            i.putExtra("email", getIntent().getExtras().getString("email"));
-            i.putExtra("id_struct",id_struct);
-
             startActivity(i);
         });
         layoutList.addView(cricketerView);

@@ -57,6 +57,7 @@ public class list_act_user extends AppCompatActivity {
             //refresh qua (sottoa fatto già) per eliminare quello appena cancellato
             Intent i = new Intent(list_act_user.this, list_act_user.class);
             startActivity(i);
+            finish();
         });
 
 

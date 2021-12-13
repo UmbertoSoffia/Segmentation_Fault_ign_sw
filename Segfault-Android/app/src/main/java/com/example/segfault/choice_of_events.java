@@ -19,7 +19,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Objects;
 
 public class choice_of_events extends AppCompatActivity {
@@ -44,7 +43,7 @@ public class choice_of_events extends AppCompatActivity {
                             ((JSONObject) response.get(i)).get("name").toString(),
                             ((JSONObject) response.get(i)).get("structure_id").toString(),
                             ((JSONObject) response.get(i)).get("sport").toString(),
-                            (Date) ((JSONObject) response.get(i)).get("date"),
+                            ((JSONObject) response.get(i)).get("date").toString(),
                             ((JSONObject) response.get(i)).get("start_time").toString(),
                             ((JSONObject) response.get(i)).get("stop_time").toString(),
                             ((JSONObject) response.get(i)).get("creator_id").toString(),
@@ -169,8 +168,8 @@ public class choice_of_events extends AppCompatActivity {
             toast.show();
             //refresh qua (sottoa fatto già) per eliminare quello appena confermato
             Intent i = new Intent(choice_of_events.this, choice_of_events.class);
-
             startActivity(i);
+            finish();
         });
 
 

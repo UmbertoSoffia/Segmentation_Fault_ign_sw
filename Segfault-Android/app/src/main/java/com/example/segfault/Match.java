@@ -1,30 +1,35 @@
 package com.example.segfault;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Match {
     String id;
     String nome;
     String struttura;
     String sport;
-    Date date;
+    Calendar date;
     String start_time;
     String stop_time;
     String creatoreid;
     String age_range;
 
 
-    public Match(String id, String nome, String struttura, String sport, Date date, String start_time, String stop_time, String creatoreid, String age_range) {
+    public Match(String id, String nome, String struttura, String sport, String date, String start_time, String stop_time, String creatoreid, String age_range) {
         this.id = id;
         this.nome = nome;
         this.struttura = struttura;
         this.sport = sport;
-        this.date = date;
+
+        Calendar cal=Calendar.getInstance();
+        String[] str=  date.split("-",date.length());
+        cal.set(Integer.parseInt(str[2]),Integer.parseInt(str[1]),Integer.parseInt(str[0]));
+        this.date =cal;
         this.start_time = start_time;
         this.stop_time = stop_time;
         this.creatoreid = creatoreid;
         this.age_range = age_range;
     }
+
 
     @Override
     public String toString() {

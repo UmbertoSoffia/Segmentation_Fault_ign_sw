@@ -58,6 +58,7 @@ public class info_utent_prom extends AppCompatActivity {
         myButton1.setOnClickListener(view -> {
             Intent i = new Intent(info_utent_prom.this, info_struct.class);
             startActivity(i);
+            finish();
         });
         layoutList.addView(cricketerView);
 

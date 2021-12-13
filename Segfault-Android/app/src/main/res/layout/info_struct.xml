@@ -55,7 +55,7 @@
         app:layout_constraintVertical_bias="0.032" />
 
     <TextView
-        android:id="@+id/mail__info_struct"
+        android:id="@+id/working_days"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -75,7 +75,7 @@
         android:ems="10"
         android:minHeight="48dp"
 
-        app:layout_constraintBottom_toTopOf="@+id/mail__info_struct"
+        app:layout_constraintBottom_toTopOf="@+id/working_days"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.834"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,24 +83,24 @@
         app:layout_constraintVertical_bias="0.84" />
 
     <TextView
-        android:id="@+id/phone_info_struct"
+        android:id="@+id/number_info_struct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/mail__info_struct"
+        app:layout_constraintEnd_toEndOf="@+id/working_days"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/mail__info_struct"
-        app:layout_constraintTop_toBottomOf="@+id/mail__info_struct"
+        app:layout_constraintStart_toStartOf="@+id/working_days"
+        app:layout_constraintTop_toBottomOf="@+id/working_days"
         app:layout_constraintVertical_bias="0.057" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="91dp"
-        android:layout_height="31dp"
+        android:layout_height="42dp"
         android:shadowColor="@color/black"
-        android:text="@string/mail"
+        android:text="@string/giorni_lavorativi"
         android:textAlignment="center"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -147,7 +147,7 @@
         android:layout_width="91dp"
         android:layout_height="31dp"
         android:shadowColor="@color/black"
-        android:text="@string/tel"
+        android:text="@string/capienza"
         android:textAlignment="center"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -197,7 +197,7 @@
     app:layout_constraintEnd_toEndOf="@+id/closing_time_info_struct"
     app:layout_constraintHorizontal_bias="0.0"
     app:layout_constraintStart_toStartOf="@+id/closing_time_info_struct"
-    app:layout_constraintTop_toBottomOf="@+id/phone_info_struct"
+    app:layout_constraintTop_toBottomOf="@+id/number_info_struct"
     app:layout_constraintVertical_bias="0.107" />
 
 

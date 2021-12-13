@@ -2,11 +2,9 @@ package com.example.segfault;
 
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -15,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONObject;
 
-import java.util.Date;
 import java.util.Objects;
 
 public class Register extends AppCompatActivity {
@@ -63,6 +60,7 @@ public class Register extends AppCompatActivity {
                         builder.setMessage("Registrazione avvenuta con successo").setPositiveButton("Ok", (dialog, which) -> {
                             Intent i = new Intent(Register.this, MainActivity.class);
                             startActivity(i);
+                            finish();
                         });
                         AlertDialog alert=builder.create();
                         alert.show();
@@ -87,6 +85,7 @@ public class Register extends AppCompatActivity {
         cancel.setOnClickListener(v->{
             Intent i = new Intent(Register.this, MainActivity.class);
             startActivity(i);
+            finish();
              
         });
 

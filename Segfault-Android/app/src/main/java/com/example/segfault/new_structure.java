@@ -1,8 +1,6 @@
 package com.example.segfault;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,11 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class new_structure extends AppCompatActivity {
@@ -66,6 +62,7 @@ public class new_structure extends AppCompatActivity {
                         builder.setMessage("Struttura inserita con successo").setPositiveButton("Ok", (dialog, which) -> {
                             Intent i = new Intent(new_structure.this, new_structure.class);
                             startActivity(i);
+                            finish();
                         });
                         AlertDialog alert=builder.create();
                         alert.show();
@@ -113,6 +110,7 @@ public class new_structure extends AppCompatActivity {
             //verificare se la pagina si refresha
             Intent i = new Intent(new_structure.this, new_structure.class);
             startActivity(i);
+            finish();
              
         });
     }

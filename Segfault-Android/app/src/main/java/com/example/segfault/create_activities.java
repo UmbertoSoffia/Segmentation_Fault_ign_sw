@@ -20,9 +20,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Objects;
 
 public class create_activities extends AppCompatActivity {
@@ -106,11 +107,12 @@ public class create_activities extends AppCompatActivity {
                 JSONArray response = req.array;
 
                 for (int i = 0; i < response.length(); i++) {
+
                     incontri.add(new Match(((JSONObject) response.get(i)).get("match_id").toString(),
                             ((JSONObject) response.get(i)).get("name").toString(),
                             ((JSONObject) response.get(i)).get("structure_id").toString(),
                             ((JSONObject) response.get(i)).get("sport").toString(),
-                            (Date) ((JSONObject) response.get(i)).get("date"),
+                            ((JSONObject) response.get(i)).get("date").toString(),
                             ((JSONObject) response.get(i)).get("start_time").toString(),
                             ((JSONObject) response.get(i)).get("stop_time").toString(),
                             ((JSONObject) response.get(i)).get("creator_id").toString(),
@@ -118,14 +120,6 @@ public class create_activities extends AppCompatActivity {
 
                 }
             }
-                else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(create_activities.this);
-                    builder.setMessage("Errore richiesta ").setPositiveButton("Ok", (dialog, which) -> {
-                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                }
-
         }
         catch (Exception e) {
             Log.println(Log.ERROR, "Errore connessione", e.getMessage());
@@ -268,29 +262,37 @@ public class create_activities extends AppCompatActivity {
                 final Structure Selected_struct = struct.get(position);
                // LocalDate now = LocalDate.now();
               //  LocalDate localDateA=LocalDate.of(now.getYear(), now.getMonthValue()+2,now.getDayOfMonth());
-                String dateStr = "04/05/2010";
 
-                Calendar cal=Calendar.getInstance();
-                cal.set(Calendar.YEAR, Calendar.MONTH , Calendar.DAY_OF_MONTH);
-                Date start=cal.getTime();
-                cal.set(Calendar.YEAR, Calendar.MONTH +2, Calendar.DAY_OF_MONTH);
-                Date stop=cal.getTime();
 
-                ArrayList<Date>Sdate = new ArrayList<>();
+                Calendar start=Calendar.getInstance();
+                start.set(Calendar.YEAR, Calendar.MONTH , Calendar.DAY_OF_MONTH-1);
+                Calendar stop=Calendar.getInstance();
+                stop.set(Calendar.YEAR, Calendar.MONTH +1, Calendar.DAY_OF_MONTH+1);
+
+                ArrayList<Calendar> Sdate = new ArrayList<>();
                 for (Match m:incontri_supp) {
-                    if(m.date.after(stop) && m.date.before(start)){
-                        date.add(m.date.toString());
-
-                        // array di supporto per beccare la data giusta
-                        Sdate.add(m.date);
-                    }
-                    else {
+                    if(!(m.date.after(start) && m.date.before(stop)) )
                         //elimina incontri che potrebbereo ostacolare scelta x velocizzare ricerca
                         incontri_supp.remove(m);
-                    }
+                }
+                for (Match m:incontri_supp) {
+                        if(!(m.struttura.equals(Selected_struct.getId())) )
+                            //elimina incontri che potrebbereo ostacolare scelta x velocizzare ricerca
+                            incontri_supp.remove(m);
+                }
+                int tot=0;
+                while(start.compareTo(stop)!=0 ||  tot==100){
 
+                    LocalDate localDate = LocalDateTime.ofInstant(start.toInstant(), start.getTimeZone().toZoneId()).toLocalDate();
+                    start.add(Calendar.DATE,1);
+                    tot++;
 
                 }
+
+
+
+
+
 
                 spin_date.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, date));
                 spin_date.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -301,12 +303,18 @@ public class create_activities extends AppCompatActivity {
                         age_max.clear();
                         age_min.clear();
                         //valore che serve poi per inserire in db
-                        Date select_date=Sdate.get(position);
+                        Calendar select_date=Sdate.get(position);
                         // in base a selected aggiungi elem a arr_list date con quelle disponibili in quella data
-                        for (Match m:incontri_supp) {
+                       /* for (Match m:incontri_supp) {
                              for(int i =0;i<24;i++){
                                  //inserisce fasce orarereie libere
-                                 if(m.date.equals(select_date) && !m.start_time.equals(i + ":00") &&!m.start_time.equals((i+1) + ":00") ){
+                                 if(!m.date.equals(select_date) ) {
+                                     incontri_supp.remove(m);
+                                 }
+
+
+
+                                 } !m.start_time.equals(i + ":00") &&!m.start_time.equals((i+1) + ":00") ){
                                      hour.add(i+":00 -"+(i+1)+":00");
 
                                  }
@@ -374,7 +382,7 @@ public class create_activities extends AppCompatActivity {
                             public void onNothingSelected(AdapterView<?> parent) {
 
                             }
-                        });
+                        });*/
                     }
 
                     @Override

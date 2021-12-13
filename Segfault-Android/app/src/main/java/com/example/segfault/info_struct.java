@@ -11,26 +11,26 @@ public class info_struct extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Info struttura ");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Info struttura: "+MainActivity.struct.getName());
         setContentView(R.layout.info_struct);
-        String id_struct="getIntent().getExtras().getString(id_struct);";
+        String id_struct=MainActivity.struct.getId();
 
         //passa info queri a sta struttura utilizzando id_strutturaumberto
-        String name="nome:"+id_struct;
-        String desc="";
-        String mail="";
-        String address="";
-        String phone="";
-        String closing_time="";
-        String opening_time="";
+        String name=MainActivity.struct.getName();
+        String desc=MainActivity.struct.getDesc();
+        String working_days=MainActivity.struct.getWorking_days();
+        String address=MainActivity.struct.getAddress();
+        String number=((Integer)MainActivity.struct.getNumber()).toString();
+        String closing_time=MainActivity.struct.getStop_time();
+        String opening_time=MainActivity.struct.getStart_time();
         TextView textView = findViewById(R.id.name_info_struct);
         textView.setText(name);
         textView = findViewById(R.id.desc_info_struct);
         textView.setText(desc);
-        textView = findViewById(R.id.mail__info_struct);
-        textView.setText(mail);
-        textView = findViewById(R.id.phone_info_struct);
-        textView.setText(phone);
+        textView = findViewById(R.id.working_days);
+        textView.setText(working_days);
+        textView = findViewById(R.id.number_info_struct);
+        textView.setText(number);
         textView = findViewById(R.id.closing_time_info_struct);
         textView.setText(closing_time);
         textView = findViewById(R.id.opening_time__info_struct);
