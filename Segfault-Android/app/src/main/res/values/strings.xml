@@ -96,4 +96,7 @@
     <string name="nome_attivita">Nome attivita</string>
     <string name="incontri_in_programma">incontri in programma</string>
     <string name="capienza">Capienza:</string>
+    <string name="tutte_le_sue_strutture">Tutte le sue strutture</string>
+    <string name="scrivi_una_descrizione_accattivante_">Scrivi una descrizione accattivante</string>
+    <string name="numero_di_posti">Numero di posti</string>
 </resources>

@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
     // ogni richiesta restituisce la string "OK" se va a buon fine, "KO" se fallisce
     // qui trovate l'esempio del login
 
-     static  public  User utente;
+     static  public  User utente_log;
+    static  public  User utente_supp;
      static  public Structure struct;
      static public  Match match;
 
@@ -58,7 +59,9 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject response = req.result;
                     Log.println(Log.INFO, "Response", response.toString());
                     Intent i = new Intent(MainActivity.this, home_user.class);
-                    utente=new User(response.getString("name"),response.getString("id"),response.getString("token"),response.getString("email"),"normal");
+                    utente_log =new User(response.getString("name"),response.getString("id"),response.getString("token"),response.getString("email"),"normal");
+                    utente_supp= new User(response.getString("name"),response.getString("id"),response.getString("token"),response.getString("email"),"normal");
+
 
 
                     startActivity(i);
@@ -74,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
                     if(res1.equals("OK")) {
                         JSONObject response1 = req1.result;
                         Intent i = new Intent(MainActivity.this, home_promo.class);
-                        utente=new User(response1.getString("name"),response1.getString("id"),response1.getString("token"),response1.getString("email"),"promotor");
+                         utente_log =new User(response1.getString("name"),response1.getString("id"),response1.getString("token"),response1.getString("email"),"promotor");
+                        utente_supp =new User(response1.getString("name"),response1.getString("id"),response1.getString("token"),response1.getString("email"),"promotor");
+
                         startActivity(i);
                     }
                     else {// login fallito: utente inesistente
@@ -82,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         builder.setMessage("Utente inesistente").setPositiveButton("ok", (dialog, which) -> {
                             Intent i = new Intent(MainActivity.this, MainActivity.class);
                             startActivity(i);
+                            finish();
                         });
                         AlertDialog alert = builder.create();
                         alert.show();
@@ -94,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setMessage("Errore di connessione").setPositiveButton("ok", (dialog, which) -> {
                     Intent i = new Intent(MainActivity.this, MainActivity.class);
                     startActivity(i);
+                    finish();
                 });
                 AlertDialog alert = builder.create();
                 alert.show();
@@ -102,12 +109,14 @@ public class MainActivity extends AppCompatActivity {
         cancel.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, MainActivity.class);
             startActivity(i);
+            finish();
 
 
         });
         register.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, Register.class);
             startActivity(i);
+            finish();
 
         });
 

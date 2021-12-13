@@ -51,6 +51,7 @@ public class home_promo extends AppCompatActivity {
         return true;
     }
 
+
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -59,7 +60,6 @@ public class home_promo extends AppCompatActivity {
             case R.id.nav_book:
                 Intent l = new Intent(home_promo.this, all_match_prom.class);
                 startActivity(l);
-                finish();
 
                 return true;
 

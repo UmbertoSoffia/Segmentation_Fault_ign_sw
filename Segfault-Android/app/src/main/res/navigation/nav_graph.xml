@@ -64,7 +64,7 @@
         android:id="@+id/info_struct"
         android:name="com.example.segfault.info_utent_prom"
         android:label="info_struct"
-        tools:layout="@layout/info_struct">
+        tools:layout="@layout/info_struct_user">
 
 
     </fragment>

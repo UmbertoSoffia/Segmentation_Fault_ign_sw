@@ -12,7 +12,7 @@ public class info_struct extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Info struttura: "+MainActivity.struct.getName());
-        setContentView(R.layout.info_struct);
+        setContentView(R.layout.info_struct_user);
         String id_struct=MainActivity.struct.getId();
 
         //passa info queri a sta struttura utilizzando id_strutturaumberto

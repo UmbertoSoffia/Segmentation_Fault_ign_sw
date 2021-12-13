@@ -51,9 +51,9 @@ public class new_structure extends AppCompatActivity {
                     struct.put("working_days", work_day.getText().toString());
                     struct.put("addr", addre_struct.getText().toString());
                     struct.put("number", Integer.parseInt(number.getText().toString()));
-                    struct.put("token", MainActivity.utente.getToken());
+                    struct.put("token", MainActivity.utente_log.getToken());
 
-                    FSRequest req = new FSRequest("POST", MainActivity.utente.getToken(), "api/structure/", struct.toString(), "");
+                    FSRequest req = new FSRequest("POST", MainActivity.utente_log.getToken(), "api/structure/", struct.toString(), "");
                     String res = req.execute().get();
 
                     if(res.equals("OK")){
@@ -107,10 +107,15 @@ public class new_structure extends AppCompatActivity {
 
         });
         cancel.setOnClickListener(v -> {
-            //verificare se la pagina si refresha
-            Intent i = new Intent(new_structure.this, new_structure.class);
-            startActivity(i);
-            finish();
+            AlertDialog.Builder builder=new AlertDialog.Builder(new_structure.this);
+            builder.setMessage("annullare l'inserimento").setPositiveButton("si", (dialog,which) -> {
+                Intent i = new Intent(new_structure.this, new_structure.class);
+                startActivity(i);
+                finish();}).setNegativeButton("no", (dialog,which) ->{});
+            AlertDialog alert=builder.create();
+            alert.show();
+
+
              
         });
     }

@@ -73,7 +73,7 @@
         android:layout_height="22dp"
         android:layout_marginBottom="276dp"
         android:shadowColor="@color/black"
-        android:text="Numero di posti"
+        android:text="@string/numero_di_posti"
         android:textAlignment="center"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -86,7 +86,7 @@
         android:layout_width="363dp"
         android:layout_height="174dp"
 
-        android:text="Scrivi una descrizione accattivante"
+        android:hint="@string/scrivi_una_descrizione_accattivante_"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

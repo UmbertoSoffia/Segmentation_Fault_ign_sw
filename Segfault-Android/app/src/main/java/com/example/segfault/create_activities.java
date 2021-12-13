@@ -20,8 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -100,7 +98,7 @@ public class create_activities extends AppCompatActivity {
         Context c = this;
         //becca tutti i match
         try {
-            FSRequest req = new FSRequest("GET", MainActivity.utente.getToken(), "api/match", "", "token=" + MainActivity.utente.getToken());
+            FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/match", "", "token=" + MainActivity.utente_log.getToken());
             String res = req.execute().get();
 
             //richiesta andata a buon fine: disegno la lista delle strutture
@@ -132,11 +130,11 @@ public class create_activities extends AppCompatActivity {
             alert.show();
         }
 
-        if (MainActivity.utente.isPromoter()) {
+        if (MainActivity.utente_log.isPromoter()) {
             //beccatrutture promotore
             try {
 
-                FSRequest req = new FSRequest("GET", MainActivity.utente.getToken(), "api/structure", "", "promoter=" + MainActivity.utente.getCod_id() + "&token=" + MainActivity.utente.getToken());
+                FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/structure", "", "promoter=" + MainActivity.utente_log.getCod_id() + "&token=" + MainActivity.utente_log.getToken());
                 String res = req.execute().get();
 
                 //richiesta andata a buon fine: disegno la lista delle strutture
@@ -189,7 +187,7 @@ public class create_activities extends AppCompatActivity {
             //becca tutte le strutture
             try {
 
-                FSRequest req = new FSRequest("GET", MainActivity.utente.getToken(), "api/structure", "", "token=" + MainActivity.utente.getToken());
+                FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/structure", "", "token=" + MainActivity.utente_log.getToken());
                 String res = req.execute().get();
 
                 //richiesta andata a buon fine: disegno la lista delle strutture
