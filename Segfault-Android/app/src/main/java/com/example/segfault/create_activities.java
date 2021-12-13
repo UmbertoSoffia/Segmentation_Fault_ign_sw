@@ -24,6 +24,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Objects;
 
 public class create_activities extends AppCompatActivity {
@@ -264,12 +265,11 @@ public class create_activities extends AppCompatActivity {
               //  LocalDate localDateA=LocalDate.of(now.getYear(), now.getMonthValue()+2,now.getDayOfMonth());
 
 
-                Calendar start=Calendar.getInstance();
-                start.set(Calendar.YEAR, Calendar.MONTH , Calendar.DAY_OF_MONTH-1);
-                Calendar stop=Calendar.getInstance();
-                stop.set(Calendar.YEAR, Calendar.MONTH +1, Calendar.DAY_OF_MONTH+1);
+                GregorianCalendar start = new GregorianCalendar();
+                GregorianCalendar stop = new GregorianCalendar(start.get(Calendar.YEAR),start.get(Calendar.MONTH) + 1, start.get(Calendar.DAY_OF_MONTH));
 
-                ArrayList<Calendar> Sdate = new ArrayList<>();
+                int anno = stop.get(Calendar.YEAR);
+
                 for (Match m:incontri_supp) {
                     if(!(m.date.after(start) && m.date.before(stop)) )
                         //elimina incontri che potrebbereo ostacolare scelta x velocizzare ricerca
@@ -280,12 +280,10 @@ public class create_activities extends AppCompatActivity {
                             //elimina incontri che potrebbereo ostacolare scelta x velocizzare ricerca
                             incontri_supp.remove(m);
                 }
-                int tot=0;
-                while(start.compareTo(stop)!=0 ||  tot==100){
+                while(start.get(Calendar.DAY_OF_MONTH) != stop.get(Calendar.DAY_OF_MONTH) || start.get(Calendar.MONTH) != stop.get(Calendar.MONTH) || start.get(Calendar.YEAR) != stop.get(Calendar.YEAR)){
 
-                    LocalDate localDate = LocalDateTime.ofInstant(start.toInstant(), start.getTimeZone().toZoneId()).toLocalDate();
-                    start.add(Calendar.DATE,1);
-                    tot++;
+                    date.add(start.get(Calendar.DAY_OF_MONTH) + "-" + (start.get(Calendar.MONTH)+1) + "-" + start.get(Calendar.YEAR));
+                    start.add(Calendar.DAY_OF_MONTH, 1);
 
                 }
 
@@ -302,29 +300,20 @@ public class create_activities extends AppCompatActivity {
                         hour.clear();
                         age_max.clear();
                         age_min.clear();
+                        String[] supp_date = date.get(position).split("-");
+                        final GregorianCalendar selected_date = new GregorianCalendar(Integer.parseInt(supp_date[2]), Integer.parseInt(supp_date[1]) - 1, Integer.parseInt(supp_date[0]));
                         //valore che serve poi per inserire in db
-                        Calendar select_date=Sdate.get(position);
                         // in base a selected aggiungi elem a arr_list date con quelle disponibili in quella data
-                       /* for (Match m:incontri_supp) {
-                             for(int i =0;i<24;i++){
-                                 //inserisce fasce orarereie libere
-                                 if(!m.date.equals(select_date) ) {
-                                     incontri_supp.remove(m);
-                                 }
+                        for (Match m:incontri_supp) {
 
-
-
-                                 } !m.start_time.equals(i + ":00") &&!m.start_time.equals((i+1) + ":00") ){
-                                     hour.add(i+":00 -"+(i+1)+":00");
-
-                                 }
-                                 else {
-                                     //elimina incontri che potrebbereo ostacolare scelta x velocizzare ricerca
-                                     incontri_supp.remove(m);
-                                 }
-                            }
+                             //inserisce fasce orarereie libere
+                             if(!(m.date.getTimeInMillis() == selected_date.getTimeInMillis()) ) {
+                                 incontri_supp.remove(m);
+                             }
 
                         }
+
+
 
 
                         spin_hour.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, hour));
@@ -382,7 +371,7 @@ public class create_activities extends AppCompatActivity {
                             public void onNothingSelected(AdapterView<?> parent) {
 
                             }
-                        });*/
+                        });
                     }
 
                     @Override

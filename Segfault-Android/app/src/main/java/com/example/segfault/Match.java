@@ -1,13 +1,14 @@
 package com.example.segfault;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Match {
     String id;
     String nome;
     String struttura;
     String sport;
-    Calendar date;
+    GregorianCalendar date;
     String start_time;
     String stop_time;
     String creatoreid;
@@ -20,10 +21,10 @@ public class Match {
         this.struttura = struttura;
         this.sport = sport;
 
-        Calendar cal=Calendar.getInstance();
         String[] str=  date.split("-",date.length());
-        cal.set(Integer.parseInt(str[2]),Integer.parseInt(str[1]),Integer.parseInt(str[0]));
+        GregorianCalendar cal= new GregorianCalendar(Integer.parseInt(str[2]),Integer.parseInt(str[1]),Integer.parseInt(str[0]));
         this.date =cal;
+
         this.start_time = start_time;
         this.stop_time = stop_time;
         this.creatoreid = creatoreid;
