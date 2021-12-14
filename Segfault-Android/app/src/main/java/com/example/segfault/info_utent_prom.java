@@ -48,7 +48,7 @@ public class info_utent_prom extends AppCompatActivity {
 
         try{
 
-            FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/structure", "", "promoter=" + MainActivity.utente_log.getCod_id() + "&token=" + MainActivity.utente_log.getToken());
+            FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/structure", "", "promoter=" + MainActivity.utente_supp.getCod_id() + "&token=" + MainActivity.utente_supp.getToken());
             String res = req.execute().get();
 
             //richiesta andata a buon fine: disegno la lista delle strutture
@@ -100,8 +100,10 @@ public class info_utent_prom extends AppCompatActivity {
         editText.setText(s.getName());
         Button myButton1 = cricketerView.findViewById(R.id.row_structure_button);
         myButton1.setOnClickListener(view -> {
-            Intent i = new Intent(info_utent_prom.this, info_struct_promo.class);
+            MainActivity.utente_supp=MainActivity.utente_log;
             MainActivity.struct=s;
+            Intent i = new Intent(info_utent_prom.this, info_struct_promo.class);
+
             startActivity(i);
 
         });

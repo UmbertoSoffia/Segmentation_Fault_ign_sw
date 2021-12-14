@@ -55,15 +55,17 @@ public class home_promo extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        MainActivity.utente_supp=MainActivity.utente_log;
         switch (item.getItemId()) {
             case R.id.nav_book:
+
                 Intent l = new Intent(home_promo.this, all_match_prom.class);
                 startActivity(l);
 
                 return true;
 
             case R.id.nav_logout_promo:
+
                 Intent i = new Intent(home_promo.this, MainActivity.class);
                 startActivity(i);
 

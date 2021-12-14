@@ -9,6 +9,8 @@ import android.widget.EditText;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.applandeo.materialcalendarview.EventDay;
+
 import org.json.JSONObject;
 
 import java.util.Objects;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     static  public  User utente_supp;
      static  public Structure struct;
      static public  Match match;
+    static public EventDay eventDay;
 
 
 

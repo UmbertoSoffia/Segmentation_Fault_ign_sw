@@ -2,8 +2,10 @@ package com.example.segfault;
 
 
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -13,23 +15,56 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.Calendar;
 import java.util.Objects;
 
 public class list_act_user extends AppCompatActivity {
     private LinearLayout layoutList;
-    private final String date=home_user.selecteddate.getDay()+"/"+home_user.selecteddate.getMonth()+"/"+home_user.selecteddate.getYear();
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_act_user);
-
-        Objects.requireNonNull(getSupportActionBar()).setTitle(date);
+        Calendar cal=MainActivity.eventDay.getCalendar();
+        Objects.requireNonNull(getSupportActionBar()).setTitle(cal.get(Calendar.DAY_OF_MONTH)+"/"+cal.get(Calendar.MONTH)+"/"+cal.get(Calendar.YEAR));
         layoutList = findViewById(R.id.list_act_user_scroll);
+        try {
+            //dato giorno e id deve darmi tutti event giornata
+            //dal.getTime ritorna la data
+            FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/match", "", "user="+MainActivity.utente_log+ "&date="+cal.getTime()+"&token=" + MainActivity.utente_supp.getToken());
+            String res = req.execute().get();
 
-        for (int i = 0; i < 50; i++) {
-            //id user lo hai come campo sopra
-            addView("pren"+i,1);
+            //richiesta andata a buon fine: disegno la lista delle strutture
+            if (res.equals("OK")) {
+                JSONArray response = req.array;
+
+                for (int i = 0; i < response.length(); i++) {
+
+                    addView(new Match(((JSONObject) response.get(i)).get("match_id").toString(),
+                            ((JSONObject) response.get(i)).get("name").toString(),
+                            ((JSONObject) response.get(i)).get("structure_id").toString(),
+                            ((JSONObject) response.get(i)).get("sport").toString(),
+                            ((JSONObject) response.get(i)).get("date").toString(),
+                            ((JSONObject) response.get(i)).get("start_time").toString(),
+                            ((JSONObject) response.get(i)).get("stop_time").toString(),
+                            ((JSONObject) response.get(i)).get("creator_id").toString(),
+                            ((JSONObject) response.get(i)).get("age_range").toString()));
+
+                }
+            }
+        }
+        catch (Exception e) {
+            Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(list_act_user.this);
+            builder.setMessage("Errore di connessione").setPositiveButton("Ok", (dialog, which) -> {
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
 
 
@@ -41,15 +76,14 @@ public class list_act_user extends AppCompatActivity {
 
 
     }
-    private void addView( String s,Integer id_pren) {
+    private void addView( Match s) {
 
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_popup,null,false);
 
         TextView editText = cricketerView.findViewById(R.id.pop_actyvity);
-        editText.setText(s);
+        editText.setText(s.toString());
         Button myButton1 = cricketerView.findViewById(R.id.pop_actyvity_button);
         myButton1.setOnClickListener(view -> {
-
 
             // azione da fare per eliminare la prenotazione
             Toast toast = Toast.makeText(getApplicationContext(), "evento eliminato", Toast.LENGTH_SHORT);

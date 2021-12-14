@@ -171,7 +171,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintVertical_bias="0.102" />
 
     <TextView
         android:id="@+id/textView6"
@@ -183,10 +183,11 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.167" />
+        app:layout_constraintVertical_bias="0.093" />
+
 
     <TextView
         android:id="@+id/opening_time__info_struct"
@@ -199,8 +200,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/closing_time_info_struct"
         app:layout_constraintTop_toBottomOf="@+id/number_info_struct"
-        app:layout_constraintVertical_bias="0.107" />
-
+        app:layout_constraintVertical_bias="0.072" />
 
     <TextView
         android:id="@+id/closing_time_info_struct"
@@ -209,10 +209,10 @@
         android:ems="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.834"
+        app:layout_constraintHorizontal_bias="0.842"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/opening_time__info_struct"
-        app:layout_constraintVertical_bias="0.187" />
+        app:layout_constraintVertical_bias="0.117" />
 
     <TextView
         android:id="@+id/desc_info_struct"
@@ -226,6 +226,20 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7"
         app:layout_constraintVertical_bias="0.351"
         tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/button_info_struct"
+        android:layout_width="309dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#378484"
+        android:text="@string/alcune_info_sul_promotore"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/desc_info_struct"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/closing_time_info_struct"
+        app:layout_constraintVertical_bias="0.311" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

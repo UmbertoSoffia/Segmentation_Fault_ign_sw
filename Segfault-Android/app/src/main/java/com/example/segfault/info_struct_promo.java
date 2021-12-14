@@ -75,7 +75,8 @@ public class info_struct_promo extends AppCompatActivity {
                         // struttura inserita correttamente: refresh della pagina
                         AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
                         builder.setMessage("Struttura modificata con successo").setPositiveButton("Ok", (dialog, which) -> {
-                            Intent i = new Intent(info_struct_promo.this, new_structure.class);
+                            Intent i = new Intent(info_struct_promo.this, info_struct_promo.class);
+                            MainActivity.utente_supp=MainActivity.utente_log;
                             startActivity(i);
                             finish();
                         });

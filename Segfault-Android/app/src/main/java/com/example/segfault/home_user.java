@@ -3,9 +3,11 @@ package com.example.segfault;
 import static javax.mail.Transport.send;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,9 +21,11 @@ import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
@@ -35,8 +39,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class home_user extends AppCompatActivity {
-static Date selecteddate;
-
+    CalendarView calendarView ;
+    List<EventDay> events;
     private EventDay getEventDay(int day,int month,int year){
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
@@ -82,6 +86,47 @@ static Date selecteddate;
 
 
     }
+    private void fillCalendar(){
+         events = new ArrayList<>();
+         events.clear();
+        try{
+            FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/match", "", "user="+MainActivity.utente_supp.getCod_id() +"&token=" + MainActivity.utente_supp.getToken());
+            String res = req.execute().get();
+
+            //richiesta andata a buon fine: disegno la lista delle strutture
+            if (res.equals("OK")) {
+                JSONArray response = req.array;
+
+                for (int i = 0; i < response.length(); i++) {
+                    String date=((JSONObject) response.get(i)).get("date").toString();
+                    String[] str=  date.split("-",date.length());
+                    events.add(getEventDay(Integer.parseInt(str[2]),Integer.parseInt(str[1]),Integer.parseInt(str[0])));
+                }
+
+
+            } else {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(home_user.this);
+                builder.setMessage("Errore richiesta 4000").setPositiveButton("Ok", (dialog, which) -> {
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+
+        } catch (Exception e) {
+            Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(home_user.this);
+            builder.setMessage("Errore di connessione").setPositiveButton("Ok", (dialog, which) -> {
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+
+        calendarView.setEvents(events);
+
+    }
 
 
 
@@ -95,6 +140,8 @@ static Date selecteddate;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_user);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Mettiti alla prova");
+        calendarView =  findViewById(R.id.calendarView);
+
 
 
 
@@ -103,7 +150,6 @@ static Date selecteddate;
         new_chall.setOnClickListener(v -> {
             Intent i = new Intent(home_user.this, create_activities.class);
             startActivity(i);
-            finish();
 
         });
 
@@ -125,32 +171,25 @@ static Date selecteddate;
 
         Button partecipa=findViewById(R.id.home_user_prenota_attività);
         partecipa.setOnClickListener(v->{
+            MainActivity.utente_supp=MainActivity.utente_log;
             //manda alla pagina di tutte le prenotazioni del giorno selezionato
             Intent i = new Intent(home_user.this, choice_of_events.class);
             startActivity(i);
 
         });
-        List<EventDay> events = new ArrayList<>();
 
-
-
-        //come aggiungere eventi al calendario
-        events.add(getEventDay(15,12,2021));
-        events.add(getEventDay(12,1,2022));
-
-
-
-
-        CalendarView calendarView =  findViewById(R.id.calendarView);
-        calendarView.setEvents(events);
+        fillCalendar();
 
         calendarView.setOnDayClickListener(new OnDayClickListener() {
             @Override
             public void onDayClick(EventDay eventDay) {
-               selecteddate= eventDay.getCalendar().getTime();
+
                 if(events.contains(eventDay)){
+                    MainActivity.utente_supp=MainActivity.utente_log;
+                    MainActivity.eventDay=eventDay;
 
                     //manda alla pagina di tutte le prenotazioni del giorno selezionato
+
                     Intent i = new Intent(home_user.this, list_act_user.class);
                     startActivity(i);
 
@@ -175,7 +214,7 @@ static Date selecteddate;
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        MainActivity.utente_supp=MainActivity.utente_log;
         switch (item.getItemId()) {
             case R.id.nav_logout:
                 Intent i = new Intent(home_user.this, MainActivity.class);
@@ -188,6 +227,11 @@ static Date selecteddate;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        fillCalendar();
     }
 
 

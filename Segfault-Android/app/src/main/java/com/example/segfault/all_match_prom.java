@@ -31,7 +31,7 @@ public class all_match_prom extends AppCompatActivity {
 
         try{
 
-            FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/match", "", "id=" + MainActivity.utente_log.getCod_id() + "&token=" + MainActivity.utente_log.getToken()+ "&type=promoter");
+            FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/match", "", "id=" + MainActivity.utente_supp.getCod_id() + "&token=" + MainActivity.utente_supp.getToken()+ "&type=promoter");
             String res = req.execute().get();
 
             //richiesta andata a buon fine: disegno la lista delle strutture

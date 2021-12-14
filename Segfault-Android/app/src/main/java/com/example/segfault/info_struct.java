@@ -1,9 +1,15 @@
 package com.example.segfault;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.json.JSONObject;
 
 import java.util.Objects;
 
@@ -13,7 +19,7 @@ public class info_struct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Info struttura: "+MainActivity.struct.getName());
         setContentView(R.layout.info_struct_user);
-        String id_struct=MainActivity.struct.getId();
+        ;
 
         //passa info queri a sta struttura utilizzando id_strutturaumberto
         String name=MainActivity.struct.getName();
@@ -38,11 +44,51 @@ public class info_struct extends AppCompatActivity {
         textView = findViewById(R.id.street_addr_info_struct);
         textView.setText(address);
 
+        Button more_info=findViewById(R.id.button_info_struct);
+        more_info.setOnClickListener(v->{
+        try {
+
+            FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/structure", "", "promoter=" + MainActivity.utente_supp.getCod_id() + "&token=" + MainActivity.utente_supp.getToken());
+            String res = req.execute().get();
+
+            //richiesta andata a buon fine: disegno la lista delle strutture
+            if (res.equals("OK")) {
+                JSONObject response = req.result;
+                MainActivity.utente_supp = new User(response.getString("name"), response.getString("id"), response.getString("token"), response.getString("email"), "promotor");
+                Intent i = new Intent(info_struct.this, info_struct_promo.class);
+                startActivity(i);
+                finish();
+            } else{
+                if( req.result.getInt("error_code") == 404){
+                    AlertDialog.Builder builder=new AlertDialog.Builder(info_struct.this);
+                    builder.setMessage("Nessuna struttura presente").setPositiveButton("Ok", (dialog,which) -> {});
+                    AlertDialog alert=builder.create();
+                    alert.show();
+                }
+                else{
+                    AlertDialog.Builder builder=new AlertDialog.Builder(info_struct.this);
+                    builder.setMessage("Errore richiesta 4000").setPositiveButton("Ok", (dialog,which) -> {});
+                    AlertDialog alert=builder.create();
+                    alert.show();
+                }
+            }
+
+        } catch(Exception e){
+            Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+            AlertDialog.Builder builder=new AlertDialog.Builder(info_struct.this);
+            builder.setMessage("Errore di connessione").setPositiveButton("Ok", (dialog,which) -> {});
+            AlertDialog alert=builder.create();
+            alert.show();
+        }
 
 
 
 
 
 
+
+
+        });
     }
 }

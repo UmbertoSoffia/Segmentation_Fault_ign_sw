@@ -31,7 +31,7 @@ public class choice_of_events extends AppCompatActivity {
     private void req() {
         try {
 
-            FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/match", "", "token=" + MainActivity.utente_log.getToken());
+            FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/match", "", "token=" + MainActivity.utente_supp.getToken());
             String res = req.execute().get();
 
             //richiesta andata a buon fine: disegno la lista delle strutture
