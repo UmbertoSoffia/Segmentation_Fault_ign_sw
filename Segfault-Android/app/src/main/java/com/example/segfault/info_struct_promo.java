@@ -33,6 +33,7 @@ public class info_struct_promo extends AppCompatActivity {
 
         Button confirm= findViewById(R.id.confirm_create_info_struct_promo);
         Button cancel = findViewById(R.id.cancel_create_info_struct_promo);
+        Button delete = findViewById(R.id.delete_structure);
         TextView name_struct=findViewById(R.id.name_info_struct_promo);
         name_struct.setText(name);
         TextView addre_struct=findViewById(R.id.street_addr_info_struct_promo);
@@ -106,13 +107,48 @@ public class info_struct_promo extends AppCompatActivity {
 
         cancel.setOnClickListener(v -> {
             AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
-            builder.setMessage("annullare la modifica?").setPositiveButton("si", (dialog,which) -> {
-                finish();}).setNegativeButton("no", (dialog,which) ->{});
+            builder.setMessage("Annullare la modifica?").setPositiveButton("Si", (dialog,which) -> {
+                finish();}).setNegativeButton("No", (dialog,which) ->{});
             AlertDialog alert=builder.create();
             alert.show();
         });
 
+        delete.setOnClickListener(v -> {
+            AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
+            builder.setMessage("Eliminare la struttura?").setPositiveButton("Si", (dialog,which) -> {
+                try{
 
+                    FSRequest req = new FSRequest("DELETE", MainActivity.utente_log.getToken(), "api/structure/" + MainActivity.struct.getId(), "","token=" + MainActivity.utente_log.getToken());
+                    String res = req.execute().get();
+                    if(res.equals("OK")){
+                        AlertDialog.Builder build=new AlertDialog.Builder(info_struct_promo.this);
+                        build.setMessage("Struttura eliminata con successo").setPositiveButton("Ok", (dial, w) -> {
+                            MainActivity.utente_supp=MainActivity.utente_log;
+                            finish();
+                        });
+                        AlertDialog alert=build.create();
+                        alert.show();
+                    }
+                    else{
+                        AlertDialog.Builder build=new AlertDialog.Builder(info_struct_promo.this);
+                        build.setMessage("Errore durante l'eliminazione!").setPositiveButton("Ok", null);
+                        AlertDialog alert=build.create();
+                        alert.show();
+                    }
+
+                }catch(Exception e){
+                    Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+                    AlertDialog.Builder build=new AlertDialog.Builder(info_struct_promo.this);
+                    build.setMessage("Errore di connessione").setPositiveButton("Ok", null);
+                    AlertDialog alert=build.create();
+                    alert.show();
+                }
+
+            }).setNegativeButton("No", (dialog,which) ->{});
+            AlertDialog alert=builder.create();
+            alert.show();
+        });
 
     }
 
