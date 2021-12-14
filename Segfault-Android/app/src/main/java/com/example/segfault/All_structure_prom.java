@@ -45,7 +45,8 @@ public class All_structure_prom extends AppCompatActivity {
                             ((JSONObject)(obj.get("address"))).get("street").toString(),
                             ((JSONObject) response.get(i)).get("start_time").toString(),
                             ((JSONObject) response.get(i)).get("stop_time").toString(),
-                            ((JSONObject) response.get(i)).get("working_days").toString()
+                            ((JSONObject) response.get(i)).get("working_days").toString(),
+                            ((JSONObject) response.get(i)).get("address_id").toString()
 
                     ));
                 }
@@ -59,7 +60,7 @@ public class All_structure_prom extends AppCompatActivity {
                 }
                 else{
                     AlertDialog.Builder builder=new AlertDialog.Builder(All_structure_prom.this);
-                    builder.setMessage("Errore richiesta 4000").setPositiveButton("Ok", (dialog,which) -> {});
+                    builder.setMessage("Errore richiesta").setPositiveButton("Ok", (dialog,which) -> {});
                     AlertDialog alert=builder.create();
                     alert.show();
                 }
@@ -92,6 +93,61 @@ public class All_structure_prom extends AppCompatActivity {
 
     }
 
+    public void onResume() {
+        super.onResume();
 
+        //cancello le strutture vecchie dalla lista
+
+        layoutList.removeAllViews();
+
+        //aggiorno informazioni strutture perchè potrebbero essere state modificate
+
+        try{
+
+            FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/structure", "", "promoter=" + MainActivity.utente_supp.getCod_id() + "&token=" + MainActivity.utente_supp.getToken());
+            String res = req.execute().get();
+
+            //richiesta andata a buon fine: disegno la lista delle strutture
+            if(res.equals("OK")){
+                JSONArray response = req.array;
+                for (int i = 0; i < response.length() ; i++) {
+                    JSONObject obj = (JSONObject) response.get(i);
+                    addView(new Structure(((JSONObject) response.get(i)).get("name").toString(),
+                            ((JSONObject) response.get(i)).get("structure_id").toString(),
+                            ((JSONObject) response.get(i)).get("description").toString(),
+                            ((JSONObject) response.get(i)).getInt("number"),
+                            ((JSONObject)(obj.get("address"))).get("street").toString(),
+                            ((JSONObject) response.get(i)).get("start_time").toString(),
+                            ((JSONObject) response.get(i)).get("stop_time").toString(),
+                            ((JSONObject) response.get(i)).get("working_days").toString(),
+                            ((JSONObject) response.get(i)).get("address_id").toString()
+
+                    ));
+                }
+
+            }else{
+                if( req.result.getInt("error_code") == 404){
+                    AlertDialog.Builder builder=new AlertDialog.Builder(All_structure_prom.this);
+                    builder.setMessage("Nessuna struttura presente").setPositiveButton("Ok", (dialog,which) -> {});
+                    AlertDialog alert=builder.create();
+                    alert.show();
+                }
+                else{
+                    AlertDialog.Builder builder=new AlertDialog.Builder(All_structure_prom.this);
+                    builder.setMessage("Errore richiesta 4000").setPositiveButton("Ok", (dialog,which) -> {});
+                    AlertDialog alert=builder.create();
+                    alert.show();
+                }
+            }
+
+        } catch(Exception e){
+            Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+            AlertDialog.Builder builder=new AlertDialog.Builder(All_structure_prom.this);
+            builder.setMessage("Errore di connessione").setPositiveButton("Ok", (dialog,which) -> {});
+            AlertDialog alert=builder.create();
+            alert.show();
+        }
+    }
 
 }

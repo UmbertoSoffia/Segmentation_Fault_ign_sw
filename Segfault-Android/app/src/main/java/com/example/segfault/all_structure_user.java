@@ -42,7 +42,8 @@ public class all_structure_user extends AppCompatActivity {
                             ((JSONObject)(obj.get("address"))).get("street").toString(),
                             obj.getString("start_time"),
                             obj.getString("stop_time"),
-                            obj.getString("working_days")
+                            obj.getString("working_days"),
+                            obj.getString("address_id")
                     );
                     addView(s);
 

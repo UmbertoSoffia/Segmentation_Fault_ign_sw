@@ -60,8 +60,6 @@ public class new_structure extends AppCompatActivity {
                         // struttura inserita correttamente: refresh della pagina
                         AlertDialog.Builder builder=new AlertDialog.Builder(new_structure.this);
                         builder.setMessage("Struttura inserita con successo").setPositiveButton("Ok", (dialog, which) -> {
-                            Intent i = new Intent(new_structure.this, new_structure.class);
-                            startActivity(i);
                             finish();
                         });
                         AlertDialog alert=builder.create();
@@ -109,8 +107,6 @@ public class new_structure extends AppCompatActivity {
         cancel.setOnClickListener(v -> {
             AlertDialog.Builder builder=new AlertDialog.Builder(new_structure.this);
             builder.setMessage("annullare l'inserimento").setPositiveButton("si", (dialog,which) -> {
-                Intent i = new Intent(new_structure.this, new_structure.class);
-                startActivity(i);
                 finish();}).setNegativeButton("no", (dialog,which) ->{});
             AlertDialog alert=builder.create();
             alert.show();

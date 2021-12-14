@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/David Popovic/Documents/GitHub/Segmentation_Fault_ing_sw/Segfault-Android/app/src/main/res/drawable/ic_logout.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/David Popovic/Documents/GitHub/Segmentation_Fault_ing_sw/Segfault-Android/app/src/main/res/layout/create_activities.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/David Popovic/Documents/GitHub/Segmentation_Fault_ing_sw/Segfault-Android/app/src/main/res/layout/info_struct.xml" value="0.1796875" />
+        <entry key="..\:/Users/David Popovic/Documents/GitHub/Segmentation_Fault_ing_sw/Segfault-Android/app/src/main/res/layout/info_struct_promo.xml" value="0.14270833333333333" />
         <entry key="..\:/Users/David Popovic/Documents/GitHub/Segmentation_Fault_ing_sw/Segfault-Android/app/src/main/res/layout/new_struct.xml" value="0.22" />
         <entry key="..\:/Users/David Popovic/Documents/GitHub/Segmentation_Fault_ing_sw/Segfault-Android/app/src/main/res/layout/register.xml" value="0.1" />
         <entry key="..\:/Users/David Popovic/Documents/GitHub/Segmentation_Fault_ing_sw/Segfault-Android/app/src/main/res/layout/reservation.xml" value="0.22" />
@@ -41,8 +43,6 @@
         <entry key="..\:/Users/umber/Desktop/UNI/Segmentation_Fault_ing_sw/Segfault-Android/app/src/main/res/layout/home_user.xml" value="0.365625" />
         <entry key="..\:/Users/umber/Desktop/UNI/Segmentation_Fault_ing_sw/Segfault-Android/app/src/main/res/layout/homepage.xml" value="0.365625" />
         <entry key="..\:/Users/umber/Desktop/UNI/Segmentation_Fault_ing_sw/Segfault-Android/app/src/main/res/layout/info_struct.xml" value="0.365625" />
-        <entry key="..\:/Users/umber/Desktop/UNI/Segmentation_Fault_ing_sw/Segfault-Android/app/src/main/res/layout/info_struct_promo.xml" value="0.35625" />
-        <entry key="..\:/Users/umber/Desktop/UNI/Segmentation_Fault_ing_sw/Segfault-Android/app/src/main/res/layout/info_struct_user.xml" value="0.3651041666666667" />
         <entry key="..\:/Users/umber/Desktop/UNI/Segmentation_Fault_ing_sw/Segfault-Android/app/src/main/res/layout/info_utent_prom.xml" value="0.33" />
         <entry key="..\:/Users/umber/Desktop/UNI/Segmentation_Fault_ing_sw/Segfault-Android/app/src/main/res/layout/info_utent_user.xml" value="0.4" />
         <entry key="..\:/Users/umber/Desktop/UNI/Segmentation_Fault_ing_sw/Segfault-Android/app/src/main/res/layout/list_act_user.xml" value="0.264" />

@@ -149,7 +149,8 @@ public class create_activities extends AppCompatActivity {
                                 ((JSONObject)(obj.get("address"))).get("street").toString(),
                                 ((JSONObject) response.get(i)).get("start_time").toString(),
                                 ((JSONObject) response.get(i)).get("stop_time").toString(),
-                                ((JSONObject) response.get(i)).get("working_days").toString()
+                                ((JSONObject) response.get(i)).get("working_days").toString(),
+                                ((JSONObject) response.get(i)).get("address_id").toString()
                                 ));
 
 
@@ -202,7 +203,8 @@ public class create_activities extends AppCompatActivity {
                                 ((JSONObject)(obj.get("address"))).get("street").toString(),
                                 ((JSONObject) response.get(i)).get("start_time").toString(),
                                 ((JSONObject) response.get(i)).get("stop_time").toString(),
-                                ((JSONObject) response.get(i)).get("working_days").toString()
+                                ((JSONObject) response.get(i)).get("working_days").toString(),
+                                ((JSONObject) response.get(i)).get("address_id").toString()
 
                         ));
 

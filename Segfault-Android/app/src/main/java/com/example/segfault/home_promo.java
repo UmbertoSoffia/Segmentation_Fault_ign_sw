@@ -66,8 +66,7 @@ public class home_promo extends AppCompatActivity {
 
             case R.id.nav_logout_promo:
 
-                Intent i = new Intent(home_promo.this, MainActivity.class);
-                startActivity(i);
+                finish();
 
                 return true;
 

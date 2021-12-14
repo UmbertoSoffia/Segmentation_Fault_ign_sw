@@ -32,6 +32,7 @@ public class info_struct_promo extends AppCompatActivity {
         //setta i campi
 
         Button confirm= findViewById(R.id.confirm_create_info_struct_promo);
+        Button cancel = findViewById(R.id.cancel_create_info_struct_promo);
         TextView name_struct=findViewById(R.id.name_info_struct_promo);
         name_struct.setText(name);
         TextView addre_struct=findViewById(R.id.street_addr_info_struct_promo);
@@ -56,28 +57,26 @@ public class info_struct_promo extends AppCompatActivity {
                 AlertDialog alert=builder.create();
                 alert.show();
             }else {
-                //inserimento nuova struttura
+                //modifica struttura
                 try{
                     JSONObject struct = new JSONObject();
-                    struct.put("name", name_struct.getText().toString());
+                    struct.put("id", MainActivity.struct.getId());
+                    struct.put("addr_id", MainActivity.struct.getAddress_id());
                     struct.put("description", description.getText().toString());
                     struct.put("start_time", opening.getText().toString());
                     struct.put("stop_time", stop.getText().toString());
                     struct.put("working_days", work_day.getText().toString());
-                    struct.put("addr", addre_struct.getText().toString());
+                    struct.put("street", addre_struct.getText().toString());
                     struct.put("number", Integer.parseInt(numberview.getText().toString()));
-                    struct.put("token", MainActivity.utente_log.getToken());
 
-                    FSRequest req = new FSRequest("POST", MainActivity.utente_log.getToken(), "api/structure/", struct.toString(), "");
+                    FSRequest req = new FSRequest("POST", MainActivity.utente_log.getToken(), "api/structure/modify", struct.toString(), "");
                     String res = req.execute().get();
 
                     if(res.equals("OK")){
                         // struttura inserita correttamente: refresh della pagina
                         AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
                         builder.setMessage("Struttura modificata con successo").setPositiveButton("Ok", (dialog, which) -> {
-                            Intent i = new Intent(info_struct_promo.this, info_struct_promo.class);
                             MainActivity.utente_supp=MainActivity.utente_log;
-                            startActivity(i);
                             finish();
                         });
                         AlertDialog alert=builder.create();
@@ -86,7 +85,7 @@ public class info_struct_promo extends AppCompatActivity {
                     }else{
                       //errore nella richiesta
                             AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
-                            builder.setMessage("Errore durante l'inserimento!").setPositiveButton("Ok", (dialog, which) -> {});
+                            builder.setMessage("Errore durante la modifica!").setPositiveButton("Ok", (dialog, which) -> {});
                             AlertDialog alert=builder.create();
                             alert.show();
 
@@ -101,28 +100,21 @@ public class info_struct_promo extends AppCompatActivity {
                     alert.show();
                 }
             }
-            AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
-            builder.setMessage("annullare l'inserimento").setPositiveButton("si", (dialog,which) -> {
-                Intent i = new Intent(info_struct_promo.this, info_struct_promo.class);
-                startActivity(i);
-                finish();}).setNegativeButton("no", (dialog,which) ->{});
-            AlertDialog alert=builder.create();
-            alert.show();
-
-
 
 
         });
 
-
-
-
-
-
-
-
+        cancel.setOnClickListener(v -> {
+            AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
+            builder.setMessage("annullare la modifica?").setPositiveButton("si", (dialog,which) -> {
+                finish();}).setNegativeButton("no", (dialog,which) ->{});
+            AlertDialog alert=builder.create();
+            alert.show();
+        });
 
 
 
     }
+
+
 }
