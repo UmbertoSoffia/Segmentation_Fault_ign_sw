@@ -27,7 +27,7 @@ public class all_structure_user extends AppCompatActivity {
 
         try{
 
-            FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/structure", "",  "&token=" + MainActivity.utente_supp.getToken());
+            FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/structure", "",  "&token=" + MainActivity.utente_log.getToken());
             String res = req.execute().get();
 
             //richiesta andata a buon fine: disegno la lista delle strutture
@@ -46,6 +46,14 @@ public class all_structure_user extends AppCompatActivity {
                             obj.getString("address_id")
                     );
                     addView(s);
+
+                    MainActivity.utente_supp = new User(
+                            ((JSONObject)(obj.get("promoter"))).get("name").toString(),
+                            ((JSONObject)(obj.get("promoter"))).get("promoter_id").toString(),
+                            ((JSONObject)(obj.get("promoter"))).get("token").toString(),
+                            ((JSONObject)(obj.get("promoter"))).get("email").toString(),
+                            "promoter"
+                    );
 
                 }
 

@@ -198,8 +198,7 @@ public class home_user extends AppCompatActivity {
         MainActivity.utente_supp=MainActivity.utente_log;
         switch (item.getItemId()) {
             case R.id.nav_logout:
-                Intent i = new Intent(home_user.this, MainActivity.class);
-                startActivity(i);
+                finish();
                 return true;
             case R.id.nav_structure:
                 Intent k = new Intent(home_user.this, all_structure_user.class);

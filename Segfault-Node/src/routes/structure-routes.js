@@ -59,6 +59,7 @@ router.get('/', (req, res, next) => {
   if(!promoter_id){ 
 	Structure.find({})
     .populate('address')
+	.populate('promoter')
     .lean()
     .exec()
     .then(structures => {
@@ -69,6 +70,7 @@ router.get('/', (req, res, next) => {
   else{
   Structure.find({ promoter_id })
   .populate('address')
+  .populate('promoter')
   .lean()
   .exec()
   .then(structures => {

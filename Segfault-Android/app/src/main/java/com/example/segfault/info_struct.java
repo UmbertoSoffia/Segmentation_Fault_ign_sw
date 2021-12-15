@@ -46,53 +46,9 @@ public class info_struct extends AppCompatActivity {
 
         Button more_info=findViewById(R.id.button_info_struct);
         more_info.setOnClickListener(v->{
-        try {
 
-            //da sta query dato un id_struttura mi serve che ritorni utente promotore
-            FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/promoter", "", "structure=" + MainActivity.struct.getId() + "&token=" + MainActivity.utente_log.getToken());
-            String res = req.execute().get();
-            //richiesta andata a buon fine: disegno la lista delle strutture
-            if (res.equals("OK")) {
-                JSONObject response = req.result;
-                for (int i = 0; i < response.length(); i++) {
-                    MainActivity.utente_supp = new User(
-                            response.get("name").toString(),
-                            response.get("promoter_id").toString(),
-                            response.get("token").toString(),
-                            response.get("email").toString(),
-                            "promotor"
-
-                    );
-                }
-                Intent i = new Intent(info_struct.this, info_struct_promo.class);
-                startActivity(i);
-                finish();
-            } else{
-                if( req.result.getInt("error_code") == 404){
-                    AlertDialog.Builder builder=new AlertDialog.Builder(info_struct.this);
-                    builder.setMessage("Nessuna promotore collegato").setPositiveButton("Ok", (dialog,which) -> {});
-                    AlertDialog alert=builder.create();
-                    alert.show();
-                }
-                else{
-                    AlertDialog.Builder builder=new AlertDialog.Builder(info_struct.this);
-                    builder.setMessage("Errore richiesta 4000").setPositiveButton("Ok", (dialog,which) -> {});
-                    AlertDialog alert=builder.create();
-                    alert.show();
-                }
-            }
-
-        } catch(Exception e){
-            Log.println(Log.ERROR, "Errore connessione", e.getMessage());
-
-            AlertDialog.Builder builder=new AlertDialog.Builder(info_struct.this);
-            builder.setMessage("Errore di connessione").setPositiveButton("Ok", (dialog,which) -> {});
-            AlertDialog alert=builder.create();
-            alert.show();
-        }
-
-
-
+            Intent i = new Intent(info_struct.this, info_utent_prom.class);
+            startActivity(i);
 
         });
     }
