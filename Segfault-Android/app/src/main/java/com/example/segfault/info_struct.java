@@ -48,20 +48,29 @@ public class info_struct extends AppCompatActivity {
         more_info.setOnClickListener(v->{
         try {
 
-            FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/structure", "", "promoter=" + MainActivity.utente_supp.getCod_id() + "&token=" + MainActivity.utente_supp.getToken());
+            //da sta query dato un id_struttura mi serve che ritorni utente promotore
+            FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/promoter", "", "structure=" + MainActivity.struct.getId() + "&token=" + MainActivity.utente_log.getToken());
             String res = req.execute().get();
-
             //richiesta andata a buon fine: disegno la lista delle strutture
             if (res.equals("OK")) {
                 JSONObject response = req.result;
-                MainActivity.utente_supp = new User(response.getString("name"), response.getString("id"), response.getString("token"), response.getString("email"), "promotor");
+                for (int i = 0; i < response.length(); i++) {
+                    MainActivity.utente_supp = new User(
+                            response.get("name").toString(),
+                            response.get("promoter_id").toString(),
+                            response.get("token").toString(),
+                            response.get("email").toString(),
+                            "promotor"
+
+                    );
+                }
                 Intent i = new Intent(info_struct.this, info_struct_promo.class);
                 startActivity(i);
                 finish();
             } else{
                 if( req.result.getInt("error_code") == 404){
                     AlertDialog.Builder builder=new AlertDialog.Builder(info_struct.this);
-                    builder.setMessage("Nessuna struttura presente").setPositiveButton("Ok", (dialog,which) -> {});
+                    builder.setMessage("Nessuna promotore collegato").setPositiveButton("Ok", (dialog,which) -> {});
                     AlertDialog alert=builder.create();
                     alert.show();
                 }
@@ -81,10 +90,6 @@ public class info_struct extends AppCompatActivity {
             AlertDialog alert=builder.create();
             alert.show();
         }
-
-
-
-
 
 
 

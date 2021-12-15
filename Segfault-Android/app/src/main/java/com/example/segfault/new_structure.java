@@ -1,7 +1,6 @@
 package com.example.segfault;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -15,6 +14,7 @@ import org.json.JSONObject;
 import java.util.Objects;
 
 public class new_structure extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,7 +34,8 @@ public class new_structure extends AppCompatActivity {
 
 
         confirm.setOnClickListener(v -> {
-           
+
+
             if(name_struct.getText().toString().equals("") || addre_struct.getText().toString().equals("") || stop.getText().toString().equals("") || opening.getText().toString().equals("")|| number.getText().toString().equals("") || work_day.getText().toString().equals("")){
                 AlertDialog.Builder builder=new AlertDialog.Builder(new_structure.this);
                 builder.setMessage("Riempire tutti i valori!").setPositiveButton("ok", null);

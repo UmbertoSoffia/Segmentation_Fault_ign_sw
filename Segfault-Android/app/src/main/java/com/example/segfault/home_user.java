@@ -1,7 +1,5 @@
 package com.example.segfault;
 
-import static javax.mail.Transport.send;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -28,15 +26,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
-import java.util.Properties;
-
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 public class home_user extends AppCompatActivity {
     CalendarView calendarView ;
@@ -54,6 +43,8 @@ public class home_user extends AppCompatActivity {
     //!! non va
     //https://www.youtube.com/watch?v=roruU4hVwXA
     private void mail(String email, String msg){
+        Toast.makeText(getApplicationContext(),"possibil positività comunicata",Toast.LENGTH_LONG).show();
+        /*
         final String Username="segfaultunive@gmail.com";
         final String pwd="segfaultunive2021";
         Properties props=new Properties();
@@ -61,7 +52,7 @@ public class home_user extends AppCompatActivity {
         props.put("mail.smtp.starttls.enable","true");
         props.put("mail.smtp.host","smtp.gmail.com");
         props.put("mail.smtp.port","587");
-        Toast.makeText(getApplicationContext(),"bona",Toast.LENGTH_LONG).show();
+
         Session session= Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -81,13 +72,11 @@ public class home_user extends AppCompatActivity {
 
         } catch (MessagingException e) {
             throw new RuntimeException();
-        }
-
-
+        }*/
 
     }
     private void fillCalendar(){
-         events = new ArrayList<>();
+
          events.clear();
         try{
             FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/match", "", "user="+MainActivity.utente_supp.getCod_id() +"&token=" + MainActivity.utente_supp.getToken());
@@ -104,16 +93,7 @@ public class home_user extends AppCompatActivity {
                 }
 
 
-            } else {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(home_user.this);
-                builder.setMessage("Errore richiesta 4000").setPositiveButton("Ok", (dialog, which) -> {
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
-
             }
-
         } catch (Exception e) {
             Log.println(Log.ERROR, "Errore connessione", e.getMessage());
 
@@ -141,6 +121,7 @@ public class home_user extends AppCompatActivity {
         setContentView(R.layout.home_user);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Mettiti alla prova");
         calendarView =  findViewById(R.id.calendarView);
+        events=new ArrayList<>();
 
 
 

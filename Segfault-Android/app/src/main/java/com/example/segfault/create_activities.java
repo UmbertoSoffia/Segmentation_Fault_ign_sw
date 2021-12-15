@@ -302,15 +302,32 @@ public class create_activities extends AppCompatActivity {
                         age_min.clear();
                         String[] supp_date = date.get(position).split("-");
                         final GregorianCalendar selected_date = new GregorianCalendar(Integer.parseInt(supp_date[2]), Integer.parseInt(supp_date[1]) - 1, Integer.parseInt(supp_date[0]));
-                        //valore che serve poi per inserire in db
                         // in base a selected aggiungi elem a arr_list date con quelle disponibili in quella data
-                        for (Match m:incontri_supp) {
+                        for (Match m : incontri_supp) {
+                            //inserisce fasce orarereie libere
+                            if (!(m.date.getTimeInMillis() == selected_date.getTimeInMillis())) {
+                                incontri_supp.remove(m);
+                            }
 
-                             //inserisce fasce orarereie libere
-                             if(!(m.date.getTimeInMillis() == selected_date.getTimeInMillis()) ) {
-                                 incontri_supp.remove(m);
-                             }
+                        }
+                        if (Selected_struct.getStart_time().length() == 5) {
+                             int start=(int)Selected_struct.getStart_time().charAt(0)*10+((int)Selected_struct.getStart_time().charAt(1));
+                             int stop=(int)Selected_struct.getStop_time().charAt(0)*10+((int)Selected_struct.getStop_time().charAt(1));
+                             String middle=":"+Selected_struct.getStart_time().substring(3,5);
 
+                                for (int i = start; i<stop; i+=10) {
+
+                                    hour.add(i +middle+ " - " + (i + 10) + middle);
+
+                                }
+                        }else{
+                            int start=(int)Selected_struct.getStart_time().charAt(0)*10+((int)Selected_struct.getStart_time().charAt(1));
+                            int stop=(int)Selected_struct.getStop_time().charAt(0)*10+((int)Selected_struct.getStop_time().charAt(1));
+                            for (int i = start; i<stop; i+=10) {
+
+                                hour.add(i +":00"+ " - " + (i + 10) + ":00");
+
+                            }
                         }
 
 
