@@ -21,12 +21,14 @@ public class all_match_prom extends AppCompatActivity {
     private LinearLayout layoutList;
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.all_structure);
+
         Objects.requireNonNull(getSupportActionBar()).setTitle("Tutti gli incontri ");
+
         layoutList = findViewById(R.id.layout_list_allstruct);
-
-
         //richiesta lista di strutture
 
         try{
@@ -47,11 +49,9 @@ public class all_match_prom extends AppCompatActivity {
                             ((JSONObject) response.get(i)).get("start_time").toString(),
                             ((JSONObject) response.get(i)).get("stop_time").toString(),
                             ((JSONObject) response.get(i)).get("creator_id").toString(),
-                            ((JSONObject) response.get(i)).get("age_range").toString()));
-
+                            ((JSONObject) response.get(i)).get("age_range").toString())
+                    );
                 }
-
-
             }else{
                 if( req.result.getInt("error_code") == 404){
                     AlertDialog.Builder builder=new AlertDialog.Builder(all_match_prom.this);
@@ -66,7 +66,6 @@ public class all_match_prom extends AppCompatActivity {
                     alert.show();
                 }
             }
-
         } catch(Exception e){
             Log.println(Log.ERROR, "Errore connessione", e.getMessage());
 
@@ -76,6 +75,7 @@ public class all_match_prom extends AppCompatActivity {
             alert.show();
         }
     }
+
     private void addView(Match match) {
 
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_popup,null,false);

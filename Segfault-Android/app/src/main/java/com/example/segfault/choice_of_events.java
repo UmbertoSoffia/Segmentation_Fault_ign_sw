@@ -25,9 +25,6 @@ public class choice_of_events extends AppCompatActivity {
     private LinearLayout layoutList;
     private ArrayList<Match> all_match = new ArrayList<Match>();
 
-    // capire come passare valori io credevo si passassero come qui sotto
-    // private String date =  getIntent().getExtras().get("data").toString();
-    // private String id_User=  getIntent().getExtras().get("id_user").toString();
     private void req() {
         try {
 

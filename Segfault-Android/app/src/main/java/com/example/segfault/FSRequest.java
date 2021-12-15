@@ -25,10 +25,10 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
     String request_method; // metodo HTTP da utilizzare
     String route = ""; // route Node da chiamare
     String json; // eventuale json da mandare con la richiesta
-    String urlParameters; // eventuali parametri per richieste di tipo text
-    String token = "";
-    JSONObject result; // json di risposta
-    JSONArray array = null;
+    String urlParameters; // eventuali parametri della query string
+    String token = ""; //token dell'utebnte
+    JSONObject result; // json object di risposta
+    JSONArray array = null; // json array di risposta
 
 
     FSRequest(String method, String t, String r, String j, String param){
@@ -62,17 +62,17 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
 
             // autenticazione
 
-            if (this.token != "")
+            if (!(this.token.equals("")))
                 connection.setRequestProperty("Authentication", "Bearer " + this.token);
 
             // set request method
-            if(this.request_method == "GET" || this.request_method == "DELETE" ){
+            if(this.request_method.equals("GET") || this.request_method.equals("DELETE")){
 
                 connection.setDoInput(true);
                 connection.setRequestMethod(this.request_method);
 
             }
-            else if(this.request_method == "POST"){
+            else if(this.request_method.equals("POST")){
 
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
@@ -82,7 +82,7 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
                 //output stream
                 OutputStream os = connection.getOutputStream();
 
-                    byte[] input = this.json.getBytes("utf-8");
+                    byte[] input = this.json.getBytes(StandardCharsets.UTF_8);
                     os.write(input);
                     os.flush();
                 }
@@ -102,7 +102,7 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
                 InputStream is = connection.getInputStream();
 
                 // leggi la risposta
-                BufferedReader br = new BufferedReader(new InputStreamReader(is, "utf-8"));
+                BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
                 StringBuilder response = new StringBuilder();
                 String responseLine = null;
                 while ((responseLine = br.readLine()) != null) {

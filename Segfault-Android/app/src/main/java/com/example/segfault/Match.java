@@ -1,5 +1,7 @@
 package com.example.segfault;
 
+import androidx.annotation.NonNull;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -32,10 +34,10 @@ public class Match {
     }
 
 
+    @NonNull
     @Override
     public String toString() {
         return  "nome= " + nome + "\n" +
-                //"struttura= " + struttura +"\n"  + // ci vorrebbe nome ma questo è id
                 "sport= " + sport + "\n" +
                 "date= " + date.toString() + "\n" +
                 "orario= " + start_time + "-" + stop_time +"\n" +

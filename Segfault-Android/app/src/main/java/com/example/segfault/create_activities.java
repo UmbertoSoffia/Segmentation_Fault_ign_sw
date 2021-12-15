@@ -54,7 +54,7 @@ public class create_activities extends AppCompatActivity {
     }*/
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //stampa il layout x prenotora
+
         setContentView(R.layout.create_activities);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Nuovo evento");
 
@@ -92,7 +92,7 @@ public class create_activities extends AppCompatActivity {
          */
 
         TextView textView = findViewById(R.id.sport_create_act_promo_value);
-        //nome attiviita
+        //nome attivita
         String Activity = textView.getText().toString();
 
         Context c = this;
@@ -131,7 +131,7 @@ public class create_activities extends AppCompatActivity {
         }
 
         if (MainActivity.utente_log.isPromoter()) {
-            //beccatrutture promotore
+            //richiesta strutture del promotore
             try {
 
                 FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/structure", "", "promoter=" + MainActivity.utente_log.getCod_id() + "&token=" + MainActivity.utente_log.getToken());
@@ -185,7 +185,7 @@ public class create_activities extends AppCompatActivity {
             }
         }
         else {
-            //becca tutte le strutture
+            //richiesta di tutte le strutture
             try {
 
                 FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/structure", "", "token=" + MainActivity.utente_log.getToken());
@@ -261,23 +261,16 @@ public class create_activities extends AppCompatActivity {
 
                 //selected è il valore selezionato
                 final Structure Selected_struct = struct.get(position);
-               // LocalDate now = LocalDate.now();
-              //  LocalDate localDateA=LocalDate.of(now.getYear(), now.getMonthValue()+2,now.getDayOfMonth());
-
 
                 GregorianCalendar start = new GregorianCalendar();
                 GregorianCalendar stop = new GregorianCalendar(start.get(Calendar.YEAR),start.get(Calendar.MONTH) + 1, start.get(Calendar.DAY_OF_MONTH));
 
-                int anno = stop.get(Calendar.YEAR);
-
                 for (Match m:incontri_supp) {
                     if(!(m.date.after(start) && m.date.before(stop)) )
-                        //elimina incontri che potrebbereo ostacolare scelta x velocizzare ricerca
                         incontri_supp.remove(m);
                 }
                 for (Match m:incontri_supp) {
                         if(!(m.struttura.equals(Selected_struct.getId())) )
-                            //elimina incontri che potrebbereo ostacolare scelta x velocizzare ricerca
                             incontri_supp.remove(m);
                 }
                 while(start.get(Calendar.DAY_OF_MONTH) != stop.get(Calendar.DAY_OF_MONTH) || start.get(Calendar.MONTH) != stop.get(Calendar.MONTH) || start.get(Calendar.YEAR) != stop.get(Calendar.YEAR)){
@@ -286,11 +279,6 @@ public class create_activities extends AppCompatActivity {
                     start.add(Calendar.DAY_OF_MONTH, 1);
 
                 }
-
-
-
-
-
 
                 spin_date.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, date));
                 spin_date.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -302,9 +290,9 @@ public class create_activities extends AppCompatActivity {
                         age_min.clear();
                         String[] supp_date = date.get(position).split("-");
                         final GregorianCalendar selected_date = new GregorianCalendar(Integer.parseInt(supp_date[2]), Integer.parseInt(supp_date[1]) - 1, Integer.parseInt(supp_date[0]));
-                        // in base a selected aggiungi elem a arr_list date con quelle disponibili in quella data
+
                         for (Match m : incontri_supp) {
-                            //inserisce fasce orarereie libere
+
                             if (!(m.date.getTimeInMillis() == selected_date.getTimeInMillis())) {
                                 incontri_supp.remove(m);
                             }
@@ -406,8 +394,6 @@ public class create_activities extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // bisogna controllare che ci sia disponibilità in quel giorno/ ora in quella struttura
-                //salcvare prenotazione nel db
                 //salvare nuovo incontro nel db
                 String id_user;
 
@@ -416,9 +402,8 @@ public class create_activities extends AppCompatActivity {
                 AlertDialog.Builder builder=new AlertDialog.Builder(create_activities.this);
                 builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", (dialog, which) ->{}). //saveInCAlendar()).
                         setNegativeButton("Salva senza inserire nel calendario", (dialog, which) -> {
-                    //salvare roba nel db
+                    //salvare match nel db
 
-                    //capire come prendere variabili
                 });
                 AlertDialog alert=builder.create();
                 alert.show();

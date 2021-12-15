@@ -66,16 +66,8 @@ public class list_act_user extends AppCompatActivity {
             AlertDialog alert = builder.create();
             alert.show();
         }
-
-
-
-
-
-
-
-
-
     }
+
     private void addView( Match s) {
 
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_popup,null,false);
@@ -93,7 +85,6 @@ public class list_act_user extends AppCompatActivity {
             startActivity(i);
             finish();
         });
-
 
         layoutList.addView(cricketerView);
 

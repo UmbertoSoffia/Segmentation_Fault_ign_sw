@@ -101,10 +101,8 @@ public class new_structure extends AppCompatActivity {
                 }
             }
 
-
-
-
         });
+
         cancel.setOnClickListener(v -> {
             AlertDialog.Builder builder=new AlertDialog.Builder(new_structure.this);
             builder.setMessage("annullare l'inserimento").setPositiveButton("si", (dialog,which) -> {
@@ -112,8 +110,6 @@ public class new_structure extends AppCompatActivity {
             AlertDialog alert=builder.create();
             alert.show();
 
-
-             
         });
     }
 }

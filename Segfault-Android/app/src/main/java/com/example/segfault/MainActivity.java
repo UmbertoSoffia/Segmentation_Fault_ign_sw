@@ -17,19 +17,11 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    // le richieste sono tutte GET oppure POST, le GET richiedono di compilare il campo "URLparameteres"
-    // dell'oggetto FSRequest, mentre le POST richiedono di creare un oggetto JSON e metterlo nel campo
-    // "json" dell'oggetto FSRequest. Entrambi i tipi di richieste restituiscono un oggetto JSON che sta
-    // nel campo "result" dell' oggetto FSRequest. Se la richiesta fallisce "result" sarà null.
-    // ogni richiesta restituisce la string "OK" se va a buon fine, "KO" se fallisce
-    // qui trovate l'esempio del login
-
      static  public  User utente_log;
-    static  public  User utente_supp;
+     static  public  User utente_supp;
      static  public Structure struct;
      static public  Match match;
-    static public EventDay eventDay;
+     static public EventDay eventDay;
 
 
 
@@ -64,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent i = new Intent(MainActivity.this, home_user.class);
                     utente_log =new User(response.getString("name"),response.getString("id"),response.getString("token"),response.getString("email"),"normal");
                     utente_supp= new User(response.getString("name"),response.getString("id"),response.getString("token"),response.getString("email"),"normal");
-
-
 
                     startActivity(i);
                 } else { //richiesta fallita: controllo i promotori

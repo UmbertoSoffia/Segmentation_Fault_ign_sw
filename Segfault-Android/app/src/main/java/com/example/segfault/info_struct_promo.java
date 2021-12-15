@@ -21,7 +21,7 @@ public class info_struct_promo extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle("informazioni /modifica struttura: "+MainActivity.struct.getName());
         setContentView(R.layout.info_struct_promo);
 
-        //passa info queri a sta struttura utilizzando id_strutturaumberto
+        //info struttura
         String name=MainActivity.struct.getName();
         String desc=MainActivity.struct.getDesc();
         String working_days=MainActivity.struct.getWorking_days();
@@ -29,8 +29,8 @@ public class info_struct_promo extends AppCompatActivity {
         String number=((Integer)MainActivity.struct.getNumber()).toString();
         String closing_time=MainActivity.struct.getStop_time();
         String opening_time=MainActivity.struct.getStart_time();
-        //setta i campi
 
+        //setta i campi
         Button confirm= findViewById(R.id.confirm_create_info_struct_promo);
         Button cancel = findViewById(R.id.cancel_create_info_struct_promo);
         Button delete = findViewById(R.id.delete_structure);

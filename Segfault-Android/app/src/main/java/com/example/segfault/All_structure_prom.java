@@ -20,9 +20,13 @@ public class All_structure_prom extends AppCompatActivity {
     private LinearLayout layoutList;
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.all_structure);
+
         Objects.requireNonNull(getSupportActionBar()).setTitle("Tutte le strutture ");
+
         layoutList = findViewById(R.id.layout_list_allstruct);
 
 
@@ -87,7 +91,6 @@ public class All_structure_prom extends AppCompatActivity {
             MainActivity.struct=s;
             startActivity(i);
         });
-
 
         layoutList.addView(cricketerView);
 

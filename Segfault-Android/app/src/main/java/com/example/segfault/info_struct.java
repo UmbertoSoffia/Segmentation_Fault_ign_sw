@@ -21,7 +21,7 @@ public class info_struct extends AppCompatActivity {
         setContentView(R.layout.info_struct_user);
         ;
 
-        //passa info queri a sta struttura utilizzando id_strutturaumberto
+        //info della struttura
         String name=MainActivity.struct.getName();
         String desc=MainActivity.struct.getDesc();
         String working_days=MainActivity.struct.getWorking_days();
