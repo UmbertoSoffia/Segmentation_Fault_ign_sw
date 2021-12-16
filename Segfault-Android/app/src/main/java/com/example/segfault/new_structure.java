@@ -42,6 +42,7 @@ public class new_structure extends AppCompatActivity {
                 AlertDialog alert=builder.create();
                 alert.show();
             }else {
+
                 //inserimento nuova struttura
                 try{
                     JSONObject struct = new JSONObject();

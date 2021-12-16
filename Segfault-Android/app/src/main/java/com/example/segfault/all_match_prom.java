@@ -55,7 +55,7 @@ public class all_match_prom extends AppCompatActivity {
             }else{
                 if( req.result.getInt("error_code") == 404){
                     AlertDialog.Builder builder=new AlertDialog.Builder(all_match_prom.this);
-                    builder.setMessage("Nessuna struttura presente").setPositiveButton("Ok", (dialog,which) -> {});
+                    builder.setMessage("Nessun incontro presente").setPositiveButton("Ok", (dialog,which) -> {});
                     AlertDialog alert=builder.create();
                     alert.show();
                 }
