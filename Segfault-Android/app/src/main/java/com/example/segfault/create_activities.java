@@ -33,6 +33,23 @@ public class create_activities extends AppCompatActivity {
     Spinner spin_hour;
     Spinner spin_struct;
     Spinner spin_min_age, spin_max_age;
+    public static int convert(String str)
+    {
+        int val = 0;
+        System.out.println("String = " + str);
+
+        // Convert the String
+        try {
+            val = Integer.parseInt(str);
+        }
+        catch (NumberFormatException e) {
+
+            // This is thrown when the String
+            // contains characters other than digits
+            System.out.println("Invalid String");
+        }
+        return val;
+    }
 
     /*private void saveInCAlendar(){
         //bisogna capire come passsargli la data
@@ -84,16 +101,18 @@ public class create_activities extends AppCompatActivity {
 
         /*
             ordine spinner
-            2-struttura
-            3-data
-            4-npersone
-            5-fascia eta
-            6-fascia oraria
+            1-struttura
+            2-data
+            3-fascia oraria
+            4-fascia eta
+            5-npersone
+
          */
 
         TextView textView = findViewById(R.id.sport_create_act_promo_value);
         //nome attivita
         String Activity = textView.getText().toString();
+
 
         Context c = this;
         //becca tutti i match
@@ -298,24 +317,48 @@ public class create_activities extends AppCompatActivity {
                             }
 
                         }
+                        int ora_apertura= convert(Selected_struct.getStart_time().substring(0,2));
+                        int ora_chiusura=convert(Selected_struct.getStop_time().substring(0,2));
                         if (Selected_struct.getStart_time().length() == 5) {
-                             int start=(int)Selected_struct.getStart_time().charAt(0)*10+((int)Selected_struct.getStart_time().charAt(1));
-                             int stop=(int)Selected_struct.getStop_time().charAt(0)*10+((int)Selected_struct.getStop_time().charAt(1));
-                             String middle=":"+Selected_struct.getStart_time().substring(3,5);
 
-                                for (int i = start; i<stop; i+=10) {
 
-                                    hour.add(i +middle+ " - " + (i + 10) + middle);
-
+                            for (int i = ora_apertura; i<ora_chiusura; i++) {
+                                String ora;
+                                ora=i+":"+Selected_struct.getStart_time().substring(3)+" - "+(i+1)+":"+Selected_struct.getStart_time().substring(3);
+                                if (i+1>=ora_chiusura && Selected_struct.getStart_time().substring(3).equals("")){
+                                    ora=i+":"+Selected_struct.getStart_time().substring(3)+" - "+(i+1)+":"+Selected_struct.getStop_time().substring(3);
                                 }
-                        }else{
-                            int start=(int)Selected_struct.getStart_time().charAt(0)*10+((int)Selected_struct.getStart_time().charAt(1));
-                            int stop=(int)Selected_struct.getStop_time().charAt(0)*10+((int)Selected_struct.getStop_time().charAt(1));
-                            for (int i = start; i<stop; i+=10) {
-
-                                hour.add(i +":00"+ " - " + (i + 10) + ":00");
+                                boolean r=false;
+                                for (Match m:incontri_supp) {
+                                    if ((m.start_time + "-" + m.stop_time).equals(ora)) {
+                                        r = true;
+                                        break;
+                                    }
+                                }
+                                if (!r)
+                                    hour.add(ora);
 
                             }
+                        }
+                        else{
+                            for (int i = ora_apertura; i<ora_chiusura; i++) {
+                                String ora;
+                                ora=i+":00 - "+(i+1)+":00";
+                                if (i+1>=ora_chiusura && Selected_struct.getStart_time().substring(3).equals("")){
+                                    ora=i+":00 -"+(i+1)+":00";
+                                }
+                                boolean r=false;
+                                for (Match m:incontri_supp) {
+                                    if ((m.start_time + "-" + m.stop_time).equals(ora)) {
+                                        r = true;
+                                        break;
+                                    }
+                                }
+                                if (!r)
+                                    hour.add(ora);
+
+                            }
+
                         }
 
 

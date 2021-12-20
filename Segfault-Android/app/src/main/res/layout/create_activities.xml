@@ -6,6 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".create_activities">
 
+    <Spinner
+        android:id="@+id/fascia_ora_create"
+        android:layout_width="116dp"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner_min_age_create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.847"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_date_create"
+        app:layout_constraintVertical_bias="0.49"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fascia"
+        android:textColor="#424242"
+        app:layout_constraintBottom_toTopOf="@+id/textView15"
+        app:layout_constraintEnd_toStartOf="@+id/fascia_ora_create"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -49,14 +72,11 @@
         android:id="@+id/spinner_players_create"
         android:layout_width="116dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="328dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/confirm_create"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintHorizontal_bias="0.847"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_date_create"
-        app:layout_constraintVertical_bias="0.777"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_max_age_create"
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
     <Spinner
@@ -69,8 +89,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.978"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_players_create"
-        app:layout_constraintVertical_bias="0.735"
+        app:layout_constraintTop_toBottomOf="@+id/sport_create_act_promo"
+        app:layout_constraintVertical_bias="0.938"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Spinner
@@ -81,24 +101,10 @@
         android:layout_marginBottom="260dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_players_create"
-        app:layout_constraintVertical_bias="0.741"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Spinner
-        android:id="@+id/fascia_ora_create"
-        android:layout_width="116dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="196dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.978"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_min_age_create"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/sport_create_act_promo"
+        app:layout_constraintVertical_bias="0.938"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -166,15 +172,12 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
         android:text="@string/numero_partecipanti"
         android:textColor="#424242"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cancel_create"
         app:layout_constraintEnd_toStartOf="@+id/spinner_players_create"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.481" />
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
         android:id="@+id/textView15"
@@ -189,20 +192,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.592" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:text="@string/fascia"
-        android:textColor="#424242"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/fascia_ora_create"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.705" />
 
     <Button
         android:id="@+id/cancel_create"
