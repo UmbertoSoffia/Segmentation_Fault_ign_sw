@@ -26,6 +26,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class home_user extends AppCompatActivity {
     CalendarView calendarView ;
@@ -43,36 +52,43 @@ public class home_user extends AppCompatActivity {
     //!! non va
     //https://www.youtube.com/watch?v=roruU4hVwXA
     private void mail(String email, String msg){
-        Toast.makeText(getApplicationContext(),"possibil positività comunicata",Toast.LENGTH_LONG).show();
-        /*
-        final String Username="segfaultunive@gmail.com";
-        final String pwd="segfaultunive2021";
-        Properties props=new Properties();
-        props.put("mail.smtp.auth","true");
-        props.put("mail.smtp.starttls.enable","true");
-        props.put("mail.smtp.host","smtp.gmail.com");
-        props.put("mail.smtp.port","587");
 
-        Session session= Session.getInstance(props, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return  new PasswordAuthentication(Username,pwd);
-            }
-        });
+
+        String host="mail.javatpoint.com";
+        final String user="segfaultunive@gmail.com";//change accordingly
+        final String password="Unive2022";//change accordingly
+
+        String to="umbertosoffia00@gmail.com";//change accordingly
+
+        //Get the session object
+        Properties props = new Properties();
+        props.put("mail.smtp.host",host);
+        props.put("mail.smtp.auth", "true");
+
+        Session session = Session.getDefaultInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(user,password);
+                    }
+                });
+
+        //Compose the message
         try {
-            Message message = new MimeMessage(session);
-            message.setFrom( new InternetAddress(Username));
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(user));
+            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
+            message.setSubject("javatpoint");
+            message.setText("This is simple program of sending email using JavaMail API");
 
-            //message.setRecipient(Message.RecipientType.TO,InternetAddress.parse(email) );
-            message.setRecipient(Message.RecipientType.TO,new InternetAddress(email));
-            message.setSubject(" Possibile positivita covid19");
-            //message.setText(msg);
-            send(message);
-            Toast.makeText(getApplicationContext(),"mail inviata",Toast.LENGTH_LONG).show();
+            //send the message
+            Transport.send(message);
 
-        } catch (MessagingException e) {
-            throw new RuntimeException();
-        }*/
+            System.out.println("message sent successfully...");
+
+        } catch (MessagingException e) {e.printStackTrace();}
+        Toast.makeText(getApplicationContext(),"possibil positività comunicata",Toast.LENGTH_LONG).show();
+
+
 
     }
     private void fillCalendar(){
@@ -141,9 +157,9 @@ public class home_user extends AppCompatActivity {
             //buttare dentro infected quelli possibili integer serve per i toto giorni di distanza
             infected.add(new Pair<User, Integer>(new User("id","nome","umbertosoffia00@gmail.com", null,"normal"),5));
 
-            for (Pair<User,Integer> i:infected) {
-                mail(i.first.getMail(),"hai avuto un contatto con una persona positiva al COVID19 esattamente "+i.second+" giorni");
-            }
+            //for (Pair<User,Integer> i:infected) {
+                mail("i.first.getMail()","hai avuto un contatto con una persona positiva al COVID19 esattamente "+" giorni");
+
             StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         });
