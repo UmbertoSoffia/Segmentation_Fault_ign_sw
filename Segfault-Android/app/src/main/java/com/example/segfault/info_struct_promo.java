@@ -53,62 +53,85 @@ public class info_struct_promo extends AppCompatActivity {
         confirm.setOnClickListener(v -> {
 
             if(name_struct.getText().toString().equals("") || addre_struct.getText().toString().equals("") || stop.getText().toString().equals("") || opening.getText().toString().equals("")|| numberview.getText().toString().equals("") || work_day.getText().toString().equals("")){
-                AlertDialog.Builder builder=new AlertDialog.Builder(this);
+                AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
                 builder.setMessage("Riempire tutti i valori!").setPositiveButton("ok", null);
                 AlertDialog alert=builder.create();
                 alert.show();
             }else {
-                //modifica struttura
-                try{
-                    JSONObject struct = new JSONObject();
-                    struct.put("id", MainActivity.struct.getId());
-                    struct.put("addr_id", MainActivity.struct.getAddress_id());
-                    struct.put("description", description.getText().toString());
-                    struct.put("start_time", opening.getText().toString());
-                    struct.put("stop_time", stop.getText().toString());
-                    struct.put("working_days", work_day.getText().toString());
-                    struct.put("street", addre_struct.getText().toString());
-                    struct.put("number", Integer.parseInt(numberview.getText().toString()));
-
-                    FSRequest req = new FSRequest("POST", MainActivity.utente_log.getToken(), "api/structure/modify", struct.toString(), "");
-                    String res = req.execute().get();
-
-                    if(res.equals("OK")){
-                        // struttura inserita correttamente: refresh della pagina
-                        AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
-                        builder.setMessage("Struttura modificata con successo").setPositiveButton("Ok", (dialog, which) -> {
-                            MainActivity.utente_supp=MainActivity.utente_log;
-                            finish();
-                        });
-                        AlertDialog alert=builder.create();
-                        alert.show();
-
-                    }else{
-                      //errore nella richiesta
-                            AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
-                            builder.setMessage("Errore durante la modifica!").setPositiveButton("Ok", (dialog, which) -> {});
-                            AlertDialog alert=builder.create();
-                            alert.show();
-
-                    }
-
-                }catch(Exception e){
-                    Log.println(Log.ERROR, "Errore connessione", e.getMessage());
-
+                if(new_structure.convert(numberview.getText().toString())==null || new_structure.convert(numberview.getText().toString())<0){
                     AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
-                    builder.setMessage("Errore di connessione").setPositiveButton("Ok", (dialog,which) -> {});
+                    builder.setMessage("numero persone negativo!").setPositiveButton("ok", null);
                     AlertDialog alert=builder.create();
                     alert.show();
                 }
-            }
+                else {
 
+
+                    if (!new_structure.control(opening.getText().toString(), stop.getText().toString())) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(info_struct_promo.this);
+                        builder.setMessage("orario non corretto \nutilizzare hh:mm oppure controllare che il periodo sia corretto").setPositiveButton("ok", null);
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
+                    else {
+                            //inserimento nuova struttura
+                            try {
+                        JSONObject struct = new JSONObject();
+                        struct.put("id", MainActivity.struct.getId());
+                        struct.put("addr_id", MainActivity.struct.getAddress_id());
+                        struct.put("description", description.getText().toString());
+                        struct.put("start_time", opening.getText().toString());
+                        struct.put("stop_time", stop.getText().toString());
+                        struct.put("working_days", work_day.getText().toString());
+                        struct.put("street", addre_struct.getText().toString());
+                        struct.put("number", Integer.parseInt(numberview.getText().toString()));
+
+                        FSRequest req = new FSRequest("POST", MainActivity.utente_log.getToken(), "api/structure/modify", struct.toString(), "");
+                        String res = req.execute().get();
+
+                        if(res.equals("OK")){
+                            // struttura inserita correttamente: refresh della pagina
+                            AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
+                            builder.setMessage("Struttura modificata con successo").setPositiveButton("Ok", (dialog, which) -> {
+                                MainActivity.utente_supp=MainActivity.utente_log;
+                                Intent i = new Intent(info_struct_promo.this, info_struct_promo.class);
+                                startActivity(i);
+                                finish();
+                            });
+                            AlertDialog alert=builder.create();
+                            alert.show();
+
+                        }else{
+                          //errore nella richiesta
+                                AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
+                                builder.setMessage("Errore durante la modifica!").setPositiveButton("Ok", (dialog, which) -> {});
+                                AlertDialog alert=builder.create();
+                                alert.show();
+
+                        }
+
+                        }
+                            catch(Exception e){
+                            Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+                            AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
+                            builder.setMessage("Errore di connessione").setPositiveButton("Ok", (dialog,which) -> {});
+                            AlertDialog alert=builder.create();
+                            alert.show();
+                            }
+                    }
+                }
+            }
 
         });
 
         cancel.setOnClickListener(v -> {
             AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
             builder.setMessage("Annullare la modifica?").setPositiveButton("Si", (dialog,which) -> {
-                finish();}).setNegativeButton("No", (dialog,which) ->{});
+                Intent i = new Intent(info_struct_promo.this, info_struct_promo.class);
+                startActivity(i);
+                finish();
+            }).setNegativeButton("No", (dialog,which) ->{});
             AlertDialog alert=builder.create();
             alert.show();
         });
@@ -124,6 +147,8 @@ public class info_struct_promo extends AppCompatActivity {
                         AlertDialog.Builder build=new AlertDialog.Builder(info_struct_promo.this);
                         build.setMessage("Struttura eliminata con successo").setPositiveButton("Ok", (dial, w) -> {
                             MainActivity.utente_supp=MainActivity.utente_log;
+                            Intent i = new Intent(info_struct_promo.this, info_struct_promo.class);
+                            startActivity(i);
                             finish();
                         });
                         AlertDialog alert=build.create();
