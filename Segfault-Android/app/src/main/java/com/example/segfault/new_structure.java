@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -48,6 +49,25 @@ public class new_structure extends AppCompatActivity {
 
         return true;
     }
+    public String work_days(){
+        String ret="";
+        CheckBox lun= findViewById(R.id.check_lun);
+        if (lun.isChecked()) ret+="lun-";
+        CheckBox mar= findViewById(R.id.check_mar);
+        if (mar.isChecked()) ret+="mar-";
+        CheckBox me= findViewById(R.id.check_me);
+        if (me.isChecked()) ret+="mer-";
+        CheckBox gio= findViewById(R.id.check_gi);
+        if (gio.isChecked()) ret+="gio-";
+        CheckBox ve= findViewById(R.id.check_ve);
+        if (ve.isChecked()) ret+="ven-";
+        CheckBox sa= findViewById(R.id.check_sa);
+        if (sa.isChecked()) ret+="sa-";
+        CheckBox dom= findViewById(R.id.check_dom);
+        if (dom.isChecked()) ret+="dom";
+
+        return ret;
+    }
 
 
 
@@ -63,7 +83,7 @@ public class new_structure extends AppCompatActivity {
         TextView addre_struct=findViewById(R.id.Addre_new_struct);
         TextView opening= findViewById(R.id.start_time_new_struct);
         TextView stop= findViewById(R.id.stop_time_new_struct);
-        TextView work_day= findViewById(R.id.work_days_new_struct);
+
         TextView description= findViewById(R.id.desc_new_struct);
         TextView number= findViewById(R.id.number_struct);
 
@@ -71,7 +91,7 @@ public class new_structure extends AppCompatActivity {
         confirm.setOnClickListener(v -> {
 
 
-            if(name_struct.getText().toString().equals("") || addre_struct.getText().toString().equals("") || stop.getText().toString().equals("") || opening.getText().toString().equals("")|| number.getText().toString().equals("") || work_day.getText().toString().equals("")){
+            if(name_struct.getText().toString().equals("") || addre_struct.getText().toString().equals("") || stop.getText().toString().equals("") || opening.getText().toString().equals("")|| number.getText().toString().equals("")){
                 AlertDialog.Builder builder=new AlertDialog.Builder(new_structure.this);
                 builder.setMessage("Riempire tutti i valori!").setPositiveButton("ok", null);
                 AlertDialog alert=builder.create();
@@ -93,6 +113,7 @@ public class new_structure extends AppCompatActivity {
                         alert.show();
                     } else {
 
+
                         //inserimento nuova struttura
                         try {
                             JSONObject struct = new JSONObject();
@@ -100,7 +121,7 @@ public class new_structure extends AppCompatActivity {
                             struct.put("description", description.getText().toString());
                             struct.put("start_time", opening.getText().toString());
                             struct.put("stop_time", stop.getText().toString());
-                            struct.put("working_days", work_day.getText().toString());
+                            struct.put("working_days", work_days());
                             struct.put("addr", addre_struct.getText().toString());
                             struct.put("number", Integer.parseInt(number.getText().toString()));
                             struct.put("token", MainActivity.utente_log.getToken());

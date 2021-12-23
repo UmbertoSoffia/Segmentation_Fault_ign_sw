@@ -100,4 +100,12 @@
     <string name="scrivi_una_descrizione_accattivante_">Scrivi una descrizione accattivante</string>
     <string name="numero_di_posti">Numero di posti</string>
     <string name="alcune_info_sul_promotore">alcune info sul promotore</string>
+    <string name="orario_lavorativo">Orario lavorativo:</string>
+    <string name="lun">Lun</string>
+    <string name="mar">Mar</string>
+    <string name="mer">Mer</string>
+    <string name="gio">Gio</string>
+    <string name="ven">Ven</string>
+    <string name="dom">Dom</string>
+    <string name="sab">Sab</string>
 </resources>

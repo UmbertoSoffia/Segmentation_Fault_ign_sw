@@ -147,7 +147,7 @@ public class info_struct_promo extends AppCompatActivity {
                         AlertDialog.Builder build=new AlertDialog.Builder(info_struct_promo.this);
                         build.setMessage("Struttura eliminata con successo").setPositiveButton("Ok", (dial, w) -> {
                             MainActivity.utente_supp=MainActivity.utente_log;
-                            Intent i = new Intent(info_struct_promo.this, info_struct_promo.class);
+                            Intent i = new Intent(info_struct_promo.this, All_structure_prom.class);
                             startActivity(i);
                             finish();
                         });
