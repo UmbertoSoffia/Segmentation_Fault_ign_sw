@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,41 @@ import org.json.JSONObject;
 import java.util.Objects;
 
 public class info_struct_promo extends AppCompatActivity {
+    private void set_Wd(String[] day){
+        CheckBox lun= findViewById(R.id.check_lun_info);
+        lun.setChecked(!day[0].equals(" "));
+        CheckBox mar= findViewById(R.id.check_mar_info);
+        mar.setChecked(!day[1].equals(" "));
+        CheckBox me= findViewById(R.id.check_me_info);
+        me.setChecked(!day[2].equals(" "));
+        CheckBox gio= findViewById(R.id.check_gi_info);
+        gio.setChecked(!day[3].equals(" "));
+        CheckBox ve= findViewById(R.id.check_ve_info);
+        ve.setChecked(!day[4].equals(" "));
+        CheckBox sa= findViewById(R.id.check_sa_info);
+        sa.setChecked(!day[5].equals(" "));
+        CheckBox dom= findViewById(R.id.check_dom_info);
+        dom.setChecked(!day[6].equals(" "));
+    }
+    private String work_days(){
+        String ret="";
+        CheckBox lun= findViewById(R.id.check_lun_info);
+        if (lun.isChecked()) ret+="lun-";else ret+=" -";
+        CheckBox mar= findViewById(R.id.check_mar_info);
+        if (mar.isChecked()) ret+="mar-";else ret+=" -";
+        CheckBox me= findViewById(R.id.check_me_info);
+        if (me.isChecked()) ret+="mer-";else ret+=" -";
+        CheckBox gio= findViewById(R.id.check_gi_info);
+        if (gio.isChecked()) ret+="gio-";else ret+=" -";
+        CheckBox ve= findViewById(R.id.check_ve_info);
+        if (ve.isChecked()) ret+="ven-";else ret+=" -";
+        CheckBox sa= findViewById(R.id.check_sa_info);
+        if (sa.isChecked()) ret+="sa-";else ret+=" -";
+        CheckBox dom= findViewById(R.id.check_dom_info);
+        if (dom.isChecked()) ret+="dom";else ret+=" ";
+
+        return ret;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,7 +60,7 @@ public class info_struct_promo extends AppCompatActivity {
         //info struttura
         String name=MainActivity.struct.getName();
         String desc=MainActivity.struct.getDesc();
-        String working_days=MainActivity.struct.getWorking_days();
+
         String address=MainActivity.struct.getAddress();
         String number=((Integer)MainActivity.struct.getNumber()).toString();
         String closing_time=MainActivity.struct.getStop_time();
@@ -42,8 +78,7 @@ public class info_struct_promo extends AppCompatActivity {
         opening.setText(opening_time);
         TextView stop= findViewById(R.id.closing_time_info_struct_promo);
         stop.setText(closing_time);
-         TextView work_day= findViewById(R.id.working_days_promo);
-         work_day.setText(working_days);
+        set_Wd( MainActivity.struct.getWorking_days());
         TextView description= findViewById(R.id.desc_info_struct_promo);
         description.setText(desc);
         TextView numberview= findViewById(R.id.number_info_struct_promo);
@@ -52,7 +87,7 @@ public class info_struct_promo extends AppCompatActivity {
 
         confirm.setOnClickListener(v -> {
 
-            if(name_struct.getText().toString().equals("") || addre_struct.getText().toString().equals("") || stop.getText().toString().equals("") || opening.getText().toString().equals("")|| numberview.getText().toString().equals("") || work_day.getText().toString().equals("")){
+            if(name_struct.getText().toString().equals("") || addre_struct.getText().toString().equals("") || stop.getText().toString().equals("") || opening.getText().toString().equals("")|| numberview.getText().toString().equals("")){
                 AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
                 builder.setMessage("Riempire tutti i valori!").setPositiveButton("ok", null);
                 AlertDialog alert=builder.create();
@@ -82,7 +117,7 @@ public class info_struct_promo extends AppCompatActivity {
                         struct.put("description", description.getText().toString());
                         struct.put("start_time", opening.getText().toString());
                         struct.put("stop_time", stop.getText().toString());
-                        struct.put("working_days", work_day.getText().toString());
+                        struct.put("working_days", work_days());
                         struct.put("street", addre_struct.getText().toString());
                         struct.put("number", Integer.parseInt(numberview.getText().toString()));
 
@@ -94,7 +129,7 @@ public class info_struct_promo extends AppCompatActivity {
                             AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
                             builder.setMessage("Struttura modificata con successo").setPositiveButton("Ok", (dialog, which) -> {
                                 MainActivity.utente_supp=MainActivity.utente_log;
-                                Intent i = new Intent(info_struct_promo.this, info_struct_promo.class);
+                                Intent i = new Intent(info_struct_promo.this, all_match_prom.class);
                                 startActivity(i);
                                 finish();
                             });

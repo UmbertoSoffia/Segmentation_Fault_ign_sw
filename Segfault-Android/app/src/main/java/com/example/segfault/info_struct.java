@@ -1,30 +1,35 @@
 package com.example.segfault;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONObject;
-
 import java.util.Objects;
 
 public class info_struct extends AppCompatActivity {
+    private String get_wd(String[] day){
+        StringBuilder ret= new StringBuilder();
+        for (int i = 0; i <7; i++) {
+            if(!day[i].equals(" ")) ret.append(day[i]).append(" ");
+
+        }
+        return ret.toString();
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Info struttura: "+MainActivity.struct.getName());
         setContentView(R.layout.info_struct_user);
-        ;
+
 
         //info della struttura
         String name=MainActivity.struct.getName();
         String desc=MainActivity.struct.getDesc();
-        String working_days=MainActivity.struct.getWorking_days();
+        String working_days=get_wd(MainActivity.struct.getWorking_days());
         String address=MainActivity.struct.getAddress();
         String number=((Integer)MainActivity.struct.getNumber()).toString();
         String closing_time=MainActivity.struct.getStop_time();

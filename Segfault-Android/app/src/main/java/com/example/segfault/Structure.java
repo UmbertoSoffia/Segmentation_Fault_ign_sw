@@ -34,8 +34,11 @@ public class Structure {
         return stop_time;
     }
 
-    public String getWorking_days() {
-        return working_days;
+    public String[] getWorking_days() {
+        return   working_days.split("-",working_days.length());
+
+
+
     }
 
     /**

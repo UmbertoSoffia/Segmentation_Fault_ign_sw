@@ -52,19 +52,19 @@ public class new_structure extends AppCompatActivity {
     public String work_days(){
         String ret="";
         CheckBox lun= findViewById(R.id.check_lun);
-        if (lun.isChecked()) ret+="lun-";
+        if (lun.isChecked()) ret+="lun-";else ret+=" -";
         CheckBox mar= findViewById(R.id.check_mar);
-        if (mar.isChecked()) ret+="mar-";
+        if (mar.isChecked()) ret+="mar-";else ret+=" -";
         CheckBox me= findViewById(R.id.check_me);
-        if (me.isChecked()) ret+="mer-";
+        if (me.isChecked()) ret+="mer-";else ret+=" -";
         CheckBox gio= findViewById(R.id.check_gi);
-        if (gio.isChecked()) ret+="gio-";
+        if (gio.isChecked()) ret+="gio-";else ret+=" -";
         CheckBox ve= findViewById(R.id.check_ve);
-        if (ve.isChecked()) ret+="ven-";
+        if (ve.isChecked()) ret+="ven-";else ret+=" -";
         CheckBox sa= findViewById(R.id.check_sa);
-        if (sa.isChecked()) ret+="sa-";
+        if (sa.isChecked()) ret+="sa-";else ret+=" -";
         CheckBox dom= findViewById(R.id.check_dom);
-        if (dom.isChecked()) ret+="dom";
+        if (dom.isChecked()) ret+="dom";else ret+=" ";
 
         return ret;
     }

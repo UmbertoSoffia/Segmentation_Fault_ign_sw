@@ -5,9 +5,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout_editor_absoluteX="15dp"
-    tools:layout_editor_absoluteY="5dp">
+    tools:layout_editor_absoluteX="8dp"
+    tools:layout_editor_absoluteY="-36dp">
 
+
+    <CheckBox
+        android:id="@+id/check_dom_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="@string/dom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.885"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.319" />
+
+    <CheckBox
+        android:id="@+id/check_gi_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="@string/gio"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.248" />
+
+    <CheckBox
+        android:id="@+id/check_me_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="@string/mer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.799"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.248" />
+
+    <CheckBox
+        android:id="@+id/check_lun_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="164dp"
+        android:minHeight="48dp"
+        android:text="@string/lun"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.011" />
+
+    <CheckBox
+        android:id="@+id/check_ve_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="@string/ven"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.319" />
+
+    <CheckBox
+        android:id="@+id/check_mar_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="@string/mar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.638"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.248" />
+
+    <CheckBox
+        android:id="@+id/check_sa_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="@string/sab"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.718"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.319" />
 
     <Button
         android:id="@+id/cancel_create_info_struct_promo"
@@ -67,21 +159,6 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/name_info_struct_promo"
-        android:layout_width="199dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="40dp"
-        android:fontFamily="sans-serif-black"
-
-        android:textAlignment="center"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
-
-    <TextView
         android:id="@+id/text_view"
         android:layout_width="76dp"
         android:layout_height="27dp"
@@ -98,48 +175,49 @@
         app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.039" />
+        app:layout_constraintVertical_bias="0.011" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/working_days_promo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/street_addr_info_struct_promo"
-        app:layout_constraintHorizontal_bias="0.717"
-        app:layout_constraintStart_toStartOf="@+id/street_addr_info_struct_promo"
-        app:layout_constraintTop_toBottomOf="@+id/name_info_struct_promo"
-        app:layout_constraintVertical_bias="0.217"
-        tools:ignore="SpeakableTextPresentCheck" />
+    <TextView
+        android:id="@+id/name_info_struct_promo"
+        android:layout_width="199dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="sans-serif-black"
+
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/street_addr_info_struct_promo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
         android:ems="10"
-        android:minHeight="48dp"
 
-        app:layout_constraintBottom_toTopOf="@+id/working_days_promo"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.834"
+        app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.84" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/number_info_struct_promo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:minHeight="48dp"
         android:inputType="number"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/working_days_promo"
-        app:layout_constraintStart_toStartOf="@+id/working_days_promo"
-        app:layout_constraintTop_toBottomOf="@+id/working_days_promo"
-        app:layout_constraintVertical_bias="0.055" />
+        app:layout_constraintEnd_toEndOf="@+id/street_addr_info_struct_promo"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/street_addr_info_struct_promo"
+        app:layout_constraintTop_toBottomOf="@+id/street_addr_info_struct_promo"
+        app:layout_constraintVertical_bias="0.246" />
 
     <TextView
         android:id="@+id/textView3"
@@ -183,10 +261,10 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/street_addr_info_struct_promo"
-        app:layout_constraintHorizontal_bias="0.278"
+        app:layout_constraintHorizontal_bias="0.405"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_info_struct_promo"
-        app:layout_constraintVertical_bias="0.668" />
+        app:layout_constraintVertical_bias="0.642" />
 
     <TextView
         android:id="@+id/textView4"
@@ -203,6 +281,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         app:layout_constraintVertical_bias="0.097" />
 
+
     <TextView
         android:id="@+id/textView5"
         android:layout_width="109dp"
@@ -216,7 +295,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintVertical_bias="0.134" />
 
     <TextView
         android:id="@+id/textView6"
@@ -228,11 +307,10 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.167" />
-
+        app:layout_constraintVertical_bias="0.191" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/opening_time__info_struct_promo"
@@ -243,10 +321,10 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/closing_time_info_struct_promo"
-        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/closing_time_info_struct_promo"
         app:layout_constraintTop_toBottomOf="@+id/number_info_struct_promo"
-        app:layout_constraintVertical_bias="0.093" />
+        app:layout_constraintVertical_bias="0.082" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/closing_time_info_struct_promo"
@@ -256,10 +334,10 @@
         android:inputType="time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.801"
+        app:layout_constraintHorizontal_bias="0.845"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/opening_time__info_struct_promo"
-        app:layout_constraintVertical_bias="0.115" />
+        app:layout_constraintVertical_bias="0.124" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/desc_info_struct_promo"
