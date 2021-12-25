@@ -284,6 +284,8 @@ public class create_activities extends AppCompatActivity {
                 GregorianCalendar start = new GregorianCalendar();
                 GregorianCalendar stop = new GregorianCalendar(start.get(Calendar.YEAR),start.get(Calendar.MONTH) + 1, start.get(Calendar.DAY_OF_MONTH));
 
+                //ce proclema con settaggio primo giorno settimana e sfasa tutto sotto dei giorni settimana
+                start.setFirstDayOfWeek(Calendar.MONDAY);
                 for (Match m:incontri_supp) {
                     if(!(m.date.after(start) && m.date.before(stop)) )
                         incontri_supp.remove(m);
@@ -292,9 +294,12 @@ public class create_activities extends AppCompatActivity {
                         if(!(m.struttura.equals(Selected_struct.getId())) )
                             incontri_supp.remove(m);
                 }
+                String[] wd=Selected_struct.getWorking_days();
                 while(start.get(Calendar.DAY_OF_MONTH) != stop.get(Calendar.DAY_OF_MONTH) || start.get(Calendar.MONTH) != stop.get(Calendar.MONTH) || start.get(Calendar.YEAR) != stop.get(Calendar.YEAR)){
+                    int day=start.get(Calendar.DAY_OF_WEEK)-1;
 
-                    date.add(start.get(Calendar.DAY_OF_MONTH) + "-" + (start.get(Calendar.MONTH)+1) + "-" + start.get(Calendar.YEAR));
+                    if(!wd[day].equals(" "))
+                        date.add(start.get(Calendar.DAY_OF_MONTH) + "-" + (start.get(Calendar.MONTH)+1) + "-" + start.get(Calendar.YEAR));
                     start.add(Calendar.DAY_OF_MONTH, 1);
 
                 }
