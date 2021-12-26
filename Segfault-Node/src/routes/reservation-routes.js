@@ -138,7 +138,7 @@ router.post('/notify', async (req, res, next) => {
 					  from: 'segfaultunive@gmail.com',
 					  to: user.email,
 					  subject: 'Notifica di positività',
-					  html: 'La informiamo che ha partecipato a un match di cui uno dei partecipanti ha notificato la propria positività al COVID-19.<br>Si raccomanda di fare il tampone quanto prima.'
+					  html: 'La informiamo che negli ultimi 10 giorni ha partecipato a un match di cui uno dei partecipanti ha notificato la propria positività al COVID-19.<br>Si raccomanda di fare il tampone quanto prima.'
 					}
 					transporter.sendMail(mailOptions, function(err, info){
 						if(err){return res.status(500).send('Email not sent')}
