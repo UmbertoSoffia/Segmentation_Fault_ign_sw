@@ -86,14 +86,18 @@ router.get('/:id', (req, res, next) => {
 })
 
 router.delete('/:id', async (req, res, next) => {
-  if (!req.user_id) {
+  const { user_id, email } = jwt.verify(req.query.token, process.env.SERVER_SECRET)
+  if (!user_id) {
     return res.status(401).send('Not authenticated')
   }
   const match_id = req.params.id
  
   try {
     const match = await Match.findOneAndDelete({ match_id })
-    res.status(200).send('Match was deleted')
+    const response = {
+      ok: true
+    }
+    res.json(response)
   } catch (error) {
     next(error)
   }
