@@ -8,9 +8,9 @@ const objectid = require('objectid')
 
 router.post('/', async (req, res, next) => {
   const {
-    name, description, start_time, stop_time, structure_id, date, number, token, age_range, sport, creator_id, creator_type
+    name, description, start_time, stop_time, structure_id, date, number, age_range, creator_id, creator_type
   } = req.body
-  if (!(name && start_time && stop_time && token && structure_id && date && number && age_range && sport && creator_id && creator_type)) {
+  if (!(name && start_time && stop_time && structure_id && date && number && age_range && creator_id && creator_type)) {
     return res.status(400).send('Bad Request')
   }
   try {
@@ -28,8 +28,7 @@ router.post('/', async (req, res, next) => {
 	  creator_type,
 	  date,
 	  number,
-      age_range,
-	  sport
+      age_range
     }
     await Match.create(newMatch)
     const response = {

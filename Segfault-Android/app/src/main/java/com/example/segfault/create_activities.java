@@ -33,6 +33,7 @@ public class create_activities extends AppCompatActivity {
     Spinner spin_hour;
     Spinner spin_struct;
     Spinner spin_min_age, spin_max_age;
+    TextView match_name;
     public static int convert(String str)
     {
         int val = 0;
@@ -82,6 +83,7 @@ public class create_activities extends AppCompatActivity {
         spin_hour = findViewById(R.id.fascia_ora_create);
         spin_min_age = findViewById(R.id.spinner_min_age_create);
         spin_max_age = findViewById(R.id.spinner_max_age_create);
+        match_name = findViewById(R.id.sport_create_act_promo_value);
 
 
         reject = findViewById(R.id.cancel_create);
@@ -450,7 +452,55 @@ public class create_activities extends AppCompatActivity {
                 AlertDialog.Builder builder=new AlertDialog.Builder(create_activities.this);
                 builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", (dialog, which) ->{}). //saveInCAlendar()).
                         setNegativeButton("Salva senza inserire nel calendario", (dialog, which) -> {
-                    //salvare match nel db
+                    //inserimento match
+                    try {
+                        JSONObject match = new JSONObject();
+
+                        match.put("name", match_name.getText().toString());
+                        //match.put("description", description.getText().toString()); aggiungete la descrizione nel layout
+                        //match.put("start_time", spin_hour.getSelectedItem().toString()); bisogna dividere start e stop time
+                        //match.put("stop_time", spin_hour.getSelectedItem().toString()); bisogna dividere start e stop time
+                        //match.put("structure_id", spin_struct.getSelectedItem().toString()); mi serve il structure_id non il nome
+                        match.put("date", spin_date.getSelectedItem().toString());
+                        match.put("age_range", spin_min_age.getSelectedItem().toString() + "-" + spin_max_age.getSelectedItem().toString());
+                        match.put("number", spin_n_people.getSelectedItem().toString());
+                        match.put("creator_id", MainActivity.utente_log.getId());
+                        match.put("creator_type", (MainActivity.utente_log.isPromoter() ? "promoter" : "user" ));
+
+                        FSRequest req = new FSRequest("POST", MainActivity.utente_log.getToken(), "api/match/", match.toString(), "");
+                        String res = req.execute().get();
+
+                        if (res.equals("OK")) {
+                            // match inserita correttamente: refresh della pagina
+                            AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
+                            build.setMessage("Match inserito con successo").setPositiveButton("Ok", (dial, whi) -> {
+                                finish();
+                            });
+                            AlertDialog alert = build.create();
+                            alert.show();
+
+                        } else {
+                            // richiesta fallita
+                            if (req.result != null) {
+                                int err = req.result.getInt("error_code");
+                                //errore nella richiesta
+                                AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
+                                build.setMessage("Errore durante l'inserimento!").setPositiveButton("Ok", (dial, whi) -> {
+                                });
+                                AlertDialog alert = build.create();
+                                alert.show();
+                            }
+                        }
+
+                    } catch (Exception e) {
+                        Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+                        AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
+                        build.setMessage("Errore di connessione").setPositiveButton("Ok", (dial, whi) -> {
+                        });
+                        AlertDialog alert = build.create();
+                        alert.show();
+                    }
 
                 });
                 AlertDialog alert=builder.create();
