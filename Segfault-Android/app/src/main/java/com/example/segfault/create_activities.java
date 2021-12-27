@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -30,10 +31,12 @@ public class create_activities extends AppCompatActivity {
     Button reject;
     Spinner spin_n_people;
     Spinner spin_date;
-    Spinner spin_hour;
+    Spinner spin_hour_start;
+    Spinner spin_hour_stop;
     Spinner spin_struct;
     Spinner spin_min_age, spin_max_age;
     TextView match_name;
+    static Structure structure;
     public static int convert(String str)
     {
         int val = 0;
@@ -80,7 +83,8 @@ public class create_activities extends AppCompatActivity {
         spin_n_people = findViewById(R.id.spinner_players_create);
         spin_date = findViewById(R.id.spinner_date_create);
         spin_struct = findViewById(R.id.spinner_struct_create);
-        spin_hour = findViewById(R.id.fascia_ora_create);
+        spin_hour_start = findViewById(R.id.start_time_create_match);
+        spin_hour_stop = findViewById(R.id.stop_time_create_match);
         spin_min_age = findViewById(R.id.spinner_min_age_create);
         spin_max_age = findViewById(R.id.spinner_max_age_create);
         match_name = findViewById(R.id.sport_create_act_promo_value);
@@ -88,15 +92,17 @@ public class create_activities extends AppCompatActivity {
 
         reject = findViewById(R.id.cancel_create);
         confirm = findViewById(R.id.confirm_create);
-        ArrayList<String> date, n_pers, age_min, age_max,  hour;
+        ArrayList<String> date, n_pers, age_min,hour_stop, age_max,  hour_start;
         date = new ArrayList<>();
         n_pers = new ArrayList<>();
         ArrayList<Structure>struct = new ArrayList<>();
-        hour = new ArrayList<>();
+        hour_start = new ArrayList<>();
+        hour_stop = new ArrayList<>();
         age_max = new ArrayList<>();
         age_min = new ArrayList<>();
         ArrayList<Match> incontri= new ArrayList<>();
         ArrayList<Match> incontri_supp= new ArrayList<>();
+
 
 
 
@@ -110,10 +116,6 @@ public class create_activities extends AppCompatActivity {
             5-npersone
 
          */
-
-        TextView textView = findViewById(R.id.sport_create_act_promo_value);
-        //nome attivita
-        String Activity = textView.getText().toString();
 
 
         Context c = this;
@@ -276,12 +278,16 @@ public class create_activities extends AppCompatActivity {
                 incontri_supp.addAll(incontri);
                 date.clear();
                 n_pers.clear();
-                hour.clear();
+                hour_stop.clear();
+                hour_start.clear();
                 age_max.clear();
                 age_min.clear();
 
-                //selected è il valore selezionato
-                final Structure Selected_struct = struct.get(position);
+                 Structure selectedstruct=struct.get(position);
+                 structure=selectedstruct;
+
+
+
 
                 GregorianCalendar start = new GregorianCalendar();
                 GregorianCalendar stop = new GregorianCalendar(start.get(Calendar.YEAR),start.get(Calendar.MONTH) + 1, start.get(Calendar.DAY_OF_MONTH));
@@ -293,10 +299,10 @@ public class create_activities extends AppCompatActivity {
                         incontri_supp.remove(m);
                 }
                 for (Match m:incontri_supp) {
-                        if(!(m.struttura.equals(Selected_struct.getId())) )
+                        if(!(m.struttura.equals(selectedstruct.getId())) )
                             incontri_supp.remove(m);
                 }
-                String[] wd=Selected_struct.getWorking_days();
+                String[] wd=selectedstruct.getWorking_days();
                 while(start.get(Calendar.DAY_OF_MONTH) != stop.get(Calendar.DAY_OF_MONTH) || start.get(Calendar.MONTH) != stop.get(Calendar.MONTH) || start.get(Calendar.YEAR) != stop.get(Calendar.YEAR)){
                     int day=start.get(Calendar.DAY_OF_WEEK)-1;
 
@@ -311,7 +317,8 @@ public class create_activities extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         n_pers.clear();
-                        hour.clear();
+                        hour_start.clear();
+                        hour_stop.clear();
                         age_max.clear();
                         age_min.clear();
                         String[] supp_date = date.get(position).split("-");
@@ -324,95 +331,95 @@ public class create_activities extends AppCompatActivity {
                             }
 
                         }
-                        int ora_apertura= convert(Selected_struct.getStart_time().substring(0,2));
-                        int ora_chiusura=convert(Selected_struct.getStop_time().substring(0,2));
-                        if (Selected_struct.getStart_time().length() == 5) {
-
-
+                        int ora_apertura= convert(selectedstruct.getStart_time().substring(0,2));
+                        int ora_chiusura=convert(selectedstruct.getStop_time().substring(0,2));
                             for (int i = ora_apertura; i<ora_chiusura; i++) {
-                                String ora;
-                                ora=i+":"+Selected_struct.getStart_time().substring(3)+" - "+(i+1)+":"+Selected_struct.getStart_time().substring(3);
-                                if (i+1>=ora_chiusura && Selected_struct.getStart_time().substring(3).equals("")){
-                                    ora=i+":"+Selected_struct.getStart_time().substring(3)+" - "+(i+1)+":"+Selected_struct.getStop_time().substring(3);
-                                }
-                                boolean r=false;
-                                for (Match m:incontri_supp) {
-                                    if ((m.start_time + "-" + m.stop_time).equals(ora)) {
-                                        r = true;
-                                        break;
-                                    }
-                                }
-                                if (!r)
-                                    hour.add(ora);
-
-                            }
-                        }
-                        else{
-                            for (int i = ora_apertura; i<ora_chiusura; i++) {
-                                String ora;
-                                ora=i+":00 - "+(i+1)+":00";
-                                if (i+1>=ora_chiusura && Selected_struct.getStart_time().substring(3).equals("")){
-                                    ora=i+":00 -"+(i+1)+":00";
-                                }
-                                boolean r=false;
-                                for (Match m:incontri_supp) {
-                                    if ((m.start_time + "-" + m.stop_time).equals(ora)) {
-                                        r = true;
-                                        break;
-                                    }
-                                }
-                                if (!r)
-                                    hour.add(ora);
+                                String s_ora;
+                                s_ora=i+":"+selectedstruct.getStart_time().substring(3);
+                                hour_start.add(s_ora);
 
                             }
 
-                        }
 
 
 
 
-                        spin_hour.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, hour));
-                        spin_hour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        spin_hour_start.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, hour_start));
+                        spin_hour_start.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                 n_pers.clear();
                                 age_max.clear();
                                 age_min.clear();
-                                String Selected = hour.get(position);
-                                //aggiunge tutte le eta
-                                for (int i = 0; i < 100; i++) {
+                                hour_stop.clear();
 
-                                    age_min.add(((Integer) i).toString());
+                                for (int i = convert(((String) spin_hour_start.getSelectedItem()).substring(0,2))+1; i<ora_chiusura; i++) {
+                                    String ora=i+":"+selectedstruct.getStart_time().substring(3);
+                                    hour_stop.add(ora);
+
+                                }
+                                //elimino i periodi gia occupati
+                                //per ogni incontro tolgo tutte le robe che stanno in mezzo
+                                for (Match m:incontri_supp) {
+                                    int m_s=convert(m.start_time.substring(0,2));
+                                    if(m_s>= convert(((String)spin_hour_start.getSelectedItem()).substring(0,2))) {
+                                        for (int i =m_s ; i <convert(m.stop_time.substring(0,2)); i++) {
+                                            hour_stop.remove(i+":"+selectedstruct.getStart_time().substring(3));
+
+                                        }
+                                    }
                                 }
 
-                                spin_min_age.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, age_min));
-                                spin_min_age.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                    @Override
+                                spin_hour_stop.setAdapter(new ArrayAdapter<>(c, android.R.layout.simple_spinner_item, hour_stop));
+                                spin_hour_stop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
                                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                         n_pers.clear();
                                         age_max.clear();
-                                        for (int i = position; i < 100; i++) {
-                                            age_max.add(((Integer) i).toString());
-                                        }
+                                        age_min.clear();
 
-                                        spin_max_age.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, age_min));
-                                        spin_max_age.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                            @Override
-                                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                                n_pers.clear();
-                                               //aggiunge num possiblie persone  entro i limiti struttura
-                                                for (int i = 0; i < Selected_struct.getNumber()+1; i++) {
-                                                    n_pers.add(((Integer) i).toString());
+                                        //aggiunge tutte le eta
+                                        for (int i = 0; i < 100; i++) {
+
+                                            age_min.add(((Integer) i).toString());
+                                        }
+                                        spin_min_age.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, age_min));
+                                        spin_min_age.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                        @Override
+                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                            n_pers.clear();
+                                            age_max.clear();
+                                            for (int i = spin_min_age.getSelectedItemPosition(); i < 100; i++) {
+                                                age_max.add(((Integer) i).toString());
+                                            }
+
+                                            spin_max_age.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, age_max));
+                                            spin_max_age.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                                @Override
+                                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                    n_pers.clear();
+                                                   //aggiunge num possiblie persone  entro i limiti struttura
+                                                    for (int i = 0; i < selectedstruct.getNumber()+1; i++) {
+                                                        n_pers.add(((Integer) i).toString());
+                                                    }
+
+                                                    spin_n_people.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, n_pers));
                                                 }
 
-                                                spin_n_people.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, n_pers));
-                                            }
+                                                @Override
+                                                public void onNothingSelected(AdapterView<?> parent) {
 
-                                            @Override
-                                            public void onNothingSelected(AdapterView<?> parent) {
+                                                }
+                                            });
+                                        }
+                                        @Override
+                                        public void onNothingSelected(AdapterView<?> parent) {
 
-                                            }
-                                        });
+                                        }
+
+
+                                    });
+
                                     }
 
                                     @Override
@@ -420,6 +427,15 @@ public class create_activities extends AppCompatActivity {
 
                                     }
                                 });
+
+
+
+
+
+
+
+
+
                             }
 
                             @Override
@@ -442,12 +458,8 @@ public class create_activities extends AppCompatActivity {
             }
         });
         confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
-                //salvare nuovo incontro nel db
-                String id_user;
-
-
+            EditText desc=findViewById(R.id.description_new_match);
 
                 AlertDialog.Builder builder=new AlertDialog.Builder(create_activities.this);
                 builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", (dialog, which) ->{}). //saveInCAlendar()).
@@ -457,10 +469,10 @@ public class create_activities extends AppCompatActivity {
                         JSONObject match = new JSONObject();
 
                         match.put("name", match_name.getText().toString());
-                        //match.put("description", description.getText().toString()); aggiungete la descrizione nel layout
-                        //match.put("start_time", spin_hour.getSelectedItem().toString()); bisogna dividere start e stop time
-                        //match.put("stop_time", spin_hour.getSelectedItem().toString()); bisogna dividere start e stop time
-                        //match.put("structure_id", spin_struct.getSelectedItem().toString()); mi serve il structure_id non il nome
+                        match.put("description",desc.getText().toString());
+                        match.put("start_time", spin_hour_start.getSelectedItem().toString());
+                        match.put("stop_time", spin_hour_stop.getSelectedItem().toString());
+                        match.put("structure_id",structure.getId());
                         match.put("date", spin_date.getSelectedItem().toString());
                         match.put("age_range", spin_min_age.getSelectedItem().toString() + "-" + spin_max_age.getSelectedItem().toString());
                         match.put("number", spin_n_people.getSelectedItem().toString());
@@ -486,6 +498,9 @@ public class create_activities extends AppCompatActivity {
                                 //errore nella richiesta
                                 AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
                                 build.setMessage("Errore durante l'inserimento!").setPositiveButton("Ok", (dial, whi) -> {
+                                    Intent i = new Intent(create_activities.this, create_activities.class);
+                                    startActivity(i);
+                                    finish();
                                 });
                                 AlertDialog alert = build.create();
                                 alert.show();
@@ -497,6 +512,9 @@ public class create_activities extends AppCompatActivity {
 
                         AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
                         build.setMessage("Errore di connessione").setPositiveButton("Ok", (dial, whi) -> {
+                            Intent i = new Intent(create_activities.this, create_activities.class);
+                            startActivity(i);
+                            finish();
                         });
                         AlertDialog alert = build.create();
                         alert.show();
@@ -505,9 +523,7 @@ public class create_activities extends AppCompatActivity {
                 });
                 AlertDialog alert=builder.create();
                 alert.show();
-                Intent i = new Intent(create_activities.this, create_activities.class);
-                startActivity(i);
-                finish();
+
             }
         });
         reject.setOnClickListener(new View.OnClickListener() {

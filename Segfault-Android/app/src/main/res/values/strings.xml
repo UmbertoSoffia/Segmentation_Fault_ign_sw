@@ -108,4 +108,6 @@
     <string name="ven">Ven</string>
     <string name="dom">Dom</string>
     <string name="sab">Sab</string>
+    <string name="orario_inizio_fine">orario inizio-fine</string>
+    <string name="inserisci_descrizione_evento">inserisci descrizione evento</string>
 </resources>
