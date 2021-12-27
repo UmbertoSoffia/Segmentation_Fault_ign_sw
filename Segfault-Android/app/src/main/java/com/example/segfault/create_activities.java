@@ -294,18 +294,16 @@ public class create_activities extends AppCompatActivity {
 
                 //ce proclema con settaggio primo giorno settimana e sfasa tutto sotto dei giorni settimana
                 start.setFirstDayOfWeek(Calendar.MONDAY);
-                for (Match m:incontri_supp) {
-                    if(!(m.date.after(start) && m.date.before(stop)) )
-                        incontri_supp.remove(m);
-                }
+
                 for (Match m:incontri_supp) {
                         if(!(m.struttura.equals(selectedstruct.getId())) )
                             incontri_supp.remove(m);
                 }
                 String[] wd=selectedstruct.getWorking_days();
                 while(start.get(Calendar.DAY_OF_MONTH) != stop.get(Calendar.DAY_OF_MONTH) || start.get(Calendar.MONTH) != stop.get(Calendar.MONTH) || start.get(Calendar.YEAR) != stop.get(Calendar.YEAR)){
+                    //prendo un giorno in meno xk wd va da 0 a 6
                     int day=start.get(Calendar.DAY_OF_WEEK)-1;
-
+                    //se uguale a " " vuol dire che giorno di riposo
                     if(!wd[day].equals(" "))
                         date.add(start.get(Calendar.DAY_OF_MONTH) + "-" + (start.get(Calendar.MONTH)+1) + "-" + start.get(Calendar.YEAR));
                     start.add(Calendar.DAY_OF_MONTH, 1);
@@ -469,7 +467,6 @@ public class create_activities extends AppCompatActivity {
                         JSONObject match = new JSONObject();
 
                         match.put("name", match_name.getText().toString());
-                        match.put("description",desc.getText().toString());
                         match.put("start_time", spin_hour_start.getSelectedItem().toString());
                         match.put("stop_time", spin_hour_stop.getSelectedItem().toString());
                         match.put("structure_id",structure.getId());
