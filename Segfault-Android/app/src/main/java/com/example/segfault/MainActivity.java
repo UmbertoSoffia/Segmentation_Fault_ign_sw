@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject response = req.result;
                     Log.println(Log.INFO, "Response", response.toString());
                     Intent i = new Intent(MainActivity.this, home_user.class);
-                    utente_log =new User(response.getString("name"),response.getString("id"),response.getString("token"),response.getString("email"),"normal");
-                    utente_supp= new User(response.getString("name"),response.getString("id"),response.getString("token"),response.getString("email"),"normal");
+                    utente_log =new User(response.getString("name"),response.getString("id"),response.getString("token"),response.getString("email"),"user");
+                    utente_supp= new User(response.getString("name"),response.getString("id"),response.getString("token"),response.getString("email"),"user");
 
                     startActivity(i);
                 } else { //richiesta fallita: controllo i promotori
@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
                     if(res1.equals("OK")) {
                         JSONObject response1 = req1.result;
                         Intent i = new Intent(MainActivity.this, home_promo.class);
-                         utente_log =new User(response1.getString("name"),response1.getString("id"),response1.getString("token"),response1.getString("email"),"promotor");
-                        utente_supp =new User(response1.getString("name"),response1.getString("id"),response1.getString("token"),response1.getString("email"),"promotor");
+                         utente_log =new User(response1.getString("name"),response1.getString("id"),response1.getString("token"),response1.getString("email"),"promoter");
+                        utente_supp =new User(response1.getString("name"),response1.getString("id"),response1.getString("token"),response1.getString("email"),"promoter");
 
                         startActivity(i);
                     }

@@ -61,7 +61,7 @@ public class info_match extends AppCompatActivity {
 
                         }
 
-                    }).setNegativeButton("anulla", null);
+                    }).setNegativeButton("annulla", null);
                     AlertDialog alert = builder.create();
                     alert.show();
                 }
@@ -84,7 +84,7 @@ public class info_match extends AppCompatActivity {
 
                         }
 
-                    }).setNegativeButton("anulla", null);
+                    }).setNegativeButton("annulla", null);
                     AlertDialog alert = builder.create();
                     alert.show();
                 }
