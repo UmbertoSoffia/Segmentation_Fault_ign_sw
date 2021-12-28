@@ -35,7 +35,7 @@ public class info_match extends AppCompatActivity {
         time.setText(bin);
         TextView data= findViewById(R.id.data_info_match);
         String str=match.date.get(Calendar.DAY_OF_MONTH) + "-" + (match.date.get(Calendar.MONTH)+1) + "-" + match.date.get(Calendar.YEAR);
-        range.setText(str);
+        data.setText(str);
         TextView stru= findViewById(R.id.struct_nam_info_match);
         stru.setText(match.struttura);
         TextView desc= findViewById(R.id.desc_info_match);

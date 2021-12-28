@@ -38,31 +38,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
         android:id="@+id/all_serch_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="276dp"
+        android:layout_height="59dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/cerca_senza_vincoli"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.176"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
-        app:layout_constraintVertical_bias="0.835" />
-
-
-    <Button
-        android:id="@+id/start_serch_activity2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="@string/cerca"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.851"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView"
-        app:layout_constraintVertical_bias="0.781" />
+        app:layout_constraintVertical_bias="0.829" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchViewsport"

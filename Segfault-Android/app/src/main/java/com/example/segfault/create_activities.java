@@ -325,6 +325,8 @@ public class create_activities extends AppCompatActivity {
                         String[] supp_date = date.get(position).split("-");
                         final GregorianCalendar selected_date = new GregorianCalendar(Integer.parseInt(supp_date[2]), Integer.parseInt(supp_date[1]) - 1, Integer.parseInt(supp_date[0]));
 
+
+                        //forse sta parte non serve
                         for (Match m : incontri_supp) {
 
                             if (!(m.date.getTimeInMillis() == selected_date.getTimeInMillis())) {

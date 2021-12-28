@@ -97,16 +97,33 @@ public class home_user extends AppCompatActivity {
         try{
             FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/reservation", "", "user=" + MainActivity.utente_log.getCod_id() + "&token=" + MainActivity.utente_log.getToken());
             String res = req.execute().get();
+            ArrayList<Match> incontri=new ArrayList<Match>();
 
             //richiesta andata a buon fine: disegno la lista delle reservation
             if (res.equals("OK")) {
                 JSONArray response = req.array;
             // scorri l'array, ogni oggetto nell'array ha un campo match che è un oggetto json
                 for (int i = 0; i < response.length(); i++) {
-                    String date=((JSONObject) response.get(i)).get("date").toString();
-                    String[] str=  date.split("-",date.length());
-                    events.add(getEventDay(Integer.parseInt(str[2]),Integer.parseInt(str[1]),Integer.parseInt(str[0])));
+                    JSONObject ogg=(JSONObject) ((JSONObject) response.get(i)).get("match");
+                    incontri.add(new Match(ogg.get("match_id").toString(),
+                            ogg.get("name").toString(),
+                            ogg.get("structure_id").toString(),
+                            ogg.get("date").toString(),
+                            ogg.get("start_time").toString(),
+                            ogg.get("stop_time").toString(),
+                            ogg.get("creator_id").toString(),
+                            ogg.get("age_range").toString(),
+                            ogg.get("description").toString(),
+                            ogg.get("number").toString())
+
+                    );
+
                 }
+                for (Match m:incontri)
+                    events.add(getEventDay(m.date.get(Calendar.DAY_OF_MONTH),m.date.get(Calendar.MONTH+1),m.date.get(Calendar.YEAR)));
+
+
+
 
 
             }
