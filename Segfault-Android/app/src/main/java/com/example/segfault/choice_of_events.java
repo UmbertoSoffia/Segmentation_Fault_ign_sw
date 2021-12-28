@@ -44,7 +44,11 @@ public class choice_of_events extends AppCompatActivity {
                             ((JSONObject) response.get(i)).get("start_time").toString(),
                             ((JSONObject) response.get(i)).get("stop_time").toString(),
                             ((JSONObject) response.get(i)).get("creator_id").toString(),
-                            ((JSONObject) response.get(i)).get("age_range").toString()));
+                            ((JSONObject) response.get(i)).get("age_range").toString(),
+                            ((JSONObject) response.get(i)).get("description").toString(),
+                            ((JSONObject) response.get(i)).get("number").toString())
+
+                    );
 
                 }
 

@@ -39,7 +39,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="244dp"
-                android:text="@string/elimina"
+                android:text="@string/info"
                 android:textColor="@color/black" />
 
         </androidx.cardview.widget.CardView>

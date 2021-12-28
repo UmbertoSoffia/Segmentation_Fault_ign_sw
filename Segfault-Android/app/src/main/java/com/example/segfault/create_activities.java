@@ -138,7 +138,11 @@ public class create_activities extends AppCompatActivity {
                             ((JSONObject) response.get(i)).get("start_time").toString(),
                             ((JSONObject) response.get(i)).get("stop_time").toString(),
                             ((JSONObject) response.get(i)).get("creator_id").toString(),
-                            ((JSONObject) response.get(i)).get("age_range").toString()));
+                            ((JSONObject) response.get(i)).get("age_range").toString(),
+                            ((JSONObject) response.get(i)).get("description").toString(),
+                            ((JSONObject) response.get(i)).get("number").toString())
+
+                    );
 
                 }
             }
@@ -469,6 +473,7 @@ public class create_activities extends AppCompatActivity {
                         match.put("name", match_name.getText().toString());
                         match.put("start_time", spin_hour_start.getSelectedItem().toString());
                         match.put("stop_time", spin_hour_stop.getSelectedItem().toString());
+                        match.put("description", desc.getText());
                         match.put("structure_id",structure.getId());
                         match.put("date", spin_date.getSelectedItem().toString());
                         match.put("age_range", spin_min_age.getSelectedItem().toString() + "-" + spin_max_age.getSelectedItem().toString());

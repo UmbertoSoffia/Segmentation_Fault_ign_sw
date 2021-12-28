@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,7 +51,11 @@ public class list_act_user extends AppCompatActivity {
                             ((JSONObject) response.get(i)).get("start_time").toString(),
                             ((JSONObject) response.get(i)).get("stop_time").toString(),
                             ((JSONObject) response.get(i)).get("creator_id").toString(),
-                            ((JSONObject) response.get(i)).get("age_range").toString()));
+                            ((JSONObject) response.get(i)).get("age_range").toString(),
+                            ((JSONObject) response.get(i)).get("description").toString(),
+                            ((JSONObject) response.get(i)).get("number").toString())
+
+                    );
 
                 }
             }
@@ -77,11 +80,8 @@ public class list_act_user extends AppCompatActivity {
         Button myButton1 = cricketerView.findViewById(R.id.pop_actyvity_button);
         myButton1.setOnClickListener(view -> {
 
-            // azione da fare per eliminare la prenotazione
-            Toast toast = Toast.makeText(getApplicationContext(), "evento eliminato", Toast.LENGTH_SHORT);
-            toast.show();
-            //refresh qua (sottoa fatto già) per eliminare quello appena cancellato
-            Intent i = new Intent(list_act_user.this, list_act_user.class);
+           MainActivity.match=s;
+            Intent i = new Intent(list_act_user.this, info_match.class);
             startActivity(i);
             finish();
         });

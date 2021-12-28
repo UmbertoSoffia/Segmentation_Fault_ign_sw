@@ -2,7 +2,6 @@ package com.example.segfault;
 
 import androidx.annotation.NonNull;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Match {
@@ -15,13 +14,17 @@ public class Match {
     String stop_time;
     String creatoreid;
     String age_range;
+    String number;
+    String desc;
 
 
-    public Match(String id, String nome, String struttura, String sport, String date, String start_time, String stop_time, String creatoreid, String age_range) {
+    public Match(String id, String nome, String struttura, String sport, String date, String start_time, String stop_time, String creatoreid, String age_range,String desc,String number) {
         this.id = id;
         this.nome = nome;
         this.struttura = struttura;
         this.sport = sport;
+        this.number=number;
+        this.desc=desc;
 
         String[] str=  date.split("-",date.length());
         GregorianCalendar cal= new GregorianCalendar(Integer.parseInt(str[2]),Integer.parseInt(str[1]),Integer.parseInt(str[0]));
