@@ -44,7 +44,6 @@ public class all_match_prom extends AppCompatActivity {
                     addView(new Match(((JSONObject) response.get(i)).get("match_id").toString(),
                             ((JSONObject) response.get(i)).get("name").toString(),
                             ((JSONObject) response.get(i)).get("structure_id").toString(),
-                            ((JSONObject) response.get(i)).get("sport").toString(),
                             ((JSONObject) response.get(i)).get("date").toString(),
                             ((JSONObject) response.get(i)).get("start_time").toString(),
                             ((JSONObject) response.get(i)).get("stop_time").toString(),

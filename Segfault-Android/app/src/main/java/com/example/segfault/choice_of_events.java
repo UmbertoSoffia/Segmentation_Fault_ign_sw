@@ -39,7 +39,6 @@ public class choice_of_events extends AppCompatActivity {
                     all_match.add(new Match(((JSONObject) response.get(i)).get("match_id").toString(),
                             ((JSONObject) response.get(i)).get("name").toString(),
                             ((JSONObject) response.get(i)).get("structure_id").toString(),
-                            ((JSONObject) response.get(i)).get("sport").toString(),
                             ((JSONObject) response.get(i)).get("date").toString(),
                             ((JSONObject) response.get(i)).get("start_time").toString(),
                             ((JSONObject) response.get(i)).get("stop_time").toString(),
@@ -101,7 +100,7 @@ public class choice_of_events extends AppCompatActivity {
             SearchView activity=findViewById(R.id.searchViewsport);
             SearchView searchView= findViewById(R.id.searchView);
             String struct= (searchView.getQuery()).toString();
-            String sport=(activity.getQuery()).toString();
+            String nome=(activity.getQuery()).toString();
             //fai controllo se ci sono eventi futuri con sti vincoli
             //falli in or
 
@@ -109,12 +108,12 @@ public class choice_of_events extends AppCompatActivity {
             ArrayList<Match> coda=new ArrayList<>();
             for (Match m:all_match) {
                 //ci vuole name senno non va con id
-                if(m.sport.equals(sport) && m.struttura.equals(struct)){
+                if(m.nome.equals(nome) && m.struttura.equals(struct)){
                     addView(m);
                     one=true;
                 }
                 else {
-                    if(m.sport.equals(sport) || m.struttura.equals(struct))
+                    if(m.nome.equals(nome) || m.struttura.equals(struct))
                         coda.add(m);
                 }
             }

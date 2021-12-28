@@ -95,13 +95,13 @@ public class home_user extends AppCompatActivity {
 
          events.clear();
         try{
-            FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/match", "", "user="+MainActivity.utente_supp.getCod_id() +"&token=" + MainActivity.utente_supp.getToken());
+            FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/reservation", "", "user=" + MainActivity.utente_log.getCod_id() + "&token=" + MainActivity.utente_log.getToken());
             String res = req.execute().get();
 
-            //richiesta andata a buon fine: disegno la lista delle strutture
+            //richiesta andata a buon fine: disegno la lista delle reservation
             if (res.equals("OK")) {
                 JSONArray response = req.array;
-
+            // scorri l'array, ogni oggetto nell'array ha un campo match che è un oggetto json
                 for (int i = 0; i < response.length(); i++) {
                     String date=((JSONObject) response.get(i)).get("date").toString();
                     String[] str=  date.split("-",date.length());
