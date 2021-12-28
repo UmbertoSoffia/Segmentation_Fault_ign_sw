@@ -42,10 +42,6 @@ const matchSchema = new mongoose.Schema({
   number: {
 	type: Number,
 	required: true
-  },
-  sport: {
-	type: String,
-	required: true
   }
 }, { timestamps: true })
 
