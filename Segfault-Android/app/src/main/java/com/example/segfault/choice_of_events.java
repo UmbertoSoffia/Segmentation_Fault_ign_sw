@@ -186,7 +186,7 @@ public class choice_of_events extends AppCompatActivity {
 
         TextView editText = cricketerView.findViewById(R.id.pop_actyvity);
         int giorno=match.date.get(Calendar.DAY_OF_MONTH);
-        int mese=match.date.get(Calendar.MONTH+1);
+        int mese=match.date.get(Calendar.MONTH) + 1;
         int anno=match.date.get(Calendar.YEAR);
         editText.setText("nome: "+match.nome+ "\n" +giorno+"/"+mese+"/"+anno);
         Button myButton1 = cricketerView.findViewById(R.id.pop_actyvity_button);

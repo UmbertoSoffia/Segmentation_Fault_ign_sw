@@ -120,7 +120,7 @@ public class home_user extends AppCompatActivity {
 
                 }
                 for (Match m:incontri)
-                    events.add(getEventDay(m.date.get(Calendar.DAY_OF_MONTH),m.date.get(Calendar.MONTH+1),m.date.get(Calendar.YEAR)));
+                    events.add(getEventDay(m.date.get(Calendar.DAY_OF_MONTH),m.date.get(Calendar.MONTH)+1,m.date.get(Calendar.YEAR)));
 
 
 
