@@ -297,11 +297,6 @@ public class create_activities extends AppCompatActivity {
 
                 //ce proclema con settaggio primo giorno settimana e sfasa tutto sotto dei giorni settimana
                 start.setFirstDayOfWeek(Calendar.MONDAY);
-
-                for (Match m:incontri_supp) {
-                        if(!(m.struttura.equals(selectedstruct.getId())) )
-                            incontri_supp.remove(m);
-                }
                 String[] wd=selectedstruct.getWorking_days();
                 while(start.get(Calendar.DAY_OF_MONTH) != stop.get(Calendar.DAY_OF_MONTH) || start.get(Calendar.MONTH) != stop.get(Calendar.MONTH) || start.get(Calendar.YEAR) != stop.get(Calendar.YEAR)){
                     //prendo un giorno in meno xk wd va da 0 a 6
@@ -326,7 +321,7 @@ public class create_activities extends AppCompatActivity {
                         final GregorianCalendar selected_date = new GregorianCalendar(Integer.parseInt(supp_date[2]), Integer.parseInt(supp_date[1]) - 1, Integer.parseInt(supp_date[0]));
 
 
-                        //forse sta parte non serve
+                        //filtro i match in base al giorno cosi ne confronto meno
                         for (Match m : incontri_supp) {
 
                             if (!(m.date.getTimeInMillis() == selected_date.getTimeInMillis())) {

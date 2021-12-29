@@ -2,6 +2,7 @@ package com.example.segfault;
 
 
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,7 +44,7 @@ public class list_act_user extends AppCompatActivity {
 
                 for (int i = 0; i < response.length(); i++) {
 
-                    addView(new Match(((JSONObject) response.get(i)).get("match_id").toString(),
+                    Match m=new Match(((JSONObject) response.get(i)).get("match_id").toString(),
                             ((JSONObject) response.get(i)).get("name").toString(),
                             ((JSONObject) response.get(i)).get("structure_id").toString(),
                             ((JSONObject) response.get(i)).get("date").toString(),
@@ -52,9 +53,11 @@ public class list_act_user extends AppCompatActivity {
                             ((JSONObject) response.get(i)).get("creator_id").toString(),
                             ((JSONObject) response.get(i)).get("age_range").toString(),
                             ((JSONObject) response.get(i)).get("description").toString(),
-                            ((JSONObject) response.get(i)).get("number").toString())
-
-                    );
+                            ((JSONObject) response.get(i)).get("number").toString());
+                    String str=m.date.get(Calendar.DAY_OF_MONTH) + "-" + (m.date.get(Calendar.MONTH)+1) + "-" + m.date.get(Calendar.YEAR);
+                    String gr=cal.get(Calendar.DAY_OF_MONTH)+ "-" + (cal.get(Calendar.MONTH)+1) + "-" + cal.get(Calendar.YEAR);
+                    if(str.equals(gr))
+                        addView(m);
 
                 }
             }
@@ -70,16 +73,20 @@ public class list_act_user extends AppCompatActivity {
         }
     }
 
-    private void addView( Match s) {
+    @SuppressLint("SetTextI18n")
+    private void addView(Match m) {
 
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_popup,null,false);
 
         TextView editText = cricketerView.findViewById(R.id.pop_actyvity);
-        editText.setText(s.toString());
+        int giorno=m.date.get(Calendar.DAY_OF_MONTH);
+        int mese=m.date.get(Calendar.MONTH) + 1;
+        int anno=m.date.get(Calendar.YEAR);
+        editText.setText("nome: "+m.nome+ "\n" +giorno+"/"+mese+"/"+anno);
         Button myButton1 = cricketerView.findViewById(R.id.pop_actyvity_button);
         myButton1.setOnClickListener(view -> {
 
-           MainActivity.match=s;
+           MainActivity.match=m;
             Intent i = new Intent(list_act_user.this, info_match.class);
             startActivity(i);
             finish();

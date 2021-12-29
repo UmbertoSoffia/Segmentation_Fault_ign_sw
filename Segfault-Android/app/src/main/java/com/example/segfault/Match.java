@@ -1,6 +1,7 @@
 package com.example.segfault;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.GregorianCalendar;
 
@@ -42,5 +43,14 @@ public class Match {
                 "date= " + date.toString() + "\n" +
                 "orario= " + start_time + "-" + stop_time +"\n" +
                 "età= " + age_range + "\n" ;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if(!(obj instanceof Match)) return super.equals(obj);
+        Match m=(Match) obj;
+
+        return this.id.equals(m.id);
+
     }
 }
