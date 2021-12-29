@@ -185,8 +185,10 @@ public class choice_of_events extends AppCompatActivity {
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_popup,null,false);
 
         TextView editText = cricketerView.findViewById(R.id.pop_actyvity);
-
-        editText.setText("nome: "+match.nome+ "\n" +match.date.get(Calendar.DAY_OF_MONTH)+"/"+match.date.get(Calendar.MONTH+1)+"/"+match.date.get(Calendar.YEAR));
+        int giorno=match.date.get(Calendar.DAY_OF_MONTH);
+        int mese=match.date.get(Calendar.MONTH+1);
+        int anno=match.date.get(Calendar.YEAR);
+        editText.setText("nome: "+match.nome+ "\n" +giorno+"/"+mese+"/"+anno);
         Button myButton1 = cricketerView.findViewById(R.id.pop_actyvity_button);
         myButton1.setText("informazioni");
         myButton1.setOnClickListener(view -> {
