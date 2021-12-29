@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.Objects;
 
 public class create_activities extends AppCompatActivity {
@@ -37,8 +38,7 @@ public class create_activities extends AppCompatActivity {
     Spinner spin_min_age, spin_max_age;
     TextView match_name;
     static Structure structure;
-    public static int convert(String str)
-    {
+    public static int convert(String str){
         int val = 0;
         System.out.println("String = " + str);
 
@@ -267,6 +267,17 @@ public class create_activities extends AppCompatActivity {
         }
 
 
+
+
+
+
+
+
+
+
+
+
+        //fine parte richieste node
         ArrayList<String> sstruct=new ArrayList<>();
         for (Structure s:struct ) {
             sstruct.add(s.getName());
@@ -322,13 +333,22 @@ public class create_activities extends AppCompatActivity {
 
 
                         //filtro i match in base al giorno cosi ne confronto meno
-                        for (Match m : incontri_supp) {
+                       Iterator it= incontri_supp.iterator();
+                       while (it.hasNext()){
+                           Match supp=(Match)it.next();
+                           if (!(supp.date.getTimeInMillis() == selected_date.getTimeInMillis())) {
+                               incontri_supp.remove(supp);
+                           }
 
+
+                       }
+                      /*  for (Match m : incontri_supp) {
+                            //forse troppo stringente qua bisogna testare
                             if (!(m.date.getTimeInMillis() == selected_date.getTimeInMillis())) {
                                 incontri_supp.remove(m);
                             }
 
-                        }
+                        }*/
                         int ora_apertura= convert(selectedstruct.getStart_time().substring(0,2));
                         int ora_chiusura=convert(selectedstruct.getStop_time().substring(0,2));
                             for (int i = ora_apertura; i<ora_chiusura; i++) {
