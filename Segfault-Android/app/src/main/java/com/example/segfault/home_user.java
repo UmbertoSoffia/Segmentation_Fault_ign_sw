@@ -169,16 +169,33 @@ public class home_user extends AppCompatActivity {
 
         Button n_positivity=findViewById(R.id.com_positivity);
         n_positivity.setOnClickListener(v -> {
-                //user= utennte, integer=gioni di differenza
-            ArrayList<Pair<User,Integer>> infected=new ArrayList<Pair<User,Integer>>();
-            //buttare dentro infected quelli possibili integer serve per i toto giorni di distanza
-            infected.add(new Pair<User, Integer>(new User("id","nome","umbertosoffia00@gmail.com", null,"normal"),5));
+            try {
+                JSONObject user = new JSONObject();
+                user.put("user_id", MainActivity.utente_log.getId());
+                FSRequest req = new FSRequest("POST", MainActivity.utente_log.getToken(), "api/reservation/notify", user.toString(), "");
+                String res = req.execute().get();
+                if(res.equals("OK")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(home_user.this);
+                    builder.setMessage("Mail inviate").setPositiveButton("Ok", (dialog, which) -> {});
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(home_user.this);
+                    builder.setMessage("Errore invio mail").setPositiveButton("Ok", (dialog, which) -> {
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
 
-            //for (Pair<User,Integer> i:infected) {
-                mail("i.first.getMail()","hai avuto un contatto con una persona positiva al COVID19 esattamente "+" giorni");
+            }catch(Exception e){
+                Log.println(Log.ERROR, "Errore connessione", e.getMessage());
 
-            StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
+                AlertDialog.Builder builder = new AlertDialog.Builder(home_user.this);
+                builder.setMessage("Errore di connessione").setPositiveButton("Ok", (dialog, which) -> {
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
         });
 
 

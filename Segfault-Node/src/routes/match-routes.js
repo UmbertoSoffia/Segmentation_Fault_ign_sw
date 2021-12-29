@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 
 const Structure = require('../models/structure')
 const Match = require('../models/match')
+const Reservation = require('../models/reservation')
 const objectid = require('objectid')
 
 router.post('/', async (req, res, next) => {
@@ -93,6 +94,7 @@ router.delete('/:id', async (req, res, next) => {
  
   try {
     const match = await Match.findOneAndDelete({ match_id })
+	const reserv = await Reservation.deleteMany({match_id})
     const response = {
       ok: true
     }

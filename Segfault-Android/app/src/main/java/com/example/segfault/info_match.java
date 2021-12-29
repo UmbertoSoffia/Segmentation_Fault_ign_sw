@@ -62,23 +62,37 @@ public class info_match extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ////////elimina incontro
-                            ///invia mail agli altri x elimnazione incontro
+                            try{
+
+                                FSRequest req = new FSRequest("DELETE", MainActivity.utente_log.getToken(), "api/match/" + match.id, "", "token=" + MainActivity.utente_log.getToken());
+                                String res = req.execute().get();
+                                if (res.equals("OK")){
+                                    Toast toast = Toast.makeText(getApplicationContext(), "incontro eliminato", Toast.LENGTH_SHORT);
+                                    toast.show();
+
+                                    //aspetta due secondi e poi esce
+                                    Thread.sleep(2000);
+
+                                    finish();
+                                }
+                                else{
+                                    AlertDialog.Builder build = new AlertDialog.Builder(info_match.this);
+                                    build.setMessage("Errore dureante la disiscrizione").setPositiveButton("Ok", (dial, whi) -> {
+                                    });
+                                    AlertDialog aler = build.create();
+                                    aler.show();
+                                }
 
 
+                            }catch(Exception e){
+                                Log.println(Log.ERROR, "Errore connessione", e.getMessage());
 
-
-
-                            Toast toast = Toast.makeText(getApplicationContext(), "incontro eliminato con successo", Toast.LENGTH_SHORT);
-                            toast.show();
-
-                            //aspetta due secondi e poi esce
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                                AlertDialog.Builder build = new AlertDialog.Builder(info_match.this);
+                                build.setMessage("Errore di connessione").setPositiveButton("Ok", (dial, whi) -> {
+                                });
+                                AlertDialog aler = build.create();
+                                aler.show();
                             }
-
-                            finish();
                         }
 
                     }).setNegativeButton("annulla", null);
@@ -151,19 +165,41 @@ public class info_match extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ////////disiscrivi utente_log
-                                ///invia mail agli altri x elimnazione incontro
 
-                                Toast toast = Toast.makeText(getApplicationContext(), "non parteciperai più all'íncontro", Toast.LENGTH_SHORT);
-                                toast.show();
 
-                                //aspetta due secondi e poi esce
-                                try {
-                                    Thread.sleep(2000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
+                                try{
+                                    JSONObject reservation = new JSONObject();
+                                    reservation.put("match_id", match.id);
+                                    reservation.put("user_id", MainActivity.utente_log.getId());
+                                    FSRequest req = new FSRequest("DELETE", MainActivity.utente_log.getToken(), "api/reservation", reservation.toString(), "token=" + MainActivity.utente_log.getToken());
+                                    String res = req.execute().get();
+                                    if (res.equals("OK")){
+                                        Toast toast = Toast.makeText(getApplicationContext(), "ti sei disiscritto dall'incontro", Toast.LENGTH_SHORT);
+                                        toast.show();
+
+                                        //aspetta due secondi e poi esce
+                                        Thread.sleep(2000);
+
+                                        finish();
+                                    }
+                                    else{
+                                        AlertDialog.Builder build = new AlertDialog.Builder(info_match.this);
+                                        build.setMessage("Errore dureante la disiscrizione").setPositiveButton("Ok", (dial, whi) -> {
+                                        });
+                                        AlertDialog aler = build.create();
+                                        aler.show();
+                                    }
+
+
+                                }catch(Exception e){
+                                    Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+                                    AlertDialog.Builder build = new AlertDialog.Builder(info_match.this);
+                                    build.setMessage("Errore di connessione").setPositiveButton("Ok", (dial, whi) -> {
+                                    });
+                                    AlertDialog aler = build.create();
+                                    aler.show();
                                 }
-
-                                finish();
                             }
 
                         }).setNegativeButton("annulla", null);
@@ -176,7 +212,7 @@ public class info_match extends AppCompatActivity {
                     }
                 });
             }else {
-                String s="iscivimi";
+                String s="iscrivimi";
                 button.setText(s);
                 button.setBackgroundColor(Color.GREEN);
                 final boolean[] ris = {true};
@@ -189,17 +225,41 @@ public class info_match extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ////////iscrivi utente_log
+                                try{
+                                    JSONObject reservation = new JSONObject();
+                                    reservation.put("match_id", match.id);
+                                    reservation.put("user_id", MainActivity.utente_log.getId());
+                                    FSRequest req = new FSRequest("POST", MainActivity.utente_log.getToken(), "api/reservation", reservation.toString(), "");
+                                    String res = req.execute().get();
+                                    if (res.equals("OK")){
+                                        Toast toast = Toast.makeText(getApplicationContext(), "ti sei iscritto all'incontro", Toast.LENGTH_SHORT);
+                                        toast.show();
+
+                                        //aspetta due secondi e poi esce
+                                        Thread.sleep(2000);
+
+                                        finish();
+                                    }
+                                    else{
+                                        AlertDialog.Builder build = new AlertDialog.Builder(info_match.this);
+                                        build.setMessage("Errore dureante l'iscrizione").setPositiveButton("Ok", (dial, whi) -> {
+                                        });
+                                        AlertDialog aler = build.create();
+                                        aler.show();
+                                    }
 
 
-                                Toast toast = Toast.makeText(getApplicationContext(), "ti sei iscritto all'íncontro", Toast.LENGTH_SHORT);
-                                toast.show();
-                                //aspetta due secondi e poi esce
-                                try {
-                                    Thread.sleep(2000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
+                                }catch(Exception e){
+                                    Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+                                    AlertDialog.Builder build = new AlertDialog.Builder(info_match.this);
+                                    build.setMessage("Errore di connessione").setPositiveButton("Ok", (dial, whi) -> {
+                                    });
+                                    AlertDialog aler = build.create();
+                                    aler.show();
                                 }
-                                finish();
+
+
 
 
                             }

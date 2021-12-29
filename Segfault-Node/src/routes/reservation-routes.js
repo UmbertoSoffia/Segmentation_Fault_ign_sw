@@ -87,15 +87,17 @@ router.get('/:id', (req, res, next) => {
     }).catch(next)
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/', async (req, res, next) => {
   const { user_id, email } = jwt.verify(req.query.token, process.env.SERVER_SECRET)
   if (!user_id) {
     return res.status(401).send('Not authenticated')
   }
-  const reservation_id = req.params.id
+  const {
+    match_id
+  } = req.body
  
   try {
-    const reservation = await Reservation.findOneAndDelete({ reservation_id })
+    const reservation = await Reservation.findOneAndDelete({ match_id, user_id })
     const response = {
       ok: true
     }
@@ -117,15 +119,14 @@ router.post('/notify', async (req, res, next) => {
     .exec()
     .then(reservations => {
 	    if(reservations.length === 0){return res.status(404).send('Reservations not found')}
-	})
-	
-	reservations.forEach(reservation =>{
+		reservations.forEach(reservation =>{
 		const match = reservation.match
 		const match_id = match.match_id
 		const date_array = match.date.split("-")
 		const date_string = date_array[2] + "-" +  date_array[1] + "-" + date_array[0]
-		const date = Date.parse(date_string)
-		if(date <= new Date() && date.getDate() >= new Date().getDate() - 10 ){
+		const date = new Date(date_string)
+		const today = new Date()
+		if(date <= today && date.getDate() >= today.getDate() - 10 ){
 			Reservation.find({match_id})
 			.populate("user")
 			.lean()
@@ -140,13 +141,18 @@ router.post('/notify', async (req, res, next) => {
 					  subject: 'Notifica di positività',
 					  html: 'La informiamo che negli ultimi 10 giorni ha partecipato a un match di cui uno dei partecipanti ha notificato la propria positività al COVID-19.<br>Si raccomanda di fare il tampone quanto prima.'
 					}
-					transporter.sendMail(mailOptions, function(err, info){
-						if(err){return res.status(500).send('Email not sent')}
-					})
+					if(user.user_id != user_id){
+						transporter.sendMail(mailOptions, function(err, info){
+							if(err){return res.status(500).send('Email not sent')}
+						})
+					}
 				})
 			})
 		}
 	})
+	})
+	
+	
     const response = {
       ok: true
     }
