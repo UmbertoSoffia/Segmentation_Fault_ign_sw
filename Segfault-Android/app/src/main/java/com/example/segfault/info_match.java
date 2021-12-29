@@ -53,36 +53,38 @@ public class info_match extends AppCompatActivity {
         if(MainActivity.match.creatoreid.equals(MainActivity.utente_log.getCod_id()) && MainActivity.utente_log.isPromoter()){
             String s="elimina evento";
             button.setText(s);
+            button.setBackgroundColor(Color.RED);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    final boolean[] ris = {true};
                     AlertDialog.Builder builder = new AlertDialog.Builder(info_match.this);
                     builder.setMessage("eliminare l'incontro?").setPositiveButton("Sì", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ////////elimina incontro
                             ///invia mail agli altri x elimnazione incontro
-                            //se non va allora ris=false
-                            ris[0] =true;
+
+
+
+
+
+                            Toast toast = Toast.makeText(getApplicationContext(), "incontro eliminato con successo", Toast.LENGTH_SHORT);
+                            toast.show();
+
+                            //aspetta due secondi e poi esce
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            finish();
                         }
 
                     }).setNegativeButton("annulla", null);
                     AlertDialog alert = builder.create();
                     alert.show();
-                    //qua ci vorrebbe if altrimenti il toast non viene a video
-                    if(ris[0]){
-                        Toast toast = Toast.makeText(getApplicationContext(), "incontro eliminato con successo", Toast.LENGTH_SHORT);
-                        toast.show();
 
-                        //aspetta due secondi e poi esce
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    finish();
                 }
                 });
 
@@ -138,10 +140,11 @@ public class info_match extends AppCompatActivity {
                 // se iscritto
                 String s="disiscrivimi";
                 button.setText(s);
+                button.setBackgroundColor(Color.RED);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        final boolean[] ris = {true};
+
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(info_match.this);
                         builder.setMessage("Confermi?").setPositiveButton("Sì", new DialogInterface.OnClickListener() {
@@ -150,9 +153,17 @@ public class info_match extends AppCompatActivity {
                                 ////////disiscrivi utente_log
                                 ///invia mail agli altri x elimnazione incontro
 
+                                Toast toast = Toast.makeText(getApplicationContext(), "non parteciperai più all'íncontro", Toast.LENGTH_SHORT);
+                                toast.show();
 
-                            //se non va allora ris=false
-                                ris[0] =true;
+                                //aspetta due secondi e poi esce
+                                try {
+                                    Thread.sleep(2000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+                                finish();
                             }
 
                         }).setNegativeButton("annulla", null);
@@ -160,19 +171,8 @@ public class info_match extends AppCompatActivity {
                         alert.show();
 
 
-                        //qua ci vorrebbe if altrimenti il toast non viene a video
-                        if(ris[0]){
-                            Toast toast = Toast.makeText(getApplicationContext(), "non parteciperai più all'íncontro", Toast.LENGTH_SHORT);
-                            toast.show();
 
-                            //aspetta due secondi e poi esce
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        finish();
+
                     }
                 });
             }else {
@@ -191,28 +191,24 @@ public class info_match extends AppCompatActivity {
                                 ////////iscrivi utente_log
 
 
+                                Toast toast = Toast.makeText(getApplicationContext(), "ti sei iscritto all'íncontro", Toast.LENGTH_SHORT);
+                                toast.show();
+                                //aspetta due secondi e poi esce
+                                try {
+                                    Thread.sleep(2000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                finish();
 
-
-                                //se non va allora ris=false
-                                ris[0] =true;
 
                             }
 
                         }).setNegativeButton("no", null);
                         AlertDialog alert = builder.create();
                         alert.show();
-                        if(ris[0]) {
-                            Toast toast = Toast.makeText(getApplicationContext(), "ti sei iscritto all'íncontro", Toast.LENGTH_SHORT);
-                            toast.show();
-                            //aspetta due secondi e poi esce
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        finish();
                     }
+
                 });
 
 
