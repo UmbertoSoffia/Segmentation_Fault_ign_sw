@@ -50,7 +50,7 @@ public class info_match extends AppCompatActivity {
 
         Button button=findViewById(R.id.button_info_match);
 
-        if(MainActivity.match.creatoreid.equals(MainActivity.utente_log.getCod_id()) && MainActivity.utente_log.isPromoter()){
+        if(MainActivity.match.creatoreid.equals(MainActivity.utente_log.getCod_id())){
             String s="elimina evento";
             button.setText(s);
             button.setBackgroundColor(Color.RED);

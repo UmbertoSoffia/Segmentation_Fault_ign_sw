@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,8 +24,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.GregorianCalendar;
-import java.util.Iterator;
 import java.util.Objects;
 
 public class create_activities extends AppCompatActivity {
@@ -331,23 +332,16 @@ public class create_activities extends AppCompatActivity {
                         String[] supp_date = date.get(position).split("-");
                         final GregorianCalendar selected_date = new GregorianCalendar(Integer.parseInt(supp_date[2]), Integer.parseInt(supp_date[1]) - 1, Integer.parseInt(supp_date[0]));
                         //filtro i match in base al giorno cosi ne confronto meno
-                       Iterator it= incontri_supp.iterator();
-                       while (it.hasNext()){
-                           //qua non riesce a castare anche se incontri supp ha oggetti corretti al suo interno
-                           Match supp=(Match)it.next();
-                           if (!(supp.date.getTimeInMillis() == selected_date.getTimeInMillis())) {
-                               incontri_supp.remove(supp);
-                           }
-
-
-                       }
-                      /*  for (Match m : incontri_supp) {
+                        ArrayList<Match> supp=new ArrayList<>(incontri_supp);
+                        for (Match m : incontri_supp) {
                             //forse troppo stringente qua bisogna testare
                             if (!(m.date.getTimeInMillis() == selected_date.getTimeInMillis())) {
-                                incontri_supp.remove(m);
+                                supp.remove(m);
                             }
 
-                        }*/
+                        }
+                        incontri_supp.clear();
+                        incontri_supp.addAll(supp);
                         int ora_apertura= convert(selectedstruct.getStart_time().substring(0,2));
                         int ora_chiusura=convert(selectedstruct.getStop_time().substring(0,2));
                             for (int i = ora_apertura; i<ora_chiusura; i++) {
@@ -369,23 +363,29 @@ public class create_activities extends AppCompatActivity {
                                 age_max.clear();
                                 age_min.clear();
                                 hour_stop.clear();
+                                ArrayList<Integer>hour_supp=new ArrayList<>();
 
-                                for (int i = convert(((String) spin_hour_start.getSelectedItem()).substring(0,2))+1; i<ora_chiusura; i++) {
-                                    String ora=i+":"+selectedstruct.getStart_time().substring(3);
-                                    hour_stop.add(ora);
 
-                                }
                                 //elimino i periodi gia occupati
                                 //per ogni incontro tolgo tutte le robe che stanno in mezzo
                                 for (Match m:incontri_supp) {
                                     int m_s=convert(m.start_time.substring(0,2));
-                                    if(m_s>= convert(((String)spin_hour_start.getSelectedItem()).substring(0,2))) {
-                                        for (int i =m_s ; i <convert(m.stop_time.substring(0,2)); i++) {
-                                            hour_stop.remove(i+":"+selectedstruct.getStart_time().substring(3));
-
-                                        }
-                                    }
+                                    hour_supp.add(m_s);
                                 }
+                                Collections.sort(hour_supp);
+                                int stop=convert(selectedstruct.getStop_time().substring(0,2));
+                                for (int i:hour_supp) {
+                                    int a=convert(((String) spin_hour_start.getSelectedItem()).substring(0,2));
+                                    if(a<=i)
+                                        stop=i;
+
+                                }
+                                for (int i = convert(((String) spin_hour_start.getSelectedItem()).substring(0,2))+1; i<stop; i++) {
+                                    String ora=i+":"+selectedstruct.getStart_time().substring(3);
+                                    hour_stop.add(ora);
+
+                                }
+
 
                                 spin_hour_stop.setAdapter(new ArrayAdapter<>(c, android.R.layout.simple_spinner_item, hour_stop));
                                 spin_hour_stop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -500,7 +500,28 @@ public class create_activities extends AppCompatActivity {
                         String res = req.execute().get();
 
                         if (res.equals("OK")) {
-                            // match inserita correttamente: refresh della pagina
+                                JSONObject reservation = new JSONObject();
+                                reservation.put("match_id", req.result.get("id"));
+                                reservation.put("user_id", MainActivity.utente_log.getId());
+                                FSRequest req2 = new FSRequest("POST", MainActivity.utente_log.getToken(), "api/reservation", reservation.toString(), "");
+                                String res2 = req2.execute().get();
+                                if (res2.equals("OK")){
+                                    Toast toast = Toast.makeText(getApplicationContext(), "ti sei iscritto all'incontro", Toast.LENGTH_SHORT);
+                                    toast.show();
+
+                                    //aspetta due secondi e poi esce
+                                    Thread.sleep(2000);
+
+                                    finish();
+                                }
+                                else{
+                                    AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
+                                    build.setMessage("Errore dureante l'iscrizione").setPositiveButton("Ok", (dial, whi) -> {
+                                    });
+                                    AlertDialog aler = build.create();
+                                    aler.show();
+                                }
+
                             AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
                             build.setMessage("Match inserito con successo").setPositiveButton("Ok", (dial, whi) -> {
                                 finish();
@@ -514,7 +535,7 @@ public class create_activities extends AppCompatActivity {
                                 int err = req.result.getInt("error_code");
                                 //errore nella richiesta
                                 AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
-                                build.setMessage("Errore durante l'inserimento!").setPositiveButton("Ok", (dial, whi) -> {
+                                build.setMessage("Errore durante l'inserimento!"+err).setPositiveButton("Ok", (dial, whi) -> {
                                     Intent i = new Intent(create_activities.this, create_activities.class);
                                     startActivity(i);
                                     finish();
