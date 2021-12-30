@@ -330,11 +330,10 @@ public class create_activities extends AppCompatActivity {
                         age_min.clear();
                         String[] supp_date = date.get(position).split("-");
                         final GregorianCalendar selected_date = new GregorianCalendar(Integer.parseInt(supp_date[2]), Integer.parseInt(supp_date[1]) - 1, Integer.parseInt(supp_date[0]));
-
-
                         //filtro i match in base al giorno cosi ne confronto meno
                        Iterator it= incontri_supp.iterator();
                        while (it.hasNext()){
+                           //qua non riesce a castare anche se incontri supp ha oggetti corretti al suo interno
                            Match supp=(Match)it.next();
                            if (!(supp.date.getTimeInMillis() == selected_date.getTimeInMillis())) {
                                incontri_supp.remove(supp);
