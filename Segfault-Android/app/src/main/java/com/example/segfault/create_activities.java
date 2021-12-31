@@ -2,10 +2,10 @@ package com.example.segfault;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,7 +37,8 @@ public class create_activities extends AppCompatActivity {
     Spinner spin_hour_stop;
     Spinner spin_struct;
     Spinner spin_min_age, spin_max_age;
-    TextView match_name;
+    TextView match_name;        
+    EditText desc;
     static Structure structure;
     public static int convert(String str){
         int val = 0;
@@ -55,25 +56,114 @@ public class create_activities extends AppCompatActivity {
         }
         return val;
     }
+    private void saveInDB(boolean incalendar){
+        Match m = null;
+        try {
+            JSONObject match = new JSONObject();
 
-    /*private void saveInCAlendar(){
-        //bisogna capire come passsargli la data
-        Intent intent= new Intent(Intent.ACTION_INSERT);
-        intent.setData(CalendarContract.Events.CONTENT_URI);
-        intent.putExtra(CalendarContract.Events.TITLE, sport.getSelectedItem().toString()+"match");
-        //qua bisognerebbe mettere indirizzo struttura
-        intent.putExtra(CalendarContract.Events.EVENT_LOCATION,structure.getSelectedItem().toString());
-        intent.putExtra(CalendarContract.Events.DESCRIPTION, "partita amatoriale di"+sport.getSelectedItem().toString());
-        intent.putExtra(CalendarContract.Events.EVENT_LOCATION,structure.getSelectedItem().toString());
-        intent.putExtra(CalendarContract.Events.ALL_DAY,false);
+            match.put("name", match_name.getText().toString());
+            match.put("start_time", spin_hour_start.getSelectedItem().toString());
+            match.put("stop_time", spin_hour_stop.getSelectedItem().toString());
+            match.put("description", desc.getText());
+            match.put("structure_id",structure.getId());
+            match.put("date", spin_date.getSelectedItem().toString());
+            match.put("age_range", spin_min_age.getSelectedItem().toString() + "-" + spin_max_age.getSelectedItem().toString());
+            match.put("number", spin_n_people.getSelectedItem().toString());
+            match.put("creator_id", MainActivity.utente_log.getId());
+            match.put("creator_type", (MainActivity.utente_log.isPromoter() ? "promoter" : "user" ));
 
-        //sta parte è se non ha app calendario
-        if(intent.resolveActivity(getPackageManager()) != null){
-            startActivity(intent);
-        }else{
-            Toast.makeText(create_activities.this, "There is no app that support this action", Toast.LENGTH_SHORT).show();
+            FSRequest req = new FSRequest("POST", MainActivity.utente_log.getToken(), "api/match/", match.toString(), "");
+            String res = req.execute().get();
+            m=new Match(req.result.get("id").toString(),
+                    match_name.getText().toString(),
+                    structure.getId(),
+                    spin_date.getSelectedItem().toString(),
+                    spin_hour_start.getSelectedItem().toString(),
+                    spin_hour_stop.getSelectedItem().toString(),
+                    MainActivity.utente_log.getId(),
+                    spin_min_age.getSelectedItem().toString() + "-" + spin_max_age.getSelectedItem().toString(),
+                    desc.getText().toString(),
+                    spin_n_people.getSelectedItem().toString());
+
+
+
+            if (res.equals("OK")) {
+                JSONObject reservation = new JSONObject();
+                reservation.put("match_id", req.result.get("id"));
+                reservation.put("user_id", MainActivity.utente_log.getId());
+                FSRequest req2 = new FSRequest("POST", MainActivity.utente_log.getToken(), "api/reservation", reservation.toString(), "");
+                String res2 = req2.execute().get();
+                if (res2.equals("OK")){
+                    Toast toast = Toast.makeText(getApplicationContext(), "ti sei iscritto all'incontro", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    //aspetta due secondi e poi esce
+                    Thread.sleep(2000);
+
+                    finish();
+                }
+                else{
+                    AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
+                    build.setMessage("Errore dureante l'iscrizione").setPositiveButton("Ok", (dial, whi) -> {
+                    });
+                    AlertDialog aler = build.create();
+                    aler.show();
+                }
+
+                AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
+                build.setMessage("Match inserito con successo").setPositiveButton("Ok", (dial, whi) ->
+                    finish());
+                AlertDialog alert = build.create();
+                alert.show();
+
+            } else {
+                // richiesta fallita
+                if (req.result != null) {
+                    int err = req.result.getInt("error_code");
+                    //errore nella richiesta
+                    AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
+                    build.setMessage("Errore durante l'inserimento!"+err).setPositiveButton("Ok", (dial, whi) -> {
+                        Intent i = new Intent(create_activities.this, create_activities.class);
+                        startActivity(i);
+                        finish();
+                    });
+                    AlertDialog alert = build.create();
+                    alert.show();
+                }
+            }
+
+        } catch (Exception e) {
+            Log.println(Log.ERROR, "Errore connessione", e.getMessage());
+
+            AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
+            build.setMessage("Errore di connessione").setPositiveButton("Ok", (dial, whi) -> {
+                Intent i = new Intent(create_activities.this, create_activities.class);
+                startActivity(i);
+                finish();
+            });
+            AlertDialog alert = build.create();
+            alert.show();
         }
-    }*/
+        
+        if(incalendar){
+            Intent intent = new Intent(Intent.ACTION_EDIT);
+            intent.setType("vnd.android.cursor.item/event");
+            assert m != null;
+            intent.putExtra(CalendarContract.Events.TITLE,m.nome);
+            GregorianCalendar cal=new GregorianCalendar();
+            cal.set(m.date.get(GregorianCalendar.DAY_OF_MONTH),m.date.get(GregorianCalendar.MONTH),m.date.get(GregorianCalendar.YEAR),convert( spin_hour_start.getSelectedItem().toString().substring(0,2))
+                    ,convert(spin_hour_start.getSelectedItem().toString().split(":",spin_hour_start.getSelectedItem().toString().length())[1]));
+            GregorianCalendar cal2=new GregorianCalendar();
+            cal2.set(m.date.get(GregorianCalendar.DAY_OF_MONTH),m.date.get(GregorianCalendar.MONTH),m.date.get(GregorianCalendar.YEAR),convert( spin_hour_stop.getSelectedItem().toString().substring(0,2))
+                    ,convert(spin_hour_stop.getSelectedItem().toString().split(":",spin_hour_stop.getSelectedItem().toString().length())[1]));
+            intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, cal.getTimeInMillis());
+            intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,cal2.getTimeInMillis());
+            intent.putExtra(CalendarContract.Events.ALL_DAY, false);// periodicity
+            intent.putExtra(CalendarContract.Events.DESCRIPTION,m.desc);
+            startActivity(intent);
+        }
+    }
+    
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -89,6 +179,8 @@ public class create_activities extends AppCompatActivity {
         spin_min_age = findViewById(R.id.spinner_min_age_create);
         spin_max_age = findViewById(R.id.spinner_max_age_create);
         match_name = findViewById(R.id.sport_create_act_promo_value);
+        desc=findViewById(R.id.description_new_match);
+
 
 
         reject = findViewById(R.id.cancel_create);
@@ -309,6 +401,8 @@ public class create_activities extends AppCompatActivity {
 
                 //ce proclema con settaggio primo giorno settimana e sfasa tutto sotto dei giorni settimana
                 start.setFirstDayOfWeek(Calendar.MONDAY);
+
+
                 String[] wd=selectedstruct.getWorking_days();
                 while(start.get(Calendar.DAY_OF_MONTH) != stop.get(Calendar.DAY_OF_MONTH) || start.get(Calendar.MONTH) != stop.get(Calendar.MONTH) || start.get(Calendar.YEAR) != stop.get(Calendar.YEAR)){
                     //prendo un giorno in meno xk wd va da 0 a 6
@@ -320,7 +414,7 @@ public class create_activities extends AppCompatActivity {
 
                 }
 
-                spin_date.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, date));
+                spin_date.setAdapter(new ArrayAdapter<>(c, android.R.layout.simple_spinner_item, date));
                 spin_date.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -355,7 +449,7 @@ public class create_activities extends AppCompatActivity {
 
 
 
-                        spin_hour_start.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, hour_start));
+                        spin_hour_start.setAdapter(new ArrayAdapter<>(c, android.R.layout.simple_spinner_item, hour_start));
                         spin_hour_start.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -400,7 +494,7 @@ public class create_activities extends AppCompatActivity {
 
                                             age_min.add(((Integer) i).toString());
                                         }
-                                        spin_min_age.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, age_min));
+                                        spin_min_age.setAdapter(new ArrayAdapter<>(c, android.R.layout.simple_spinner_item, age_min));
                                         spin_min_age.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                         @Override
                                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -410,7 +504,7 @@ public class create_activities extends AppCompatActivity {
                                                 age_max.add(((Integer) i).toString());
                                             }
 
-                                            spin_max_age.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, age_max));
+                                            spin_max_age.setAdapter(new ArrayAdapter<>(c, android.R.layout.simple_spinner_item, age_max));
                                             spin_max_age.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                                 @Override
                                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -420,7 +514,7 @@ public class create_activities extends AppCompatActivity {
                                                         n_pers.add(((Integer) i).toString());
                                                     }
 
-                                                    spin_n_people.setAdapter(new ArrayAdapter<String>(c, android.R.layout.simple_spinner_item, n_pers));
+                                                    spin_n_people.setAdapter(new ArrayAdapter<>(c, android.R.layout.simple_spinner_item, n_pers));
                                                 }
 
                                                 @Override
@@ -474,112 +568,22 @@ public class create_activities extends AppCompatActivity {
 
             }
         });
-        confirm.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-            EditText desc=findViewById(R.id.description_new_match);
-
-                AlertDialog.Builder builder=new AlertDialog.Builder(create_activities.this);
-                builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", (dialog, which) ->{}). //saveInCAlendar()).
-                        setNegativeButton("Salva senza inserire nel calendario", (dialog, which) -> {
-                    //inserimento match
-                    try {
-                        JSONObject match = new JSONObject();
-
-                        match.put("name", match_name.getText().toString());
-                        match.put("start_time", spin_hour_start.getSelectedItem().toString());
-                        match.put("stop_time", spin_hour_stop.getSelectedItem().toString());
-                        match.put("description", desc.getText());
-                        match.put("structure_id",structure.getId());
-                        match.put("date", spin_date.getSelectedItem().toString());
-                        match.put("age_range", spin_min_age.getSelectedItem().toString() + "-" + spin_max_age.getSelectedItem().toString());
-                        match.put("number", spin_n_people.getSelectedItem().toString());
-                        match.put("creator_id", MainActivity.utente_log.getId());
-                        match.put("creator_type", (MainActivity.utente_log.isPromoter() ? "promoter" : "user" ));
-
-                        FSRequest req = new FSRequest("POST", MainActivity.utente_log.getToken(), "api/match/", match.toString(), "");
-                        String res = req.execute().get();
-
-                        if (res.equals("OK")) {
-                                JSONObject reservation = new JSONObject();
-                                reservation.put("match_id", req.result.get("id"));
-                                reservation.put("user_id", MainActivity.utente_log.getId());
-                                FSRequest req2 = new FSRequest("POST", MainActivity.utente_log.getToken(), "api/reservation", reservation.toString(), "");
-                                String res2 = req2.execute().get();
-                                if (res2.equals("OK")){
-                                    Toast toast = Toast.makeText(getApplicationContext(), "ti sei iscritto all'incontro", Toast.LENGTH_SHORT);
-                                    toast.show();
-
-                                    //aspetta due secondi e poi esce
-                                    Thread.sleep(2000);
-
-                                    finish();
-                                }
-                                else{
-                                    AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
-                                    build.setMessage("Errore dureante l'iscrizione").setPositiveButton("Ok", (dial, whi) -> {
-                                    });
-                                    AlertDialog aler = build.create();
-                                    aler.show();
-                                }
-
-                            AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
-                            build.setMessage("Match inserito con successo").setPositiveButton("Ok", (dial, whi) -> {
-                                finish();
-                            });
-                            AlertDialog alert = build.create();
-                            alert.show();
-
-                        } else {
-                            // richiesta fallita
-                            if (req.result != null) {
-                                int err = req.result.getInt("error_code");
-                                //errore nella richiesta
-                                AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
-                                build.setMessage("Errore durante l'inserimento!"+err).setPositiveButton("Ok", (dial, whi) -> {
-                                    Intent i = new Intent(create_activities.this, create_activities.class);
-                                    startActivity(i);
-                                    finish();
-                                });
-                                AlertDialog alert = build.create();
-                                alert.show();
-                            }
-                        }
-
-                    } catch (Exception e) {
-                        Log.println(Log.ERROR, "Errore connessione", e.getMessage());
-
-                        AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
-                        build.setMessage("Errore di connessione").setPositiveButton("Ok", (dial, whi) -> {
-                            Intent i = new Intent(create_activities.this, create_activities.class);
-                            startActivity(i);
-                            finish();
-                        });
-                        AlertDialog alert = build.create();
-                        alert.show();
-                    }
-
-                });
-                AlertDialog alert=builder.create();
-                alert.show();
-
-            }
+        confirm.setOnClickListener(v -> {
+            AlertDialog.Builder builder=new AlertDialog.Builder(create_activities.this);
+            builder.setMessage("Salvare evento nel calendario?").setPositiveButton("Sì", (dialog, which) ->saveInDB(true)).
+                    setNegativeButton("Salva senza inserire nel calendario", (dialog, which) -> saveInDB(false));
+            AlertDialog alert=builder.create();
+            alert.show();
         });
-        reject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                AlertDialog.Builder builder=new AlertDialog.Builder(create_activities.this);
-                builder.setMessage("Annullare l'inserimento?").setPositiveButton("Sì", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent i = new Intent(create_activities.this, create_activities.class);
-                        startActivity(i);
-                        finish();
-                    }
-                }).setNegativeButton("Continua l'inserimento", null);
-                AlertDialog alert=builder.create();
-                alert.show();
-            }
+        reject.setOnClickListener(v -> {
+            AlertDialog.Builder builder=new AlertDialog.Builder(create_activities.this);
+            builder.setMessage("Annullare l'inserimento?").setPositiveButton("Sì", (dialog, which) -> {
+                Intent i = new Intent(create_activities.this, create_activities.class);
+                startActivity(i);
+                finish();
+            }).setNegativeButton("Continua l'inserimento", null);
+            AlertDialog alert=builder.create();
+            alert.show();
         });
 
 

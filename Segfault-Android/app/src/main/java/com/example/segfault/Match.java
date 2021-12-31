@@ -26,8 +26,7 @@ public class Match {
         this.desc=desc;
 
         String[] str=  date.split("-",date.length());
-        GregorianCalendar cal= new GregorianCalendar(Integer.parseInt(str[2]),Integer.parseInt(str[1]) - 1,Integer.parseInt(str[0]));
-        this.date =cal;
+        this.date = new GregorianCalendar(Integer.parseInt(str[2]),Integer.parseInt(str[1]) - 1,Integer.parseInt(str[0]));
 
         this.start_time = start_time;
         this.stop_time = stop_time;

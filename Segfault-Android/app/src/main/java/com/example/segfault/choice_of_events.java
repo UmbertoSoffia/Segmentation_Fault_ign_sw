@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Objects;
 
 public class choice_of_events extends AppCompatActivity {
@@ -181,6 +182,13 @@ public class choice_of_events extends AppCompatActivity {
     }
     @SuppressLint("SetTextI18n")
     private void addView(Match match) {
+        GregorianCalendar calendar= new GregorianCalendar();
+        calendar.set(GregorianCalendar.HOUR,0);
+        calendar.set(GregorianCalendar.MINUTE,0);
+        calendar.set(GregorianCalendar.SECOND,0);
+        calendar.set(GregorianCalendar.MILLISECOND,0);
+
+        if(match.date.before(calendar) ) return;
 
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_popup,null,false);
 
