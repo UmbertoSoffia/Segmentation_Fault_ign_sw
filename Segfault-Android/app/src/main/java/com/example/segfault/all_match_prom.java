@@ -16,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Objects;
 
 public class all_match_prom extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class all_match_prom extends AppCompatActivity {
 
         try{
 
-            FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/match", "", "id=" + MainActivity.utente_supp.getCod_id() + "&token=" + MainActivity.utente_supp.getToken()+ "&type=promoter");
+            FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/match", "", "id=" + MainActivity.utente_log.getCod_id()+"&type=promoter" + "&token=" + MainActivity.utente_log.getToken()+ "&type=promoter");
             String res = req.execute().get();
 
             //richiesta andata a buon fine: disegno la lista delle strutture
@@ -42,7 +43,8 @@ public class all_match_prom extends AppCompatActivity {
                 JSONArray response = req.array;
                 for (int i = 0; i < response.length() ; i++) {
 
-                    addView(new Match(((JSONObject) response.get(i)).get("match_id").toString(),
+
+                    Match m=new Match(((JSONObject) response.get(i)).get("match_id").toString(),
                             ((JSONObject) response.get(i)).get("name").toString(),
                             ((JSONObject) response.get(i)).get("structure_id").toString(),
                             ((JSONObject) response.get(i)).get("date").toString(),
@@ -51,8 +53,12 @@ public class all_match_prom extends AppCompatActivity {
                             ((JSONObject) response.get(i)).get("creator_id").toString(),
                             ((JSONObject) response.get(i)).get("age_range").toString(),
                             ((JSONObject) response.get(i)).get("description").toString(),
-                            ((JSONObject) response.get(i)).get("number").toString())
-                    );
+                            ((JSONObject) response.get(i)).get("number").toString());
+                    GregorianCalendar cal=new GregorianCalendar();
+                    cal.set(cal.get(GregorianCalendar.YEAR),cal.get(GregorianCalendar.MONTH),cal.get(GregorianCalendar.DAY_OF_MONTH),0,0,0);
+                    if(!m.date.before(cal))
+                        addView(m);
+
                 }
             }else{
                 if( req.result.getInt("error_code") == 404){
@@ -92,7 +98,7 @@ public class all_match_prom extends AppCompatActivity {
 
 
             try {
-                FSRequest req = new FSRequest("DELETE", MainActivity.utente_log.getToken(), "api/match"+match.id, "", "");
+                FSRequest req = new FSRequest("DELETE", MainActivity.utente_log.getToken(), "api/match/"+match.id, "","token=" + MainActivity.utente_log.getToken());
                 String res = req.execute().get();
 
                 if(!(res.equals("OK"))){

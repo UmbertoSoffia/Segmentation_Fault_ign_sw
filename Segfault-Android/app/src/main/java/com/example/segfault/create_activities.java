@@ -41,17 +41,16 @@ public class create_activities extends AppCompatActivity {
     static Structure structure;
     public static int convert(String str){
         int val = 0;
-        System.out.println("String = " + str);
+
 
         // Convert the String
         try {
+
             val = Integer.parseInt(str);
         }
         catch (NumberFormatException e) {
+            throw new RuntimeException();
 
-            // This is thrown when the String
-            // contains characters other than digits
-            System.out.println("Invalid String");
         }
         return val;
     }
@@ -87,26 +86,28 @@ public class create_activities extends AppCompatActivity {
 
 
             if (res.equals("OK")) {
-                JSONObject reservation = new JSONObject();
-                reservation.put("match_id", req.result.get("id"));
-                reservation.put("user_id", MainActivity.utente_log.getId());
-                FSRequest req2 = new FSRequest("POST", MainActivity.utente_log.getToken(), "api/reservation", reservation.toString(), "");
-                String res2 = req2.execute().get();
-                if (res2.equals("OK")){
-                    Toast toast = Toast.makeText(getApplicationContext(), "ti sei iscritto all'incontro", Toast.LENGTH_SHORT);
-                    toast.show();
+                if(!MainActivity.utente_log.isPromoter()){
+                    JSONObject reservation = new JSONObject();
+                    reservation.put("match_id", req.result.get("id"));
+                    reservation.put("user_id", MainActivity.utente_log.getId());
+                    FSRequest req2 = new FSRequest("POST", MainActivity.utente_log.getToken(), "api/reservation", reservation.toString(), "");
+                    String res2 = req2.execute().get();
+                    if (res2.equals("OK")){
+                        Toast toast = Toast.makeText(getApplicationContext(), "ti sei iscritto all'incontro", Toast.LENGTH_SHORT);
+                        toast.show();
 
-                    //aspetta due secondi e poi esce
-                    Thread.sleep(2000);
+                        //aspetta due secondi e poi esce
+                        Thread.sleep(2000);
 
-                    finish();
-                }
-                else{
-                    AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
-                    build.setMessage("Errore dureante l'iscrizione").setPositiveButton("Ok", (dial, whi) -> {
-                    });
-                    AlertDialog aler = build.create();
-                    aler.show();
+                        finish();
+                    }
+                    else{
+                        AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
+                        build.setMessage("Errore dureante l'iscrizione").setPositiveButton("Ok", (dial, whi) -> {
+                        });
+                        AlertDialog aler = build.create();
+                        aler.show();
+                    }
                 }
 
                 AlertDialog.Builder build = new AlertDialog.Builder(create_activities.this);
@@ -448,11 +449,13 @@ public class create_activities extends AppCompatActivity {
                         }
                         incontri_supp.clear();
                         incontri_supp.addAll(supp);
-                        int ora_apertura= convert(selectedstruct.getStart_time().substring(0,2));
-                        int ora_chiusura=convert(selectedstruct.getStop_time().substring(0,2));
+                        int ora_apertura= convert(selectedstruct.getStart_time().split(":")[0]);
+                        int ora_chiusura=convert(selectedstruct.getStop_time().split(":")[0]);
+
+
                             for (int i = ora_apertura; i<ora_chiusura; i++) {
                                 String s_ora;
-                                s_ora=i+":"+selectedstruct.getStart_time().substring(3);
+                                s_ora=i+":"+selectedstruct.getStart_time().split(":")[1];
                                 hour_start.add(s_ora);
 
                             }
@@ -475,19 +478,22 @@ public class create_activities extends AppCompatActivity {
                                 //elimino i periodi gia occupati
                                 //per ogni incontro tolgo tutte le robe che stanno in mezzo
                                 for (Match m:incontri_supp) {
-                                    int m_s=convert(m.start_time.substring(0,2));
+                                    int m_s=convert(m.start_time.split(":")[0]);
                                     hour_supp.add(m_s);
                                 }
                                 Collections.sort(hour_supp);
-                                int stop=convert(selectedstruct.getStop_time().substring(0,2));
+                                //stop=ora massima da stampare
+                                int stop=convert(selectedstruct.getStop_time().split(":")[0]);
+                                //ora selezionata
+                                int a=convert(((String) spin_hour_start.getSelectedItem()).split(":")[0]);
                                 for (int i:hour_supp) {
-                                    int a=convert(((String) spin_hour_start.getSelectedItem()).substring(0,2));
+
                                     if(a<=i)
                                         stop=i;
 
                                 }
-                                for (int i = convert(((String) spin_hour_start.getSelectedItem()).substring(0,2))+1; i<stop; i++) {
-                                    String ora=i+":"+selectedstruct.getStart_time().substring(3);
+                                for (int i = convert(((String) spin_hour_start.getSelectedItem()).split(":")[0])+1; i<stop; i++) {
+                                    String ora=i+":"+selectedstruct.getStart_time().split(":")[1];
                                     hour_stop.add(ora);
 
                                 }

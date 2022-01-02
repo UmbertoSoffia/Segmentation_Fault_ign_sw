@@ -19,14 +19,11 @@ public class new_structure extends AppCompatActivity {
     static Integer convert(String str)
     {
         int val;
-        System.out.println("String = " + str);
-
         // Convert the String
         try {
             val = Integer.parseInt(str);
         }
         catch (NumberFormatException e) {
-
            return null;
         }
         return val;

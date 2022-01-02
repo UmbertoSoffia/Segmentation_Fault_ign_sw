@@ -205,6 +205,11 @@ public class home_user extends AppCompatActivity {
         super.onStart();
         fillCalendar();
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fillCalendar();
+    }
 
 
 }

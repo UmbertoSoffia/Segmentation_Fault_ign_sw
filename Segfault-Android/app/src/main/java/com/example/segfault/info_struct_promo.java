@@ -129,7 +129,7 @@ public class info_struct_promo extends AppCompatActivity {
                             AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
                             builder.setMessage("Struttura modificata con successo").setPositiveButton("Ok", (dialog, which) -> {
                                 MainActivity.utente_supp=MainActivity.utente_log;
-                                Intent i = new Intent(info_struct_promo.this, all_match_prom.class);
+                                Intent i = new Intent(info_struct_promo.this, All_structure_prom.class);
                                 startActivity(i);
                                 finish();
                             });

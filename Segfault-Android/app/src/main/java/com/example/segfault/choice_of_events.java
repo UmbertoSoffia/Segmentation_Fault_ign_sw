@@ -8,12 +8,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -36,6 +36,7 @@ public class choice_of_events extends AppCompatActivity {
     private LinearLayout layoutList;
 
     ArrayList<PAir<Match,Integer>>all_match=new ArrayList<>();
+    ArrayList<Structure>all_str=new ArrayList<>();
 
 
 
@@ -45,10 +46,30 @@ public class choice_of_events extends AppCompatActivity {
 
             FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/match", "", "token=" + MainActivity.utente_supp.getToken());
             String res = req.execute().get();
+            FSRequest req2 = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/structure", "",  "&token=" + MainActivity.utente_log.getToken());
+            String res2 = req.execute().get();
 
             //richiesta andata a buon fine: disegno la lista delle strutture
-            if (res.equals("OK")) {
+            if (res.equals("OK") && res2.equals("OK") ) {
                 JSONArray response = req.array;
+                JSONArray response2 = req2.array;
+
+
+                for (int i = 0; i < response2.length(); i++) {
+                    JSONObject obj = (JSONObject) response2.get(i);
+                    all_str.add(new Structure(((JSONObject) response2.get(i)).get("name").toString(),
+                            ((JSONObject) response2.get(i)).get("structure_id").toString(),
+                            ((JSONObject) response2.get(i)).get("description").toString(),
+                            ((JSONObject) response2.get(i)).getInt("number"),
+                            ((JSONObject)(obj.get("address"))).get("street").toString(),
+                            ((JSONObject) response2.get(i)).get("start_time").toString(),
+                            ((JSONObject) response2.get(i)).get("stop_time").toString(),
+                            ((JSONObject) response2.get(i)).get("working_days").toString(),
+                            ((JSONObject) response2.get(i)).get("address_id").toString()
+
+                    ));
+
+                }
 
                 for (int i = 0; i < response.length(); i++) {
                     Match m=new Match(((JSONObject) response.get(i)).get("match_id").toString(),
@@ -120,10 +141,10 @@ public class choice_of_events extends AppCompatActivity {
 
         Button find_without_constraint=findViewById(R.id.all_serch_activity);
         find_without_constraint.setOnClickListener(v ->{
-            SearchView activity=findViewById(R.id.searchViewsport);
-            SearchView searchView= findViewById(R.id.searchView);
-            String struct= (searchView.getQuery()).toString();
-            String nome=(activity.getQuery()).toString();
+            EditText activity=findViewById(R.id.searchViewsport);
+            EditText searchView= findViewById(R.id.searchView);
+            String struct= searchView.toString();
+            String nome=activity.toString();
             layoutList.removeAllViews();
             if(struct.equals("") && nome.equals("")){
                 boolean one = false;
@@ -145,13 +166,22 @@ public class choice_of_events extends AppCompatActivity {
             else{
                 if(!struct.equals("") && nome.equals("")){
                     boolean one=false;
-                    for (PAir<Match,Integer>  m:all_match) {
-                        //ci vuole name senno non va con id
-                        if (m.first.struttura.equals(struct) && m.second<create_activities.convert(m.first.number)) {
-                            addView(m);
-                            one = true;
+                    for (Structure s:all_str) {
+                        if (s.getName().equals(struct)){
+                            for (PAir<Match,Integer>  m:all_match) {
+                                if (m.first.struttura.equals(s.getId()) && m.second<create_activities.convert(m.first.number)) {
+                                    addView(m);
+                                    one = true;
+                                }
+                            }
+
                         }
+
+
                     }
+
+
+
                     if(!one) {
                         //altrimenti
                         AlertDialog.Builder builder = new AlertDialog.Builder(choice_of_events.this);
@@ -166,7 +196,6 @@ public class choice_of_events extends AppCompatActivity {
                     if(struct.equals("") && !nome.equals("")) {
                         boolean one = false;
                         for (PAir<Match,Integer>  m : all_match) {
-                            //ci vuole name senno non va con id
                             if (m.first.nome.equals(nome) && m.second<create_activities.convert(m.first.number)) {
                                 addView(m);
                                 one = true;
@@ -182,13 +211,18 @@ public class choice_of_events extends AppCompatActivity {
                         }
                     }
                     else{
-                        boolean one = false;
-                        for (PAir<Match,Integer>  m : all_match) {
-                            //ci vuole name senno non va con id
-                            if (m.first.nome.equals(nome) && m.first.struttura.equals(struct) && m.second<create_activities.convert(m.first.number)) {
-                                addView(m);
-                                one = true;
+                        boolean one=false;
+                        for (Structure s:all_str) {
+                            if (s.getName().equals(struct)){
+                                for (PAir<Match,Integer>  m:all_match) {
+                                    if (m.first.nome.equals(nome) && m.first.struttura.equals(s.getId()) && m.second<create_activities.convert(m.first.number)) {
+                                        addView(m);
+                                        one = true;
+                                    }
+                                }
+
                             }
+
                         }
                         if (!one) {
                             //altrimenti

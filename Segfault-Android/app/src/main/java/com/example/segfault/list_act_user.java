@@ -19,6 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Objects;
 
 public class list_act_user extends AppCompatActivity {
@@ -30,32 +31,34 @@ public class list_act_user extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_act_user);
         Calendar cal=MainActivity.eventDay.getCalendar();
-        Objects.requireNonNull(getSupportActionBar()).setTitle(cal.get(Calendar.DAY_OF_MONTH)+"/"+cal.get(Calendar.MONTH)+"/"+cal.get(Calendar.YEAR));
+        Objects.requireNonNull(getSupportActionBar()).setTitle(cal.get(Calendar.DAY_OF_MONTH)+"/"+(cal.get(Calendar.MONTH)+1)+"/"+cal.get(Calendar.YEAR));
         layoutList = findViewById(R.id.list_act_user_scroll);
         try {
             //dato giorno e id deve darmi tutti event giornata
             //dal.getTime ritorna la data
-            FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/match", "", "user="+MainActivity.utente_log+ "&date="+cal.getTime()+"&token=" + MainActivity.utente_supp.getToken());
+            FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/reservation", "", "user="+MainActivity.utente_log.getCod_id()+ "&token=" + MainActivity.utente_supp.getToken());
             String res = req.execute().get();
 
             //richiesta andata a buon fine: disegno la lista delle strutture
             if (res.equals("OK")) {
+
+
                 JSONArray response = req.array;
 
                 for (int i = 0; i < response.length(); i++) {
-
+                    JSONObject ogg=(JSONObject) ((JSONObject) response.get(i)).get("match");
                     Match m=new Match(((JSONObject) response.get(i)).get("match_id").toString(),
-                            ((JSONObject) response.get(i)).get("name").toString(),
-                            ((JSONObject) response.get(i)).get("structure_id").toString(),
-                            ((JSONObject) response.get(i)).get("date").toString(),
-                            ((JSONObject) response.get(i)).get("start_time").toString(),
-                            ((JSONObject) response.get(i)).get("stop_time").toString(),
-                            ((JSONObject) response.get(i)).get("creator_id").toString(),
-                            ((JSONObject) response.get(i)).get("age_range").toString(),
-                            ((JSONObject) response.get(i)).get("description").toString(),
-                            ((JSONObject) response.get(i)).get("number").toString());
-                    String str=m.date.get(Calendar.DAY_OF_MONTH) + "-" + (m.date.get(Calendar.MONTH)+1) + "-" + m.date.get(Calendar.YEAR);
-                    String gr=cal.get(Calendar.DAY_OF_MONTH)+ "-" + (cal.get(Calendar.MONTH)+1) + "-" + cal.get(Calendar.YEAR);
+                            ogg.get("name").toString(),
+                            ogg.get("structure_id").toString(),
+                            ogg.get("date").toString(),
+                            ogg.get("start_time").toString(),
+                            ogg.get("stop_time").toString(),
+                            ogg.get("creator_id").toString(),
+                            ogg.get("age_range").toString(),
+                            ogg.get("description").toString(),
+                            ogg.get("number").toString());
+                    String str=m.date.get(GregorianCalendar.DAY_OF_MONTH) + "-" + (m.date.get(GregorianCalendar.MONTH)+1) + "-" + m.date.get(GregorianCalendar.YEAR);
+                    String gr=cal.get(GregorianCalendar.DAY_OF_MONTH)+ "-" + (cal.get(GregorianCalendar.MONTH)+1) + "-" + cal.get(GregorianCalendar.YEAR);
                     if(str.equals(gr))
                         addView(m);
 
