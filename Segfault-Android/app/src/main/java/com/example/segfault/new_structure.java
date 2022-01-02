@@ -18,7 +18,7 @@ import java.util.Objects;
 public class new_structure extends AppCompatActivity {
     static Integer convert(String str)
     {
-        int val = 0;
+        int val;
         System.out.println("String = " + str);
 
         // Convert the String

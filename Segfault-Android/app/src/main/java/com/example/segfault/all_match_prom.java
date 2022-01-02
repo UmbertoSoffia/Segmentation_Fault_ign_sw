@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 public class all_match_prom extends AppCompatActivity {
@@ -40,7 +41,7 @@ public class all_match_prom extends AppCompatActivity {
             if(res.equals("OK")){
                 JSONArray response = req.array;
                 for (int i = 0; i < response.length() ; i++) {
-                    JSONObject obj=(JSONObject)response.get(i);
+
                     addView(new Match(((JSONObject) response.get(i)).get("match_id").toString(),
                             ((JSONObject) response.get(i)).get("name").toString(),
                             ((JSONObject) response.get(i)).get("structure_id").toString(),
@@ -82,8 +83,9 @@ public class all_match_prom extends AppCompatActivity {
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_popup,null,false);
 
         TextView editText = cricketerView.findViewById(R.id.pop_actyvity);
-
-        editText.setText(match.toString());
+        String date=match.date.get(Calendar.DAY_OF_MONTH) + "-" + (match.date.get(Calendar.MONTH)+1) + "-" + match.date.get(Calendar.YEAR);
+        String str="nome= "+match.nome+"\ndata= "+date+"\nora= "+match.start_time+" - "+match.stop_time+"\nstruttura= "+match.struttura.substring(0,15)+"\nnumero persone= "+match.number;
+        editText.setText(str);
         Button myButton1 = cricketerView.findViewById(R.id.pop_actyvity_button);
         myButton1.setText(R.string.elimina);
         myButton1.setOnClickListener(view -> {

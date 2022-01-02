@@ -24,8 +24,21 @@ import java.util.GregorianCalendar;
 import java.util.Objects;
 
 public class choice_of_events extends AppCompatActivity {
+    public static class PAir<F,S>{
+        F first;
+        S second;
+
+        public PAir(F first, S second) {
+            this.first = first;
+            this.second = second;
+        }
+    }
     private LinearLayout layoutList;
-    private ArrayList<Match> all_match = new ArrayList<Match>();
+
+    ArrayList<PAir<Match,Integer>>all_match=new ArrayList<>();
+
+
+
 
     private void req() {
         try {
@@ -38,7 +51,7 @@ public class choice_of_events extends AppCompatActivity {
                 JSONArray response = req.array;
 
                 for (int i = 0; i < response.length(); i++) {
-                    all_match.add(new Match(((JSONObject) response.get(i)).get("match_id").toString(),
+                    Match m=new Match(((JSONObject) response.get(i)).get("match_id").toString(),
                             ((JSONObject) response.get(i)).get("name").toString(),
                             ((JSONObject) response.get(i)).get("structure_id").toString(),
                             ((JSONObject) response.get(i)).get("date").toString(),
@@ -47,9 +60,21 @@ public class choice_of_events extends AppCompatActivity {
                             ((JSONObject) response.get(i)).get("creator_id").toString(),
                             ((JSONObject) response.get(i)).get("age_range").toString(),
                             ((JSONObject) response.get(i)).get("description").toString(),
-                            ((JSONObject) response.get(i)).get("number").toString())
+                            ((JSONObject) response.get(i)).get("number").toString());
+                    boolean insert=false;
 
-                    );
+                    for (PAir<Match,Integer> cop:all_match) {
+                        if(cop.first.equals(m)){
+                            cop.second=cop.second+1;
+                            insert=true;
+                            break;
+                        }
+
+
+                    }
+                    if(!insert)all_match.add(new PAir<>(m,1));
+
+
 
                 }
 
@@ -102,10 +127,11 @@ public class choice_of_events extends AppCompatActivity {
             layoutList.removeAllViews();
             if(struct.equals("") && nome.equals("")){
                 boolean one = false;
-                for (Match m : all_match) {
-
-                    addView(m);
-                    one = true;
+                for (PAir<Match,Integer>  m : all_match) {
+                    if(m.second<create_activities.convert(m.first.number)) {
+                        addView(m);
+                        one = true;
+                    }
                 }
                 if (!one) {
                     //altrimenti
@@ -119,9 +145,9 @@ public class choice_of_events extends AppCompatActivity {
             else{
                 if(!struct.equals("") && nome.equals("")){
                     boolean one=false;
-                    for (Match m:all_match) {
+                    for (PAir<Match,Integer>  m:all_match) {
                         //ci vuole name senno non va con id
-                        if (m.struttura.equals(struct)) {
+                        if (m.first.struttura.equals(struct) && m.second<create_activities.convert(m.first.number)) {
                             addView(m);
                             one = true;
                         }
@@ -139,9 +165,9 @@ public class choice_of_events extends AppCompatActivity {
 
                     if(struct.equals("") && !nome.equals("")) {
                         boolean one = false;
-                        for (Match m : all_match) {
+                        for (PAir<Match,Integer>  m : all_match) {
                             //ci vuole name senno non va con id
-                            if (m.nome.equals(nome)) {
+                            if (m.first.nome.equals(nome) && m.second<create_activities.convert(m.first.number)) {
                                 addView(m);
                                 one = true;
                             }
@@ -157,9 +183,9 @@ public class choice_of_events extends AppCompatActivity {
                     }
                     else{
                         boolean one = false;
-                        for (Match m : all_match) {
+                        for (PAir<Match,Integer>  m : all_match) {
                             //ci vuole name senno non va con id
-                            if (m.nome.equals(nome) && m.struttura.equals(struct)) {
+                            if (m.first.nome.equals(nome) && m.first.struttura.equals(struct) && m.second<create_activities.convert(m.first.number)) {
                                 addView(m);
                                 one = true;
                             }
@@ -181,7 +207,8 @@ public class choice_of_events extends AppCompatActivity {
 
     }
     @SuppressLint("SetTextI18n")
-    private void addView(Match match) {
+    private void addView(PAir<Match,Integer>  m) {
+        Match match=m.first;
         GregorianCalendar calendar= new GregorianCalendar();
         calendar.set(GregorianCalendar.HOUR,0);
         calendar.set(GregorianCalendar.MINUTE,0);
@@ -196,7 +223,7 @@ public class choice_of_events extends AppCompatActivity {
         int giorno=match.date.get(Calendar.DAY_OF_MONTH);
         int mese=match.date.get(Calendar.MONTH) + 1;
         int anno=match.date.get(Calendar.YEAR);
-        editText.setText("nome: "+match.nome+ "\n" +giorno+"/"+mese+"/"+anno);
+        editText.setText("nome: "+match.nome+ "\ndata: " +giorno+"/"+mese+"/"+anno+"\nnumero partecipanti: "+m.second);
         Button myButton1 = cricketerView.findViewById(R.id.pop_actyvity_button);
         myButton1.setText("informazioni");
         myButton1.setOnClickListener(view -> {

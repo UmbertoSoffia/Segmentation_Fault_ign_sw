@@ -151,19 +151,18 @@ public class create_activities extends AppCompatActivity {
             intent.putExtra(CalendarContract.Events.TITLE,m.nome);
             GregorianCalendar cal=new GregorianCalendar();
 
-            int mese=m.date.get(GregorianCalendar.MONTH);
-            int giorno=m.date.get(GregorianCalendar.DAY_OF_MONTH);
-            int anno=m.date.get(GregorianCalendar.YEAR);
-            String orap=convert( spin_hour_start.getSelectedItem().toString().substring(0,2))+":"+convert(spin_hour_start.getSelectedItem().toString().split(":",spin_hour_start.getSelectedItem().toString().length())[1]);
-            //i dati sopra li prende giusti ma non capisco come mai li setta sbagliati
-            cal.set(m.date.get(GregorianCalendar.DAY_OF_MONTH),m.date.get(GregorianCalendar.MONTH)+1,m.date.get(GregorianCalendar.YEAR),convert( spin_hour_start.getSelectedItem().toString().substring(0,2))
+            cal.set(m.date.get(GregorianCalendar.YEAR),m.date.get(GregorianCalendar.MONTH)+1
+                    ,m.date.get(GregorianCalendar.DAY_OF_MONTH),convert( spin_hour_start.getSelectedItem().toString().substring(0,2))
                     ,convert(spin_hour_start.getSelectedItem().toString().split(":",spin_hour_start.getSelectedItem().toString().length())[1]));
+
             GregorianCalendar cal2=new GregorianCalendar();
-            cal2.set(m.date.get(GregorianCalendar.DAY_OF_MONTH),m.date.get(GregorianCalendar.MONTH)+1,m.date.get(GregorianCalendar.YEAR),convert( spin_hour_stop.getSelectedItem().toString().substring(0,2))
+            cal2.set(m.date.get(GregorianCalendar.YEAR),m.date.get(GregorianCalendar.MONTH)+1
+                    ,m.date.get(GregorianCalendar.DAY_OF_MONTH),convert( spin_hour_stop.getSelectedItem().toString().substring(0,2))
                     ,convert(spin_hour_stop.getSelectedItem().toString().split(":",spin_hour_stop.getSelectedItem().toString().length())[1]));
+
             intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, cal.getTimeInMillis());
             intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,cal2.getTimeInMillis());
-            intent.putExtra(CalendarContract.Events.ALL_DAY, false);// periodicity
+            intent.putExtra(CalendarContract.Events.ALL_DAY, false);
             intent.putExtra(CalendarContract.Events.DESCRIPTION,m.desc);
             startActivity(intent);
         }
@@ -523,7 +522,7 @@ public class create_activities extends AppCompatActivity {
                                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                                     n_pers.clear();
                                                    //aggiunge num possiblie persone  entro i limiti struttura
-                                                    for (int i = 0; i < selectedstruct.getNumber()+1; i++) {
+                                                    for (int i = 1; i < selectedstruct.getNumber()+1; i++) {
                                                         n_pers.add(((Integer) i).toString());
                                                     }
 

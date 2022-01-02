@@ -92,7 +92,7 @@ public class all_structure_user extends AppCompatActivity {
 
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_structure,null,false);
 
-        TextView editText = (TextView)cricketerView.findViewById(R.id.nome_struct);
+        TextView editText = cricketerView.findViewById(R.id.nome_struct);
         editText.setText(s.getName());
         Button myButton1 = cricketerView.findViewById(R.id.row_structure_button);
         myButton1.setOnClickListener(view -> {

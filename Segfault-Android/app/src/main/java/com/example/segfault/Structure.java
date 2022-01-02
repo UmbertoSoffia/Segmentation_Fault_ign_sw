@@ -3,15 +3,15 @@ package com.example.segfault;
 public class Structure {
     //questo rapprestenta un insieme di immagini
 
-    private   String name;
-    private   String id;
+    private final String name;
+    private final String id;
     private  String desc;
     private  int number;
-    private String Address;
-    private  String start_time;
-    private  String stop_time;
-    private String working_days;
-    private String address_id;
+    private final String Address;
+    private final String start_time;
+    private final String stop_time;
+    private final String working_days;
+    private final String address_id;
 
 
     public Structure(String name, String id, String desc, int number, String address, String start_time, String stop_time, String wd, String addr_id) {

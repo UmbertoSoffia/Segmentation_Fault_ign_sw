@@ -95,9 +95,9 @@ public class info_utent_prom extends AppCompatActivity {
     }
     private void addView( Structure s) {
 
-        final View cricketerView = getLayoutInflater().inflate(R.layout.row_structure,null,false);
+        @SuppressLint("InflateParams") final View cricketerView = getLayoutInflater().inflate(R.layout.row_structure,null,false);
 
-        TextView editText = (TextView)cricketerView.findViewById(R.id.nome_struct);
+        TextView editText = cricketerView.findViewById(R.id.nome_struct);
         editText.setText(s.getName());
         Button myButton1 = cricketerView.findViewById(R.id.row_structure_button);
         myButton1.setOnClickListener(view -> {

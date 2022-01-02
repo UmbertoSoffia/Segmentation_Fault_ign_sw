@@ -162,9 +162,7 @@ public class info_struct_promo extends AppCompatActivity {
 
         cancel.setOnClickListener(v -> {
             AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
-            builder.setMessage("Annullare la modifica?").setPositiveButton("Si", (dialog,which) -> {
-                finish();
-            }).setNegativeButton("No", (dialog,which) ->{});
+            builder.setMessage("Annullare la modifica?").setPositiveButton("Si", (dialog,which) -> finish()).setNegativeButton("No", (dialog, which) ->{});
             AlertDialog alert=builder.create();
             alert.show();
         });

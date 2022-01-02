@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
-import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,15 +23,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
-import java.util.Properties;
-
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 public class home_user extends AppCompatActivity {
     CalendarView calendarView ;
@@ -46,56 +36,13 @@ public class home_user extends AppCompatActivity {
     }
 
 
-    //tutorial su come mandare mail senza aprire l'app mail
-    //!! non va
-    //https://www.youtube.com/watch?v=roruU4hVwXA
-    private void mail(String email, String msg){
-
-
-        String host="mail.javatpoint.com";
-        final String user="segfaultunive@gmail.com";//change accordingly
-        final String password="Unive2022";//change accordingly
-
-        String to="umbertosoffia00@gmail.com";//change accordingly
-
-        //Get the session object
-        Properties props = new Properties();
-        props.put("mail.smtp.host",host);
-        props.put("mail.smtp.auth", "true");
-
-        Session session = Session.getDefaultInstance(props,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(user,password);
-                    }
-                });
-
-        //Compose the message
-        try {
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(user));
-            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
-            message.setSubject("javatpoint");
-            message.setText("This is simple program of sending email using JavaMail API");
-
-            //send the message
-            Transport.send(message);
-
-            System.out.println("message sent successfully...");
-
-        } catch (MessagingException e) {e.printStackTrace();}
-        Toast.makeText(getApplicationContext(),"possibil positività comunicata",Toast.LENGTH_LONG).show();
-
-
-
-    }
     private void fillCalendar(){
 
         events.clear();
         try{
             FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/reservation", "", "user=" + MainActivity.utente_log.getCod_id() + "&token=" + MainActivity.utente_log.getToken());
             String res = req.execute().get();
-            ArrayList<Match> incontri=new ArrayList<Match>();
+            ArrayList<Match> incontri=new ArrayList<>();
 
             //richiesta andata a buon fine: disegno la lista delle reservation
             if (res.equals("OK")) {
@@ -209,24 +156,21 @@ public class home_user extends AppCompatActivity {
 
         fillCalendar();
 
-        calendarView.setOnDayClickListener(new OnDayClickListener() {
-            @Override
-            public void onDayClick(EventDay eventDay) {
+        calendarView.setOnDayClickListener(eventDay -> {
 
-                if(events.contains(eventDay)){
-                    MainActivity.utente_supp=MainActivity.utente_log;
-                    MainActivity.eventDay=eventDay;
+            if(events.contains(eventDay)){
+                MainActivity.utente_supp=MainActivity.utente_log;
+                MainActivity.eventDay=eventDay;
 
-                    //manda alla pagina di tutte le prenotazioni del giorno selezionato
+                //manda alla pagina di tutte le prenotazioni del giorno selezionato
 
-                    Intent i = new Intent(home_user.this, list_act_user.class);
-                    startActivity(i);
+                Intent i = new Intent(home_user.this, list_act_user.class);
+                startActivity(i);
 
-                }
-                else{
-                    Toast toast = Toast.makeText(getApplicationContext(), "Nessun evento per questa gionata", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
+            }
+            else{
+                Toast toast = Toast.makeText(getApplicationContext(), "Nessun evento per questa gionata", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
 
