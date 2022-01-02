@@ -23,7 +23,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.Objects;
@@ -403,20 +402,28 @@ public class create_activities extends AppCompatActivity {
 
 
                 GregorianCalendar start = new GregorianCalendar();
-                GregorianCalendar stop = new GregorianCalendar(start.get(Calendar.YEAR),start.get(Calendar.MONTH) + 1, start.get(Calendar.DAY_OF_MONTH));
-
-                //ce proclema con settaggio primo giorno settimana e sfasa tutto sotto dei giorni settimana
-                start.setFirstDayOfWeek(Calendar.MONDAY);
+                GregorianCalendar stop = new GregorianCalendar(start.get(GregorianCalendar.YEAR),start.get(GregorianCalendar.MONTH) + 1, start.get(GregorianCalendar.DAY_OF_MONTH));
 
 
                 String[] wd=selectedstruct.getWorking_days();
-                while(start.get(Calendar.DAY_OF_MONTH) != stop.get(Calendar.DAY_OF_MONTH) || start.get(Calendar.MONTH) != stop.get(Calendar.MONTH) || start.get(Calendar.YEAR) != stop.get(Calendar.YEAR)){
+                while(start.get(GregorianCalendar.DAY_OF_MONTH) != stop.get(GregorianCalendar.DAY_OF_MONTH) || start.get(GregorianCalendar.MONTH) != stop.get(GregorianCalendar.MONTH) || start.get(GregorianCalendar.YEAR) != stop.get(GregorianCalendar.YEAR)){
                     //prendo un giorno in meno xk wd va da 0 a 6
-                    int day=start.get(Calendar.DAY_OF_WEEK)-1;
+                    int day=start.get(GregorianCalendar.DAY_OF_WEEK);
+
                     //se uguale a " " vuol dire che giorno di riposo
-                    if(!wd[day].equals(" "))
-                        date.add(start.get(Calendar.DAY_OF_MONTH) + "-" + (start.get(Calendar.MONTH)+1) + "-" + start.get(Calendar.YEAR));
-                    start.add(Calendar.DAY_OF_MONTH, 1);
+                   switch (day) {
+                       case GregorianCalendar.MONDAY: if (!wd[0].equals(" ")) date.add(start.get(GregorianCalendar.DAY_OF_MONTH) + "-" + (start.get(GregorianCalendar.MONTH)+1) + "-" + start.get(GregorianCalendar.YEAR)); break;
+                       case GregorianCalendar.TUESDAY: if (!wd[1].equals(" ")) date.add(start.get(GregorianCalendar.DAY_OF_MONTH) + "-" + (start.get(GregorianCalendar.MONTH)+1) + "-" + start.get(GregorianCalendar.YEAR)); break;
+                       case GregorianCalendar.WEDNESDAY: if (!wd[2].equals(" ")) date.add(start.get(GregorianCalendar.DAY_OF_MONTH) + "-" + (start.get(GregorianCalendar.MONTH)+1) + "-" + start.get(GregorianCalendar.YEAR)); break;
+                       case GregorianCalendar.THURSDAY: if (!wd[3].equals(" ")) date.add(start.get(GregorianCalendar.DAY_OF_MONTH) + "-" + (start.get(GregorianCalendar.MONTH)+1) + "-" + start.get(GregorianCalendar.YEAR)); break;
+                       case GregorianCalendar.FRIDAY: if (!wd[4].equals(" ")) date.add(start.get(GregorianCalendar.DAY_OF_MONTH) + "-" + (start.get(GregorianCalendar.MONTH)+1) + "-" + start.get(GregorianCalendar.YEAR)); break;
+                       case GregorianCalendar.SATURDAY: if (!wd[5].equals(" ")) date.add(start.get(GregorianCalendar.DAY_OF_MONTH) + "-" + (start.get(GregorianCalendar.MONTH)+1) + "-" + start.get(GregorianCalendar.YEAR)); break;
+                       case GregorianCalendar.SUNDAY: if (!wd[6].equals(" ")) date.add(start.get(GregorianCalendar.DAY_OF_MONTH) + "-" + (start.get(GregorianCalendar.MONTH)+1) + "-" + start.get(GregorianCalendar.YEAR)); break;
+
+                   }
+
+
+                    start.add(GregorianCalendar.DAY_OF_MONTH, 1);
 
                 }
 
