@@ -15,12 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 
 public class all_match_prom extends AppCompatActivity {
     private LinearLayout layoutList;
+    private ArrayList<Structure>all_struct;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -37,9 +39,11 @@ public class all_match_prom extends AppCompatActivity {
 
             FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/match", "", "id=" + MainActivity.utente_log.getCod_id()+"&type=promoter" + "&token=" + MainActivity.utente_log.getToken()+ "&type=promoter");
             String res = req.execute().get();
+            FSRequest req2 = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/structure", "", "promoter=" + MainActivity.utente_supp.getCod_id() + "&token=" + MainActivity.utente_supp.getToken());
+            String res2 = req2.execute().get();
 
             //richiesta andata a buon fine: disegno la lista delle strutture
-            if(res.equals("OK")){
+            if(res.equals("OK") && res2.equals("OK") ){
                 JSONArray response = req.array;
                 for (int i = 0; i < response.length() ; i++) {
 
@@ -58,7 +62,24 @@ public class all_match_prom extends AppCompatActivity {
                     cal.set(cal.get(GregorianCalendar.YEAR),cal.get(GregorianCalendar.MONTH),cal.get(GregorianCalendar.DAY_OF_MONTH),0,0,0);
                     if(!m.date.before(cal))
                         addView(m);
+                }
 
+
+
+                JSONArray response2 = req2.array;
+                for (int i = 0; i < response2.length() ; i++) {
+                    JSONObject obj = (JSONObject) response2.get(i);
+                    all_struct.add(new Structure(((JSONObject) response2.get(i)).get("name").toString(),
+                            ((JSONObject) response2.get(i)).get("structure_id").toString(),
+                            ((JSONObject) response2.get(i)).get("description").toString(),
+                            ((JSONObject) response2.get(i)).getInt("number"),
+                            ((JSONObject)(obj.get("address"))).get("street").toString(),
+                            ((JSONObject) response2.get(i)).get("start_time").toString(),
+                            ((JSONObject) response2.get(i)).get("stop_time").toString(),
+                            ((JSONObject) response2.get(i)).get("working_days").toString(),
+                            ((JSONObject) response2.get(i)).get("address_id").toString()
+
+                    ));
                 }
             }else{
                 if( req.result.getInt("error_code") == 404){
@@ -90,7 +111,14 @@ public class all_match_prom extends AppCompatActivity {
 
         TextView editText = cricketerView.findViewById(R.id.pop_actyvity);
         String date=match.date.get(Calendar.DAY_OF_MONTH) + "-" + (match.date.get(Calendar.MONTH)+1) + "-" + match.date.get(Calendar.YEAR);
-        String str="nome= "+match.nome+"\ndata= "+date+"\nora= "+match.start_time+" - "+match.stop_time+"\nstruttura= "+match.struttura.substring(0,15)+"\nnumero persone= "+match.number;
+        String struttura="";
+        for (Structure s:all_struct) {
+            if(s.getId().equals(match.struttura)){
+                struttura=s.getName();
+            }
+        }
+
+        String str="nome= "+match.nome+"\ndata= "+date+"\nora= "+match.start_time+" - "+match.stop_time+"\nstruttura= "+struttura+"\nnumero persone= "+match.number;
         editText.setText(str);
         Button myButton1 = cricketerView.findViewById(R.id.pop_actyvity_button);
         myButton1.setText(R.string.elimina);
