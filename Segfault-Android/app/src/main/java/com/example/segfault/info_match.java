@@ -80,7 +80,11 @@ public class info_match extends AppCompatActivity {
         desc.setText(match.desc);
 
         Button button=findViewById(R.id.button_info_match);
-        if(match.date.before(new GregorianCalendar())){
+        GregorianCalendar calendar=new GregorianCalendar();
+        // questo va cosi senno bisogna modificare registrazione evento
+        //perche si possono mettere tutti orari della giornata per le prenotazioni
+        calendar.set(GregorianCalendar.YEAR,GregorianCalendar.MONTH,GregorianCalendar.DAY_OF_MONTH,0,0);
+        if(match.date.before(calendar)){
             ViewGroup layout = (ViewGroup) button.getParent();
             if(null!=layout) //for safety only  as you are doing onClick
                 layout.removeView(button);

@@ -438,6 +438,7 @@ public class create_activities extends AppCompatActivity {
                         age_min.clear();
                         String[] supp_date = date.get(position).split("-");
                         final GregorianCalendar selected_date = new GregorianCalendar(Integer.parseInt(supp_date[2]), Integer.parseInt(supp_date[1]) - 1, Integer.parseInt(supp_date[0]));
+                        GregorianCalendar today=new GregorianCalendar();
                         //filtro i match in base al giorno cosi ne confronto meno
                         ArrayList<Match> supp=new ArrayList<>(incontri_supp);
                         for (Match m : incontri_supp) {
@@ -451,14 +452,38 @@ public class create_activities extends AppCompatActivity {
                         incontri_supp.addAll(supp);
                         int ora_apertura= convert(selectedstruct.getStart_time().split(":")[0]);
                         int ora_chiusura=convert(selectedstruct.getStop_time().split(":")[0]);
+                        //SOLO DA ORA IN POI NON SI TORNA INDIETRO NEL TEMPO
+                        if(selected_date.get(GregorianCalendar.YEAR)==today.get(GregorianCalendar.YEAR) &&
+                           selected_date.get(GregorianCalendar.DAY_OF_MONTH)==today.get(GregorianCalendar.DAY_OF_MONTH) &&
+                           selected_date.get(GregorianCalendar.MONTH)==today.get(GregorianCalendar.MONTH)){
 
-
-                            for (int i = ora_apertura; i<ora_chiusura; i++) {
+                            for (int i = today.get(GregorianCalendar.HOUR_OF_DAY)+2; i<=ora_chiusura; i++) {
                                 String s_ora;
                                 s_ora=i+":"+selectedstruct.getStart_time().split(":")[1];
                                 hour_start.add(s_ora);
 
                             }
+                        }
+                        else {
+                            for (int i = ora_apertura; i<=ora_chiusura; i++) {
+                                    String s_ora;
+                                    s_ora=i+":"+selectedstruct.getStart_time().split(":")[1];
+                                    hour_start.add(s_ora);
+
+                            }
+                        }
+                        //rimuovo tutte le ore gia occupate da incontri
+                        for (Match m:incontri_supp) {
+                            int ora_inizio= convert(m.start_time.split(":")[0]);
+                            int ora_fine=convert(m.stop_time.split(":")[0]);
+                            for (int i = ora_inizio; i<=ora_fine; i++) {
+                                String s_ora;
+                                s_ora=i+":"+selectedstruct.getStart_time().split(":")[1];
+                                hour_start.remove(s_ora);
+
+                            }
+
+                        }
 
 
 
@@ -473,29 +498,39 @@ public class create_activities extends AppCompatActivity {
                                 age_min.clear();
                                 hour_stop.clear();
                                 ArrayList<Integer>hour_supp=new ArrayList<>();
+                                //ora selezionata
+                                int selected_hour=convert(((String) spin_hour_start.getSelectedItem()).split(":")[0]);
 
-
-                                //elimino i periodi gia occupati
-                                //per ogni incontro tolgo tutte le robe che stanno in mezzo
+                               //inserisco in hour_start gli orari di inizio degli altri match di quel giorno
+                                //giorno controllo sopra
                                 for (Match m:incontri_supp) {
                                     int m_s=convert(m.start_time.split(":")[0]);
-                                    hour_supp.add(m_s);
+                                    //solo se è maggiore può interferire
+                                    if(m_s>selected_hour)
+                                         hour_supp.add(m_s);
                                 }
+                                //li ordino così so quale comincia prima
                                 Collections.sort(hour_supp);
+
+
                                 //stop=ora massima da stampare
                                 int stop=convert(selectedstruct.getStop_time().split(":")[0]);
-                                //ora selezionata
-                                int a=convert(((String) spin_hour_start.getSelectedItem()).split(":")[0]);
-                                for (int i:hour_supp) {
 
-                                    if(a<=i)
-                                        stop=i;
 
+
+                                if(hour_supp.isEmpty()) {
+                                    for (int i = selected_hour + 1; i < stop; i++) {
+                                        String ora = i + ":" + selectedstruct.getStart_time().split(":")[1];
+                                        hour_stop.add(ora);
+                                    }
                                 }
-                                for (int i = convert(((String) spin_hour_start.getSelectedItem()).split(":")[0])+1; i<stop; i++) {
-                                    String ora=i+":"+selectedstruct.getStart_time().split(":")[1];
-                                    hour_stop.add(ora);
+                                else {
+                                   //faccio get 0 xk ordinando quelli maggiori prendo subito sopra
+                                    for (int i = selected_hour + 1; i <= hour_supp.get(0); i++) {
+                                        String ora = i + ":" + selectedstruct.getStart_time().split(":")[1];
+                                        hour_stop.add(ora);
 
+                                    }
                                 }
 
 
