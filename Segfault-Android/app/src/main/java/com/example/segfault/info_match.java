@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 
@@ -81,10 +82,16 @@ public class info_match extends AppCompatActivity {
 
         Button button=findViewById(R.id.button_info_match);
         GregorianCalendar calendar=new GregorianCalendar();
-        // questo va cosi senno bisogna modificare registrazione evento
-        //perche si possono mettere tutti orari della giornata per le prenotazioni
-        calendar.set(GregorianCalendar.YEAR,GregorianCalendar.MONTH,GregorianCalendar.DAY_OF_MONTH,0,0);
-        if(match.date.before(calendar)){
+
+        int ora_start= create_activities.convert(match.start_time.split(":",match.start_time.length())[0]);
+        int min_start=create_activities.convert(match.start_time.split(":",match.start_time.length())[1]);
+        Date d=match.date.getGregorianChange();
+        //qua secondo me non va
+        if(d.before(calendar.getGregorianChange()) ||
+                //orario precedente
+                (ora_start<= calendar.get(GregorianCalendar.HOUR_OF_DAY) && min_start<= calendar.get(GregorianCalendar.MINUTE)           )
+
+        ){
             ViewGroup layout = (ViewGroup) button.getParent();
             if(null!=layout) //for safety only  as you are doing onClick
                 layout.removeView(button);

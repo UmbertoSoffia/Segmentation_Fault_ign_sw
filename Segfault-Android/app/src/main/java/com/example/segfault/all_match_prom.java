@@ -1,5 +1,6 @@
 package com.example.segfault;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -110,7 +111,7 @@ public class all_match_prom extends AppCompatActivity {
 
     private void addView(Match match) {
 
-        final View cricketerView = getLayoutInflater().inflate(R.layout.row_popup,null,false);
+        @SuppressLint("InflateParams") final View cricketerView = getLayoutInflater().inflate(R.layout.row_popup,null,false);
 
         TextView editText = cricketerView.findViewById(R.id.pop_actyvity);
         String date=match.date.get(Calendar.DAY_OF_MONTH) + "-" + (match.date.get(Calendar.MONTH)+1) + "-" + match.date.get(Calendar.YEAR);

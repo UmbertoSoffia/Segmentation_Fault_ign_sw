@@ -40,8 +40,7 @@ public class create_activities extends AppCompatActivity {
     EditText desc;
     static Structure structure;
     public static int convert(String str){
-        int val = 0;
-
+        int val;
 
         // Convert the String
         try {

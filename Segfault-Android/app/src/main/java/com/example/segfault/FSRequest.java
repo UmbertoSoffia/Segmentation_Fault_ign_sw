@@ -8,7 +8,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -23,15 +22,15 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
     final int READ_TIMEOUT = 15000;
 
     String request_method; // metodo HTTP da utilizzare
-    String route = ""; // route Node da chiamare
+    String route; // route Node da chiamare
     String json; // eventuale json da mandare con la richiesta
     String urlParameters; // eventuali parametri della query string
-    String token = ""; //token dell'utebnte
+    String token; //token dell'utebnte
     JSONObject result; // json object di risposta
     JSONArray array = null; // json array di risposta
 
 
-    FSRequest(String method, String t, String r, String j, String param){
+    public FSRequest(String method, String t, String r, String j, String param){
         request_method = method;
         route = r;
         json = j;
@@ -104,7 +103,7 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
                 // leggi la risposta
                 BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
                 StringBuilder response = new StringBuilder();
-                String responseLine = null;
+                String responseLine;
                 while ((responseLine = br.readLine()) != null) {
                     response.append(responseLine.trim());
                 }
