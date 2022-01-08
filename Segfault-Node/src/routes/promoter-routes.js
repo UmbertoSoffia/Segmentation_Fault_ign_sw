@@ -86,4 +86,22 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.delete('/', async (req, res, next) => {
+  const { user_id, email } = jwt.verify(req.query.token, process.env.SERVER_SECRET)
+  if (!user_id) {
+    return res.status(401).send('Not authenticated')
+  }
+  const promoter_id = user_id
+ 
+  try {
+    const prom = await Promoter.findOneAndDelete({ promoter_id })
+	const response = {
+      ok: true
+    }
+    res.json(response)
+  } catch (error) {
+    next(error)
+  }
+})
+
 module.exports = router

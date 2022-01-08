@@ -105,30 +105,41 @@ public class info_utent_prom_prom extends AppCompatActivity{
                 AlertDialog.Builder builder = new AlertDialog.Builder(info_utent_prom_prom.this);
                 builder.setMessage("Sicuro di cancellare l'account ").setPositiveButton("Si", (dialog, which) -> {
                     ///richiesta x cancellazione
+                    try{
 
+                        FSRequest req = new FSRequest("DELETE", MainActivity.utente_log.getToken(), "api/promoters", "", "token=" + MainActivity.utente_log.getToken());
+                        String res = req.execute().get();
+                        if(res.equals("OK")){
+                            //qua sotto lascia
+                            Toast toast = Toast.makeText(getApplicationContext(), "ti sei cancellato dal sistema", Toast.LENGTH_SHORT);
+                            toast.show();
 
+                            //aspetta due secondi e poi esce
+                            try {
+                                Thread.sleep(3000);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            Intent i = new Intent(info_utent_prom_prom.this, MainActivity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(i);
+                            finish();
+                        }
+                        else{
+                            AlertDialog.Builder build=new AlertDialog.Builder(info_utent_prom_prom.this);
+                            build.setMessage("Errore durante l'eliminazione").setPositiveButton("Ok", (dial,whi) -> {});
+                            AlertDialog alert=build.create();
+                            alert.show();
+                        }
 
+                    }catch (Exception e){
+                        Log.println(Log.ERROR, "Errore connessione", e.getMessage());
 
-
-
-
-
-                    //qua sotto lascia
-                    Toast toast = Toast.makeText(getApplicationContext(), "ti sei cancellato dal sistema", Toast.LENGTH_SHORT);
-                    toast.show();
-
-                    //aspetta due secondi e poi esce
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        AlertDialog.Builder build=new AlertDialog.Builder(info_utent_prom_prom.this);
+                        build.setMessage("Errore di connessione").setPositiveButton("Ok", (dial,whi) -> {});
+                        AlertDialog alert=build.create();
+                        alert.show();
                     }
-                    Intent i = new Intent(info_utent_prom_prom.this, MainActivity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(i);
-                    finish();
-
-
 
                 }).setNegativeButton("No",null);
                 AlertDialog alert = builder.create();
