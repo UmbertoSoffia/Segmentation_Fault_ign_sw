@@ -76,10 +76,9 @@ public class all_match_prom extends AppCompatActivity {
                             ((JSONObject) response.get(i)).get("description").toString(),
                             ((JSONObject) response.get(i)).get("number").toString());
                     GregorianCalendar cal=new GregorianCalendar();
-                    cal.set(cal.get(GregorianCalendar.YEAR),cal.get(GregorianCalendar.MONTH),cal.get(GregorianCalendar.DAY_OF_MONTH),0,0,0);
-                    if(!m.date.before(cal))
-                        addView(m);
-
+                    //tutte le date piu grandi di oggi
+                    if((m.date.getTimeInMillis() >=cal.getTimeInMillis()))
+                            addView(m);
                 }
 
 

@@ -112,6 +112,7 @@ public class info_utent_prom_prom extends AppCompatActivity{
 
 
 
+
                     //qua sotto lascia
                     Toast toast = Toast.makeText(getApplicationContext(), "ti sei cancellato dal sistema", Toast.LENGTH_SHORT);
                     toast.show();
@@ -135,28 +136,6 @@ public class info_utent_prom_prom extends AppCompatActivity{
             });
 
 
-            Button change_info_prom=findViewById(R.id.change_info_prom);
-            change_info_prom.setOnClickListener(v -> {
-                AlertDialog.Builder builder = new AlertDialog.Builder(info_utent_prom_prom.this);
-                builder.setMessage("Confermi la modifica?").setPositiveButton("Si", (dialog, which) -> {
-                    ///richiesta x modifica
-
-
-
-
-
-
-
-                    Toast toast = Toast.makeText(getApplicationContext(), "modifica confermata", Toast.LENGTH_SHORT);
-                    toast.show();
-                    finish();
-
-
-
-                }).setNegativeButton("No",null);
-                AlertDialog alert = builder.create();
-                alert.show();
-            });
 
 
 

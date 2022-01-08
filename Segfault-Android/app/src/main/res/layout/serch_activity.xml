@@ -58,7 +58,7 @@
         android:id="@+id/searchViewsport"
         android:layout_width="365dp"
         android:layout_height="48dp"
-        android:hint="Tipologia attività"
+        android:hint="@string/nome_attivit"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="@+id/searchView"
         app:layout_constraintHorizontal_bias="0.0"
