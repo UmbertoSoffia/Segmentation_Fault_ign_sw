@@ -72,7 +72,7 @@ public class home_promo extends AppCompatActivity {
 
             case nav_user_promo:
 
-                Intent j = new Intent(home_promo.this, info_utent_prom.class);
+                Intent j = new Intent(home_promo.this, info_utent_prom_prom.class);
 
                 startActivity(j);
 

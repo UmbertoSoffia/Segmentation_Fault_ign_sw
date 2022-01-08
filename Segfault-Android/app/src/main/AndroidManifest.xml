@@ -38,6 +38,7 @@
         <activity android:name=".info_struct" />
         <activity android:name=".list_act_user" />
         <activity android:name=".info_utent_prom" />
+        <activity android:name=".info_utent_prom_prom" />
         <activity android:name=".new_structure" />
         <activity android:name=".Register" />
         <activity android:name=".all_match_prom" />
