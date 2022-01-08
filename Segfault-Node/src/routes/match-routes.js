@@ -110,7 +110,6 @@ router.delete('/:id', async (req, res, next) => {
 		.then(reservations => {
 			if(reservations.length === 0){return res.status(404).send('Reservations not found')}
 			reservations.forEach(reservation => {
-				console.log(`${JSON.stringify(reservation)}`)
 				const user = reservation.user
 				const match = reservation.match
 				const mailOptions = {
