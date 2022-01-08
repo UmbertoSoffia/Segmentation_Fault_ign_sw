@@ -92,10 +92,7 @@ router.delete('/', async (req, res, next) => {
   if (!user_id) {
     return res.status(401).send('Not authenticated')
   }
-  const {
-    match_id
-  } = req.body
- 
+  const match_id = req.query.match_id
   try {
     const reservation = await Reservation.findOneAndDelete({ match_id, user_id })
     const response = {

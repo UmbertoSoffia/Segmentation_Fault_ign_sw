@@ -143,8 +143,8 @@ public class choice_of_events extends AppCompatActivity {
         find_without_constraint.setOnClickListener(v ->{
             EditText activity=findViewById(R.id.searchViewsport);
             EditText searchView= findViewById(R.id.searchView);
-            String struct= searchView.toString();
-            String nome=activity.toString();
+            String struct= searchView.getText().toString();
+            String nome=activity.getText().toString();
             layoutList.removeAllViews();
             if(struct.equals("") && nome.equals("")){
                 boolean one = false;
@@ -249,7 +249,7 @@ public class choice_of_events extends AppCompatActivity {
         calendar.set(GregorianCalendar.SECOND,0);
         calendar.set(GregorianCalendar.MILLISECOND,0);
 
-        if(match.date.before(calendar) ) return;
+        if(match.date.getTimeInMillis() < calendar.getTimeInMillis() ) return;
 
         final View cricketerView = getLayoutInflater().inflate(R.layout.row_popup,null,false);
 

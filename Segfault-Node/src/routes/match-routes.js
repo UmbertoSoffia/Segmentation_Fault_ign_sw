@@ -6,6 +6,14 @@ const Structure = require('../models/structure')
 const Match = require('../models/match')
 const Reservation = require('../models/reservation')
 const objectid = require('objectid')
+const nodemailer = require('nodemailer')
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'segfaultunive@gmail.com',
+    pass: 'Unive2022'
+  }
+})
 
 router.post('/', async (req, res, next) => {
   const {
@@ -93,7 +101,31 @@ router.delete('/:id', async (req, res, next) => {
   const match_id = req.params.id
  
   try {
-    const match = await Match.findOneAndDelete({ match_id })
+    
+	const rese = Reservation.find({ match_id })
+		.populate("user")
+		.populate("match")
+		.lean()
+		.exec()
+		.then(reservations => {
+			if(reservations.length === 0){return res.status(404).send('Reservations not found')}
+			reservations.forEach(reservation => {
+			const user = reservation.user
+			const match = reservation.match
+			const mailOptions = {
+				  from: 'segfaultunive@gmail.com',
+				  to: user.email,
+				  subject: 'Eliminazione match',
+				  html: 'La informiamo che il match ' + match.name + ' che doveva tenersi in data ' + match.date + ' è stata eliminato.'
+				}
+				if(user.user_id != user_id){
+					transporter.sendMail(mailOptions, function(err, info){
+						if(err){return res.status(500).send('Email not sent')}
+					})
+				}
+			})
+		})
+	const match = await Match.findOneAndDelete({ match_id })
 	const reserv = await Reservation.deleteMany({match_id})
     const response = {
       ok: true

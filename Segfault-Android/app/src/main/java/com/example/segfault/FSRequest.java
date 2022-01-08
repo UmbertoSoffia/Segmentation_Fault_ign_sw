@@ -103,7 +103,7 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
                 // leggi la risposta
                 BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
                 StringBuilder response = new StringBuilder();
-                String responseLine;
+                String responseLine = null;
                 while ((responseLine = br.readLine()) != null) {
                     response.append(responseLine.trim());
                 }

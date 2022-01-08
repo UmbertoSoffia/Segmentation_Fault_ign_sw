@@ -85,9 +85,9 @@ public class info_match extends AppCompatActivity {
 
         int ora_start= create_activities.convert(match.start_time.split(":",match.start_time.length())[0]);
         int min_start=create_activities.convert(match.start_time.split(":",match.start_time.length())[1]);
-        Date d=match.date.getGregorianChange();
+
         //qua secondo me non va
-        if(d.before(calendar.getGregorianChange()) ||
+        if(match.date.getTimeInMillis() < calendar.getTimeInMillis() &&
                 //orario precedente
                 (ora_start<= calendar.get(GregorianCalendar.HOUR_OF_DAY) && min_start<= calendar.get(GregorianCalendar.MINUTE)           )
 
@@ -209,8 +209,7 @@ public class info_match extends AppCompatActivity {
                             try{
                                 JSONObject reservation = new JSONObject();
                                 reservation.put("match_id", match.id);
-                                reservation.put("user_id", MainActivity.utente_log.getId());
-                                FSRequest req = new FSRequest("DELETE", MainActivity.utente_log.getToken(), "api/reservation", reservation.toString(), "token=" + MainActivity.utente_log.getToken());
+                                FSRequest req = new FSRequest("DELETE", MainActivity.utente_log.getToken(), "api/reservation", reservation.toString(), "match_id="+match.id+"&token=" + MainActivity.utente_log.getToken());
                                 String res = req.execute().get();
                                 if (res.equals("OK")){
                                     Toast toast = Toast.makeText(getApplicationContext(), "ti sei disiscritto dall'incontro", Toast.LENGTH_SHORT);
