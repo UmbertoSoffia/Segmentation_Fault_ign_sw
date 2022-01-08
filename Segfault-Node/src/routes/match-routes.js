@@ -102,29 +102,30 @@ router.delete('/:id', async (req, res, next) => {
  
   try {
     
-	const rese = Reservation.find({ match_id })
-		.populate("user")
-		.populate("match")
+	const rese = await Reservation.find({ match_id })
+		.populate('user')
+		.populate('match')
 		.lean()
 		.exec()
 		.then(reservations => {
 			if(reservations.length === 0){return res.status(404).send('Reservations not found')}
 			reservations.forEach(reservation => {
-			const user = reservation.user
-			const match = reservation.match
-			const mailOptions = {
-				  from: 'segfaultunive@gmail.com',
-				  to: user.email,
-				  subject: 'Eliminazione match',
-				  html: 'La informiamo che il match ' + match.name + ' che doveva tenersi in data ' + match.date + ' è stata eliminato.'
-				}
-				if(user.user_id != user_id){
-					transporter.sendMail(mailOptions, function(err, info){
-						if(err){return res.status(500).send('Email not sent')}
-					})
-				}
+				console.log(`${JSON.stringify(reservation)}`)
+				const user = reservation.user
+				const match = reservation.match
+				const mailOptions = {
+					  from: 'segfaultunive@gmail.com',
+					  to: user.email,
+					  subject: 'Eliminazione match',
+					  html: 'La informiamo che il match ' + match.name + ' che doveva tenersi in data ' + match.date + ' è stata eliminato.'
+					}
+					if(user.user_id != user_id){
+						transporter.sendMail(mailOptions, function(err, info){
+							if(err){return res.status(500).send('Email not sent')}
+						})
+					}
+				})
 			})
-		})
 	const match = await Match.findOneAndDelete({ match_id })
 	const reserv = await Reservation.deleteMany({match_id})
     const response = {
