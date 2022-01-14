@@ -111,12 +111,16 @@
         <entry key="app/src/main/res/layout/home_promo.xml" value="0.22" />
         <entry key="app/src/main/res/layout/home_user.xml" value="0.25" />
         <entry key="app/src/main/res/layout/homepage.xml" value="0.234375" />
+        <entry key="app/src/main/res/layout/info_match.xml" value="0.33" />
         <entry key="app/src/main/res/layout/info_struct.xml" value="0.234375" />
-        <entry key="app/src/main/res/layout/info_utent_prom.xml" value="0.1515625" />
+        <entry key="app/src/main/res/layout/info_struct_promo.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/info_struct_user.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/info_utent_prom.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/info_utent_prom_prom.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/info_utent_user.xml" value="0.234375" />
         <entry key="app/src/main/res/layout/list_act_user.xml" value="0.25407608695652173" />
         <entry key="app/src/main/res/layout/menu.xml" value="0.234375" />
-        <entry key="app/src/main/res/layout/new_struct.xml" value="0.25407608695652173" />
+        <entry key="app/src/main/res/layout/new_struct.xml" value="0.33" />
         <entry key="app/src/main/res/layout/register.xml" value="0.289295101548431" />
         <entry key="app/src/main/res/layout/reservation.xml" value="0.24818840579710144" />
         <entry key="app/src/main/res/layout/row_popup.xml" value="0.25407608695652173" />

@@ -41,7 +41,7 @@
         android:layout_marginBottom="264dp"
         android:shadowColor="@color/black"
         android:text="@string/inserisci_indirizzo_della_struttura"
-        android:textAlignment="center"
+        android:textAlignment="inherit"
 
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +71,7 @@
         android:ems="10"
 
         android:text="@string/nome_della_struttura"
-        android:textAlignment="center"
+        android:textAlignment="inherit"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +87,7 @@
         android:layout_marginBottom="440dp"
         android:shadowColor="@color/black"
         android:text="@string/orario_lavorativo"
-        android:textAlignment="center"
+        android:textAlignment="inherit"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView12"
@@ -100,7 +100,7 @@
         android:layout_height="29dp"
         android:shadowColor="@color/black"
         android:text="@string/giorni_lavorativi"
-        android:textAlignment="center"
+        android:textAlignment="inherit"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView15"
@@ -209,15 +209,16 @@
         android:id="@+id/textView13"
         android:layout_width="109dp"
         android:layout_height="22dp"
+        android:layout_marginStart="4dp"
         android:layout_marginBottom="276dp"
         android:shadowColor="@color/black"
         android:text="@string/numero_di_posti"
-        android:textAlignment="center"
+        android:textAlignment="inherit"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView17"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.938" />
+        app:layout_constraintVertical_bias="0.877" />
 
     <TextView
         android:id="@+id/textView10"

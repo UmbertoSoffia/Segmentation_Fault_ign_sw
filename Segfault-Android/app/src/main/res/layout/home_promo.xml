@@ -17,9 +17,10 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/new_space"
+        app:layout_constraintHorizontal_bias="0.65"
         app:layout_constraintStart_toStartOf="@+id/new_space"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.979"
         tools:ignore="TextContrastCheck" />
 
     <Button
@@ -31,10 +32,10 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_match_prom"
-        app:layout_constraintVertical_bias="0.235"
+        app:layout_constraintVertical_bias="0.21"
         tools:ignore="TextContrastCheck" />
 
     <ImageView
