@@ -37,7 +37,7 @@ public class info_match extends AppCompatActivity {
 
             if (res.equals("OK")) {
                 JSONObject response = req1.result;
-                //metti in struttura il nome della struttura
+                //struttura = structure's name
                 struttura=response.getString("name");
             }
             else{
@@ -86,9 +86,9 @@ public class info_match extends AppCompatActivity {
         int ora_start= create_activities.convert(match.start_time.split(":",match.start_time.length())[0]);
         int min_start=create_activities.convert(match.start_time.split(":",match.start_time.length())[1]);
 
-        //qua secondo me non va
+
         if(match.date.getTimeInMillis() < calendar.getTimeInMillis() &&
-                //orario precedente
+                //previous time
                 (ora_start<= calendar.get(GregorianCalendar.HOUR_OF_DAY) && min_start<= calendar.get(GregorianCalendar.MINUTE)           )
 
         ){
@@ -107,7 +107,7 @@ public class info_match extends AppCompatActivity {
                 button.setOnClickListener(v -> {
                     AlertDialog.Builder builder = new AlertDialog.Builder(info_match.this);
                     builder.setMessage("eliminare l'incontro?").setPositiveButton("Sì", (dialog, which) -> {
-                        ////////elimina incontro
+                        //delete match
                         try{
 
                             FSRequest req = new FSRequest("DELETE", MainActivity.utente_log.getToken(), "api/match/" + match.id, "", "token=" + MainActivity.utente_log.getToken());
@@ -116,7 +116,7 @@ public class info_match extends AppCompatActivity {
                                 Toast toast = Toast.makeText(getApplicationContext(), "incontro eliminato", Toast.LENGTH_SHORT);
                                 toast.show();
 
-                                //aspetta due secondi e poi esce
+                                //wait 2 seconds and exit
                                 Thread.sleep(2000);
 
                                 finish();
@@ -154,10 +154,10 @@ public class info_match extends AppCompatActivity {
                     String res = req.execute().get();
 
 
-                    //richiesta andata a buon fine: disegno la lista delle reservation
+                    //request done: draw reservations' list
                     if (res.equals("OK")) {
                         JSONArray response = req.array;
-                        // scorri l'array, ogni oggetto nell'array ha un campo match che è un oggetto json
+                        // loop on the array
                         for (int i = 0; i < response.length(); i++) {
                             JSONObject ogg=(JSONObject) ((JSONObject) response.get(i)).get("match");
                             incontri.add(new Match(ogg.get("match_id").toString(),
@@ -192,9 +192,9 @@ public class info_match extends AppCompatActivity {
 
 
 
-                //controllare se utente registrato in mathc
+                //check if user has reserved the match
                 if(incontri.contains(match)) {
-                    // se iscritto
+                    // if reserved
                     String s="disiscrivimi";
                     button.setText(s);
                     button.setBackgroundColor(Color.RED);
@@ -203,7 +203,7 @@ public class info_match extends AppCompatActivity {
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(info_match.this);
                         builder.setMessage("Confermi?").setPositiveButton("Sì", (dialog, which) -> {
-                            ////////disiscrivi utente_log
+                            //delete reservation
 
 
                             try{
@@ -215,7 +215,6 @@ public class info_match extends AppCompatActivity {
                                     Toast toast = Toast.makeText(getApplicationContext(), "ti sei disiscritto dall'incontro", Toast.LENGTH_SHORT);
                                     toast.show();
 
-                                    //aspetta due secondi e poi esce
                                     Thread.sleep(2000);
 
                                     finish();
@@ -254,7 +253,7 @@ public class info_match extends AppCompatActivity {
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(info_match.this);
                         builder.setMessage("Confermi?").setPositiveButton("Sì", (dialog, which) -> {
-                            ////////iscrivi utente_log
+                            //add reservation for utente_log
                             try{
                                 JSONObject reservation = new JSONObject();
                                 reservation.put("match_id", match.id);
@@ -264,7 +263,7 @@ public class info_match extends AppCompatActivity {
                                 if (res.equals("OK")){
 
                                     AlertDialog.Builder builder1 = new AlertDialog.Builder(info_match.this);
-                                    //sta roba salva nel calendario telefono
+                                    //save to google calender
                                     builder1.setMessage("ti sei iscritto all'incontro").setPositiveButton("Inseriscilo nel calendario", (dialog1, which1) -> {
                                             Intent intent = new Intent(Intent.ACTION_EDIT);
                                             intent.setType("vnd.android.cursor.item/event");

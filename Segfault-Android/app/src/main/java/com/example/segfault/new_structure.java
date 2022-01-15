@@ -111,7 +111,7 @@ public class new_structure extends AppCompatActivity {
                     } else {
 
 
-                        //inserimento nuova struttura
+                        //add new structure
                         try {
                             JSONObject struct = new JSONObject();
                             struct.put("name", name_struct.getText().toString());
@@ -127,7 +127,7 @@ public class new_structure extends AppCompatActivity {
                             String res = req.execute().get();
 
                             if (res.equals("OK")) {
-                                // struttura inserita correttamente: refresh della pagina
+                                // structure added: refresh page
                                 AlertDialog.Builder builder = new AlertDialog.Builder(new_structure.this);
                                 builder.setMessage("Struttura inserita con successo").setPositiveButton("Ok", (dialog, which) -> {
                                     Intent i = new Intent(new_structure.this, new_structure.class);
@@ -138,24 +138,24 @@ public class new_structure extends AppCompatActivity {
                                 alert.show();
 
                             } else {
-                                // richiesta fallita
+                                // request failed
                                 if (req.result != null) {
                                     int err = req.result.getInt("error_code");
-                                    //struttura già esistente
+                                    //structure already exists
                                     if (err == 409) {
                                         AlertDialog.Builder builder = new AlertDialog.Builder(new_structure.this);
                                         builder.setMessage("Struttura già esistente!").setPositiveButton("Ok", (dialog, which) -> {
                                         });
                                         AlertDialog alert = builder.create();
                                         alert.show();
-                                    } else { //errore nella richiesta
+                                    } else { //request body error
                                         AlertDialog.Builder builder = new AlertDialog.Builder(new_structure.this);
                                         builder.setMessage("Errore durante l'inserimento!").setPositiveButton("Ok", (dialog, which) -> {
                                         });
                                         AlertDialog alert = builder.create();
                                         alert.show();
                                     }
-                                } else {//errore nella richiesta
+                                } else { //request body error
                                     AlertDialog.Builder builder = new AlertDialog.Builder(new_structure.this);
                                     builder.setMessage("Errore durante l'inserimento!").setPositiveButton("Ok", (dialog, which) -> {
                                     });

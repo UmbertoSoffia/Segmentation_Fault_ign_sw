@@ -44,10 +44,10 @@ public class home_user extends AppCompatActivity {
             String res = req.execute().get();
             ArrayList<Match> incontri=new ArrayList<>();
 
-            //richiesta andata a buon fine: disegno la lista delle reservation
+            //request done: draw reservations' list
             if (res.equals("OK")) {
                 JSONArray response = req.array;
-            // scorri l'array, ogni oggetto nell'array ha un campo match che è un oggetto json
+            // loop on the array, each array's object has a match field that is a json object
                 for (int i = 0; i < response.length(); i++) {
                     JSONObject ogg=(JSONObject) ((JSONObject) response.get(i)).get("match");
                     incontri.add(new Match(ogg.get("match_id").toString(),
@@ -148,7 +148,7 @@ public class home_user extends AppCompatActivity {
         Button partecipa=findViewById(R.id.home_user_prenota_attività);
         partecipa.setOnClickListener(v->{
             MainActivity.utente_supp=MainActivity.utente_log;
-            //manda alla pagina di tutte le prenotazioni del giorno selezionato
+            //redirects to the list of matches scheduled on the selected day
             Intent i = new Intent(home_user.this, choice_of_events.class);
             startActivity(i);
 

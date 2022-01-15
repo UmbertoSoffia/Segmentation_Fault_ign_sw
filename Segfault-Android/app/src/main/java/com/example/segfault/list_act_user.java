@@ -34,12 +34,10 @@ public class list_act_user extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle(cal.get(Calendar.DAY_OF_MONTH)+"/"+(cal.get(Calendar.MONTH)+1)+"/"+cal.get(Calendar.YEAR));
         layoutList = findViewById(R.id.list_act_user_scroll);
         try {
-            //dato giorno e id deve darmi tutti event giornata
-            //dal.getTime ritorna la data
             FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/reservation", "", "user="+MainActivity.utente_log.getCod_id()+ "&token=" + MainActivity.utente_supp.getToken());
             String res = req.execute().get();
 
-            //richiesta andata a buon fine: disegno la lista delle strutture
+            //request done: draw list
             if (res.equals("OK")) {
 
 

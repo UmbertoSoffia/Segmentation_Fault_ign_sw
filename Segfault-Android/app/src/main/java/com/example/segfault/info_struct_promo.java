@@ -57,7 +57,7 @@ public class info_struct_promo extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle("informazioni /modifica struttura: "+MainActivity.struct.getName());
         setContentView(R.layout.info_struct_promo);
 
-        //info struttura
+        //structure info
         String name=MainActivity.struct.getName();
         String desc=MainActivity.struct.getDesc();
 
@@ -66,7 +66,7 @@ public class info_struct_promo extends AppCompatActivity {
         String closing_time=MainActivity.struct.getStop_time();
         String opening_time=MainActivity.struct.getStart_time();
 
-        //setta i campi
+        //set fields
         Button confirm= findViewById(R.id.confirm_create_info_struct_promo);
         Button cancel = findViewById(R.id.cancel_create_info_struct_promo);
         Button delete = findViewById(R.id.delete_structure);
@@ -109,7 +109,7 @@ public class info_struct_promo extends AppCompatActivity {
                         alert.show();
                     }
                     else {
-                            //inserimento nuova struttura
+                            //add new structure
                             try {
                         JSONObject struct = new JSONObject();
                         struct.put("id", MainActivity.struct.getId());
@@ -125,7 +125,7 @@ public class info_struct_promo extends AppCompatActivity {
                         String res = req.execute().get();
 
                         if(res.equals("OK")){
-                            // struttura inserita correttamente: refresh della pagina
+                            // structure added: refresh the page
                             AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
                             builder.setMessage("Struttura modificata con successo").setPositiveButton("Ok", (dialog, which) -> {
                                 MainActivity.utente_supp=MainActivity.utente_log;
@@ -137,7 +137,7 @@ public class info_struct_promo extends AppCompatActivity {
                             alert.show();
 
                         }else{
-                          //errore nella richiesta
+                          //request body error
                                 AlertDialog.Builder builder=new AlertDialog.Builder(info_struct_promo.this);
                                 builder.setMessage("Errore durante la modifica!").setPositiveButton("Ok", (dialog, which) -> {});
                                 AlertDialog alert=builder.create();

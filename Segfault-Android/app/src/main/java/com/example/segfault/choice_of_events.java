@@ -49,7 +49,7 @@ public class choice_of_events extends AppCompatActivity {
             FSRequest req2 = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/structure", "",  "token=" + MainActivity.utente_log.getToken());
             String res2 = req2.execute().get();
 
-            //richiesta andata a buon fine: disegno la lista delle strutture
+            //request done: draw structure list
             if (res.equals("OK") && res2.equals("OK") ) {
                 JSONArray response = req.array;
                 JSONArray response2 = req2.array;
@@ -155,7 +155,7 @@ public class choice_of_events extends AppCompatActivity {
                     }
                 }
                 if (!one) {
-                    //altrimenti
+                    //else
                     AlertDialog.Builder builder = new AlertDialog.Builder(choice_of_events.this);
                     builder.setMessage("Nessun evento disponibile ").setPositiveButton("Ok", (dialog, which) -> {
                     });
@@ -183,7 +183,7 @@ public class choice_of_events extends AppCompatActivity {
 
 
                     if(!one) {
-                        //altrimenti
+                        //else
                         AlertDialog.Builder builder = new AlertDialog.Builder(choice_of_events.this);
                         builder.setMessage("Nessun evento disponibile ").setPositiveButton("Ok", (dialog, which) -> {
                         });
@@ -202,7 +202,7 @@ public class choice_of_events extends AppCompatActivity {
                             }
                         }
                         if (!one) {
-                            //altrimenti
+                            //else
                             AlertDialog.Builder builder = new AlertDialog.Builder(choice_of_events.this);
                             builder.setMessage("Nessun evento disponibile ").setPositiveButton("Ok", (dialog, which) -> {
                             });
@@ -225,7 +225,7 @@ public class choice_of_events extends AppCompatActivity {
 
                         }
                         if (!one) {
-                            //altrimenti
+                            //else
                             AlertDialog.Builder builder = new AlertDialog.Builder(choice_of_events.this);
                             builder.setMessage("Nessun evento disponibile ").setPositiveButton("Ok", (dialog, which) -> {
                             });

@@ -29,7 +29,7 @@ public class User {
     }
 
     /**
-     * @return true if the user is promoter
+     * @return true if the user is a promoter
      */
     public boolean isPromoter(){return type.equals("promoter");}
 

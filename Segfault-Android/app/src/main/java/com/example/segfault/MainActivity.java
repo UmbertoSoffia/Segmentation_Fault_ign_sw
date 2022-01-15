@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             EditText user = findViewById(R.id.username_login);
             EditText pwd = findViewById(R.id.pwd);
 
-            //prima richiesta: utente normale
+            //first request: normal user
             try {
                 JSONObject ute = new JSONObject();
                 ute.put("email", user.getText().toString());
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 FSRequest req = new FSRequest("POST", "", "api/users/authenticate/email", ute.toString(), "");
                 String res = req.execute().get();
 
-                //richiesta andata a buon fine: si logga
+                //request done: login
                 if (res.equals("OK")) {
                     JSONObject response = req.result;
                     Log.println(Log.INFO, "Response", response.toString());
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     utente_supp= new User(response.getString("name"),response.getString("id"),response.getString("token"),response.getString("email"),"user");
 
                     startActivity(i);
-                } else { //richiesta fallita: controllo i promotori
+                } else { //request failed: check promoters
                     JSONObject prom = new JSONObject();
                     prom.put("email", user.getText().toString());
                     prom.put("password", pwd.getText().toString());
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     FSRequest req1 = new FSRequest("POST", "", "api/promoters/authenticate/email", prom.toString(), "");
                     String res1 = req1.execute().get();
 
-                    // richiesta andata a buon fine: si logga
+                    // request done: login
                     if(res1.equals("OK")) {
                         JSONObject response1 = req1.result;
                         Intent i = new Intent(MainActivity.this, home_promo.class);
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
                         startActivity(i);
                     }
-                    else {// login fallito: utente inesistente
+                    else {   // login failed: user not found
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                         builder.setMessage("Utente inesistente").setPositiveButton("ok", (dialog, which) -> {
                             Intent i = new Intent(MainActivity.this, MainActivity.class);

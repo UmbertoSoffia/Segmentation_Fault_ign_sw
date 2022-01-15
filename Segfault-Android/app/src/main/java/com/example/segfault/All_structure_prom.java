@@ -30,7 +30,7 @@ public class All_structure_prom extends AppCompatActivity {
         layoutList = findViewById(R.id.layout_list_allstruct);
 
 
-        //richiesta lista di strutture
+        //structures' list request
 
         try{
 
@@ -99,11 +99,11 @@ public class All_structure_prom extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
-        //cancello le strutture vecchie dalla lista
+        //delete old structures from the list
 
         layoutList.removeAllViews();
 
-        //aggiorno informazioni strutture perchè potrebbero essere state modificate
+        //update structures' information because they might be modified
 
         try{
 

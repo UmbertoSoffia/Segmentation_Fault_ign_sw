@@ -38,7 +38,7 @@ public class Register extends AppCompatActivity {
                 AlertDialog alert=builder.create();
                 alert.show();
             }else{
-                //registrazione nuovo promotore
+                //register new promoter
                 try{
 
                     JSONObject prom = new JSONObject();
@@ -52,7 +52,7 @@ public class Register extends AppCompatActivity {
                     String res = req.execute().get();
 
                     if(res.equals("OK")){
-                        //torna alla pagina di login
+                        //back to login page
                         AlertDialog.Builder builder=new AlertDialog.Builder(Register.this);
                         builder.setMessage("Registrazione avvenuta con successo").setPositiveButton("Ok", (dialog, which) -> {
                             Intent i = new Intent(Register.this, MainActivity.class);

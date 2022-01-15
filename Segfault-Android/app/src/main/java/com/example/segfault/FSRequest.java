@@ -21,13 +21,13 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
     final int CONNECTION_TIMEOUT = 15000;
     final int READ_TIMEOUT = 15000;
 
-    String request_method; // metodo HTTP da utilizzare
-    String route; // route Node da chiamare
-    String json; // eventuale json da mandare con la richiesta
-    String urlParameters; // eventuali parametri della query string
-    String token; //token dell'utebnte
-    JSONObject result; // json object di risposta
-    JSONArray array = null; // json array di risposta
+    String request_method; // HTTP method
+    String route; // Node route to call
+    String json; // eventual json to send with the request
+    String urlParameters; // eventual query string parameters
+    String token; //user token
+    JSONObject result; // response json object
+    JSONArray array = null; // response json array
 
 
     public FSRequest(String method, String t, String r, String j, String param){
@@ -43,7 +43,7 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
     @Override
     protected String doInBackground(Void... voids) {
 
-        String answer; // risposta
+        String answer; // response
 
         try{
 
@@ -56,10 +56,10 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
             // status code
             int status;
 
-            // risposta sempre in json
+            // always json response
             connection.setRequestProperty("Accept", "application/json");
 
-            // autenticazione
+            // authentication
 
             if (!(this.token.equals("")))
                 connection.setRequestProperty("Authentication", "Bearer " + this.token);
@@ -88,19 +88,19 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
 
 
 
-            //esegui la richiesta
+            //execute the request
             connection.connect();
 
-            //status code della risposta
+            //response status code
             status = connection.getResponseCode();
 
-            // richiesta andata a buon fine
+            // request ok
             if(status <= 299){
 
                 //input stream
                 InputStream is = connection.getInputStream();
 
-                // leggi la risposta
+                // read response
                 BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
                 StringBuilder response = new StringBuilder();
                 String responseLine = null;
@@ -108,14 +108,14 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
                     response.append(responseLine.trim());
                 }
 
-                // imposta il risultato
+                // set result
                 try {
                     result = new JSONObject(response.toString());
                 }catch(JSONException je){
                     array = new JSONArray(response.toString());
                 }
 
-                // richiesta andata a buon fine
+                // request ok
                 answer = "OK";
 
                 // disconnessione
@@ -135,7 +135,7 @@ public class FSRequest extends AsyncTask<Void, Void, String> {
             e.printStackTrace();
             Log.println(Log.ERROR, "Errore", e.getMessage());
 
-            // richiesta fallita
+            // request failed
             answer = "KO";
         }
 

@@ -30,7 +30,7 @@ public class all_structure_user extends AppCompatActivity {
             FSRequest req = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/structure", "",  "&token=" + MainActivity.utente_log.getToken());
             String res = req.execute().get();
 
-            //richiesta andata a buon fine: disegno la lista delle strutture
+            //request done: draw structures' list
             if(res.equals("OK")){
                 JSONArray response = req.array;
                 for (int i = 0; i < response.length() ; i++) {

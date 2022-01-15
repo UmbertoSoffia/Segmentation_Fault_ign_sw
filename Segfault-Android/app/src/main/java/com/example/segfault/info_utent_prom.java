@@ -29,7 +29,7 @@ public class info_utent_prom extends AppCompatActivity {
 
 
         Objects.requireNonNull(getSupportActionBar()).setTitle("Utente promotore ");
-        //inserimento dati personali utent prom
+        //personal promoter's information
 
 
         TextView txt= findViewById(R.id.name_info_utent_prom);
@@ -40,18 +40,15 @@ public class info_utent_prom extends AppCompatActivity {
 
 
 
-        //inserimento delle sue strutture
-        //fallisce in sto punto non riesce a beccare il layout di la per me ma bob
+        //promoter's structures
         layoutList = findViewById(R.id.layout_list_info_utentprom);
-        //come aggiungere riga alla pagina con la stringa come testo della casella
-        //il numero serve come id della struttura per poi dare valore al pulsante
 
         try{
 
             FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/structure", "", "promoter=" + MainActivity.utente_supp.getCod_id() + "&token=" + MainActivity.utente_supp.getToken());
             String res = req.execute().get();
 
-            //richiesta andata a buon fine: disegno la lista delle strutture
+            //request done: draw list
             if(res.equals("OK")){
                 JSONArray response = req.array;
                 for (int i = 0; i < response.length() ; i++) {
@@ -115,18 +112,18 @@ public class info_utent_prom extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
-        //cancello le strutture vecchie dalla lista
+        //delete old structures from list
 
         layoutList.removeAllViews();
 
-        //aggiorno informazioni strutture perchè potrebbero essere state modificate
+        //update info because they might be changed
 
         try{
 
             FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/structure", "", "promoter=" + MainActivity.utente_supp.getCod_id() + "&token=" + MainActivity.utente_supp.getToken());
             String res = req.execute().get();
 
-            //richiesta andata a buon fine: disegno la lista delle strutture
+            //request done: draw list
             if(res.equals("OK")){
                 JSONArray response = req.array;
                 for (int i = 0; i < response.length() ; i++) {

@@ -1,7 +1,6 @@
 package com.example.segfault;
 
 public class Structure {
-    //questo rapprestenta un insieme di immagini
 
     private final String name;
     private final String id;
@@ -42,13 +41,13 @@ public class Structure {
     }
 
     /**
-     * @return number of pieple
+     * @return number of people
      */
     public int getNumber() {
         return number;
     }
     /**
-     * set number of pieple
+     * set number of people
      */
     public void setNumber(int number) {
         this.number = number;

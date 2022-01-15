@@ -35,7 +35,8 @@ public class all_match_prom extends AppCompatActivity {
         all_struct=new ArrayList<>();
 
         layoutList = findViewById(R.id.layout_list_allstruct);
-        //richiesta lista di strutture
+
+        //structures' list request
 
         try{
 
@@ -44,7 +45,7 @@ public class all_match_prom extends AppCompatActivity {
             FSRequest req2 = new FSRequest("GET", MainActivity.utente_log.getToken(), "api/structure", "", "promoter=" + MainActivity.utente_log.getCod_id() + "&token=" + MainActivity.utente_log.getToken());
             String res2 = req2.execute().get();
 
-            //richiesta andata a buon fine: disegno la lista delle strutture
+            //request done: draw structures' list
             if(res.equals("OK") && res2.equals("OK") ){
                 JSONArray response2 = req2.array;
                 for (int i = 0; i < response2.length() ; i++) {
@@ -139,7 +140,7 @@ public class all_match_prom extends AppCompatActivity {
                     alert.show();
                 }
                 else {
-                    // azione da fare per aggiungerre evento a utente
+
                     Toast toast = Toast.makeText(getApplicationContext(), "Evento eliminato", Toast.LENGTH_SHORT);
                     toast.show();
                 }
@@ -152,7 +153,7 @@ public class all_match_prom extends AppCompatActivity {
                 alert.show();
             }
 
-            //refresh qua (sottoa fatto già) per eliminare quello appena confermato
+            //page refresh
             Intent i = new Intent(all_match_prom.this, all_match_prom.class);
 
             startActivity(i);

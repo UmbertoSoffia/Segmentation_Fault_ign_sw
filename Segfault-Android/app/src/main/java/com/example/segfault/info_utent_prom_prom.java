@@ -30,7 +30,7 @@ public class info_utent_prom_prom extends AppCompatActivity{
 
 
             Objects.requireNonNull(getSupportActionBar()).setTitle("info account");
-            //inserimento dati personali utent prom
+            //promoter's personal info
 
 
             TextView txt= findViewById(R.id.name_info_utent_prom_prom);
@@ -41,18 +41,16 @@ public class info_utent_prom_prom extends AppCompatActivity{
 
 
 
-            //inserimento delle sue strutture
+            //promoter's structures
 
             layoutList = findViewById(R.id.layout_list_info_utente_prom);
-            //come aggiungere riga alla pagina con la stringa come testo della casella
-            //il numero serve come id della struttura per poi dare valore al pulsante
 
             try{
 
                 FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/structure", "", "promoter=" + MainActivity.utente_supp.getCod_id() + "&token=" + MainActivity.utente_supp.getToken());
                 String res = req.execute().get();
 
-                //richiesta andata a buon fine: disegno la lista delle strutture
+                //request done: draw list
                 if(res.equals("OK")){
                     JSONArray response = req.array;
                     for (int i = 0; i < response.length() ; i++) {
@@ -104,17 +102,16 @@ public class info_utent_prom_prom extends AppCompatActivity{
             delete.setOnClickListener(v -> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(info_utent_prom_prom.this);
                 builder.setMessage("Sicuro di cancellare l'account ").setPositiveButton("Si", (dialog, which) -> {
-                    ///richiesta x cancellazione
+                    //delete account
                     try{
 
                         FSRequest req = new FSRequest("DELETE", MainActivity.utente_log.getToken(), "api/promoters", "", "token=" + MainActivity.utente_log.getToken());
                         String res = req.execute().get();
                         if(res.equals("OK")){
-                            //qua sotto lascia
+
                             Toast toast = Toast.makeText(getApplicationContext(), "ti sei cancellato dal sistema", Toast.LENGTH_SHORT);
                             toast.show();
 
-                            //aspetta due secondi e poi esce
                             try {
                                 Thread.sleep(3000);
                             } catch (Exception e) {
@@ -173,18 +170,18 @@ public class info_utent_prom_prom extends AppCompatActivity{
         public void onResume() {
             super.onResume();
 
-            //cancello le strutture vecchie dalla lista
+            //delete old structures from list
 
             layoutList.removeAllViews();
 
-            //aggiorno informazioni strutture perchè potrebbero essere state modificate
+            //update info, they might be changed
 
             try{
 
                 FSRequest req = new FSRequest("GET", MainActivity.utente_supp.getToken(), "api/structure", "", "promoter=" + MainActivity.utente_supp.getCod_id() + "&token=" + MainActivity.utente_supp.getToken());
                 String res = req.execute().get();
 
-                //richiesta andata a buon fine: disegno la lista delle strutture
+                //request done: draw list
                 if(res.equals("OK")){
                     JSONArray response = req.array;
                     for (int i = 0; i < response.length() ; i++) {
