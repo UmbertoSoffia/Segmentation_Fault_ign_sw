@@ -9,7 +9,13 @@ Istruzioni per l'utilizzo:
 2. aprire in Android Studio la cartella SegFault-Android e lanciare l'applicazione su un emulatore con API level almeno 26
 3. per accedere come utente normale usare le seguenti credenziali:<br><br>
       username: <b>umbertosoffia00@gmail.com</b><br>
-      password: <b>umberto!</b><br>
+      password: <b>umberto!</b><br><br>
+      username: <b>popovic.david.00@gmail.com</b><br>
+      password: <b>david</b><br><br>
+      username: <b>pesce.chr@gmail.com</b><br>
+      password: <b>chiara</b><br><br>
+      username: <b>maksimovicvalentina3@gmail.com</b><br>
+      password: <b>valentina</b><br><br>
       
 4. per accedere come utente promotore invece:<br><br>
       username: <b>promotore@gmail.com</b><br>
