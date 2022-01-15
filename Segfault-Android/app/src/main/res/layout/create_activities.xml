@@ -202,22 +202,23 @@
         android:textColor="#424242"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/spinner_min_age_create"
-        app:layout_constraintHorizontal_bias="0.296"
+        app:layout_constraintHorizontal_bias="0.265"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.481" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="28dp"
         android:text="@string/attività"
         android:textAlignment="center"
         android:textColor="#424242"
         app:layout_constraintBottom_toTopOf="@+id/textView8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.439" />
+        app:layout_constraintVertical_bias="0.447" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/sport_create_act_promo"
